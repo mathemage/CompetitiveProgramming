@@ -11,13 +11,13 @@ public:
       d[i] = 0;
     }
     for (unsigned i = 0; i < dithered.length(); i++) {
-      d[dithered[i] - '0'] = 1;
+      d[dithered[i] - 'A'] = 1;
     }
     int count = 0;
 
     for (vector<string>::iterator str = screen.begin(); str != screen.end(); ++str) {
       for (unsigned i = 0; i < str->length(); i++) {
-        count += d[(*str)[i] - '0'];
+        count += d[(*str)[i] - 'A'];
       }
     }
 
@@ -28,7 +28,7 @@ public:
 int main()
 {
   ImageDithering id;
-  string sc[] = {
+  string sc1[] = {
     "AAAAAAAA",
     "ABWBWBWA",
     "AWBWBWBA",
@@ -36,8 +36,13 @@ int main()
     "AWBWBWBA",
     "AAAAAAAA"
   };
-  vector<string> scr1(sc, sc + 6);
+  vector<string> scr1(sc1, sc1 + 6);
   assert( id.count("BW", scr1) == 24);
+
+  string sc2[] = {"OT", "QF", "KD", "HR", "VV", "XB"};
+  vector<string> scr2(sc2, sc2 + 6);
+  assert( id.count("JSPQKYRME", scr2) == 3);
+  cout << id.count("JSPQKYRME", scr2);
 
   return 0;
 }
