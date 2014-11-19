@@ -28,9 +28,8 @@ int TypoCoderDiv2::count(vector <int> rating) {
 	int count = 0;
 	int cur = 0;
 	
-	//for (int r : rating) {
-	for (int i = 0; i < rating.size(); i++) {
-		int next = (rating[i] >= 1200);
+	for (int r : rating) {
+		int next = (r >= 1200);
 		count += abs(next - cur);
 		cur = next;
 	}
