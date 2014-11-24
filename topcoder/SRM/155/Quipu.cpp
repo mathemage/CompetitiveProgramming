@@ -31,12 +31,8 @@ int Quipu::readKnots(string knots) {
 		if (k == 'X') {
 			Xs++;
 		} else {
-			if (Xs) {
-				ans += '0' + Xs;
-				Xs = 0;
-			} else {
-				ans += '0';
-			}
+			ans += '0' + Xs;
+			Xs = 0;
 			printf("ans = %s\n", ans.c_str());				
 		}		
 	}
