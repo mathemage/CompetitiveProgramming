@@ -24,6 +24,7 @@ public:
 	int getCycle(string, string);
 };
 
+/* old version
 int TireRotation::getCycle(string initial, string current) {
 	string code;
 	for (char c : current) {
@@ -37,10 +38,23 @@ int TireRotation::getCycle(string initial, string current) {
 	}
 	
 	string ls[4] = {"1234", "4312", "2143", "3421"};
-	for (int i = 0; i <= 4; i++) {
-		if (i == 4) return -1;
-		if (code == ls[i]) return i+1;
-	}
+	int ans = find(ls, ls+4, code);
+	return (ans
+}
+*/
+
+void rotate(string &s) {
+	swap(s[0], s[2]);
+	swap(s[0], s[1]);
+	swap(s[0], s[3]);
+}
+
+int TireRotation::getCycle(string initial, string current) {
+	for (int i = 1; i <= 4; i++) {
+		if (initial == current) return i;
+		rotate(initial);
+	} 
+	return -1;
 }
 
 
