@@ -1,0 +1,78 @@
+
+Problem Statement
+    
+A popular guessing game is "Guess the number", where one person selects a number in a known range, and another person tries to guess that number. After each guess, the first person reveals whether the guess was correct, too high or too low.
+Pretty soon one learns the best strategy, which is to guess the middle number among those not yet ruled out. If there is no single middle number, then there are two numbers to choose from. In that case, we choose the smallest of those numbers.
+The algorithm can be described like this:
+Init lower and upper bound
+Repeat
+  x = (lower bound + upper bound)/2  (round down if necessary)
+  Make guess x
+  If x is too low, set lower bound to x+1
+  If x is too high, set upper bound to x-1
+Until x is correct
+For instance, assume that the lower and upper bound initally are 1 and 9, respectively. The middle number in this range is 5. If this is "too low", the new bounds become 6 and 9. This range contains four numbers, and there is thus no single middle number. The two numbers in the middle are 7 and 8, and the smallest of these is 7, so our next guess then becomes 7.
+Create a class GuessTheNumber which contains the method noGuesses which takes an int upper, the initial upper bound of the range (the inital lower bound is always 1), and an int answer, the number selected by the first person. The method should return an int representing the total number of guesses required for the second person to guess the correct number using the method described above.
+Definition
+    
+Class:
+GuessTheNumber
+Method:
+noGuesses
+Parameters:
+int, int
+Returns:
+int
+Method signature:
+int noGuesses(int upper, int answer)
+(be sure your method is public)
+Limits
+    
+Time limit (s):
+2.000
+Memory limit (MB):
+64
+Constraints
+-
+upper will be between 1 and 1000, inclusive.
+-
+answer will be between 1 and upper, inclusive.
+Examples
+0)
+
+    
+9
+6
+Returns: 3
+The first guess will be (1+9)/2=5, which is too low. The new lower bound then becomes 5+1=6.
+The second guess then becomes (6+9)/2=7, which is too high. The new upper bound then becomes 7-1=6.
+The third guess is then of course (6+6)/2)=6, which is correct. So, three guesses were required, and the method thus returns 3.
+1)
+
+    
+1000
+750
+Returns: 2
+The first guess will be 500, the second guess 750.
+2)
+
+    
+643
+327
+Returns: 7
+The guesses are 322, 483, 402, 362, 342, 332 and finally 327, so the method returns 7.
+3)
+
+    
+157
+157
+Returns: 8
+Here the guesses are 79, 118, 138, 148, 153, 155, 156 and finally 157. The method thus returns 8.
+4)
+
+    
+128
+64
+Returns: 1
+
+This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited. (c)2003, TopCoder, Inc. All rights reserved.
