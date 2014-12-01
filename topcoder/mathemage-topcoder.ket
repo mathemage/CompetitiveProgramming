@@ -16,9 +16,11 @@
 #include <cmath>
 #include <cstdlib>
 #include <ctime>
-$include <cassert>
+#include <cassert>
 
 using namespace std;
+
+#define MSG(a) cout << #a << " == " << a << endl;
 
 class <%:class-name%> {
 public:
