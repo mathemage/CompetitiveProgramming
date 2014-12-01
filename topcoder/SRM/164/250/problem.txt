@@ -1,0 +1,50 @@
+Problem Statement
+    
+We have a collection of strings, and we want to right justify them. Create a class Justifier that contains a method justify that is given a vector <string> textIn and returns a vector <string> containing the same strings, right justified, in the same order as they appear in textIn.
+The returned strings should be padded on the left with space characters so that they are all the same length as the longest string in textIn.
+Definition
+    
+Class:
+Justifier
+Method:
+justify
+Parameters:
+vector <string>
+Returns:
+vector <string>
+Method signature:
+vector <string> justify(vector <string> textIn)
+(be sure your method is public)
+Limits
+    
+Time limit (s):
+2.000
+Memory limit (MB):
+64
+Constraints
+-
+textIn will contain between 1 and 50 elements inclusive
+-
+each element of textIn will contain only uppercase letters 'A'-'Z'
+-
+each element of textIn will contain between 1 and 50 characters inclusive
+Examples
+0)
+
+    
+{"BOB","TOMMY","JIM"}
+Returns: { "  BOB",  "TOMMY",  "  JIM" }
+The longest string is "TOMMY" which has 5 characters. So the returned strings all contain exactly 5 characters.
+1)
+
+    
+{"JOHN","JAKE","ALAN","BLUE"}
+Returns: { "JOHN",  "JAKE",  "ALAN",  "BLUE" }
+No padding is necessary since they all contain the same number of characters.
+2)
+
+    
+{"LONGEST","A","LONGER","SHORT"}
+Returns: { "LONGEST",  "      A",  " LONGER",  "  SHORT" }
+
+This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited. (c)2003, TopCoder, Inc. All rights reserved.
