@@ -1,0 +1,15 @@
+LevelUp
+Used as: Division Two - Level One:
+
+    Value 	250
+    Submission Rate 	216 / 222 (97.30%)
+    Success Rate 	191 / 216 (88.43%)
+    High Score 	goongas for 248.19 points (2 mins 26 secs)
+    Average Score 	215.47 (for 191 correct submissions)
+
+The best and pretty much only way to solve this problem is to loop through the array of experience required until the experience required is greater than the amount you have, and return the difference. The only real danger to watch out for is to make sure that you don't return 0 if you advance exactly to a given level. There was an example case that tested for this, however, and most Division 2 coders did perfectly well on this problem.
+
+    i = 0;
+    while (received >= expNeeded[i])
+        i++;
+    return expNeeded[i] - received;
