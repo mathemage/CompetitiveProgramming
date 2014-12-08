@@ -1,0 +1,15 @@
+Used as: Division Two - Level One:
+
+    Value 	250
+    Submission Rate 	225 / 269 (83.64%)
+    Success Rate 	196 / 225 (87.11%)
+    High Score 	jaivasanth for 242.77 points (4 mins 55 secs)
+    Average Score 	185.47 (for 196 correct submissions)
+
+Aside from parsing, which wasn't too hard, this problem was fairly straightforward. Allocate an array of three elements for the return value, loop through all the input values, and increment the elements in the array as necessary. The only hitch is that you can't calculate the average value as you go because that can introduce rounding errors. One of the example cases made this problem explicit, though, and it is easily solved by waiting until you've gone through all the values, then the average value is given by (min+max)/2. The input is in the form "ndx", if it is parsed into arrays n and d, then the following code will find the minimum, maximum, and average die rolls and store it in the array ret:
+
+for (int i=0;i< n.size();i++) {
+   ret[0]+=n[i];
+   ret[1]+=n[i]*d[i];
+}
+ret[2]=(ret[0]+ret[1])/2;

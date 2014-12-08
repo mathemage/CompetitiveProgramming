@@ -1,0 +1,54 @@
+
+Problem Statement
+    
+When playing many classic role playing games you often write die rolls in the form "ndx", where n indicates the number of dice of size x to be rolled. A die of size x is an x-sided die that has a distinct number between 1 and x, inclusive, on each of its sides. For example, "2d8" would mean "roll two eight sided dice". Given a vector <string> representing the dice to roll, return a vector <int> representing the minimum, maximum, and average die rolls (in that order). Round the value of the average die roll down to the highest integer less than or equal to the actual value. For example, the input {"1d8","3d4","2d6"} would have a minimum of 6 (if all the dice turned up ones), a maximum of 32 (if all the dice turned up their highest values), and an average of 19. The return value would be {6, 32, 19}.
+Definition
+    
+Class:
+RPG
+Method:
+dieRolls
+Parameters:
+vector <string>
+Returns:
+vector <int>
+Method signature:
+vector <int> dieRolls(vector <string> dice)
+(be sure your method is public)
+Limits
+    
+Time limit (s):
+2.000
+Memory limit (MB):
+64
+Constraints
+-
+dice will contain between 1 and 5 elements, inclusive.
+-
+Each element of dice will be formatted "ndx" (quotes for clarity only), where 'n' is an integer between 1 and 10, inclusive, 'd' is the character 'd', and 'x' is an integer between 2 and 20, inclusive. Neither 'n' nor 'd' will have leading zeros.
+Examples
+0)
+
+    
+{"3d6"}
+Returns: { 3,  18,  10 }
+Standard roll for creating characters stats in a popular RPG. The minimum value is when three 1's are rolled, the maximum value is when all 6's are rolled, and the average value is given by 3*(6+1)/2, which rounds down to 10.
+1)
+
+    
+{"3d4","1d6"}
+Returns: { 4,  18,  11 }
+Be careful not to round the value of intermediate results. The average roll of "3d4" is 3*(1+4)/2=7.5, and the average roll of "1d6" is 1*(1+6)/2=3.5. The average of them both is 11, but rounding before adding them together will yield 10, which is incorrect.
+2)
+
+    
+{"6d5","10d10","10d20"}
+Returns: { 26,  330,  178 }
+
+3)
+
+    
+{"1d2","2d2","4d2","6d2","8d2"}
+Returns: { 21,  42,  31 }
+
+This problem statement is the exclusive and proprietary property of TopCoder, Inc. Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited. (c)2003, TopCoder, Inc. All rights reserved.
