@@ -1,0 +1,61 @@
+Used as: Division Two - Level Two:
+
+    Value 	600
+    Submission Rate 	125 / 269 (46.47%)
+    Success Rate 	38 / 125 (30.40%)
+    High Score 	Humbug75 for 430.26 points (19 mins 32 secs)
+    Average Score 	317.36 (for 38 correct submissions)
+
+Used as: Division One - Level One:
+
+    Value 	300
+    Submission Rate 	205 / 219 (93.61%)
+    Success Rate 	125 / 205 (60.98%)
+    High Score 	ZorbaTHut for 291.08 points (5 mins 0 secs)
+    Average Score 	214.22 (for 125 correct submissions)
+
+This problem boiled down to sorting by a specific criterion, and this, of course, can be done in many different ways. If you are familiar with the standard sorting functions of your language, one way to do this is to make an appropriate struct and comparator, and then the sorting is done for you. Using the standard template library for C++ the struct and comparator could be declared like this:
+
+struct  team {
+   int score;
+   int sixth;
+   char name;
+};
+
+bool operator < (const team & lhs, const team & rhs) {
+   if (lhs.score!=rhs.score) return lhs.score< rhs.score;
+   if (lhs.sixth!=rhs.sixth) return lhs.sixth< rhs.sixth;
+   return lhs.name< rhs.name;
+}
+
+As long as you score the teams correctly, remove teams that didn't have at least five runners finish, and assign a large value (like 1000000) to the sixth place runner if a team didn't have more than 5 finish, then this will sort exactly how the problem specifies. The following code demonstrates this:
+
+vector< team > teamScores;
+for (int i=0;i< numTeams;i++) {
+   int numFinished=0;
+   team t;
+   t.score=0;
+   t.sixth=1000000;
+   t.name='A'+i;
+   for (int j=0;j< finishOrder.size();j++) {
+      if (finishOrder[j]==('A'+i)) {
+         if (numFinished<  5) {
+            numFinished++;
+            t.score+=j;
+         } else if (numFinished==5) {
+            t.sixth=j;
+            numFinished++;
+         }
+      }
+   }
+   if (numFinished> =5)
+      teamScores.push_back(t);
+}
+sort(teamScores.begin(),teamScores.end());
+
+Now that the teams are sorted in the correct order, all that remains is to go through and put the team names into a string for the return value.
+
+string ret;
+for (int i=0;i< teamScores.size();i++)
+   ret+=teamScores[i].name;
+return ret;
