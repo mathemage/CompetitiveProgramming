@@ -1,0 +1,10 @@
+"Possible"
+{1,2,3,4}
+"Possible"
+{4,3,2,1}
+"Impossible"
+{1,3,2,4}
+"Impossible"
+{1,4,2,5,3,6}
+"Possible"
+{8,5,4,9,1,7,6,10,3,2}
