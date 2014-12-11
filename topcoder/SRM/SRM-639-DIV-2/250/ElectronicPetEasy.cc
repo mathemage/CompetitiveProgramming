@@ -43,7 +43,6 @@ public:
 
     for (int i = 0; i < t2; i++) {
       if (times[st2 + i*p2]) {
-        //MSG(i) MSG(st2) MSG(p2) MSG(t2)
         return "Difficult";
       }
     }
