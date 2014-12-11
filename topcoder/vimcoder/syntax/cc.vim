@@ -5,6 +5,9 @@ iab vs vector<string>
 iab AC accumulate(.begin(), .end(), 0);<ESC>2F.i
 
 " make commands
+map <F5> <ESC>:wa!<cr>:make run<cr>
+map <F6> <ESC>:wa!<cr>:make test<cr>
+map <F7> <ESC>:wa!<cr>:make<cr>
 map! <F5> <ESC>:wa!<cr>:make run<cr>
 map! <F6> <ESC>:wa!<cr>:make test<cr>
-map! <F6> <ESC>:wa!<cr>:make<cr>
+map! <F7> <ESC>:wa!<cr>:make<cr>
