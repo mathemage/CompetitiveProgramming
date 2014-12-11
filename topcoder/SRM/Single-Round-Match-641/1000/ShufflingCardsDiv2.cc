@@ -36,15 +36,16 @@ public:
 
     REP(i,2*N) {
       MSG(i)
-      if (!i%2 ) {
+      if (!(i%2)) {
+        MSG(!(i%2))
+          cout << " versus " << endl;
+        MSG(!i%2)
         if (permutation[i] <= N) a++;
         else b++;
-      }
-      else {
-
+      } else {
+        MSG(i%2)
         if (permutation[i] > N) d++;
         else c++;
-
       }
     }
     cout << endl;
