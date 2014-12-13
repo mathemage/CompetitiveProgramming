@@ -25,12 +25,6 @@ using namespace std;
 #define ALL(A)     (A).begin(), (A).end()
 #define MSG(a) cout << #a << " == " << a << endl;
 
-typedef vector<bool> vb;
-typedef vector<int> vi;
-typedef vector<string> vs;
-typedef vector<long long> vll;
-typedef long long ll;
-
 class $CLASSNAME$ {
 public:
   $RETURNTYPE$ $METHODNAME$($METHODPARAMS$) {
