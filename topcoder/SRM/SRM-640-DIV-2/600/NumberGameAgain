@@ -34,11 +34,7 @@ typedef long long ll;
 class NumberGameAgain {
 public:
   long long solve(int k, vector<long long> table) {
-    ll result = 1;
-    for (int i = 1; i <= k; i++) {
-      result *= 2;
-    }
-    result-=2;
+    ll result = pow(2,k)-2;
     sort(table.begin(), table.end());
 
     int sz = table.size();
@@ -66,9 +62,7 @@ public:
 
     for (int i = 0; i < sz; i++) {
       if (!invalid[i]) {
-        int a = (k-width[i]+1);
-        MSG(a) MSG(1 << a)
-          result -= (1 << a ) - 1;
+        result -= pow(2, k-width[i]+1) - 1;
       }
     }
 
@@ -78,4 +72,3 @@ public:
 
 // Edited by VimCoder 0.3.5
 // http://github.com/chazmcgarvey/vimcoder
-

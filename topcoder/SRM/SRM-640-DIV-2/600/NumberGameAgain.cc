@@ -34,7 +34,8 @@ typedef long long ll;
 class NumberGameAgain {
 public:
   long long solve(int k, vector<long long> table) {
-    ll result = pow(2,k)-2;
+    ll result = (1LL<<k) -2;
+    //ll result = pow(2,k)-2;
     sort(table.begin(), table.end());
 
     int sz = table.size();
@@ -62,7 +63,7 @@ public:
 
     for (int i = 0; i < sz; i++) {
       if (!invalid[i]) {
-        result -= pow(2, k-width[i]+1) - 1;
+        result -= (1LL<<k-width[i]+1) - 1;
       }
     }
 
