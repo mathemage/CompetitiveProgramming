@@ -1,0 +1,17 @@
+2
+{"AA"
+,"BC"}
+4
+{"AAB"
+,"ACD"
+,"CCD"}
+8
+{"iii"
+,"iwi"
+,"iii"}
+6
+{"rng58"
+,"Snuke"
+,"Sothe"}
+14
+{"yyAArJqjWTH5","yyEEruYYWTHG","hooEvutpkkb2","OooNgFFF9sbi","RRMNgFL99Vmm","R76XgFF9dVVV","SKnZUPf88Vee"}

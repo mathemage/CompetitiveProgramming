@@ -25,26 +25,16 @@ using namespace std;
 #define ALL(A)     (A).begin(), (A).end()
 #define MSG(a) cout << #a << " == " << a << endl;
 
-
-class NamingConvention {
+class GreaterGameDiv2 {
 public:
-  string toCamelCase(string variableName) {
-    string res;
-    bool cap = false;
-
-    for (char c : variableName) {
-      if (c == '_') cap = true;
-      else if (cap) {
-        res += c - 'a' + 'A';
-        cap = false;
-      } else {
-        res += c;
-      }
+  int calc(vector <int> snuke, vector <int> sothe) {
+    int result = 0;
+    for (int i = 0; i <  snuke.size(); ++i) {
+      result += snuke[i] > sothe[i];
     }
 
-    return res;
+    return result;
   }
 };
 
-// Edited by VimCoder 0.3.5
-// http://github.com/chazmcgarvey/vimcoder
+// 247.90 / 250 pts 
