@@ -39,24 +39,16 @@ public:
         types += 'd';
     }
     
+    types +=  'b';
     MSG(types)
     char row = '_';
     for (int i = 0; i < types.size(); ++i) {
-      if (types[i] == 'b') {
-        if (i == 0 || types[i-1] == 'b') {
-          result++;
-          MSG(i)
-        }
-      } else {
-        if (i > 0 && types[i-1] == 'b' && types[i] == row) {
-          result++;
-          MSG(i)
-        }
+      if (i > 0 && types[i-1] == 'b'
+          && (types[i] == 'b' || types[i] == row || row == '_'))
+        result++;
+
+      if (types[i] != 'b')
         row = types[i];
-      }
-    }
-    if (types.size() > 1 && types[types.size()-1] == 'b') {
-      result++;
     }
     
     return result;
