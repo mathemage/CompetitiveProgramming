@@ -1,0 +1,47 @@
+#include <vector>
+#include <list>
+#include <map>
+#include <set>
+#include <deque>
+#include <stack>
+#include <bitset>
+#include <algorithm>
+#include <functional>
+#include <numeric>
+#include <utility>
+#include <sstream>
+#include <iostream>
+#include <iomanip>
+#include <cstdio>
+#include <cmath>
+#include <cstdlib>
+#include <ctime>
+#include <cassert>
+#include <string>
+
+using namespace std;
+
+#define FOR(I,A,B) for(int I = (A); I < (B); ++I)
+#define REP(I,N)   FOR(I,0,N)
+#define ALL(A)     (A).begin(), (A).end()
+#define MSG(a) cout << #a << " == " << a << endl;
+
+class ForgetfulAddition {
+public:
+  int minNumber(string expression) {
+    int result = stoi(expression);
+    MSG(result)
+    FOR(i,1,expression.size()) {
+      MSG(expression.substr(0,i))
+      MSG(expression.substr(i))
+      int a = stoi(expression.substr(0,i));
+      int b = stoi(expression.substr(i));
+      MSG(a) MSG(b)
+      result = min(result, a+b);
+    }
+
+    return result;
+  }
+};
+
+// 177.13 / 250
