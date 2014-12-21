@@ -2,3 +2,4 @@ build*/
 *.pro
 *.pri
 *.pro.user
+*main
