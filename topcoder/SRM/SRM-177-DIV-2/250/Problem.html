@@ -1,0 +1,43 @@
+<html><body bgcolor="#000000" text="#ffffff"><table><tr><td colspan="2"><h3>Problem Statement</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td>A set of stairs consists of risers (the vertical parts of the stairs) and
+treads (the horizontal parts that you walk on).  The stairs alternate
+treads and risers, starting and ending with a riser as shown below.
+<p>
+A set of stairs with two treads would have three risers and would look 
+similar to this picture:</p><pre>
+
+                +........
+                |
+            +---+
+            |
+        +---+
+        |
+........+
+</pre>
+<p>
+We have the following 
+requirements for a set of stairs: </p><ol><li>
+
+    all risers must have the same integer height</li><li>
+    all treads must have the same integer width</li><li>
+    each riser must be less than or equal to <b>maxHeight</b></li><li>
+    each tread must be greater than or equal to <b>minWidth</b></li></ol>
+
+The <b>totalWidth</b> of the stairs is the sum of all the tread widths, while the
+<b>totalHeight</b> of the stairs is the sum of all the riser heights.  The stairs start
+with a riser and end with a riser.
+<p>
+Create a class Stairs that contains a method designs that takes as input four
+ints:  <b>maxHeight</b>, <b>minWidth</b>, <b>totalHeight</b>, <b>totalWidth</b>. It returns the number
+of different designs that meet the design criteria.
+</p>
+
+</td></tr><tr><td colspan="2"><h3>Definition</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Class:</td><td>Stairs</td></tr><tr><td>Method:</td><td>designs</td></tr><tr><td>Parameters:</td><td>int, int, int, int</td></tr><tr><td>Returns:</td><td>int</td></tr><tr><td>Method signature:</td><td>int designs(int maxHeight, int minWidth, int totalHeight, int totalWidth)</td></tr><tr><td colspan="2">(be sure your method is public)</td></tr></table></td></tr><tr><td colspan="2"><h3>Limits</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Time limit (s):</td><td>2.000</td></tr><tr><td>Memory limit (MB):</td><td>64</td></tr></table></td></tr><tr><td colspan="2"><h3>Constraints</h3></td></tr><tr><td align="center" valign="top">-</td><td><b>maxHeight</b>, <b>minWidth</b>, <b>totalHeight</b>, and <b>totalWidth</b> will be between 1 and 1000 inclusive</td></tr><tr><td colspan="2"><h3>Examples</h3></td></tr><tr><td align="center" nowrap="true">0)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>22</pre></td></tr><tr><td><pre>25</pre></td></tr><tr><td><pre>100</pre></td></tr><tr><td><pre>100</pre></td></tr></table></td></tr><tr><td><pre>Returns: 1</pre></td></tr><tr><td><table><tr><td colspan="2">
+
+   The only design is to have each riser be 20, each tread be 25.
+   </td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">1)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>25</pre></td></tr><tr><td><pre>25</pre></td></tr><tr><td><pre>60</pre></td></tr><tr><td><pre>100</pre></td></tr></table></td></tr><tr><td><pre>Returns: 2</pre></td></tr><tr><td><table><tr><td colspan="2">
+
+   We could have riser height 12 with tread width 25, or we could have
+   riser height 20, tread width 50. The design with just
+   one tread of width 100 would force each riser to be 30 which exceeds the
+   specified <b>maxHeight</b>, and a design with 6 risers of height 10 would 
+   result in treads of width 20 which is smaller than the specified <b>minWidth</b>.</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">2)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>1000</pre></td></tr><tr><td><pre>1</pre></td></tr><tr><td><pre>600</pre></td></tr><tr><td><pre>600</pre></td></tr></table></td></tr><tr><td><pre>Returns: 6</pre></td></tr><tr><td><table><tr><td colspan="2">There are six different designs. The one with the biggest steps has just one tread of size 600, and two risers of size 300. The one with the smallest steps has 24 treads, each of width 25, and its 25 risers each have a height of 24.</td></tr></table></td></tr></table></td></tr></table><p>This problem statement is the exclusive and proprietary property of TopCoder, Inc.  Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited.  (c)2003, TopCoder, Inc.  All rights reserved.  </p></body></html>

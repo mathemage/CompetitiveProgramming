@@ -26,23 +26,25 @@ using namespace std;
 #define ALL(A)     (A).begin(), (A).end()
 #define MSG(a) cout << #a << " == " << a << endl;
 
-class RGBColor {
+class Stairs {
 public:
-  vector <int> getComplement(vector <int> rgb) {
-    vector <int> result(3);
-    vector <int> result2(3);
-    bool ok = false;
-    REP(i,3) {
-      result[i] = 255 - rgb[i];
-      result2[i] = rgb[i] + 128 * ( (rgb[i] < 128) ? 1 : -1 );
-      if (abs(result[i] - rgb[i]) > 32) {
-        ok = true;
+  int designs(int maxHeight, int minWidth, int totalHeight, int totalWidth) {
+    int res = 0;
+    int w = minWidth;
+    while (w <= totalWidth) {
+      int treads = totalWidth / w;
+      if ((totalWidth % w == 0)
+          && (totalHeight % (treads + 1) == 0)) {
+          if (totalHeight / (treads + 1) <= maxHeight) {
+            res++;
+          } else {
+            break;
+          }
       }
+      w++;
     }
-
-    return (ok) ? result : result2;
+    return res;
   }
 };
 
-// Edited by VimCoder 0.3.5
-// http://github.com/chazmcgarvey/vimcoder
+// 130.20/250
