@@ -9,6 +9,8 @@
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
+   * URL :
+
    * Points Gained (in case of online contest) :
 
    ==========================================*/
@@ -40,5 +42,8 @@ using namespace std;
 #define REP(I,N)   FOR(I,0,N)
 #define ALL(A)     (A).begin(), (A).end()
 #define MSG(a) cout << #a << " == " << a << endl;
+
+// uncomment following line for debug mode
+// #define DEBUG   
 
 .
