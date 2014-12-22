@@ -39,6 +39,15 @@ filetype plugin on
 set background=dark
 
 autocmd BufRead,BufNewFile *.cc source ~/.vim/syntax/cc.vim
+
+autocmd bufnewfile *.cpp so ~/.vim/syntax/cpp.template
+autocmd bufnewfile *.cpp exe "1," . 10 . "g/File Name :.*/s//File Name : " .expand("%")
+autocmd bufnewfile *.cpp exe "1," . 10 . "g/Creation Date :.*/s//Creation Date : " .strftime("%d-%m-%Y")
+autocmd bufnewfile *.cpp execute "normal G"
+autocmd Bufwritepre,filewritepre *.cpp execute "normal ma"
+autocmd Bufwritepre,filewritepre *.cpp exe "1," . 10 . "g/Last Modified :.*/s/Last Modified :.*/Last Modified : " .strftime("%c")
+autocmd bufwritepost,filewritepost *.cpp execute "normal `a"
+
 set completeopt=menuone
 
 set showcmd		" Show (partial) command in status line.
