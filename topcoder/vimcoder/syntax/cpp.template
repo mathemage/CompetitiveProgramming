@@ -35,6 +35,8 @@
 #include <ctime>
 #include <cassert>
 #include <string>
+#include <cctype>
+#include <regex>
 
 using namespace std;
 
