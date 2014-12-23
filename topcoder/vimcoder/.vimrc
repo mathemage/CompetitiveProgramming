@@ -48,6 +48,8 @@ autocmd Bufwritepre,filewritepre *.cpp execute "normal ma"
 autocmd Bufwritepre,filewritepre *.cpp exe "1," . 10 . "g/Last Modified :.*/s/Last Modified :.*/Last Modified : " .strftime("%c")
 autocmd bufwritepost,filewritepost *.cpp execute "normal `a"
 
+autocmd BufRead,BufNewFile *.[ch]pp source ~/.vim/syntax/cpp-trung.vim
+
 set completeopt=menuone
 
 set showcmd		" Show (partial) command in status line.
