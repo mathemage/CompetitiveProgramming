@@ -4,7 +4,7 @@
 
    * Creation Date : 23-12-2014
 
-   * Last Modified : Tue 23 Dec 2014 09:03:42 PM CET
+   * Last Modified : Tue 23 Dec 2014 11:14:28 PM CET
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
@@ -95,7 +95,8 @@ int main() {
 
 #ifdef DEBUG
     MSG(line) MSG(j) MSG(line.size())
-    //if (std::regex_match(line, std::regex("[A-Z]+[0-9]+", std::regex_constants::basic))) {
+    //regex excelRegex("[A-Z]+[0-9]+", std::regex_constants::extended);
+    //if (regex_match(line, excelRegex) == true) {
 #endif
     if (j == line.size()) {
 #ifdef DEBUG
