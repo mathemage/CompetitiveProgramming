@@ -3,3 +3,4 @@ build*/
 *.pri
 *.pro.user
 *main
+*driver
