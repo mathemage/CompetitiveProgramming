@@ -4,13 +4,13 @@
 
    * Creation Date : 24-12-2014
 
-   * Last Modified : Wed 24 Dec 2014 07:46:10 PM CET
+   * Last Modified : Wed 24 Dec 2014 10:49:31 PM CET
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
-   * URL :
+   * URL : http://codeforces.com/contest/499/problem/D
 
-   * Points Gained (in case of online contest) :
+   * Points Gained (in case of online contest) : not submitted
 
    ==========================================*/
 
