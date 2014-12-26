@@ -1,3 +1,9 @@
+/* ========================================
+ * Points :
+ * Total :
+ * Status :
+ ==========================================*/
+
 #include <vector>
 #include <list>
 #include <map>
@@ -18,6 +24,7 @@
 #include <ctime>
 #include <cassert>
 #include <string>
+#include <cctype>
 
 using namespace std;
 
@@ -25,6 +32,9 @@ using namespace std;
 #define REP(I,N)   FOR(I,0,N)
 #define ALL(A)     (A).begin(), (A).end()
 #define MSG(a) cout << #a << " == " << a << endl;
+
+// uncomment following line for debug mode
+// #define DEBUG   
 
 class $CLASSNAME$ {
 public:
