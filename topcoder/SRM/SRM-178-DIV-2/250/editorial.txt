@@ -1,0 +1,13 @@
+Used as: Division Two - Level One:
+
+    Value 	250
+    Submission Rate 	214 / 236 (90.68%)
+    Success Rate 	208 / 214 (97.20%)
+    High Score 	Krumble for 248.75 points (2 mins 1 secs)
+    Average Score 	202.90 (for 208 correct submissions)
+
+The major issue with this problem, was correctly parsing the input. Once complete, the actual computation was trivial. The C++-ish solution uses a single sscanf statement, or a few stringstreams. A Java-ish solution uses either StringTokenizer, or split combined with a replaceAll regular expression:
+
+       input.replaceAll("([-+*/])"," $1 ").split(" ");
+
+Understanding the above code, gives some good insight into Java regular expressions. 
