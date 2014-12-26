@@ -4,13 +4,13 @@
 
    * Creation Date : 25-12-2014
 
-   * Last Modified : Fri 26 Dec 2014 11:25:53 AM CET
+   * Last Modified : Fri 26 Dec 2014 06:39:13 PM CET
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
    * URL : http://www.spoj.com/problems/FCTRL2/
 
-   * Duration : 
+   * Duration : 1 hod 40 min
 
    ==========================================*/
 
