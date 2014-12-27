@@ -4,13 +4,13 @@
 
    * Creation Date : 26-12-2014
 
-   * Last Modified : Sat 27 Dec 2014 01:56:40 PM CET
+   * Last Modified : Sat 27 Dec 2014 03:53:11 PM CET
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
    * URL : http://www.spoj.com/problems/PRIME1/
 
-   * Points Gained (in case of online contest) :
+   * Duration : cca 2 hours
 
    ==========================================*/
 
