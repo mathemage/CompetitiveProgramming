@@ -42,6 +42,8 @@ autocmd BufRead,BufNewFile *.cc source ~/.vim/syntax/cc.vim
 
 autocmd bufnewfile *.cpp so ~/.vim/syntax/cpp.template
 autocmd bufnewfile *.cpp exe "1," . 10 . "g/File Name :.*/s//File Name : " .expand("%")
+autocmd bufnewfile *.cpp exe "1," . 10 . "g/TASK:.*/s//TASK: " .expand("%")
+autocmd bufnewfile *.cpp exe "1," . 10 . "g/TASK: [^ ]*\.cpp/s/\.cpp//"
 autocmd bufnewfile *.cpp exe "1," . 10 . "g/Creation Date :.*/s//Creation Date : " .strftime("%d-%m-%Y")
 autocmd bufnewfile *.cpp execute "normal G"
 autocmd Bufwritepre,filewritepre *.cpp execute "normal ma"
