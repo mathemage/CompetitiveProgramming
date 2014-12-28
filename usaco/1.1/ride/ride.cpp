@@ -15,7 +15,7 @@
 
    * URL : http://cerberus.delosent.com:791/usacoprob2?a=4Ua3TNbF5jF&S=ride
 
-   * Duration :
+   * Duration : 20 min
 
    ==========================================*/
 
