@@ -1,7 +1,7 @@
 /* ========================================
- * Points :
- * Total :
- * Status :
+ * Points : 0
+ * Total : 500
+ * Status : challenged, now working
  ==========================================*/
 
 #include <vector>
@@ -31,10 +31,15 @@ using namespace std;
 #define FOR(I,A,B) for(long long I = (A); I < (B); ++I)
 #define REP(I,N)   FOR(I,0,N)
 #define ALL(A)     (A).begin(), (A).end()
-#define MSG(a) cout << #a << " == " << a << endl;
 
 // uncomment following line for debug mode
 // #define DEBUG   
+
+#ifdef DEBUG
+#define MSG(a) cout << #a << " == " << a << endl;
+#else
+#define MSG(a) ;
+#endif
 
 class TheKingsFactorization {
 public:
@@ -44,39 +49,29 @@ public:
     REP(i,M) {
       if (i % 2 == 0) {
         result[i] = primes[i/2];
+        N /= result[i];
       }
-      else {
-        if (N % result[i-1] == 0) {
-          cout << "Case A: ";
-          result[i] = result[i-1];
+    }
+    MSG(N)
+    REP(i,M) {
+      if (i % 2 != 0) {
+        if (i == M-2 && N <= result.back()) {
+          result[i] = N;
         } else {
-          cout << "Case C: ";
           long long divisor = result[i-1];
           while (N % divisor != 0) {
-            MSG(N) MSG(divisor)
             divisor += (divisor == 2) ? 1 : 2;
           }
           result[i] = divisor;
         }
+        N /= result[i];
       }
-
-      MSG(N)
-      N /= result[i];
-      MSG(N) MSG(result[i]) MSG(i)
-        cout << endl;
     }
-    cout << "here" << endl;
 
     if (N != 1) {
-      cout << "Case D: ";
-      long long divisor = primes[primes.size()-1];
-      while (N % divisor != 0) {
-        divisor += (divisor == 2) ? 1 : 2;
-      }
-      result.push_back(divisor);
+      result.push_back(N);
     }
 
     return result;
   }
 };
-// challenged

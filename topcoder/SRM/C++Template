@@ -31,10 +31,15 @@ using namespace std;
 #define FOR(I,A,B) for(int I = (A); I < (B); ++I)
 #define REP(I,N)   FOR(I,0,N)
 #define ALL(A)     (A).begin(), (A).end()
-#define MSG(a) cout << #a << " == " << a << endl;
 
 // uncomment following line for debug mode
-// #define DEBUG   
+#define DEBUG
+
+#ifdef DEBUG
+#define MSG(a) cout << #a << " == " << a << endl;
+#else
+#define MSG(a) ;
+#endif
 
 class $CLASSNAME$ {
 public:
