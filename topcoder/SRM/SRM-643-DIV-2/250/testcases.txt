@@ -14,3 +14,23 @@
 {"HSHSHSH", "SSSHSSS", "SSHSHSS", "SHSHSHS"}
 0
 {"HHSH", "HHHS", "HSSS", "SHSH", "HHHS", "HSHH", "SSSH"}
+1
+{"SSS",
+ "SSS",
+ "SSH"}
+0
+{"SSS",
+ "SSH",
+ "SSH"}
+1
+{"SSS",
+ "SSS",
+ "HSH"}
+0
+{"SSS",
+ "SSS",
+ "SHH"}
+0
+{"SSS",
+ "SHH",
+ "SSS"}

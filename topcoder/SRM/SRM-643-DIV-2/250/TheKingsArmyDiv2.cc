@@ -1,7 +1,7 @@
 /* ========================================
- * Points :
- * Total :
- * Status :
+ * Points : 0
+ * Total : 250
+ * Status : failed systests
  ==========================================*/
 
 #include <vector>
@@ -33,9 +33,6 @@ using namespace std;
 #define ALL(A)     (A).begin(), (A).end()
 #define MSG(a) cout << #a << " == " << a << endl;
 
-// uncomment following line for debug mode
-// #define DEBUG   
-
 class TheKingsArmyDiv2 {
 public:
   int getNumber(vector <string> state) {
@@ -44,10 +41,10 @@ public:
     c = state[0].size();
     bool oneHappy = false;
     REP(i,r) {
-      REP(j,c-1) {
+      REP(j,c) {
         if (state[i][j] == 'H') {
           oneHappy = true;
-          if (state[i][j+1] == 'H') {
+          if (j+1<c && state[i][j+1] == 'H') {
             return 0;
           }
           if (i+1<r && state[i+1][j] == 'H') {
@@ -60,5 +57,3 @@ public:
     return oneHappy ? 1 : 2;
   }
 };
-
-// failed systests
