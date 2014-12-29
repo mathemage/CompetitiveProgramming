@@ -36,33 +36,33 @@ using namespace std;
 // uncomment following line for debug mode
 // #define DEBUG   
 
+typedef pair<int,int> ii;
+
 class TheKingsTree {
   int result;
   vector<int> par;
 public:
-  pair<int,int> solve(int r) { // returns optimal counts of colors
+  ii solve(int r) {
     int cost = 1;
-    int under = 0;
-    pair<int,int> tmp;
+    int other = 0;
+    ii tmp;
     for (int i = 0; i < par.size(); ++i) {
       if (par[i] == r) {
-        MSG(i) MSG(par[i])
         tmp = solve(i+1);
-        cost += min(tmp.first(), tmp.second());
-        under += tmp.first() + tmp.second();
-        MSG(cost)
+        cost += min(tmp.first, tmp.second);
+        other += max(tmp.first, tmp.second);
       }
     }
     result += cost;
-    return cost;
+    return make_pair(cost, other);
   }
 
   int getNumber(vector <int> parent) {
     result = 0;
     par = parent;
-    int last = solve(0);
+    solve(0);
 
-    return result + last;
+    return result;
   }
 };
 // not submitted
