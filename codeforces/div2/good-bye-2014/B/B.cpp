@@ -13,9 +13,9 @@
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
-   * URL :
+   * URL : http://codeforces.com/contest/500/problem/B
 
-   * Points Gained (in case of online contest) :
+   * Points Gained (in case of online contest) : 828 / 1000
 
    ==========================================*/
 
