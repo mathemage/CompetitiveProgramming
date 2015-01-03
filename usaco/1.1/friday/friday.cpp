@@ -15,7 +15,7 @@
 
    * URL : http://cerberus.delosent.com:791/usacoprob2?a=nJinR3Por13&S=friday
 
-   * Points Gained (in case of online contest) :
+   * Duration : 30 min
 
    ==========================================*/
 
