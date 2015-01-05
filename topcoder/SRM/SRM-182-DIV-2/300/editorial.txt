@@ -1,0 +1,22 @@
+Used as: Division Two - Level One:
+
+    Value 	300
+    Submission Rate 	215 / 240 (89.58%)
+    Success Rate 	200 / 215 (93.02%)
+    High Score 	joelu for 294.55 points (3 mins 52 secs)
+    Average Score 	242.39 (for 200 correct submissions)
+
+As can be seen from this problem's success rate, it was fairly straightforward for its 300 point value. First, we need to count how many predictions are off by each value (either positive or negative). This can be done in a single loop.
+
+    int[] result = new int[7];
+    int i;
+    for (i = 0; i < predictedGrades.length; i++)
+    {
+        int gradeDiff = Math.abs( predictedGrades[i] - actualGrades[i] );
+        result[gradeDiff]++;
+    }
+
+Next, we need to convert these counts into percentages. We first divide each count by the total number of predictions so as to get a fraction between 0 and 1, and we then multiply through by 100. To be safe, we could use floating point arithmetic for this, but if you do the division last, integer arithmetic works too.
+
+    for (i = 0; i < 7; i++)
+        result[i] = (result[i]*100) / predictedGrades.length;
