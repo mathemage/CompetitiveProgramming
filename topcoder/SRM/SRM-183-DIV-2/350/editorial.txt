@@ -1,0 +1,20 @@
+Used as: Division Two - Level One:
+
+    Value 	350
+    Submission Rate 	163 / 235 (69.36%)
+    Success Rate 	104 / 163 (63.80%)
+    High Score 	Bilroy for 339.81 points (4 mins 56 secs)
+    Average Score 	249.61 (for 104 correct submissions)
+
+You were asked to find an ideal strategy for a counting game, where two players take turns counting off up to maxAdd numbers. The first person to hit a certain goal number wins. Luckily, the winning strategy was outlined in the problem statement and all we had to do was implement it. No matter how many numbers our opponent counts off, we can always count off enough so that maxAdd+1 numbers were counted off. Thus, if we can end on goal-(maxAdd+1), then we can force a win. In fact, by induction, if we can end on goal-n*(maxAdd+1), for some n, we can force a win. Since the goal is relatively small, we could simply start counting backwards maxAdd+1 at a time:
+
+   for(int i = goal; i>=next; i-=(maxAdd+1)){
+      if(i-next+1<=maxAdd)return i-next+1;
+   }
+   return -1;
+
+Alternatively, we could use a bit of modular arithmetic to come up with the following:
+
+   int ret = (goal-next+1)%(maxAdd+1);
+   return ret==0?-1:ret;
+
