@@ -15,7 +15,7 @@
 
    * URL : http://www.spoj.com/problems/SAMER08F/
 
-   * Duration :
+   * Duration : 11 min
 
    ==========================================*/
 
