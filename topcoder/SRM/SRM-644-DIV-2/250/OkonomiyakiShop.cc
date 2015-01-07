@@ -1,7 +1,7 @@
 /* ========================================
- * Points :
- * Total :
- * Status : arena failed
+ * Points : 249.99
+ * Total : 250
+ * Status : arena failed, ac on 1st attempt
  ==========================================*/
 
 #include <vector>
