@@ -33,8 +33,8 @@ map! <F6> <Esc>:wa<cr>:!g++ % -pthread -o `basename % .cpp`<cr>
 " g++ for CodeForces, CodeChef
 map <F7> <Esc>:wa<cr>:!g++ -g -std=c++11 % -o driver && (ulimit -c unlimited; ./driver < in) <cr>
 map! <F7> <Esc>:wa<cr>:!g++ -g -std=c++11 % -o driver && (ulimit -c unlimited; ./driver < in) <cr>
-map <F8> <Esc>:wa<cr>:!g++ -g -std=c++11 % -o driver && (ulimit -c unlimited; ./driver < `basename % .in`) <cr>
-map! <F8> <Esc>:wa<cr>:!g++ -g -std=c++11 % -o driver && (ulimit -c unlimited; ./driver < `basename % .in`) <cr>
+map <F8> <Esc>:wa<cr>:!g++ -g -std=c++0x % -o driver && (ulimit -c unlimited; ./driver < `basename % .in`) <cr>
+map! <F8> <Esc>:wa<cr>:!g++ -g -std=c++0x % -o driver && (ulimit -c unlimited; ./driver < `basename % .in`) <cr>
 
 " abbreviations
 iab fis for (int i = 0; i < .size(); ++i) {<CR><ESC>-f.i
