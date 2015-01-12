@@ -37,6 +37,7 @@ map <F8> <Esc>:wa<cr>:!g++ -g -std=c++0x % -o driver && (ulimit -c unlimited; ./
 map! <F8> <Esc>:wa<cr>:!g++ -g -std=c++0x % -o driver && (ulimit -c unlimited; ./driver < in) <cr>
 
 " abbreviations
+iab fo for (auto & x :.) {<CR><ESC>-f.s
 iab fis for (int i = 0; i < .size(); ++i) {<CR><ESC>-f.i
 iab ato atoi(.c_str())<ESC>F.i
 iab vs vector<string>
