@@ -27,7 +27,22 @@ using namespace std;
 #define FOR(I,A,B) for(int I = (A); I < (B); ++I)
 #define REP(I,N)   FOR(I,0,N)
 #define ALL(A)     (A).begin(), (A).end()
-#define MSG(a) cout << #a << " == " << a << endl;
+
+#define ERR(args...) { vector<string> _v = split(#args, ','); err(_v.begin(), args); }
+vector<string> split(const string& s, char c) {
+  vector<string> v;
+  stringstream ss(s);
+  string x;
+  while (getline(ss, x, c))
+    v.emplace_back(x);
+  return move(v);
+}
+void err(vector<string>::iterator it) {}
+template<typename T, typename... Args>
+void err(vector<string>::iterator it, T a, Args... args) {
+  cerr << it -> substr((*it)[0] == ' ', it -> length()) << " = " << a << '\n';
+  err(++it, args...);
+}
 
 int main() {
   return 0;
