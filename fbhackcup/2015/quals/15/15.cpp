@@ -26,31 +26,74 @@ using namespace std;
 #define FOR(I,A,B) for(int I = (A); I < (B); ++I)
 #define REP(I,N)   FOR(I,0,N)
 #define ALL(A)     (A).begin(), (A).end()
-#define MSG(a) cout << #a << " == " << a << endl;
+#define MSG(a) cout << #a << " == " << (a) << endl;
 
+const int CLEAN = -1;
 int main() {
-  int t, ma, mi;
+  int t, n, d, d2, b, e;
   cin >> t;
 
   string num;
-  REP(i,t) {
-    printf("Case #%d: ", i+1);
+  REP(j,t) {
+    printf("Case #%d: ", j+1);
     cin >> num;
-    ma = mi = 0;
-    for (int i = 1; i <  num.size(); ++i) {
-      if (num[i] <= num[mi] && num[i] != '0') {
-        mi = i;
+    n = num.size();
+    vector<int> mins(n);
+    vector<int> maxs(n);
+    n--;
+    mins[n] = maxs[n] = n;
+    while (--n>=0) {
+      if (num[n] >= num[mins[n+1]]) {
+        mins[n] = mins[n+1];
+      } else {
+        mins[n] = n;
       }
-      if (num[i] >= num[ma]) {
-        ma = i;
+
+      if (num[n] <= num[maxs[n+1]]) {
+        maxs[n] = maxs[n+1];
+      } else {
+        maxs[n] = n;
       }
     }
 
-    swap(num[0], num[mi]);
-    cout << num << " ";
-    swap(num[0], num[mi]);
-    swap(num[0], num[ma]);
-    cout << num << endl;
+
+    mins[0] = 0;
+    for (int i = num.size()-1; i >= 0; --i) {
+      if (num[i] != '0' && num[i] < num[mins[0]])
+        mins[0] = i;
+    }
+
+    /*
+    MSG(num)
+    cout << "mins: ";
+    REP(i,num.size()) {
+      cout << mins[i] << " ";
+    }
+    cout << endl;
+    cout << "maxs: ";
+    REP(i,num.size()) {
+      cout << maxs[i] << " ";
+    }
+    cout << endl;
+  */
+    REP(i,num.size()) {
+      if ((mins[i] > i && num[mins[i]] < num[i])
+          || i == num.size()-1) {
+        swap(num[i], num[mins[i]]);
+        cout << num << " ";
+        swap(num[i], num[mins[i]]);
+        break;
+      }
+    }
+    REP(i,num.size()) {
+      if ((maxs[i] > i && num[maxs[i]] > num[i])
+          || i == num.size()-1) {
+        swap(num[i], num[maxs[i]]);
+        cout << num << endl;
+        swap(num[i], num[maxs[i]]);
+        break;
+      }
+    }
   }
   return 0;
 }
