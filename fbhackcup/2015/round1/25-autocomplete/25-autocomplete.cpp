@@ -72,6 +72,12 @@ class Trie {
     if (sons[id]->freq == 1) return 1;
     else return 1 + sons[id]->search(w.substr(1));
   }
+
+  ~Trie() {
+    REP(i,sz) {
+      if (sons[i]) sons[i]->~Trie();
+    }
+  }
 };
 
 int main() {
@@ -84,13 +90,14 @@ int main() {
     cin >> n;
 
     int res = 0;
-    Trie root;
+    Trie *root = new Trie;
     REP(i,n) {
       cin >> w;
-      root.insert(w);
-      res += root.search(w);
+      root->insert(w);
+      res += root->search(w);
     }
     cout << res << endl;
+    root->~Trie();
   }
   return 0;
 }
