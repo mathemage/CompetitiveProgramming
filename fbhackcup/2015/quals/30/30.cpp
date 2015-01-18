@@ -29,37 +29,7 @@ using namespace std;
 int t, n, gp, gc, gf, sp, sc, sf;
 vector<int> p, c, f;
 
-bool sumsTo(int i) {
-  if (i >= p.size())
-    return false;
-
-  if (sp + p[i] == gp
-      && sc + c[i] == gc
-      && sf + f[i] == gf)
-    return true;
-
-  if (sumsTo(i+1))
-    return true;
-
-  if (sp + p[i] <= gp - 10
-      && sc + c[i] <= gc - 10
-      && sf + f[i] <= gf - 10) {
-    sp += p[i];
-    sc += c[i];
-    sf += f[i];
-    if (sumsTo(i+1))
-      return true;
-
-    sp -= p[i];
-    sc -= c[i];
-    sf -= f[i];
-  }
-  return false;
-}
-
-bool sumsTo() {
-  sp = sc = sf = 0;
-  sumsTo(0);
+bool setTab(int r, int s, int t, int k, vector<bool> tab) {
 }
 
 int main() {
@@ -70,10 +40,27 @@ int main() {
     p.resize(n);
     c.resize(n);
     f.resize(n);
+    vector<bool> tab(gp * gc * gf * n);
 
+    int n2 = n * gf.size();
+    int n1 = n2 * gc.size();
     REP(j,n) {
       cin >> p[j] >> c[j] >> f[j];
     }
+    REP(i1,gp) REP(i2,gc) REP(i3,gf) REP(i4,n+1) {
+      if (i1 + i2 + i3 == 0) {
+        tab[i4] = true;
+        continue;
+      }
+
+      if (i4 == 0)
+        tab[i1*n1 + i2*n2 + i3*n + i4] = true;
+      else
+        int s1 = 
+          tab
+          tab(r-p[k-1], s-c[k-1], t-f[k-1], k-1) || tab(r, s, t, k-1);
+    }
+
     cout << (sumsTo() ? "yes" : "no") << endl;
   }
   return 0;
