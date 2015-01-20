@@ -40,7 +40,7 @@ vector<string> split(const string& s, char c) {
 void err(vector<string>::iterator it) {}
 template<typename T, typename... Args>
 void err(vector<string>::iterator it, T a, Args... args) {
-  cerr << it -> substr((*it)[0] == ' ', it -> length()) << " = " << a << '\n';
+  cout << it -> substr((*it)[0] == ' ', it -> length()) << " = " << a << '\n';
   err(++it, args...);
 }
 
