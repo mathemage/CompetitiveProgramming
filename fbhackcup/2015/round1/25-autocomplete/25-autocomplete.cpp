@@ -39,46 +39,53 @@ vector<string> split(const string& s, char c) {
 void err(vector<string>::iterator it) {}
 template<typename T, typename... Args>
 void err(vector<string>::iterator it, T a, Args... args) {
-  cerr << it -> substr((*it)[0] == ' ', it -> length()) << " = " << a << '\n';
+  cout << it -> substr((*it)[0] == ' ', it -> length()) << " = " << a << '\n';
   err(++it, args...);
 }
 
 const int sz = 26;
-class Trie {
-  int freq;
+int rec = 0;
+struct Trie {
   Trie* sons[sz];
-
-  public:
-  Trie(int f = 0) : freq(f) {
+  Trie() {
     REP(i,sz) {
       sons[i] = NULL;
     }
   }
 
-  void insert(string w) {
-    if (w.empty()) return;
-
-    int id = w[0]-'a';
-    if (sons[id] == NULL)
-      sons[id] = new Trie;
-    sons[id]->freq++;
-    sons[id]->insert(w.substr(1));
-  }
-
-  int search(string w) {
-    if (w.empty()) return 0;
-
-    int id = w[0]-'a';
-    if (sons[id]->freq == 1) return 1;
-    else return 1 + sons[id]->search(w.substr(1));
-  }
-
-  ~Trie() {
-    REP(i,sz) {
-      if (sons[i]) sons[i]->~Trie();
+  int update(string & w) {
+    Trie *cur = this;
+    int res = w.size();
+    REP(i,w.size()) {
+      int id = w[i]-'a';
+      if (cur->sons[id] == NULL) {
+        cur->sons[id] = new Trie;
+        REP(j,sz)
+          cur->sons[id]->sons[j] = NULL;
+        res = min(res, i+1);
+      }
+      cur = cur->sons[id];
     }
+    return res;
   }
 };
+
+void clean(Trie *root) {
+  //ERR(++rec);
+  stack<Trie*> st;
+  st.push(root);
+  Trie *cur;
+  while (st.size()) {
+    cur = st.top(); st.pop();
+
+    REP(i,sz) {
+      if (cur->sons[i]) {
+        st.push(cur->sons[i]);
+      }
+    }
+    delete cur;
+  }
+}
 
 int main() {
   int t,n;
@@ -91,13 +98,12 @@ int main() {
 
     int res = 0;
     Trie *root = new Trie;
-    REP(i,n) {
+    REP(j,n) {
       cin >> w;
-      root->insert(w);
-      res += root->search(w);
+      res += root->update(w);
     }
     cout << res << endl;
-    root->~Trie();
+    clean(root);
   }
   return 0;
 }
