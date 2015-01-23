@@ -34,42 +34,38 @@ vector<string> split(const string& s, char c) {
     v.emplace_back(x);
   return move(v);
 }
-void err(vector<string>::iterator it) {}
+void err(vector<string>::iterator it) {
+  cout << endl;
+}
 template<typename T, typename... Args>
 void err(vector<string>::iterator it, T a, Args... args) {
   cout << it -> substr((*it)[0] == ' ', it -> length()) << " = " << a << '\n';
   err(++it, args...);
 }
 
-int h,n;
-long long res=0;
-bool l = true;
-
-long long solve() {
-  if (h == 0) {
-    return res;
-  }
-
-  if (l && n > (1L<<h>>1)) {
-    res += (1L<<h);
-    n -= (1L<<h>>1);
-  } else if (l && n <= (1L<<h>>1)) {
-    res++;
-    l = false;
-  } else if (!l && n <=(1L<<h>>1)) {
-    res += (1L<<h);
-  } else if (!l && n > (1L<<h>>1)) {
-    res++;
-    n -= (1L<<h>>1);
-    l = true;
-  }
-  h--;
-
-  return solve();
-}
-
 int main() {
+  int h;
+  unsigned long long res=0,n;
+  bool l = true;
+
   cin >> h >> n;
-  cout << solve() << endl;
+  while (h > 0) {
+    if (l && n > (1LL<<h>>1)) {
+      res += (1LL<<h);
+      n -= (1LL<<h>>1);
+    } else if (l && n <= (1LL<<h>>1)) {
+      res++;
+      l = false;
+    } else if (!l && n <=(1LL<<h>>1)) {
+      res += (1LL<<h);
+    } else if (!l && n > (1LL<<h>>1)) {
+      res++;
+      n -= (1LL<<h>>1);
+      l = true;
+    }
+    h--;
+  }
+
+  cout << res << endl;
   return 0;
 }
