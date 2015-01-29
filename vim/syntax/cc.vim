@@ -1,5 +1,5 @@
 " abbreviations
-so ./c++-abbreviations.vim
+so ~/.vim/syntax/c++-abbreviations.vim
 
 " make commands
 map <F3> <ESC>:wa!<cr>:vs Makefile<cr>/CXXFLAGS<cr>A -std=c++11<ESC>ZZ

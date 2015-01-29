@@ -37,6 +37,6 @@ map <F8> <Esc>:wa<cr>:!g++ -g -std=c++0x % -o driver && (ulimit -c unlimited; ./
 map! <F8> <Esc>:wa<cr>:!g++ -g -std=c++0x % -o driver && (ulimit -c unlimited; ./driver < in) <cr>
 
 " abbreviations
-so ./c++-abbreviations.vim
+so ~/.vim/syntax/c++-abbreviations.vim
 
 colorscheme slate
