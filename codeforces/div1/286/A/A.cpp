@@ -1,21 +1,16 @@
 /* ========================================
 
-   ID: mathema6
-   TASK: A
-   LANG: C++11
-   (...for USACO solutions)
-
    * File Name : A.cpp
 
-   * Creation Date : 18-01-2015
+   * Creation Date : 29-01-2015
 
-   * Last Modified :
+   * Last Modified : Thu 29 Jan 2015 11:33:41 PM CET
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
    * URL : http://codeforces.com/contest/506/problem/A
 
-   * Points Gained (in case of online contest) : 0, unsubmitted
+   * Points Gained (in case of online contest) : 0, unsubmitted, AC
 
    ==========================================*/
 
@@ -25,6 +20,7 @@ using namespace std;
 
 #define FOR(I,A,B) for(int I = (A); I < (B); ++I)
 #define REP(I,N)   FOR(I,0,N)
+#define rep(i, begin, end) for (__typeof(end) i = (begin) - ((begin) > (end)); i != (end) - ((begin) > (end)); i += 1 - 2 * ((begin) > (end)))
 #define ALL(A)     (A).begin(), (A).end()
 
 #define ERR(args...) { vector<string> _v = split(#args, ','); err(_v.begin(), args); }
@@ -39,46 +35,30 @@ vector<string> split(const string& s, char c) {
 void err(vector<string>::iterator it) {}
 template<typename T, typename... Args>
 void err(vector<string>::iterator it, T a, Args... args) {
-  cerr << it -> substr((*it)[0] == ' ', it -> length()) << " = " << a << '\n';
+  cout << it -> substr((*it)[0] == ' ', it -> length()) << " = " << a << endl;
   err(++it, args...);
 }
 
-#define sz 30001
-int n,d,p,fin;
-vector<int> plan;
-int cache[sz][sz];
-int jump(int cur, int l) {
-  int res = 0;
-  if (l > 0 && cur < fin) {
-    if (cache[cur][l-1] == -1) {
-      cache[cur][l-1] = jump(cur+l-1,l-1);
-    }
-    res = max(res,cache[cur][l-1]);
-
-    if (cache[cur][l] == -1) {
-      cache[cur][l] = jump(cur+l,l);
-    }
-    res = max(res,cache[cur][l]);
-
-    if (cache[cur][l+1] == -1) {
-      cache[cur][l+1] = jump(cur+l+1,l+1);
-    }
-    res = max(res,cache[cur][l+1]);
-  }
-  return plan[cur] + res;
-}
-
 int main() {
-  REP(i,sz) REP(j,sz) cache[i][j] = -1;
+  const int sz = 30001;
+  const int wdth = 491;
 
+  int n,d,p,m=0;
   cin >> n >> d;
-  plan.assign(n,0);
-  fin = d;
+  vector<int> plan(sz);
   REP(i,n) {
     cin >> p;
     plan[p]++;
-    fin = max(fin,p);
+    m = max(m, p);
   }
-  cout << jump(d,d);
+  vector<vector<int>> dp(m+d+wdth/2+2, vector<int>(wdth,0));
+  int off = d - wdth / 2;
+
+  rep(i,m+1,d) rep(j,max(off,1),d+wdth/2+1) {
+    dp[i][j-off] = plan[i]
+             + max( (j>1 ? dp[i+j-1][j-1-off] : 0) , max(dp[i+j][j-off] , dp[i+j+1][j+1-off]) );
+  }
+  cout << dp[d][wdth/2];
+
   return 0;
 }
