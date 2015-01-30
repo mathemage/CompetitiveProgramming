@@ -21,9 +21,8 @@
 
 using namespace std;
 
-#define FOR(I,A,B) for(int I = (A); I < (B); ++I)
 #define REP(I,N)   FOR(I,0,N)
-#define rep(i, begin, end) for (__typeof(end) i = (begin) - ((begin) > (end)); i != (end) - ((begin) > (end)); i += 1 - 2 * ((begin) > (end)))
+#define FOR(i, begin, end) for (__typeof(end) i = (begin) - ((begin) > (end)); i != (end) - ((begin) > (end)); i += 1 - 2 * ((begin) > (end)))
 #define ALL(A)     (A).begin(), (A).end()
 
 #define ERR(args...) { vector<string> _v = split(#args, ','); err(_v.begin(), args); }
