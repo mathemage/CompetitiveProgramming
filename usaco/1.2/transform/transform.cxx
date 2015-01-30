@@ -12,7 +12,7 @@
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
-   * URL :
+   * URL : http://train.usaco.org/usacoprob2?a=GinO3tPLU0G&S=transform
 
    ==========================================*/
 
