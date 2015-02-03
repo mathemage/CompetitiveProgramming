@@ -1,0 +1,22 @@
+Used as: Division Two - Level One:
+
+    Value 	250
+    Submission Rate 	232 / 285 (81.40%)
+    Success Rate 	186 / 232 (80.17%)
+    High Score 	NeverMore for 240.74 points (5 mins 36 secs)
+    Average Score 	172.94 (for 186 correct submissions)
+
+Though there was a long list of notes and contraints for this problem, there was really very little complicated as far as actual coding goes. Simply plug in the values into the equation that is given, and format the output. It was important to typecast some values to floating point numbers when plugging them into the given equation, since a/b can have different answers depending on if a and b are integers or floating point numbers. Beyond this, formatting seconds into hours, minutes, and seconds, is a familiar problem to many. If n is the total number of sceonds, then the number of hours is h=n/3600, the number of minutes is m=(n-3600*h)/60, and the number of seconds is s=n-3600*h-60*m. If the function approxTime(d1,t1,d2,t2,d) is the function described in the problem statement, then the following code will split the value into hours, minutes, and seconds:
+
+    int time=approxTime(d1,t1,d2,t2,d);
+    int hours=time/3600;
+    int minutes=(time-3600*hours)/60;
+    int seconds=time-3600*hours-60*minutes;
+
+All that is left is formatting, which can be done differently depending on your language and preference. Here is a simple Java solution.
+
+    String ret=hours+":";
+    if (minutes<10) ret+="0";
+    ret+=minutes+":";
+    if (seconds<10) ret+="0";
+    ret+=seconds;
