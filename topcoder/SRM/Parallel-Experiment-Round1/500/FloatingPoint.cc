@@ -1,0 +1,40 @@
+/* ========================================
+ * Points :
+ * Total : 500
+ * Status :
+ ==========================================*/
+
+#include <bits/stdc++.h>
+using namespace std;
+
+#define FOR(I,A,B) for(int I = (A); I < (B); ++I)
+#define REP(I,N)   FOR(I,0,N)
+#define ALL(A)     (A).begin(), (A).end()
+#define MSG(a) cout << #a << " == " << a << endl;
+
+
+class FloatingPoint {
+public:
+  int representations(int number, int mantissa, int exponent) {
+    int result = 0, b = 0;
+    long long n = number;
+    while (number) {
+      number >>= 1;
+      b++;
+    }
+
+    REP(e,1LL<<exponent) {
+      if (0<b && b <= mantissa) {
+        result++;
+      } 
+
+      if (b <= 0 || (n%2 == 1)) { 
+        break;
+      }
+
+      n >>= 1;
+      b--;
+    }
+    return result;
+  }
+};
