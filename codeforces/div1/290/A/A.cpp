@@ -4,7 +4,7 @@
 
    * Creation Date : 02-02-2015
 
-   * Last Modified : Mon 02 Feb 2015 08:43:05 PM CET
+   * Last Modified : Thu 05 Feb 2015 11:21:16 AM CET
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
@@ -49,15 +49,15 @@ int main() {
   // get edges
   vector<string> ed(26);
   vector<int> indeg(26, 0);
-  REP(i,n) FOR(j,i+1,n) {
+  REP(i,n-1) {
     REP(k,names[i].size()) {
-      if (k >= names[j].size()) {
+      if (k >= names[i+1].size()) {
         cout << "Impossible" << endl;
         return 0;
       }
-      if (names[i][k] != names[j][k]) {
-        ed[names[i][k]-'a'] += names[j][k];
-        indeg[names[j][k]-'a']++;
+      if (names[i][k] != names[i+1][k]) {
+        ed[names[i][k]-'a'] += names[i+1][k];
+        indeg[names[i+1][k]-'a']++;
         break;
       }
     }
