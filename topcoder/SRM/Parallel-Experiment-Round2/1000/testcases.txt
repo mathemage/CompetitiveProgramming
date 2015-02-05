@@ -1,0 +1,12 @@
+0
+{"topcoder"}
+"topcoder"
+1
+{"topcoder"}
+"tppcoder"
+2
+{"topcoder","topcod"}
+"topcode"
+-1
+{"topcoderevent"}
+"appirio"
