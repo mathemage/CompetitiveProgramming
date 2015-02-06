@@ -1,0 +1,29 @@
+Used as: Division Two - Level One:
+
+    Value 	250
+    Submission Rate 	233 / 262 (88.93%)
+    Success Rate 	135 / 233 (57.94%)
+    High Score 	generator for 245.20 points (3 mins 59 secs)
+    Average Score 	193.52 (for 135 correct submissions)
+
+The fact that you know the scores on individual assignments is a distraction. All you really need is three numbers: the total points possible in the course (totalPoss), the total points you've earned so far (earned), and the maximum points you can score on the final exam (final). You can calculate totalPoss by summing the points possible on each assignment, plus the points possible on the final exam. Similarly, you can calculate earned by summing the points earned on each assignment.
+
+You can then loop over all integers from 0 to final, inclusive, and return the smallest one that gives you an overall percentage of 65% or better. If no such number exists, return -1.
+
+Alternatively, you can calculate the points you need directly as
+
+   pointsNeeded = (65*totalPoss+99)/100 - earned
+
+The "+99" ensures that you round up. Then you just have to check that pointsNeeded is between 0 and final. If it's less than 0, return 0. If it's greater than final, return -1.
+
+The most common problem involved rounding pointsNeeded incorrectly. If you accidentally rounded down then you would occasionally return an answer that would leave you just shy of the 65% mark. Another easy mistake to make was to write
+
+   for (int pts = 0; pts < finalExam; pts++)
+      ...
+
+instead of
+
+   for (int pts = 0; pts <= finalExam; pts++)
+      ...
+
+Then you would fail to detect cases where you could only pass with a perfect score on the final.
