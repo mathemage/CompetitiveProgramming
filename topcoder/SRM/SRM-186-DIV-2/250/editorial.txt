@@ -1,0 +1,35 @@
+Used as: Division Two - Level One:
+
+    Value 	250
+    Submission Rate 	183 / 195 (93.85%)
+    Success Rate 	167 / 183 (91.26%)
+    High Score 	cvip11 for 244.24 points (4 mins 22 secs)
+    Average Score 	201.83 (for 167 correct submissions)
+
+Given the par values of an 18-hole golf course and the score obtained on each hole, expressed in relative terms such as "bogey" and "birdie", we are to compute the total score achieved by a player. There is one scoring phrase that is not relative, namely "hole in one". Coding a successful solution depends partly on dealing with this special case.
+
+The other challenge is to find a way of translating the scoring phrases into their numerical values. The simplest approach is to use if statements or a switch to check each case individually. If we see that the phrase is "albatross", for instance, we know that it means -3 in relation to par, so we can add the par value less three to the total score. This calls for much typing, however, and the more we type, the greater the latitude for error.
+
+Consider, instead, that we can look up the scoring phrase in an array and use its position to directly calculate a numerical value. In this array, the scoring phrases should be listed in order, say from lowest to highest as below. We then initialize the total score to zero. When iterating over the holes, we single out the "hole in one" case and immediately increment the score by one.
+
+  public int tally(int[] parValues, String[] scoreSheet) {
+    String[] scores = {"triple bogey", "double bogey", "bogey",
+                       "par", "birdie", "eagle", "albatross"};
+    int tot = 0;
+    for (int i = 0, j; i <18; i++) {
+      if (scoreSheet[i].equals("hole in one")) {
+        tot++;
+        continue;
+      }
+
+There are predefined functions in most languages to quickly find an element in a sorted array, but a for loop will suffice here. The scoring phrase "triple bogey" is at position 0, and its value is +3. The scoring phrase "par" is at position 3 with a value of 0. In general, we can subtract the position of a phrase and add three to obtain its value.
+
+      for (j = 0; j <7; j++)
+        if (scoreSheet[i].equals(scores[j]))
+          break;
+      tot += parValues[i]-j+3;
+    }
+    return tot;
+  }
+
+If the scoring phrases were not mapped in arithmetic progression to their values, we would probably want to use an associative array of some kind, such as a map or a hash, to look up the integer corresponding to each string. 

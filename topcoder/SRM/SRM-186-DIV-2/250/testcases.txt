@@ -1,0 +1,28 @@
+45
+{1, 1, 1, 1, 1, 1,
+ 1, 1, 1, 5, 5, 5,
+ 5, 5, 5, 5, 5, 5}
+{"bogey", "bogey", "bogey", "bogey", "bogey", "bogey",
+ "bogey", "bogey", "bogey", "eagle", "eagle", "eagle",
+ "eagle", "eagle", "eagle", "eagle", "eagle", "eagle"}
+72
+{3, 2, 4, 2, 2, 1,
+ 1, 1, 3, 2, 4, 4,
+ 4, 2, 3, 1, 3, 2}
+{"bogey", "double bogey", "par", "double bogey", "double bogey", "triple bogey",
+ "triple bogey", "triple bogey", "bogey", "double bogey", "par", "par",
+ "par", "double bogey", "bogey", "triple bogey", "bogey", "double bogey"}
+18
+{3, 2, 4, 2, 2, 1,
+ 1, 1, 3, 2, 4, 4,
+ 4, 2, 3, 1, 3, 2}
+{"eagle", "birdie", "albatross", "birdie", "birdie", "par",
+ "hole in one", "par", "eagle", "birdie", "albatross", "albatross",
+ "albatross", "birdie", "eagle", "hole in one", "eagle", "birdie"}
+77
+{4, 1, 3, 3, 4, 4,
+ 1, 4, 2, 3, 3, 5,
+ 4, 1, 4, 4, 2, 1}
+{"triple bogey", "triple bogey", "bogey", "par", "triple bogey", "double bogey",
+ "triple bogey", "triple bogey", "par", "eagle", "bogey", "bogey",
+ "birdie", "par", "triple bogey", "eagle", "triple bogey", "triple bogey"}
