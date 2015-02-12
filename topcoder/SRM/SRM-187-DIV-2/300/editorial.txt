@@ -1,0 +1,28 @@
+Used as: Division Two - Level One:
+
+    Value 	300
+    Submission Rate 	214 / 239 (89.54%)
+    Success Rate 	173 / 214 (80.84%)
+    High Score 	jwjchap for 296.96 points (2 mins 52 secs)
+    Average Score 	235.24 (for 173 correct submissions)
+
+This is an example of getting too much information in a problem statement which then seems to make the problem more difficult that it really is (a characteristic of many real world problem statements). We are asked to find the total number of parking spaces used on a given day given a sequence of arrivals and departures complete with the handle of the arriving or departing TopCoder. At first glance it might seem that the way to go is a simulation keeping track of who is in each parking space and always putting the next arrival in the lowest numbered free parking space. And this clearly works and isn't terribly complex, but it is much more complex than it needs to be.
+
+Because TopCoders always park as close to the building as they can, the total number of used parking spaces is the same as the maximum number of parking spaces ever used at the same time. When a coder parks in the farthest used parking space, it can only be because all the closer spaces were full. Similarly when a coder departs, it does not matter which parking space is emptied, at least for the purposes of determining the maximum or total number of spaces used. So you can completely ignore the handle information and only use the event "arrives" or "departs".
+
+Here is all it takes:
+
+{
+int max = 0 , c = 0 ;
+for ( i=0; i < events.length; i++ )
+   {
+   if ( events[i].endsWith("arrives") ) c ++ ;
+   else                                 c -- ;
+   if ( max < c ) max = c ;
+   }
+return max ;
+}
+
+jwjchap's high score of 296.96 points in only 2 mins 52 secs shows that solution can programmed very quickly if you recognize the trick right away. The high average score of 235.24 out of 300 shows most coders were on top of this problem.
+
+Note: If you use .index()>-1 instead of .endsWith(), be sure to test for " arrives" to insure you do not match "arrives" with part of the handle. 
