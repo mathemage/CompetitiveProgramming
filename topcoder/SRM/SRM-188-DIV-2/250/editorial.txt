@@ -1,0 +1,11 @@
+Used as: Division Two - Level One:
+
+    Value 	250
+    Submission Rate 	189 / 205 (92.20%)
+    Success Rate 	171 / 189 (90.48%)
+    High Score 	fame for 244.35 points (4 mins 20 secs)
+    Average Score 	204.11 (for 171 correct submissions)
+
+This problem presented the coders with too much information. They were given a 3x3 magic square with one number missing, and asked to return the missing number. With only one number missing, there are still two complete rows and two complete columns. One only had to identity one complete row or column to compute the magic sum. Subtracting the other two numbers from either the row or column with the missing number from this magic sum revealed the answer. For particularly efficient implementations, see the solutions of fame and dzetkulict.
+
+An alternative solution is to simply try all numbers from 1 to 100 in the missing spot, and test if the resulting square is magic. This was the technique used by tmyklebu.
