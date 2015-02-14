@@ -4,13 +4,13 @@
 
    * Creation Date : 14-02-2015
 
-   * Last Modified : Sat 14 Feb 2015 07:55:30 PM CET
+   * Last Modified : Sat 14 Feb 2015 09:08:59 PM CET
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
    * URL : http://codeforces.com/contest/514/problem/A
 
-   * Points Gained (in case of online contest) : failed systests
+   * Points Gained (in case of online contest) : failed systests, this version AC
 
    ==========================================*/
 
@@ -42,18 +42,14 @@ int main() {
   string s, res;
   int d;
   cin >> s;
-  bool nz = false;
+  bool first = true;
   for (auto & x : s) {
     d = (x-'0');
-    if (d != 9 || nz) {
-      nz = true;
-      res += ('0' + min(d, 9-d));
-    } else {
-      res += x;
-    }
+    if (!first || d != 9)
+      x = '0' + min(d, 9-d);
+    first = false;
   }
-  if (res == "0") cout << s;
-  else cout << res;
+  cout << s;
 
   return 0;
 }
