@@ -1,0 +1,14 @@
+Used as: Division Two - Level One:
+
+    Value 	300
+    Submission Rate 	158 / 180 (87.78%)
+    Success Rate 	109 / 158 (68.99%)
+    High Score 	therealmoose for 298.69 points (1 mins 53 secs)
+    Average Score 	223.16 (for 109 correct submissions)
+
+There are two approaches to solving this problem. The first is simply to use doubles. The constraints ensure that the fractional part of the number will not be equal to the cutoff, so we don't have to worry about issues with double imprecision. Hence, we can parse the strings into two doubles and compare the fractional parts as follows (assuming n and c are doubles representing num and cutoff):
+
+if(n-(int)n >= c)return (int)n+1;
+else return (int)n;
+
+If doubles make you nervous, you can solve the problem without them by looking at the parts of the strings after the decimal point as integers. In order to make them directly comparable, you should pad the fractional parts with zeros on the right so that they are the same length. Then, you can compare them as integers, which aren't subject to any risky imprecision issues. If the constraints allowed for the fractional parts to be equal, you would have to do something like this or you might run into double imprecision issues.
