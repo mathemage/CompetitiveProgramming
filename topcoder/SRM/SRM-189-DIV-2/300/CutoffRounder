@@ -1,7 +1,7 @@
 /* ========================================
- * Points :
- * Total :
- * Status :
+ * Points : 287.85
+ * Total : 300
+ * Status : AC
  ==========================================*/
 
 #include <bits/stdc++.h>
@@ -32,3 +32,4 @@ public:
 
 // Edited by VimCoder 0.3.5
 // http://github.com/chazmcgarvey/vimcoder
+

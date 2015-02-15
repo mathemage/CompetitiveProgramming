@@ -1,7 +1,7 @@
 /* ========================================
- * Points : 287.85
+ * Points : 287.85, 185.88 (stod() version)
  * Total : 300
- * Status : AC
+ * Status : AC, AC
  ==========================================*/
 
 #include <bits/stdc++.h>
@@ -16,16 +16,6 @@ using namespace std;
 class CutoffRounder {
 public:
   int round(string num, string cutoff) {
-    stringstream ss;
-    ss.str(num);
-    double d, c;
-    ss >> d;
-    ss.clear();
-    ss.str(cutoff);
-    ss >> c;
-    int result = floor(d);
-    if (d - floor(d) > c) result++;
-
-    return result;
+    return floor(stod(num)) + (stod(num) - floor(stod(num)) > stod(cutoff));
   }
 };
