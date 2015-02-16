@@ -1,0 +1,34 @@
+1.5
+{"Made 3 point field goal",
+ "Missed 2 point field goal"}
+0.8
+{"Made free throw",
+ "Missed free throw",
+ "Missed free throw",
+ "Missed free throw",
+ "Made free throw"}
+
+1.4545454545454546
+{"Made 2 point field goal", "Made 2 point field goal", "Made 2 point field goal", 
+ "Made 2 point field goal", "Missed 2 point field goal",
+ "Made 3 point field goal", "Made 3 point field goal", "Made 3 point field goal",
+ "Missed 3 point field goal", "Missed 3 point field goal", 
+ "Missed 3 point field goal", "Missed 3 point field goal",
+ "Made free throw", "Made free throw", "Made free throw", 
+ "Made free throw", "Made free throw", "Made free throw", 
+ "Made free throw", "Missed free throw", "Missed free throw"}
+0.9565217391304348
+{"Made 2 point field goal", "Missed free throw",
+ "Made free throw", "Missed free throw", "Made free throw", 
+ "Made 2 point field goal", "Made 2 point field goal",
+ "Missed 2 point field goal", "Missed 2 point field goal",
+ "Made 3 point field goal", "Missed 2 point field goal",
+ "Made 2 point field goal", "Missed 2 point field goal",
+ "Made 3 point field goal", "Missed 2 point field goal",
+ "Missed 2 point field goal", "Missed 3 point field goal",
+ "Made free throw", "Made free throw", 
+ "Missed 3 point field goal", "Missed 2 point field goal",
+ "Missed 2 point field goal", "Made 2 point field goal",
+ "Missed 2 point field goal", "Made 2 point field goal",
+ "Missed 3 point field goal"}
+ 

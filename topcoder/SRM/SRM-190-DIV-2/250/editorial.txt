@@ -1,0 +1,11 @@
+Used as: Division Two - Level One:
+
+    Value 	250
+    Submission Rate 	156 / 172 (90.70%)
+    Success Rate 	148 / 156 (94.87%)
+    High Score 	NeverMore for 243.67 points (4 mins 36 secs)
+    Average Score 	190.96 (for 148 correct submissions)
+
+A fitting problem to follow March Madness. In order to calculate the points per shot, you need to know 3 things: the total number of points, the number of free throws attempted, and the number of field goals attempted. The simplest way to find all of these is to just have 6 separate cases, one for each possible value of the elements. Clearly, you should just copy and paste these strings from the problem statement, since typing them in yourself is a good way to introduce typos. That was by far the most common solution, and pretty much everyone got it right. There are a few ways in which you could get clever if you really wanted to, but with only 6 cases to deal with, coding each one up is pretty simple.
+
+If you want to see how this metric works in the NBA (or how it worked in the '00-'01 season), check this out. 
