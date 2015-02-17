@@ -1,16 +1,16 @@
 /* ========================================
 
-   * File Name : C.cpp
+   * File Name : A.cpp
 
-   * Creation Date : 14-02-2015
+   * Creation Date : 17-02-2015
 
-   * Last Modified : Sat 14 Feb 2015 09:43:20 PM CET
+   * Last Modified : Tue 17 Feb 2015 08:38:41 PM CET
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
-   * URL : http://codeforces.com/contest/514/problem/C
+   * URL : http://codeforces.com/contest/515/problem/A
 
-   * Points Gained (in case of online contest) : unsubmitted
+   * Points Gained (in case of online contest) : 400 / 500
 
    ==========================================*/
 
@@ -39,36 +39,9 @@ void err(vector<string>::iterator it, T a, Args... args) {
 }
 
 int main() {
-  int n, m;
-  cin >> n >> m;
-
-  unordered_set<string> ds;
-  string w;
-  REP(i,n) {
-    cin >> w;
-    ds.insert(w);
-  }
-
-  REP(j,m) {
-    cin >> w;
-    bool yes = false;
-    REP(k,w.size()) {
-      char c = w[k];
-      REP(x,3) {
-        if (x+'a' != c) {
-          w[k] = x + 'a';
-          if (ds.find(w) != ds.end()) {
-            cout << "YES";
-            yes = true;
-            break;
-          }
-        }
-      }
-      if (yes) break;
-      w[k] = c;
-    }
-    if (!yes) cout << "NO";
-    cout << endl;
-  }
+  int a,b,s;
+  cin >> a >> b >> s;
+  if (s >= abs(a)+abs(b) && (s-abs(a)+abs(b)) % 2 == 0) cout << "Yes";
+  else cout << "No";
   return 0;
 }

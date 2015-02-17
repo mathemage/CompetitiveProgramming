@@ -1,16 +1,16 @@
 /* ========================================
 
-   * File Name : C.cpp
+   * File Name : B.cpp
 
-   * Creation Date : 14-02-2015
+   * Creation Date : 17-02-2015
 
-   * Last Modified : Sat 14 Feb 2015 09:43:20 PM CET
+   * Last Modified : Tue 17 Feb 2015 08:39:37 PM CET
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
-   * URL : http://codeforces.com/contest/514/problem/C
+   * URL : http://codeforces.com/contest/515/problem/B
 
-   * Points Gained (in case of online contest) : unsubmitted
+   * Points Gained (in case of online contest) : -1, failed systests
 
    ==========================================*/
 
@@ -39,36 +39,43 @@ void err(vector<string>::iterator it, T a, Args... args) {
 }
 
 int main() {
-  int n, m;
+  int n,m,b,g,z,i,j;
   cin >> n >> m;
 
-  unordered_set<string> ds;
-  string w;
-  REP(i,n) {
-    cin >> w;
-    ds.insert(w);
+  cin >> b;
+  vector<bool> x(n,false);
+  REP(i,b) {
+    cin >> z;
+    x[z] = true;
   }
 
-  REP(j,m) {
-    cin >> w;
-    bool yes = false;
-    REP(k,w.size()) {
-      char c = w[k];
-      REP(x,3) {
-        if (x+'a' != c) {
-          w[k] = x + 'a';
-          if (ds.find(w) != ds.end()) {
-            cout << "YES";
-            yes = true;
-            break;
-          }
-        }
-      }
-      if (yes) break;
-      w[k] = c;
-    }
-    if (!yes) cout << "NO";
-    cout << endl;
+  cin >> g;
+  vector<bool> y(m,false);
+  REP(i,g) {
+    cin >> z;
+    y[z] = true;
   }
+
+  bool bx, by;
+  int l = n*m/__gcd(n,m);
+  //int l = __lcm(n,m);
+  REP(k,l) {
+    //ERR(i,j,b,g);
+    i = k%n;
+    j = k%m;
+    bx = x[i];
+    by = y[j];
+    y[j] = x[i] = bx || by;
+    if (bx != x[i]) b++;
+    if (by != y[j]) g++;
+    //ERR(b,g); cout << endl;
+
+    if (b == n && g == m) {
+      cout << "Yes";
+      return 0;
+    }
+  }
+
+  cout << "No";
   return 0;
 }

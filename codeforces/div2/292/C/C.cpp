@@ -2,15 +2,15 @@
 
    * File Name : C.cpp
 
-   * Creation Date : 14-02-2015
+   * Creation Date : 17-02-2015
 
-   * Last Modified : Sat 14 Feb 2015 09:43:20 PM CET
+   * Last Modified : Tue 17 Feb 2015 08:40:00 PM CET
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
-   * URL : http://codeforces.com/contest/514/problem/C
+   * URL : http://codeforces.com/contest/515/problem/C
 
-   * Points Gained (in case of online contest) : unsubmitted
+   * Points Gained (in case of online contest) : 652 / 1000
 
    ==========================================*/
 
@@ -39,36 +39,41 @@ void err(vector<string>::iterator it, T a, Args... args) {
 }
 
 int main() {
-  int n, m;
-  cin >> n >> m;
+  vector<vector<int> > pf {
+    {}, {},
+    {2},
+    {3},
+    {2,2},
+    {5},
+    {2,3},
+    {7},
+    {2,2,2},
+    {3,3}
+  };
 
-  unordered_set<string> ds;
-  string w;
+  int n;
+  cin >> n;
+  char d;
+  vector<int> cnt(10,0);
   REP(i,n) {
-    cin >> w;
-    ds.insert(w);
+    cin >> d;
+    REP(j,d-'0'+1) {
+      for (auto & x : pf[j]) {
+        cnt[x]++;
+      }
+    }
   }
 
-  REP(j,m) {
-    cin >> w;
-    bool yes = false;
-    REP(k,w.size()) {
-      char c = w[k];
-      REP(x,3) {
-        if (x+'a' != c) {
-          w[k] = x + 'a';
-          if (ds.find(w) != ds.end()) {
-            cout << "YES";
-            yes = true;
-            break;
-          }
+  for (auto & k : {7,5,3,2}) {
+    while (cnt[k]) {
+      cout << k;
+      REP(i,k+1) {
+        for (auto & x : pf[i]) {
+          cnt[x]--;
         }
       }
-      if (yes) break;
-      w[k] = c;
     }
-    if (!yes) cout << "NO";
-    cout << endl;
   }
+
   return 0;
 }
