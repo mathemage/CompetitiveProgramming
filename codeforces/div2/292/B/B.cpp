@@ -4,7 +4,7 @@
 
    * Creation Date : 17-02-2015
 
-   * Last Modified : Tue 17 Feb 2015 08:39:37 PM CET
+   * Last Modified : Tue 17 Feb 2015 09:35:46 PM CET
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
@@ -57,21 +57,27 @@ int main() {
   }
 
   bool bx, by;
-  int l = n*m/__gcd(n,m);
-  //int l = __lcm(n,m);
-  REP(k,l) {
-    //ERR(i,j,b,g);
+  int countdown = n*m/__gcd(n,m);
+  int k = 0;
+  while (countdown--) {
     i = k%n;
     j = k%m;
     bx = x[i];
     by = y[j];
     y[j] = x[i] = bx || by;
-    if (bx != x[i]) b++;
-    if (by != y[j]) g++;
-    //ERR(b,g); cout << endl;
+    if (bx != x[i]) {
+      b++;
+      countdown = n*m/__gcd(n,m);
+    }
+    if (by != y[j]) {
+      g++;
+      countdown = n*m/__gcd(n,m);
+    }
 
+    k++;
+    //ERR(b,g,k)
     if (b == n && g == m) {
-      cout << "Yes";
+      cout << "Yes\n";
       return 0;
     }
   }
