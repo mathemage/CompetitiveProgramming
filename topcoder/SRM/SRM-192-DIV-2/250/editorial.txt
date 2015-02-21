@@ -1,0 +1,31 @@
+Used as: Division Two - Level One:
+
+    Value 	250
+    Submission Rate 	138 / 172 (80.23%)
+    Success Rate 	116 / 138 (84.06%)
+    High Score 	SlimJim for 246.19 points (3 mins 32 secs)
+    Average Score 	189.41 (for 116 correct submissions)
+
+You are asked how many itemX by itemY by itemZ unit items can fit in a boxX by boxY by boxZ unit box, will all items in the same orientation. The number of boxes that can fit in one dimension is easily calulated by the convienient floor rounding built into integer division. A long slow way to type this in is shown below for illustrative purposes.
+
+xcount = boxX / itemX ;
+ycount = boxY / itemY ;
+zcount = boxZ / itemZ ;
+totalcount = xcount * ycount & zcount ;
+
+But in the heat of battle, you would do something more like this for the fastest submission.
+
+c=(bx/ix)*(by/iy)*(bz/iz);
+
+Then you just have to do the six different cases, switching around itemX, ItemY and ItemZ (or boxX, boxY and boxZ) and pick the biggest one. This is a quick job with cut and paste (or "^K^K^Y^Y^Y^Y^Y^Y" if your are using a real nerd's editor like me).
+
+int c, m=0;
+c=(bx/ix)*(by/iy)*(bz/iz); if(c>m)m=c;
+c=(bx/ix)*(by/iz)*(bz/iy); if(c>m)m=c;
+c=(bx/iy)*(by/ix)*(bz/iz); if(c>m)m=c;
+c=(bx/iy)*(by/iz)*(bz/ix); if(c>m)m=c;
+c=(bx/iz)*(by/ix)*(bz/iy); if(c>m)m=c;
+c=(bx/iz)*(by/iy)*(bz/ix); if(c>m)m=c;
+return m ;
+
+The only thing to be careful about is making sure you got all six cases. You could use nextperm() in C++ but that is really overkill and probably slower to type in. 
