@@ -1,0 +1,30 @@
+Used as: Division Two - Level One:
+
+    Value 	250
+    Submission Rate 	159 / 167 (95.21%)
+    Success Rate 	154 / 159 (96.86%)
+    High Score 	haowei for 246.40 points (3 mins 26 secs)
+    Average Score 	216.49 (for 154 correct submissions)
+
+An easy problem to start the day. Most of the successful solutions looked essentially like this:
+
+  int netGain = 0;
+  for (int i = 0; i < amounts.length; i++)
+     if (i == finalResult)
+        netGain -= amounts[i] * centsPerDollar[i];
+     else
+        netGain += amounts[i] * 100;
+  return netGain;
+
+A slightly shorter variation, but one that is easier to get wrong, is to pretend everybody lost their bets in the loop, and then adjust for those who actually won afterwards.
+
+  int netGain = 0;
+  for (int i = 0; i < amounts.length; i++) 
+     netGain += amounts[i] * 100;
+  netGain -= amounts[finalResult] * 100;
+  netGain -= amounts[finalResult] * centsPerDollar[finalResult];
+  return netGain;
+
+I've written the last three lines separately for clarity, but they can easily be combined into a single, long line.
+
+With so few failures, it's hard to generalize any common mistakes, but the only mistake that appears to have been made twice is to covert the loss into dollars before eventually converting the total into cents. 
