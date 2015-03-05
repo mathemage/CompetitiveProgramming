@@ -4,13 +4,11 @@
 
    * Creation Date : 04-03-2015
 
-   * Last Modified : Wed 04 Mar 2015 09:34:00 PM CET
+   * Last Modified : Wed 04 Mar 2015 10:43:58 PM CET
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
-   * URL :
-
-   * Points Gained (in case of online contest) :
+   * URL : http://codeforces.com/problemset/problem/71/A
 
    ==========================================*/
 

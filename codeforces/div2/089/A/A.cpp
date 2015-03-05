@@ -4,11 +4,11 @@
 
    * Creation Date : 04-03-2015
 
-   * Last Modified : Wed 04 Mar 2015 10:43:41 PM CET
+   * Last Modified : Wed 04 Mar 2015 10:59:25 PM CET
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
-   * URL : http://codeforces.com/problemset/problem/4/A
+   * URL : http://codeforces.com/problemset/problem/118/A
 
    ==========================================*/
 
@@ -37,9 +37,21 @@ void err(vector<string>::iterator it, T a, Args... args) {
 }
 
 int main() {
-  int w;
+  string w;
   cin >> w;
-  if (w%2 || w <= 2) cout << "NO";
-  else cout << "YES";
+  for (auto & x : w) {
+    x = tolower(x);
+    bool next = false;
+    for (char c : "aoyeui") {
+      if (c == x) {
+        next = true;
+        break;
+      }
+    }
+    if (!next) {
+      printf(".%c", x);
+    }
+  }
+  cout << endl;
   return 0;
 }
