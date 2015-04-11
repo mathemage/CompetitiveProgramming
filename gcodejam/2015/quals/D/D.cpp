@@ -1,14 +1,14 @@
 /* ========================================
 
-   * File Name : A.cpp
+   * File Name : D.cpp
 
    * Creation Date : 11-04-2015
 
-   * Last Modified : Sat 11 Apr 2015 04:15:40 PM CEST
+   * Last Modified : Sun 12 Apr 2015 12:48:43 AM CEST
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
-   * URL : https://code.google.com/codejam/contest/6224486/dashboard#s=p0
+   * URL : https://code.google.com/codejam/contest/6224486/dashboard#s=p3
 
    * Points Gained (in case of online contest) :
 
@@ -39,23 +39,37 @@ void err(vector<string>::iterator it, T a, Args... args) {
 }
 
 int main() {
-  int t;
+  int t, x, r, c;
   cin >> t;
   REP(i,t) {
-    int f = 0, smax, total = 0;
-    cin >> smax;
-    string s;
-    cin >> s;
+    cin >> x >> r >> c;
+    
+    if (r > c) {
+      swap(r,c);
+    }
 
-    REP(k,smax+1) {
-      int n = s[k]-'0';
-      if (n) {
-        f += max(k-total, 0);
-        total += max(k-total, 0);
-        total += n;
+    bool win = false;
+    if ( (r * c) % x == 0 ) {
+      switch (x) {
+      case 1:
+        win = true;
+        break;
+      case 2:
+        win = true;
+        break;
+      case 3:
+        if (r > 1) {
+          win = true;
+        }
+        break;
+      case 4:
+        if (c == 4 && r > 2) {
+          win = true;
+        }
+        break;
       }
     }
-    printf("Case #%d: %d\n", i+1, f);
+    printf("Case #%d: %s\n", i+1, (win ? "GABRIEL" : "RICHARD"));
   }
   return 0;
 }
