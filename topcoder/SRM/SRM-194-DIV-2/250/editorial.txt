@@ -1,0 +1,16 @@
+Used as: Division Two - Level One:
+Value	250
+Submission Rate	182 / 187 (97.33%)
+Success Rate	181 / 182 (99.45%)
+High Score	Sleeve for 249.68 points (1 mins 1 secs)
+Average Score	237.52 (for 181 correct submissions)
+There were a few records broken on this problem. Congratulations to Sleeve for having the fastest solution for any problem ever! Just as amazing was the fact that only one coder failed this problem! The problem deals with the standard scoring system found in most soccer leagues. Teams receive 3 points for each win and 1 point for each draw. Thus the total score for team i becomes 3*wins[i]+ties[i]. The rest of the problem is simply a matter of memorizing the highest total. Here is the code:
+
+public int maxPoints(int[] wins, int[] ties)
+{
+   int max=-1;
+   for (int i=0; i<=wins.length-1; i++)
+      max=Math.max(max,3*wins[i]+ties[i]);
+
+   return max;
+}
