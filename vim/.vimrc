@@ -83,3 +83,12 @@ retab
 
 " EXPERIMENTAL
 colorscheme slate
+
+let g:SuperTabDefaultCompletionType = 'context'
+autocmd FileType *
+      \ if &omnifunc != '' |
+      \   call SuperTabChain(&omnifunc, "<c-p>") |
+      \ endif
+
+" CUDA syntax
+au BufNewFile,BufRead *.cu set ft=cu
