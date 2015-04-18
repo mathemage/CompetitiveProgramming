@@ -4,7 +4,7 @@
 
    * Creation Date : 07-02-2015
 
-   * Last Modified : Sat 07 Feb 2015 09:23:25 PM CET
+   * Last Modified : Sun 08 Feb 2015 11:24:44 PM CET
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
@@ -132,28 +132,43 @@ int main() {
 
   vector<int> lson(n,nan);
   vector<int> rson(n,nan);
-
-  stack<int> st;
-  st.push(i);
-  while (st.size()) {
-    int cur = st.top(); st.pop();
+  REP(cur,n) {
     if (ls[cur].empty()) {
-      rson[cur] = cur+1;
-      st.push(rson[cur]);
+      if (cur+1 < n)
+        rson[cur] = cur+1;
     } else {
       lson[cur] = cur+1;
-      rson[cur] = max_desc[ls[cur][0]] + 1;
-      st.push(rson[cur]);
-      st.push(lson[cur]);
+      //ERR(cur, ls[cur].size(), ls[cur][0]);
+      if (max_desc[ls[cur][0]] + 1 < n)
+        rson[cur] = max_desc[ls[cur][0]] + 1;
+      //ERR(rson[cur]);
     }
   }
+  cout << "lson: ";
+  for (auto & x : lson) {
+    cout << x << " ";
+  }
+  cout << "\nrson: ";
+  for (auto & x : rson) {
+    cout << x << " ";
+  }
+  cout << endl;
 
+  vector<bool> left_done(n);
+  stack<int> st;
   st.push(0);
   while (st.size()) {
     int cur = st.top(); st.pop();
-    cout << lson[cur] << " ";
-    cout << cur << " ";
-    cout << rson[cur] << " ";
+    if (left_done[cur]) {
+      cout << cur+1 << " ";
+      if (rson[cur] != nan)
+        st.push(rson[cur]);
+    } else {
+      st.push(cur);
+      if (lson[cur] != nan)
+        st.push(lson[cur]);
+      left_done[cur] = true;
+    }
   }
   return 0;
 }
