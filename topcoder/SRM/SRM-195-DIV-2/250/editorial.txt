@@ -1,0 +1,11 @@
+Used as: Division Two - Level One:
+Value	250
+Submission Rate	176 / 186 (94.62%)
+Success Rate	142 / 176 (80.68%)
+High Score	Krzysan for 248.76 points (2 mins 0 secs)
+Average Score	217.94 (for 142 correct submissions)
+They don't get much simpler than this. The simplest method to solve this involves searching for a divisible number forwards and backwards. A number can be determined to be divisible by a base if the number MOD base is 0. Since the base can only be at most 500, you will have to search through at most 500 numbers to find the two limits. Once you have them, subtract them from the original number to get the difference. If the differences are equal, return the upper, otherwise, return the closest.
+
+A shorter solution involves using the properties of integer division. If you divide an integer by an integer, then multiply the result by the base, you get the lower bound we are searching for. If you add base to the number before dividing, you can get the upper bound. Then you can perform the difference check. We can simplify this even further by adding half the base before dividing, which has the effect of producing the answer without having to check the differences! Thus the code can be written in one line:
+
+return ((number + (base / 2)) / base) * base;
