@@ -33,6 +33,7 @@ endif
 " default.
 filetype indent on
 filetype plugin on
+set nocp      " for omnicppcomplete
 
 " If using a dark background within the editing area and syntax highlighting
 " turn on this option as well
@@ -89,6 +90,8 @@ autocmd FileType *
       \ if &omnifunc != '' |
       \   call SuperTabChain(&omnifunc, "<c-p>") |
       \ endif
+let g:EclimCompletionMethod = 'omnifunc'
+au BufNewFile,BufRead,BufEnter *.cpp,*.cxx,*.hxx,*.hpp,*.cu,*.cl set omnifunc=omni#cpp#complete#Main
 
 " CUDA syntax
 au BufNewFile,BufRead *.cu set ft=cu
