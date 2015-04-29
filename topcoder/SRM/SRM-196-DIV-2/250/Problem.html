@@ -1,0 +1,31 @@
+<html><body bgcolor="#000000" text="#ffffff"><table><tr><td colspan="2"><h3>Problem Statement</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td>Even students who hate math find one calculation very useful -- what is the lowest
+score I can get on the last test and pull out a certain grade? Let's
+write a program to help them minimize their education.
+<p>
+We will assume that an average score of 90 or higher is rewarded with an A grade,
+80 or higher (but less than 90) is a B, 70 or higher (but less than 80) is a C, 60 or higher (but less 
+than 70) is a D.  All test scores
+are integers between 0 and 100 inclusive and the average is NOT rounded -- for
+example an average of 89.99 does NOT get you an A.
+</p><p>
+Create a class Education that contains a method minimize that is given a string <b>desire</b>
+indicating the desired
+grade and a vector &lt;int&gt; <b>tests</b> containing the scores on all but the final test.
+The method returns the lowest possible
+test score for the final test that will earn at least the desired grade.  If even
+a perfect score won't get the desired grade, return -1.
+</p><p>
+The desired grade will be given as a string of length 1, either &quot;A&quot;, &quot;B&quot;, &quot;C&quot;, or &quot;D&quot;. 
+</p>
+</td></tr><tr><td colspan="2"><h3>Definition</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Class:</td><td>Education</td></tr><tr><td>Method:</td><td>minimize</td></tr><tr><td>Parameters:</td><td>string, vector &lt;int&gt;</td></tr><tr><td>Returns:</td><td>int</td></tr><tr><td>Method signature:</td><td>int minimize(string desire, vector &lt;int&gt; tests)</td></tr><tr><td colspan="2">(be sure your method is public)</td></tr></table></td></tr><tr><td colspan="2"><h3>Limits</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Time limit (s):</td><td>2.000</td></tr><tr><td>Memory limit (MB):</td><td>64</td></tr></table></td></tr><tr><td colspan="2"><h3>Constraints</h3></td></tr><tr><td align="center" valign="top">-</td><td><b>desire</b> will be  &quot;A&quot;, &quot;B&quot;, &quot;C&quot;, or &quot;D&quot;</td></tr><tr><td align="center" valign="top">-</td><td><b>tests</b> will contain between 0 and 20 elements inclusive.</td></tr><tr><td align="center" valign="top">-</td><td>Each element of <b>tests</b> will be between 0 and 100 inclusive.</td></tr><tr><td colspan="2"><h3>Examples</h3></td></tr><tr><td align="center" nowrap="true">0)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>&quot;A&quot;</pre></td></tr><tr><td><pre>{0,70}</pre></td></tr></table></td></tr><tr><td><pre>Returns: -1</pre></td></tr><tr><td><table><tr><td colspan="2">
+
+   Even a perfect 100 on the last test will only produce an average score of
+   56.66 so it is not possible to earn an A.
+
+</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">1)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>&quot;D&quot;</pre></td></tr><tr><td><pre>{100,100,100,100,100,100}</pre></td></tr></table></td></tr><tr><td><pre>Returns: 0</pre></td></tr><tr><td><table><tr><td colspan="2">
+   Nice scores!  Even the worst possible score of 0 will give an average of 85.7
+   earning a B which satisfies your meager desire.
+</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">2)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>&quot;B&quot;</pre></td></tr><tr><td><pre>{80,80,80,73}</pre></td></tr></table></td></tr><tr><td><pre>Returns: 87</pre></td></tr><tr><td><table><tr><td colspan="2">
+
+    An 87 added to these scores will just exactly improve your average from 78.25 to 80.
+</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">3)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>&quot;B&quot;</pre></td></tr><tr><td><pre>{80,80,80,73,79}</pre></td></tr></table></td></tr><tr><td><pre>Returns: 88</pre></td></tr><tr><td></td></tr></table></td></tr><tr><td align="center" nowrap="true">4)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>&quot;A&quot;</pre></td></tr><tr><td><pre>{80}</pre></td></tr></table></td></tr><tr><td><pre>Returns: 100</pre></td></tr><tr><td></td></tr></table></td></tr></table><p>This problem statement is the exclusive and proprietary property of TopCoder, Inc.  Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited.  (c)2003, TopCoder, Inc.  All rights reserved.  </p></body></html>

@@ -1,0 +1,11 @@
+Used as: Division Two - Level One:
+Value	250
+Submission Rate	171 / 185 (92.43%)
+Success Rate	128 / 171 (74.85%)
+High Score	sbh4duke for 243.59 points (4 mins 38 secs)
+Average Score	204.89 (for 128 correct submissions)
+Overall, a pretty simple math problem. Calculate the sum of the tests and subtract this sum from the total number of tests (including the last test) multiplied by the lowest grade you want (A = 90, B = 80, etc.).
+
+If the result is less than 0, return 0.
+If the result is greater than 100, it is not possible to achieve the score you want, so return -1.
+Otherwise, round the result up to the nearest integer and return that.
