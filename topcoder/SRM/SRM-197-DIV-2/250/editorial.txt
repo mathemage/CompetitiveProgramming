@@ -1,0 +1,22 @@
+Used as: Division Two - Level One:
+Value	250
+Submission Rate	118 / 188 (62.77%)
+Success Rate	85 / 118 (72.03%)
+High Score	hustler for 242.41 points (5 mins 3 secs)
+Average Score	170.60 (for 85 correct submissions)
+As the statistics show, this problem gave very little trouble to the coders. Indeed, it is very straight forward and has an easy solution. We can simply traverse all n*n plants and check each one if it can be watered. This can be done with two nested loops like so: 
+
+for(int row=0; row<n; row++){ 
+   for(int col=0; col<n; col++){ 
+      // Try watering from ends of row. 
+      if((row+1)*rowDist <= hoseDist) continue; 
+      if((n-row)*rowDist <= hoseDist) continue; 
+
+      //Try watering from ends of column. 
+      if((col+1)*colDist <= hoseDist) continue; 
+      if((n-col)*colDist <= hoseDist) continue; 
+      deadPlants++; 
+   } 
+} 
+
+The four conditions inside the loops check if the plant can be reached by the hose from 4 possible locations. In the end, deadPlants contains the number of plants that cannot be watered.
