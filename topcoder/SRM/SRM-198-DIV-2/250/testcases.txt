@@ -1,0 +1,12 @@
+5
+"ABCDEXXXYYYZZZABCDEZZZYYYXXX"
+6
+"abcdabcdabcdabCD"
+25
+"abcdefghijklmnopqrstuvwxyabcdefghijklmnopqrstuvwxy"
+21
+"againANDagainANDagainANDagainANDagainANDagain"
+0
+"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWX"
+4
+"ABCDEFGHIJKLMNOPabcdabcda"

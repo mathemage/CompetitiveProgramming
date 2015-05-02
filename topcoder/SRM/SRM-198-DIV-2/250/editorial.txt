@@ -1,0 +1,19 @@
+Used as: Division Two - Level One:
+Value	250
+Submission Rate	130 / 151 (86.09%)
+Success Rate	74 / 130 (56.92%)
+High Score	ibonaci for 247.47 points (2 mins 52 secs)
+Average Score	184.44 (for 74 correct submissions)
+Looking at the success rate on this problem in comparison with the success rate on the Div-II medium, RedSquare, it appears that Reppity was the harder problem and the two should have been switched.
+
+Finding the longest non-overlapping identical substrings, when limited to small input strings (50 characters here) is a good candidate for a number of possible loop-and-test'm algorithms. Something like this in Java works and runs in O(n4). Although O(n2) solutions are possible, it is usually a mistake to try to take the time to do an elegant solution on a low point value problem like this one.
+
+n = input.len ;
+m = n / 2 ;
+for (len=m;len>0;len--)
+   for(pos=0;pos<=n-len;startpos++)
+     if (input.substring(pos+len,n+1)
+         .indexOf(input.substring
+                   (pos,pos+len))>-1)
+           return len ;
+return 0;
