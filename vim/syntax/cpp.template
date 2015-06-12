@@ -22,6 +22,12 @@ using namespace std;
 #define REP(I,N)   FOR(I,0,N)
 #define FOR(i, begin, end) for (__typeof(end) i = (begin) - ((begin) > (end)); i != (end) - ((begin) > (end)); i += 1 - 2 * ((begin) > (end)))
 #define ALL(A)     (A).begin(), (A).end()
+template <typename T>
+string NumberToString ( T Number ) {
+  ostringstream ss;
+  ss << Number;
+  return ss.str();
+}
 
 #define ERR(args...) { vector<string> _v = split(#args, ','); err(_v.begin(), args); }
 vector<string> split(const string& s, char c) {
