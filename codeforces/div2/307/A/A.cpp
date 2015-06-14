@@ -5,7 +5,7 @@
 
    * Creation Date : 12-06-2015
 
-   * Last Modified : Sat 13 Jun 2015 04:29:09 PM CEST
+   * Last Modified : Sun 14 Jun 2015 12:36:16 PM CEST
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
@@ -57,7 +57,7 @@ int main() {
   }
 
   int ac = 0;
-  FOR(i, 2000, 0) {
+  FOR(i, 2001, 0) {
     int l = k[i];
     k[i] = 1 + ac;
     ac += l;
