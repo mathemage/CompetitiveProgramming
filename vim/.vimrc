@@ -95,6 +95,7 @@ au BufNewFile,BufRead,BufEnter *.cpp,*.cxx,*.hxx,*.hpp,*.cu,*.cl set omnifunc=om
 
 " CUDA syntax
 au BufNewFile,BufRead *.cu set ft=cu
+au BufNewFile,BufRead *.cuh set ft=cu
 
 " gVim
 set guioptions-=m  "remove menu bar
