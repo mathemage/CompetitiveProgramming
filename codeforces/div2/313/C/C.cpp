@@ -5,7 +5,7 @@
 
    * Creation Date : 22-07-2015
 
-   * Last Modified : Thu 23 Jul 2015 11:09:17 AM CEST
+   * Last Modified : Thu 23 Jul 2015 03:58:07 PM CEST
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
@@ -46,7 +46,7 @@ void err(vector<string>::iterator it, T a, Args... args) {
 }
 
 int main() {
-  int len = 1002;
+  int len = 3002;
   vector<int> triags(len);
   REP(i,len) {
     triags[i] = i ? (triags[i-1] + i + i-1) : 0;
