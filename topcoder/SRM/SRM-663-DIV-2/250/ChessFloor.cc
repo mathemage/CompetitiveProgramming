@@ -1,7 +1,7 @@
 /* ========================================
  * Points : 0
  * Total : 250
- * Status : WA
+ * Status : WA AC
  ==========================================*/
 
 #include <bits/stdc++.h>
@@ -16,8 +16,8 @@ using namespace std;
 class ChessFloor {
 public:
   int minimumChanges(vector <string> floor) {
-    int result = 0;
     int n = floor.size();
+    int result = n*n;
 
     vector < vector<int> > cnt(2);
     cnt[0].assign(26,0);
@@ -50,7 +50,7 @@ public:
         }
       }
 
-      result = max(result, n*n - cnt[idx][w] - cnt[1-idx][b]);
+      result = min(result, n*n - cnt[idx][w] - cnt[1-idx][b]);
       MSG(b); MSG(w);
       MSG(cnt[idx][w]); MSG(cnt[1-idx][b]);
       MSG(n*n - cnt[idx][w] - cnt[1-idx][b]);
