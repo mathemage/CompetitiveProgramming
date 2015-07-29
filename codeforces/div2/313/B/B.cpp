@@ -5,13 +5,13 @@
 
    * Creation Date : 22-07-2015
 
-   * Last Modified : Thu 23 Jul 2015 11:08:26 AM CEST
+   * Last Modified : Wed 29 Jul 2015 03:44:34 PM CEST
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
    * URL : http://codeforces.com/contest/560/problem/B
 
-   * Points Gained (in case of online contest) : 0 / 1000, WA
+   * Points Gained (in case of online contest) : 0 / 1000, WA - WA - WA - AC
 
    ==========================================*/
 
@@ -45,6 +45,8 @@ void err(vector<string>::iterator it, T a, Args... args) {
   err(++it, args...);
 }
 
+//#define DEBUG
+
 int main() {
   int len = 4;
   vector<int> a(len);
@@ -60,7 +62,13 @@ int main() {
       int x2 = a[1] - a[3] + 1;
       int y2 = b[1] - b[3] + 1;
 
-      if (!(x1 >= 0 && x2 >= 0 && y1 >= 0 && y2 >= 0)) {
+#ifdef DEBUG
+      ERR(x1, y1, x2, y2); cout << endl;
+      ERR(a[2], b[2], a[3], b[3]); cout << endl;
+#endif
+
+      swap(a[3], b[3]);
+      if (!(x1 > 0 && x2 > 0 && y1 > 0 && y2 > 0)) {
         continue;
       }
       if (!(x1 <= a[1] && x2 <= a[1] && y1 <= b[1] && y2 <= b[1])) {
@@ -68,12 +76,13 @@ int main() {
       }
       if (!(x2 <= x1 && y2 <= y1)) {
         cout << "YES\n";
-        //ERR(x1, x2, y1, y2); cout << endl;
-        //ERR(a[2], b[2], a[3], b[3]); cout << endl;
+
+#ifdef DEBUG
+        ERR(x1, x2, y1, y2); cout << endl;
+        ERR(a[2], b[2], a[3], b[3]); cout << endl;
+#endif
         return 0;
       }
-
-      swap(a[3], b[3]);
     }
     swap(a[2], b[2]);
   }
