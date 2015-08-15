@@ -5,7 +5,7 @@
 
    * Creation Date : 13-08-2015
 
-   * Last Modified : Fri 14 Aug 2015 01:32:15 PM CEST
+   * Last Modified : Sat 15 Aug 2015 07:03:06 PM CEST
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
@@ -45,6 +45,8 @@ void err(vector<string>::iterator it, T a, Args... args) {
   err(++it, args...);
 }
 
+//#define DEBUG
+
 int main() {
   int n, m;
   cin >> n >> m;
@@ -57,29 +59,43 @@ int main() {
       f++;
     }
   }
-  ERR(f);
+#ifdef DEBUG
+  ERR(f); cout << endl;
+#endif
 
   int i;
+  char c;
   REP(j,m) {
     cin >> i;
     i--;
-    if (s[i] == '.') {
-      if ( (i > 0 && s[i-1] == '.')) {
-        f--;
-        ERR("alpha");
+    cin >> c;
+
+    if (s[i] != '.' && c == '.') {
+      if (i > 0 && s[i-1] == '.') {
+        f++;
+      }
+      if (i < n-1 && s[i+1] == '.') {
+        f++;
       }
     }
 
-    if (i < n-1 && s[i+1] == '.') {
-      if (i == n - 2 || s[i+2] != '.') {
+    if (s[i] == '.' && c != '.') {
+      if (i > 0 && s[i-1] == '.') {
         f--;
-        ERR("beta");
+      }
+      if (i < n-1 && s[i+1] == '.') {
+        f--;
       }
     }
 
-    cin >> s[i];
+#ifdef DEBUG
     ERR(s);
+#endif
+    s[i] = c;
     cout << f << endl;
+#ifdef DEBUG
+    ERR(s); ERR(f); cout << endl;
+#endif
   }
   return 0;
 }
