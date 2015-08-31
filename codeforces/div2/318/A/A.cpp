@@ -5,13 +5,13 @@
 
    * Creation Date : 29-08-2015
 
-   * Last Modified : Sat 29 Aug 2015 08:57:22 PM CEST
+   * Last Modified : Mon 31 Aug 2015 04:54:38 PM CEST
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
    * URL : http://codeforces.com/contest/574/problem/A
 
-   * Points Gained (in case of online contest) : 0 / 500 (WA)
+   * Points Gained (in case of online contest) : 0 / 500 (WA, AC)
 
    ==========================================*/
 
@@ -46,42 +46,32 @@ void err(vector<string>::iterator it, T a, Args... args) {
 }
 
 int main() {
-  int n, limak, x=0, cnt=1;
+  int n;
   cin >> n;
   vector<int> a(n);
   REP(ni,n) {
     cin >> a[ni];
   }
-  limak = a[0];
 
-  vector<int> d(n);
-  ERR(cnt, x);
-  REP(ni,n) {
-    d[ni] = a[ni] - limak + 1;
-    if (ni && a[ni] >= limak) {
-      cnt++;
-      x += d[ni];
-      ERR(ni, a[ni], cnt, x, d[ni]); cout << endl;
-    }
-  }
-  int s = (x + cnt - 1) / cnt;
-  ERR(s);
+  int limak = a[0];
+  int budget = 0;
 
-  vector<int> delta(n);
   while (true) {
-    int tot = 0;
-    REP(ni,n) {
+    FOR(ni,1,n) {
       if (a[ni] >= limak) {
-        delta[ni] = d[ni] - s;
-        tot += delta[ni];
+        budget -= a[ni] - (limak - 1);
+      }
+      if (budget < 0) {
+        break;
       }
     }
-    
-    if (tot <= s) {
-      cout << s << endl;
-      break;
+
+    if (budget >= 0) {
+      cout << limak - a[0] << endl;
+      return 0;
+    } else {
+      limak++;
+      budget = limak - a[0];
     }
-    s++;
   }
-  return 0;
 }
