@@ -103,5 +103,5 @@ set guioptions-=T  "remove toolbar
 set guioptions-=r  "remove right-hand scroll bar
 set guioptions-=L  "remove left-hand scroll bar
 
-set so=666
+"set so=666
 noremap <Esc>s :update<CR>
