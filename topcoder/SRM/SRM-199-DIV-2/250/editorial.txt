@@ -1,0 +1,23 @@
+Used as: Division Two - Level One:
+Value	250
+Submission Rate	160 / 168 (95.24%)
+Success Rate	151 / 160 (94.38%)
+High Score	mckavity for 247.81 points (2 mins 40 secs)
+Average Score	219.12 (for 151 correct submissions)
+This problem required a program to multiply a string sFactor by an integer iFactor, according to a provided definition for performing such a multiplication. The first step is to reverse sFactor if iFactor is negative. Then, to an empty string, concatenate abs(iFactor) copies of sFactor.
+
+In pseudocode:
+
+    if iFactor < 0 {
+        reverse sFactor
+        iFactor = -iFactor
+    }
+
+    ret = ""
+    for i = 1 to iFactor {
+        ret = ret + sfactor
+    }
+
+    return ret
+If implemented correctly, you do not need to worry about the special cases of the string being empty or the integer being zero, although sometimes it's easier to just code the special cases explicitly than to convince yourself that your program handles them correctly.
+
