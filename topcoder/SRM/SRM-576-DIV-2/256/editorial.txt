@@ -1,0 +1,26 @@
+Used as: Division Two - Level One:
+Value	256
+Submission Rate	644 / 737 (87.38%)
+Success Rate	614 / 644 (95.34%)
+High Score	hss78 for 255.27 points (1 mins 31 secs)
+Average Score	183.61 (for 614 correct submissions)
+It is a simulation problem. There is nothing to decide, just count the number of drops absorbed per minute by each sponge. The first sponge to catch each drop is the one at the topmost position that contains the drop counter's position. The smaller the index of the sponge, the higher it will be located. For each drop counter, the sponge that will absorb its drops is the one in a correct horizontal position that has the smallest index (if it exists). For each drop counter, find this sponge and add the drop counter's intensity to the amount of drops absorbed by the sponge.
+
+vector <int> determineHumidity(vector <int> intensity, int L, vector <int> leftEnd)
+{
+    vector<int> res( leftEnd.size() );
+    // For each drop counter:
+    for (int i=0; i < intensity.size(); i++) {
+        // Find the smallest index j of a sponge that is in a position that
+        // intercepts the drops:
+        for (int j = 0; j < leftEnd.size(); j++) {
+            // The range of drop counters for the sponge is :
+            // [ leftEnd[j], leftEnd[j] + L )
+            if ( leftEnd[j] <= i && i < leftEnd[j] + L) {
+                res[j] += intensity[i]; // Add drops to the sponge
+                break; // Break, because the remaining sponges won't absorb the drops 
+            }
+        }
+    }
+    return res;
+}
