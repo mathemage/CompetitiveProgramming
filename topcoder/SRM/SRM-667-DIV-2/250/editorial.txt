@@ -1,0 +1,39 @@
+This is just an implementation problem. Iterate through all the numbers from L to R, and for each of them check if the number is palindrome and then if the number is prime. If both conditions are true for the number, increment the count of prime palindromes by 1.
+
+The constraints are so low that the simplest ways to check if the number is palindrome and prime are allowed:
+
+bool is_palindrome(int x)
+{
+    string s = to_string(x); //convert x to a string, easier to check if its palindrome
+    for (int i = 0; i < s.size() / 2; i++) {
+        if (s[i] != s[s.size() - i - 1]) {
+            return false;
+        }
+    }
+    return true;
+}
+ 
+bool is_prime(int x)
+{
+    if (x == 1) {
+        return false; //1 is not prime
+    }
+    for (int y = 2; y < x; y++) {
+        // try all possible divisors from 2 to x-1, if any is found then it's not prime
+        if (x % y == 0) {
+            return false;
+        }
+    }
+    return true;
+}
+ 
+int count(int L, int R)
+{
+    int c = 0;
+    for (int i = L; i <= R; i++) {
+        if ( is_palindrome(i) && is_prime(i) ) {
+            c++;
+        }
+    }
+    return c;
+}
