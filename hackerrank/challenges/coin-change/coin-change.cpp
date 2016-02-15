@@ -5,13 +5,13 @@
 
    * Creation Date : 14-02-2016
 
-   * Last Modified : Sun 14 Feb 2016 04:09:02 PM CET
+   * Last Modified : Mon 15 Feb 2016 03:29:12 PM CET
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
    * URL : https://www.hackerrank.com/challenges/coin-change
 
-   * Status : WA, AC
+   * Status : WA, AC, AC
 
    ==========================================*/
 
@@ -45,7 +45,6 @@ void err(vector<string>::iterator it, T a, Args... args) {
   err(++it, args...);
 }
 
-// #define DEBUG
 int main() {
   int n, m;
   cin >> n >> m;
@@ -56,27 +55,10 @@ int main() {
 
   vector<long long> dp(n+1, 0);
   dp[0] = 1;
-#ifdef DEBUG
-  for (auto & x : dp) {
-    cout << x << " ";
-  }
-  cout << endl << endl;
-#endif
-
   for (auto & d : c) {
-    for (int k = n; k > 0; k--) {
-      for (int x = k - d; x >= 0; x -= d) {
-        dp[k] += dp[x];
-      }
+    for (int k = d; k <= n; k++) {
+      dp[k] += dp[k-d];
     }
-
-#ifdef DEBUG
-    ERR(d);
-    for (auto & x : dp) {
-      cout << x << " ";
-    }
-    cout << endl << endl;
-#endif
   }
   cout << dp[n] << endl;
   return 0;
