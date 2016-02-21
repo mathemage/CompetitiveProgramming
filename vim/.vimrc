@@ -64,6 +64,10 @@ autocmd Bufwritepre,filewritepre *.cxx exe "1," . 10 . "g/Last Modified :.*/s/La
 autocmd bufwritepost,filewritepost *.cxx execute "normal `a"
 autocmd BufRead,BufNewFile *.[ch]xx source ~/.vim/syntax/cpp-trung.vim
 
+" .tex setting
+autocmd BufRead,BufNewFile *.tex map <F8> <Esc>:wa<cr>:make clean<cr>:make<cr>
+autocmd BufRead,BufNewFile *.tex map! <F8> <Esc>:wa<cr>:make clean<cr>:make<cr>
+
 set completeopt=menuone
 
 set showcmd		" Show (partial) command in status line.
