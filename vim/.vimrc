@@ -65,8 +65,7 @@ autocmd bufwritepost,filewritepost *.cxx execute "normal `a"
 autocmd BufRead,BufNewFile *.[ch]xx source ~/.vim/syntax/cpp-trung.vim
 
 " .tex setting
-autocmd BufRead,BufNewFile *.tex map <F8> <Esc>:wa<cr>:make clean<cr>:make<cr>
-autocmd BufRead,BufNewFile *.tex map! <F8> <Esc>:wa<cr>:make clean<cr>:make<cr>
+autocmd BufRead,BufNewFile *.tex source ~/.vim/syntax/tex.vim
 
 set completeopt=menuone
 
