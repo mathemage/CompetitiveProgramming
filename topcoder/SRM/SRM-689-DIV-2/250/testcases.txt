@@ -1,0 +1,10 @@
+"Similar handles found"
+{"top", "coder", "TOPCODER", "TOPC0DER"}
+"Similar handles not found"
+{"Topcoder", "topcoder", "t0pcoder", "topcOder"}
+"Similar handles found"
+{"same", "same", "same", "different"}
+"Similar handles found"
+{"0123", "0I23", "0l23", "O123", "OI23", "Ol23"}
+"Similar handles not found"
+{"i23", "123", "456", "789", "000", "o", "O"}
