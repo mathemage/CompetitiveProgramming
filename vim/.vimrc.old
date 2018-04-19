@@ -33,7 +33,7 @@ endif
 " default.
 filetype indent on
 filetype plugin on
-se nocp
+set nocp      " for omnicppcomplete
 
 " If using a dark background within the editing area and syntax highlighting
 " turn on this option as well
@@ -43,14 +43,14 @@ set background=dark
 autocmd BufRead,BufNewFile *.cc source ~/.vim/syntax/cc.vim
 
 " .cpp setting
-autocmd bufnewfile *.cpp so ~/.vim/syntax/cpp.template
-autocmd bufnewfile *.cpp exe "1," . 10 . "g/File Name :.*/s//File Name : " .expand("%")
-autocmd bufnewfile *.cpp exe "1," . 10 . "g/Creation Date :.*/s//Creation Date : " .strftime("%d-%m-%Y")
-autocmd bufnewfile *.cpp execute "normal G"
-autocmd Bufwritepre,filewritepre *.cpp execute "normal ma"
-autocmd Bufwritepre,filewritepre *.cpp exe "1," . 10 . "g/Last Modified :.*/s/Last Modified :.*/Last Modified : " .strftime("%c")
-autocmd bufwritepost,filewritepost *.cpp execute "normal `a"
-autocmd BufRead,BufNewFile *.[ch]pp source ~/.vim/syntax/cpp-trung.vim
+autocmd bufnewfile *.cpp,*.h so ~/.vim/syntax/cpp.template
+autocmd bufnewfile *.cpp,*.h exe "1," . 10 . "g/File Name :.*/s//File Name : " .expand("%")
+autocmd bufnewfile *.cpp,*.h exe "1," . 10 . "g/Creation Date :.*/s//Creation Date : " .strftime("%d-%m-%Y")
+autocmd bufnewfile *.cpp,*.h execute "normal G"
+autocmd Bufwritepre,filewritepre *.cpp,*.h execute "normal ma"
+autocmd Bufwritepre,filewritepre *.cpp,*.h exe "1," . 10 . "g/Last Modified :.*/s/Last Modified :.*/Last Modified : " .strftime("%c")
+autocmd bufwritepost,filewritepost *.cpp,*.h execute "normal `a"
+autocmd BufRead,BufNewFile *.[ch]pp,*.h source ~/.vim/syntax/cpp-trung.vim
 
 " .cxx setting
 autocmd bufnewfile *.cxx so ~/.vim/syntax/cxx.template
@@ -63,6 +63,9 @@ autocmd Bufwritepre,filewritepre *.cxx execute "normal ma"
 autocmd Bufwritepre,filewritepre *.cxx exe "1," . 10 . "g/Last Modified :.*/s/Last Modified :.*/Last Modified : " .strftime("%c")
 autocmd bufwritepost,filewritepost *.cxx execute "normal `a"
 autocmd BufRead,BufNewFile *.[ch]xx source ~/.vim/syntax/cpp-trung.vim
+
+" .tex setting
+autocmd BufRead,BufNewFile *.tex source ~/.vim/syntax/tex.vim
 
 set completeopt=menuone
 
@@ -90,6 +93,21 @@ autocmd FileType *
       \ if &omnifunc != '' |
       \   call SuperTabChain(&omnifunc, "<c-p>") |
       \ endif
+let g:EclimCompletionMethod = 'omnifunc'
+au BufNewFile,BufRead,BufEnter *.cpp,*.cxx,*.hxx,*.hpp,*.cu,*.cl set omnifunc=omni#cpp#complete#Main
+
+" CUDA syntax
+au BufNewFile,BufRead *.cu set ft=cu
+au BufNewFile,BufRead *.cuh set ft=cu
+
+" gVim
+set guioptions-=m  "remove menu bar
+set guioptions-=T  "remove toolbar
+set guioptions-=r  "remove right-hand scroll bar
+set guioptions-=L  "remove left-hand scroll bar
+
+"set so=666
+noremap <Esc>s :update<CR>
 
 " configure tags - add additional tags here or comment out not-used ones
 set tags+=~/.vim/tags/cpp
@@ -112,24 +130,3 @@ let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
 " automatically open and close the popup menu / preview window
 au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 set completeopt=menuone,menu,longest,preview
-
-" PLUGINS
-" Specify a directory for plugins
-" - Avoid using standard Vim directory names like 'plugin'
-" Make sure you use single quotes
-call plug#begin('~/.vim/plugged')
-
-function! DoRemote(arg)
-  UpdateRemotePlugins
-endfunction
-Plug 'daeyun/vim-matlab', { 'do': function('DoRemote') }
-
-call plug#end()
-
-"let g:matlab_server_launcher = 'tmux'  "launch the server in a Neovim terminal buffer
-let g:matlab_server_split = 'vertical'
-let g:atp_Compiler='bash'
-
-" spell check
-set spell spelllang=en
-set iskeyword-=_
