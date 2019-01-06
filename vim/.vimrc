@@ -133,3 +133,6 @@ let g:atp_Compiler='bash'
 " spell check
 set spell spelllang=en
 set iskeyword-=_
+
+autocmd BufEnter *Dockerfile set nospell
+autocmd BufLeave *Dockerfile set spell
