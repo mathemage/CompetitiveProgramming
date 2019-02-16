@@ -15,7 +15,7 @@ def next_palindrome(k):
 	
 	# case 2: backward left
 	if not just_copy:
-		i = (n - 1) // 2    # TODO debug here
+		i = (n - 1) // 2
 		while i >= 0 and k[i] == '9':
 			i -= 1
 		if i >= 0:
