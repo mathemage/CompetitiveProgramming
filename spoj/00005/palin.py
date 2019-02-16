@@ -27,7 +27,8 @@ def next_palindrome(k):
 				palin[j] = palin[mirrored]
 		else:
 			# case 3: "99...9" -> "100..01"
-			raise NotImplementedError
+			palin = ['0'] * (n + 1)
+			palin[0] = palin[-1] = '1'
 	
 	return ''.join(palin)
 
