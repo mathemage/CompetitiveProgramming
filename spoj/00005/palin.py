@@ -20,9 +20,9 @@ def next_palindrome(k):
 			i -= 1
 		if i >= 0:
 			palin[i] = str(int(k[i]) + 1)
-			for j in range(i + 1, mid):
+			for j in range(i + 1, (n + 1) // 2):
 				palin[j] = '0'
-			for j in range(mid, n):
+			for j in range((n + 1) // 2, n):
 				mirrored = n - 1 - j
 				palin[j] = palin[mirrored]
 		else:
