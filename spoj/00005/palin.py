@@ -16,7 +16,7 @@ def next_palindrome(k):
 	# case 2: backward left
 	if not just_copy:
 		i = (n - 1) // 2    # TODO debug here
-		while i >= 0 and k[i] != '9':
+		while i >= 0 and k[i] == '9':
 			i -= 1
 		if i >= 0:
 			palin[i] = str(int(k[i]) + 1)
@@ -26,7 +26,8 @@ def next_palindrome(k):
 				mirrored = n - 1 - j
 				palin[j] = palin[mirrored]
 		else:
-			raise NotImplemented
+			# case 3: "99...9" -> "100..01"
+			raise NotImplementedError
 	
 	return ''.join(palin)
 
