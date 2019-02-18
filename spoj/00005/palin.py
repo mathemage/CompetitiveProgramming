@@ -8,7 +8,7 @@ def next_palindrome(k):
 	just_copy = False
 	for i in range(mid, n):
 		mirrored = n - 1 - i
-		if k[i] > k[mirrored]:
+		if not just_copy and k[i] > k[mirrored]:
 			break
 		if k[i] < k[mirrored]:
 			just_copy = True
