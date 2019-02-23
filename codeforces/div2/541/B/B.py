@@ -6,9 +6,10 @@ for _ in range(n):
 	
 	start = max(a_prev, b_prev)
 	end = min(a, b)
-	count += end - start + 1
-	if a_prev == b_prev:
-		count -= 1
+	if end >= start:
+		count += end - start + 1
+		if a_prev == b_prev:
+			count -= 1
 	
 	a_prev, b_prev = a, b
 
