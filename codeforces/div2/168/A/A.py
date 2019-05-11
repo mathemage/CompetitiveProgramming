@@ -16,17 +16,19 @@ def get_neighbors(r: int, c: int, size=3):
     return neighbors
 
 
-grid = [[1 for _ in range(3)] for _ in range(3)]
-counts = [[None for _ in range(3)] for _ in range(3)]
+def main():
+    grid = [[1 for _ in range(3)] for _ in range(3)]
+    counts = [[0 for _ in range(3)] for _ in range(3)]
+    counts[0] = list(map(int, input().split()))
+    counts[1] = list(map(int, input().split()))
+    counts[2] = list(map(int, input().split()))
+    for r in range(3):
+        for c in range(3):
+            for (i, j) in get_neighbors(r, c):
+                grid[i][j] = switch(grid[i][j], counts[r][c])
+    for r in range(3):
+        print(''.join(map(str, grid[r])))
 
-counts[0] = list(map(int, input().split()))
-counts[1] = list(map(int, input().split()))
-counts[2] = list(map(int, input().split()))
 
-for r in range(3):
-    for c in range(3):
-        for (i, j) in get_neighbors(r, c):
-            grid[i][j] = switch(grid[i][j], counts[r][c])
-
-for r in range(3):
-    print(''.join(map(str, grid[r])))
+if __name__ == '__main__':
+    main()
