@@ -15,13 +15,13 @@ for ai in a:
         values[ai] = 0
     values[ai] += 1
 
-sorted_values = sorted(values.items())
+counts = [v for _, v in sorted(values.items())]
 
-K_sum = sum([v for _, v in sorted_values[:K]])
+K_sum = sum(counts[:K])
 max_K_sum = K_sum
-for i in range(K, len(sorted_values)):
-    decr = sorted_values[i-K][1]
-    incr = sorted_values[i][1]
+for i in range(K, len(counts)):
+    decr = counts[i-K]
+    incr = counts[i]
     K_sum -= decr
     K_sum += incr
     max_K_sum = max(max_K_sum, K_sum)
