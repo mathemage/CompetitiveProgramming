@@ -7,5 +7,5 @@ for _ in range(n):
     right_opened += r
 
 left = min(left_opened, n - left_opened)
-right = min(left_opened, n - right_opened)
+right = min(right_opened, n - right_opened)
 print(left + right)
