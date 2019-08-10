@@ -1,15 +1,11 @@
 n = int(input())
-count01 = 0
-count10 = 1
+left_opened = 0
+right_opened = 0
 for _ in range(n):
     l, r = map(int, input().split())
-    if l == 0:
-        count10 += 1
-    if l == 1:
-        count01 += 1
-    if r == 0:
-        count01 += 1
-    if r == 1:
-        count10 += 1
+    left_opened += l
+    right_opened += r
 
-print(min(count01, count10))
+left = min(left_opened, n - left_opened)
+right = min(left_opened, n - right_opened)
+print(left + right)
