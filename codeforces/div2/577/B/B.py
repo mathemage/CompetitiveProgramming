@@ -15,9 +15,13 @@ for i in range(n - 1):
             if a[i] == 0:
                 break
             else:
-                d = min(a[i], a[j])
-                a[i] -= d
-                a[j] -= d
+                k = j + 1
+                while k < n and a[k] == a[j]:
+                    k += 1
+                d = min(a[j], a[i] // (k - j))
+                a[i] -= d * (k - j)
+                for l in range(j, k):
+                    a[l] -= d
 
 if s != 0:
     result = "NO"
