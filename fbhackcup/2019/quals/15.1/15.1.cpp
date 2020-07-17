@@ -5,7 +5,7 @@
 
    * Creation Date : 17-07-2020
 
-   * Last Modified : Pá 17. července 2020, 13:11:36
+   * Last Modified : Pá 17. července 2020, 13:19:45
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
@@ -50,8 +50,17 @@ void err(vector<string>::iterator it, T a, Args... args) {
 }
 
 int main() {
-  string result = "mock output";
-  MSG(result)
+  int T;
+  cin >> T;
+
+  string L;
+  REP(i,T) {
+    cin >> L;
+    // MSG(L)
+
+    string result = "mock output";
+    cout << "Case #" << i + 1 << ": " << result << endl;
+  }
 
   return 0;
 }
