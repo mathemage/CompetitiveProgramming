@@ -5,7 +5,7 @@
 
    * Creation Date : 17-07-2020
 
-   * Last Modified : Pá 17. července 2020, 13:19:45
+   * Last Modified : Po 20. července 2020, 18:38:49
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
@@ -49,6 +49,36 @@ void err(vector<string>::iterator it, T a, Args... args) {
   err(++it, args...);
 }
 
+bool get_result(string L) {
+  int n_b = 0;
+  int n_dot = 0;
+  for (auto & c : L) {
+    //MSG(c)
+    if (c == 'B') {
+      n_b++;
+    }
+    if (c == '.') {
+      n_dot++;
+    }
+  }
+  // MSG(n_b)
+  // MSG(n_dot)
+  // MSG(L.length())
+
+  // no '.'
+  if (n_dot == 0) {
+    return false;
+  }
+
+  // enough 'B's for each '.'
+  if (n_b >= n_dot) {
+    return true;
+  }
+
+  // else false
+  return false;
+}
+
 int main() {
   int T;
   cin >> T;
@@ -58,7 +88,7 @@ int main() {
     cin >> L;
     // MSG(L)
 
-    string result = "mock output";
+    string result = get_result(L) ? "Y" : "N";
     cout << "Case #" << i + 1 << ": " << result << endl;
   }
 
