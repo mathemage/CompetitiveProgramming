@@ -5,7 +5,7 @@
 
    * Creation Date : 21-07-2020
 
-   * Last Modified : Út 21. července 2020, 13:54:39
+   * Last Modified : Út 21. července 2020, 13:59:44
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
@@ -65,17 +65,17 @@ bool get_result(string L) {
   // MSG(n_dot)
   // MSG(L.length())
 
-  // no '.'
+  // Case of no '.'
   if (n_dot == 0) {
     return false;
   }
 
-  // enough 'B's for each '.'
+  // Case of enough 'B's for each '.'
   if (n_b >= n_dot) {
     return true;
   }
 
-  // else false
+  // Otherwise false
   return false;
 }
 
