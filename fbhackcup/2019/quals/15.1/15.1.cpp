@@ -5,13 +5,13 @@
 
    * Creation Date : 17-07-2020
 
-   * Last Modified : Po 20. července 2020, 18:38:49
+   * Last Modified : Út 21. července 2020, 13:55:16
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
    * URL : https://www.facebook.com/codingcompetitions/hacker-cup/2019/qualification-round/problems/A
 
-   * Points Gained (in case of online contest) :
+   * Points Gained (in case of online contest) : AC (1st attempt)
 
    ==========================================*/
 
