@@ -5,7 +5,7 @@
 
    * Creation Date : 21-07-2020
 
-   * Last Modified : Út 21. července 2020, 13:59:44
+   * Last Modified : Út 21. července 2020, 14:01:50
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
@@ -72,6 +72,11 @@ bool get_result(string L) {
 
   // Case of enough 'B's for each '.'
   if (n_b >= n_dot) {
+    return true;
+  }
+
+  // Case of enough >= 2 'B's - back and forth hopping until the end
+  if (n_b >= 2) {
     return true;
   }
 
