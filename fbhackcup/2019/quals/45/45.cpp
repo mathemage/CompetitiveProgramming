@@ -5,7 +5,7 @@
 
    * Creation Date : 22-07-2020
 
-   * Last Modified : St 22. července 2020, 13:49:42
+   * Last Modified : St 22. července 2020, 13:59:58
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
@@ -49,6 +49,11 @@ void err(vector<string>::iterator it, T a, Args... args) {
   err(++it, args...);
 }
 
+string get_result(int N, int M, int X, int Y, int Z) {
+  string result = "Impossible";
+  return result;
+}
+
 int main() {
   int T;
   cin >> T;
@@ -64,6 +69,8 @@ int main() {
       cin >> X >> Y >> Z;
 //       MSG(X) MSG(Y) MSG(Z)
     }
+
+    cout << "Case #" << i + 1 << ": " << get_result(N, M, X, Y, Z) << endl;
   }
 
   return 0;
