@@ -5,7 +5,7 @@
 
    * Creation Date : 22-07-2020
 
-   * Last Modified : St 22. července 2020, 13:59:58
+   * Last Modified : St 22. července 2020, 14:06:51
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
@@ -49,7 +49,7 @@ void err(vector<string>::iterator it, T a, Args... args) {
   err(++it, args...);
 }
 
-string get_result(int N, int M, int X, int Y, int Z) {
+string get_result(int N, int M, vector<int> X, vector<int> Y, vector<int> Z) {
   string result = "Impossible";
   return result;
 }
@@ -64,10 +64,10 @@ int main() {
     cin >> N >> M;
 //     MSG(N) MSG(M)
 
-    int X, Y, Z;
+    vector<int> X(M), Y(M), Z(M);
     REP(j,M) {
-      cin >> X >> Y >> Z;
-//       MSG(X) MSG(Y) MSG(Z)
+      cin >> X[j] >> Y[j] >> Z[j];
+//       MSG(X[j]) MSG(Y[j]) MSG(Z[j])
     }
 
     cout << "Case #" << i + 1 << ": " << get_result(N, M, X, Y, Z) << endl;
