@@ -5,7 +5,7 @@
 
    * Creation Date : 23-07-2020
 
-   * Last Modified : Čt 23. července 2020, 20:21:40
+   * Last Modified : Čt 23. července 2020, 20:33:20
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
@@ -49,19 +49,35 @@ void err(vector<string>::iterator it, T a, Args... args) {
   err(++it, args...);
 }
 
+// start and end are inclusive positions
 int parse(const string & E, int start, int end) {
-  int split = -2;     // mock split
+  if (start == end) {
+    return start;
+  } else {
+    int opened_brackets = 0;
+    for (int pos = start + 1; pos <= end - 1; pos++) {
+      if (E[pos] == '(') {
+        opened_brackets++;
+      } else if (E[pos] == ')') {
+        opened_brackets--;
+      }
 
-  return split;
+      if (opened_brackets == 0) {
+        return pos + 1;
+      }
+    }
+  }
+
+  return -2;
 }
 
 int get_result(string E) {
   int result = -1;    // mock result
 
-//   test split
   int split = -1;
   split = parse(E, 0, E.size() - 1);
-  MSG(split)
+//   test split
+//   cout << endl; MSG(E) MSG(split) cout << endl;
 
   return result;
 }
