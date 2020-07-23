@@ -5,7 +5,7 @@
 
    * Creation Date : 23-07-2020
 
-   * Last Modified : Čt 23. července 2020, 13:45:32
+   * Last Modified : Čt 23. července 2020, 20:21:40
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
@@ -49,8 +49,20 @@ void err(vector<string>::iterator it, T a, Args... args) {
   err(++it, args...);
 }
 
+int parse(const string & E, int start, int end) {
+  int split = -2;     // mock split
+
+  return split;
+}
+
 int get_result(string E) {
   int result = -1;    // mock result
+
+//   test split
+  int split = -1;
+  split = parse(E, 0, E.size() - 1);
+  MSG(split)
+
   return result;
 }
 
