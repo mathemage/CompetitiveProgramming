@@ -5,7 +5,7 @@
 
    * Creation Date : 23-07-2020
 
-   * Last Modified : Čt 23. července 2020, 20:33:20
+   * Last Modified : Čt 23. července 2020, 20:51:43
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
@@ -71,13 +71,30 @@ int parse(const string & E, int start, int end) {
   return -2;
 }
 
+// shortcut for binary values
+#define B00 0
+#define B01 1
+#define B10 2
+#define B11 3
+#define B_ERR 4
+
+short eval(const string & E, int start, int end) {
+  short result = B_ERR;
+  return result; // mock result
+}
+
 int get_result(string E) {
   int result = -1;    // mock result
 
   int split = -1;
-  split = parse(E, 0, E.size() - 1);
+  int len = E.size() - 1;
+  split = parse(E, 0, len);
 //   test split
 //   cout << endl; MSG(E) MSG(split) cout << endl;
+
+  short left_vals = eval(E, 0, split - 1);
+  short right_vals = eval(E, split + 1, len);
+//   MSG(left_vals) MSG(right_vals)
 
   return result;
 }
