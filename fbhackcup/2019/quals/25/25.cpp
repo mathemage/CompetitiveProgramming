@@ -5,7 +5,7 @@
 
    * Creation Date : 23-07-2020
 
-   * Last Modified : Čt 23. července 2020, 13:39:19
+   * Last Modified : Čt 23. července 2020, 13:45:32
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
@@ -49,6 +49,23 @@ void err(vector<string>::iterator it, T a, Args... args) {
   err(++it, args...);
 }
 
+int get_result(string E) {
+  int result = -1;    // mock result
+  return result;
+}
+
 int main() {
+  int T;
+  cin >> T;
+//   MSG(T)
+
+  string E;
+  REP(i,T) {
+    cin >> E;
+//     MSG(E)
+
+    cout << "Case #" << i + 1 << ": " << get_result(E) << endl;
+  }
+
   return 0;
 }
