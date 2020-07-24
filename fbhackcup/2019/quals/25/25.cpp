@@ -5,7 +5,7 @@
 
    * Creation Date : 23-07-2020
 
-   * Last Modified : Pá 24. července 2020, 14:18:17
+   * Last Modified : Pá 24. července 2020, 14:46:54
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
@@ -88,13 +88,13 @@ short eval(const string & E, int start, int end) {
       default: return B_ERR;
     }
   } else {
-    MSG(E) MSG(start) MSG(end) 
+//     MSG(E) MSG(start) MSG(end) 
     int split = parse(E, start, end);
-    MSG(split)
+//     MSG(split)
 
-    short l_vals = eval(E, start, split - 1);
-    short r_vals = eval(E, split + 1, end);
-    MSG(l_vals) MSG(r_vals)
+    short l_vals = eval(E, start + 1, split - 1);
+    short r_vals = eval(E, split + 1, end - 1);
+//     MSG(l_vals) MSG(r_vals)
     switch (E[split]) {
       case '|': return l_vals | r_vals;
       case '&': return l_vals & r_vals;
@@ -120,13 +120,15 @@ int get_result(string E) {
     }
   } else {
     int split = parse(E, 0, len - 1);
-    cout << endl; MSG(E) MSG(split) cout << endl;
+//     cout << endl; MSG(E) MSG(split) cout << endl;
 
-    short left_vals = eval(E, 0, split - 1);
-    short right_vals = eval(E, split + 1, len - 1);
-  //   MSG(left_vals) MSG(right_vals)
-  //   cout << endl; string Etest = "X"; MSG(Etest) MSG(eval(Etest, 0, 0)) cout << endl;
+    short left_vals = eval(E, 1, split - 1);
+    short right_vals = eval(E, split + 1, len - 2);
+    MSG(left_vals) MSG(right_vals)
+    //   cout << endl; string Etest = "X"; MSG(Etest) MSG(eval(Etest, 0, 0)) cout << endl;
 
+    // TODO: combine left and right vals
+    
     int result = -1;    // mock result
     return result;
   }
