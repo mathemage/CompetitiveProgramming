@@ -5,7 +5,7 @@
 
    * Creation Date : 24-07-2020
 
-   * Last Modified : Pá 24. července 2020, 20:30:08
+   * Last Modified : Pá 24. července 2020, 20:40:00
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
@@ -49,13 +49,13 @@ void err(vector<string>::iterator it, T a, Args... args) {
   err(++it, args...);
 }
 
-vector<string> get_result(int N, string I, string O) {
-  vector<string> result = {
-    "mock output",
-    "mock output",
-    "mock output",
-    "mock output"
-  };
+const char default_char = 'N';
+
+vector<vector<char>> get_result(int N, string I, string O) {
+  vector<vector<char>> result(N, vector<char>(N, default_char));
+  REP(d,N) result[d][d] = 'Y';
+
+  // TODO: finish
 
   return result;
 }
@@ -76,10 +76,14 @@ int main() {
 //     MSG(I) MSG(O)
 
     cout << "Case #" << i + 1 << ":" << endl;
-    vector<string> result = get_result(N, I, O);
-    for (auto & line: result) {
-      cout << line << endl;
+    vector<vector<char>> result = get_result(N, I, O);
+    REP(r,N) {
+      REP(c,N) {
+        cout << result[r][c];
+      }
+      cout << endl;
     }
+
   }
   return 0;
 }
