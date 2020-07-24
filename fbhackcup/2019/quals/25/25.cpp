@@ -5,7 +5,7 @@
 
    * Creation Date : 23-07-2020
 
-   * Last Modified : Čt 23. července 2020, 20:51:43
+   * Last Modified : Pá 24. července 2020, 14:01:59
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
@@ -79,6 +79,19 @@ int parse(const string & E, int start, int end) {
 #define B_ERR 4
 
 short eval(const string & E, int start, int end) {
+  if (start == end) {   // single term
+    switch (E[start]) {
+      case '0': return B00;
+      case '1': return B11;
+      case 'x': return B01;
+      case 'X': return B10;
+    }
+  } else {
+//   int split = -1;
+//   split = parse(E, start, end);
+//   eval(E
+  }
+
   short result = B_ERR;
   return result; // mock result
 }
@@ -89,12 +102,12 @@ int get_result(string E) {
   int split = -1;
   int len = E.size() - 1;
   split = parse(E, 0, len);
-//   test split
 //   cout << endl; MSG(E) MSG(split) cout << endl;
 
   short left_vals = eval(E, 0, split - 1);
   short right_vals = eval(E, split + 1, len);
 //   MSG(left_vals) MSG(right_vals)
+//   cout << endl; string Etest = "X"; MSG(Etest) MSG(eval(Etest, 0, 0)) cout << endl;
 
   return result;
 }
