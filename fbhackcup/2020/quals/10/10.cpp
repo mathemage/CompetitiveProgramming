@@ -5,7 +5,7 @@
 
    * Creation Date : 24-07-2020
 
-   * Last Modified : Pá 24. července 2020, 20:40:00
+   * Last Modified : Pá 24. července 2020, 21:15:59
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
@@ -52,12 +52,28 @@ void err(vector<string>::iterator it, T a, Args... args) {
 const char default_char = 'N';
 
 vector<vector<char>> get_result(int N, string I, string O) {
-  vector<vector<char>> result(N, vector<char>(N, default_char));
-  REP(d,N) result[d][d] = 'Y';
+  vector<vector<char>> reachability(N, vector<char>(N, default_char));
+  REP(d,N) reachability[d][d] = 'Y';
 
-  // TODO: finish
+  REP(d,N-1) {
+    REP(i, N) REP(j, N) {
+      if (reachability[i][j] == 'N' || O[j] == 'N') {
+        continue;
+      }
 
-  return result;
+      int neigh;
+      for (auto & delta: {-1, 1}) {
+//         MSG(delta)
+        neigh = j + delta;
+
+        if (0 <= neigh && neigh < N && I[neigh] == 'Y') {
+          reachability[i][neigh] = 'Y';
+        }
+      }
+    }
+  }
+
+  return reachability;
 }
 
 int main() {
