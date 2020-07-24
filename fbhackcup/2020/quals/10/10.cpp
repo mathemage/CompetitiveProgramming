@@ -5,7 +5,7 @@
 
    * Creation Date : 24-07-2020
 
-   * Last Modified : Pá 24. července 2020, 20:01:35
+   * Last Modified : Pá 24. července 2020, 20:30:08
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
@@ -49,6 +49,17 @@ void err(vector<string>::iterator it, T a, Args... args) {
   err(++it, args...);
 }
 
+vector<string> get_result(int N, string I, string O) {
+  vector<string> result = {
+    "mock output",
+    "mock output",
+    "mock output",
+    "mock output"
+  };
+
+  return result;
+}
+
 int main() {
   int T;
   cin >> T;
@@ -65,12 +76,7 @@ int main() {
 //     MSG(I) MSG(O)
 
     cout << "Case #" << i + 1 << ":" << endl;
-    vector<string> result = {
-      "mock output",
-      "mock output",
-      "mock output",
-      "mock output"
-    };
+    vector<string> result = get_result(N, I, O);
     for (auto & line: result) {
       cout << line << endl;
     }
