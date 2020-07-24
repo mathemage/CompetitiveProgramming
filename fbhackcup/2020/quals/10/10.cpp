@@ -91,7 +91,7 @@ int main() {
     cin >> O;
 //     MSG(I) MSG(O)
 
-    cout << "Case #" << i + 1 << ":" << endl;
+    cout << "Case #" << i + 1 << ": " << endl;
     vector<vector<char>> result = get_result(N, I, O);
     REP(r,N) {
       REP(c,N) {
