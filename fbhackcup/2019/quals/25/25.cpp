@@ -5,7 +5,7 @@
 
    * Creation Date : 23-07-2020
 
-   * Last Modified : Pá 24. července 2020, 14:01:59
+   * Last Modified : Pá 24. července 2020, 14:18:17
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
@@ -76,7 +76,7 @@ int parse(const string & E, int start, int end) {
 #define B01 1
 #define B10 2
 #define B11 3
-#define B_ERR 4
+#define B_ERR 666
 
 short eval(const string & E, int start, int end) {
   if (start == end) {   // single term
@@ -85,31 +85,51 @@ short eval(const string & E, int start, int end) {
       case '1': return B11;
       case 'x': return B01;
       case 'X': return B10;
+      default: return B_ERR;
     }
   } else {
-//   int split = -1;
-//   split = parse(E, start, end);
-//   eval(E
-  }
+    MSG(E) MSG(start) MSG(end) 
+    int split = parse(E, start, end);
+    MSG(split)
 
-  short result = B_ERR;
-  return result; // mock result
+    short l_vals = eval(E, start, split - 1);
+    short r_vals = eval(E, split + 1, end);
+    MSG(l_vals) MSG(r_vals)
+    switch (E[split]) {
+      case '|': return l_vals | r_vals;
+      case '&': return l_vals & r_vals;
+      case '^': return l_vals ^ r_vals;
+      default: return B_ERR;
+    }
+  }
+// 
+//   short result = B_ERR;
+//   return result; // mock result
 }
 
 int get_result(string E) {
-  int result = -1;    // mock result
+  int len = E.size();
 
-  int split = -1;
-  int len = E.size() - 1;
-  split = parse(E, 0, len);
-//   cout << endl; MSG(E) MSG(split) cout << endl;
+  if (len == 1) {
+    short val = eval(E, 0, 0);
+    if (val == B00 || val == B11) {
+      return 0;
+    }
+    else {
+      return 1;
+    }
+  } else {
+    int split = parse(E, 0, len - 1);
+    cout << endl; MSG(E) MSG(split) cout << endl;
 
-  short left_vals = eval(E, 0, split - 1);
-  short right_vals = eval(E, split + 1, len);
-//   MSG(left_vals) MSG(right_vals)
-//   cout << endl; string Etest = "X"; MSG(Etest) MSG(eval(Etest, 0, 0)) cout << endl;
+    short left_vals = eval(E, 0, split - 1);
+    short right_vals = eval(E, split + 1, len - 1);
+  //   MSG(left_vals) MSG(right_vals)
+  //   cout << endl; string Etest = "X"; MSG(Etest) MSG(eval(Etest, 0, 0)) cout << endl;
 
-  return result;
+    int result = -1;    // mock result
+    return result;
+  }
 }
 
 int main() {
