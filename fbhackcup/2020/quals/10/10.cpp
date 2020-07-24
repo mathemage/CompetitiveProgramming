@@ -5,7 +5,7 @@
 
    * Creation Date : 24-07-2020
 
-   * Last Modified : Pá 24. července 2020, 19:57:18
+   * Last Modified : Pá 24. července 2020, 20:01:35
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
@@ -63,6 +63,17 @@ int main() {
     cin >> I;
     cin >> O;
 //     MSG(I) MSG(O)
+
+    cout << "Case #" << i + 1 << ":" << endl;
+    vector<string> result = {
+      "mock output",
+      "mock output",
+      "mock output",
+      "mock output"
+    };
+    for (auto & line: result) {
+      cout << line << endl;
+    }
   }
   return 0;
 }
