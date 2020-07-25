@@ -5,7 +5,7 @@
 
    * Creation Date : 25-07-2020
 
-   * Last Modified : So 25. července 2020, 14:05:38
+   * Last Modified : So 25. července 2020, 14:13:10
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
@@ -60,13 +60,27 @@ int main() {
     cin >> N;
 //     MSG(N)
 
+    long long n_A = 0;
+    long long n_B = 0;
     REP(j,N) {
       cin >> Ci;
 //       MSG(Ci)
 
+      switch (Ci) {
+        case 'A':
+          n_A++;
+          break;
+        case 'B':
+          n_B++;
+          break;
+        default:
+          return EXIT_FAILURE;
+      }
     }
-
-    char result = '?';
+//     MSG(n_A) MSG(n_B) 
+//     MSG(max(n_A, n_B)) MSG(min(n_A, n_B))
+    
+    char result = (max(n_A, n_B) - min(n_A, n_B) == 1) ? 'Y' : 'N';
     cout << "Case #" << i + 1 << ": " << result << endl;
   }
 
