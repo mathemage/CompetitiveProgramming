@@ -5,7 +5,7 @@
 
    * Creation Date : 25-07-2020
 
-   * Last Modified : So 25. července 2020, 14:03:15
+   * Last Modified : So 25. července 2020, 14:05:38
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
@@ -63,7 +63,11 @@ int main() {
     REP(j,N) {
       cin >> Ci;
 //       MSG(Ci)
+
     }
+
+    char result = '?';
+    cout << "Case #" << i + 1 << ": " << result << endl;
   }
 
   return 0;
