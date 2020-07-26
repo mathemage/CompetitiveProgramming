@@ -5,7 +5,7 @@
 
    * Creation Date : 26-07-2020
 
-   * Last Modified : Ne 26. července 2020, 17:04:58
+   * Last Modified : Ne 26. července 2020, 17:09:51
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
@@ -49,6 +49,8 @@ void err(vector<string>::iterator it, T a, Args... args) {
   err(++it, args...);
 }
 
+#define INF -1
+
 int main() {
   int T;
   cin >> T;
@@ -64,6 +66,9 @@ int main() {
       cin >> Ci;
 //       MSG(Ci) 
     }
+
+    long long result = INF; // mock output
+    cout << "Case #" << i + 1 << ": " << result << endl;
   }
 
   return 0;
