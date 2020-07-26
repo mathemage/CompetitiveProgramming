@@ -5,7 +5,7 @@
 
    * Creation Date : 26-07-2020
 
-   * Last Modified : Ne 26. července 2020, 17:09:51
+   * Last Modified : Ne 26. července 2020, 17:36:39
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
@@ -61,6 +61,14 @@ int main() {
   REP(i,T) {
     cin >> N >> M;
 //     MSG(N) MSG(M) 
+
+
+    vector<long long> queue(M + 1, 0);
+    long long qlen = queue.size();
+//     MSG(qlen)
+//     REP(q,qlen) {
+//       MSG(queue[q])
+//     }
 
     REP(j,N) {
       cin >> Ci;
