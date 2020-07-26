@@ -5,7 +5,7 @@
 
    * Creation Date : 26-07-2020
 
-   * Last Modified : Ne 26. července 2020, 18:50:04
+   * Last Modified : Ne 26. července 2020, 23:54:24
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
@@ -66,6 +66,7 @@ long long get_result(long N, long M) {
   unsigned long long Ci;
   cin >> Ci;    // skip the starting city
 
+//   cout << endl;
   long long result = UNDEF;
   FOR(n,1,N) {
     cin >> Ci;
@@ -73,6 +74,8 @@ long long get_result(long N, long M) {
 
     if (result == UNDEF) {
       qhead = (n-1) % qlen;
+//       cout << endl;
+//       MSG(min_idx)
       do {
         min_idx = (min_idx + 1) % qlen;
         if (min_idx == qhead) {   // no more reachable city with a gas station
@@ -80,9 +83,18 @@ long long get_result(long N, long M) {
           break;
         }
       } while (queue[min_idx] == INF);
+//       MSG(min_idx) MSG(queue[min_idx])
 
       queue[qhead] = (Ci != 0) ? (queue[min_idx] + Ci) : INF;
     }
+
+    // display queue
+//     cout << n << "(" << Ci << "): ";
+//     REP(q,qlen) {
+// //     for (long long q = qhead; q != (qhead + qlen - 1) % qlen; q = (q+1) % qlen) {
+//       cout << queue[(qhead + 1 + q) % qlen] << " ";
+//     }
+//     cout << endl;
   }
 
   return (result == UNDEF) ? queue[min_idx] : result;
