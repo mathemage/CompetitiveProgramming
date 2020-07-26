@@ -5,7 +5,7 @@
 
    * Creation Date : 26-07-2020
 
-   * Last Modified : Ne 26. července 2020, 18:08:24
+   * Last Modified : Ne 26. července 2020, 18:35:38
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
@@ -62,11 +62,10 @@ long long get_result(long N, long M) {
   long long min_idx = 0; // index of smallest (non-INF) value in queue
   long long qhead;
 
+  unsigned long long Ci;
   cin >> Ci;    // skip the starting city
-  FOR(n,1,N) {
-    cin >> Ci;
-//     MSG(Ci) 
 
+  FOR(n,1,N) {
     qhead = (n-1) % qlen;
 
     do {
@@ -76,10 +75,12 @@ long long get_result(long N, long M) {
       }
     } while (queue[min_idx] == INF);
 
+    cin >> Ci;
+//     MSG(Ci) 
     queue[qhead] = (Ci != 0) ? (queue[min_idx] + Ci) : INF;
   }
 
-  return EXIT_FAILURE;
+  return queue[min_idx];
 }
 
 int main() {
@@ -88,7 +89,6 @@ int main() {
 //   MSG(T) 
 
   long N, M;
-  unsigned long long Ci;
   REP(t,T) {
     cin >> N >> M;
 //     MSG(N) MSG(M) 
