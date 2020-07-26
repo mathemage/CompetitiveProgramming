@@ -5,7 +5,7 @@
 
    * Creation Date : 26-07-2020
 
-   * Last Modified : Ne 26. července 2020, 17:55:01
+   * Last Modified : Ne 26. července 2020, 18:02:53
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
@@ -51,6 +51,38 @@ void err(vector<string>::iterator it, T a, Args... args) {
 
 #define INF -1
 
+long long get_result(long N, long M) {
+  vector<long long> queue(M + 1, 0);
+  long long qlen = queue.size();
+//   MSG(qlen)
+//   REP(q,qlen) {
+//     MSG(queue[q])
+//   }
+
+  long long min_idx = 0; // index of smallest (non-INF) value in queue
+  long long qhead;
+
+  cin >> Ci;    // skip the starting city
+  REP(n,N-1) {
+    cin >> Ci;
+//     MSG(Ci) 
+
+    qhead = (n-1) % qlen;
+
+    do {
+      min_idx = (min_idx + 1) % qlen;
+      if (min_idx == qhead) {   // no reachable city with a gas station
+        // TODO break and return INF
+        return EXIT_FAILURE;
+      }
+    } while (queue[min_idx] == INF);
+
+    queue[qhead] = (Ci != 0) ? (queue[min_idx] + Ci) : INF;
+  }
+
+  return EXIT_FAILURE;
+}
+
 int main() {
   int T;
   cin >> T;
@@ -62,36 +94,7 @@ int main() {
     cin >> N >> M;
 //     MSG(N) MSG(M) 
 
-    vector<long long> queue(M + 1, 0);
-    long long qlen = queue.size();
-//     MSG(qlen)
-//     REP(q,qlen) {
-//       MSG(queue[q])
-//     }
-
-    long long min_idx = 0; // index of smallest (non-INF) value in queue
-    long long qhead;
-
-    cin >> Ci;    // skip the starting city
-    REP(n,N-1) {
-      cin >> Ci;
-//       MSG(Ci) 
-
-      qhead = (n-1) % qlen;
-
-      do {
-        min_idx = (min_idx + 1) % qlen;
-        if (min_idx == qhead) {   // no reachable city with a gas station
-          // TODO break and return INF
-          return EXIT_FAILURE;
-        }
-      } while (queue[min_idx] == INF);
-
-      queue[qhead] = (Ci != 0) ? (queue[min_idx] + Ci) : INF;
-    }
-
-    long long result = INF; // mock output
-    cout << "Case #" << t + 1 << ": " << result << endl;
+    cout << "Case #" << t + 1 << ": " << get_result(N, M) << endl;
   }
 
   return 0;
