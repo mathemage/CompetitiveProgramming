@@ -5,7 +5,7 @@
 
    * Creation Date : 26-07-2020
 
-   * Last Modified : Ne 26. července 2020, 16:59:04
+   * Last Modified : Ne 26. července 2020, 17:04:58
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
@@ -50,5 +50,21 @@ void err(vector<string>::iterator it, T a, Args... args) {
 }
 
 int main() {
+  int T;
+  cin >> T;
+//   MSG(T) 
+
+  long N, M;
+  unsigned long long Ci;
+  REP(i,T) {
+    cin >> N >> M;
+//     MSG(N) MSG(M) 
+
+    REP(j,N) {
+      cin >> Ci;
+//       MSG(Ci) 
+    }
+  }
+
   return 0;
 }
