@@ -5,7 +5,7 @@
 
    * Creation Date : 26-07-2020
 
-   * Last Modified : Ne 26. července 2020, 18:35:38
+   * Last Modified : Ne 26. července 2020, 18:50:04
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
@@ -50,6 +50,7 @@ void err(vector<string>::iterator it, T a, Args... args) {
 }
 
 #define INF -1
+#define UNDEF -2
 
 long long get_result(long N, long M) {
   vector<long long> queue(M + 1, 0);
@@ -65,22 +66,26 @@ long long get_result(long N, long M) {
   unsigned long long Ci;
   cin >> Ci;    // skip the starting city
 
+  long long result = UNDEF;
   FOR(n,1,N) {
-    qhead = (n-1) % qlen;
-
-    do {
-      min_idx = (min_idx + 1) % qlen;
-      if (min_idx == qhead) {   // no more reachable city with a gas station
-        return INF;
-      }
-    } while (queue[min_idx] == INF);
-
     cin >> Ci;
 //     MSG(Ci) 
-    queue[qhead] = (Ci != 0) ? (queue[min_idx] + Ci) : INF;
+
+    if (result == UNDEF) {
+      qhead = (n-1) % qlen;
+      do {
+        min_idx = (min_idx + 1) % qlen;
+        if (min_idx == qhead) {   // no more reachable city with a gas station
+          result = INF;
+          break;
+        }
+      } while (queue[min_idx] == INF);
+
+      queue[qhead] = (Ci != 0) ? (queue[min_idx] + Ci) : INF;
+    }
   }
 
-  return queue[min_idx];
+  return (result == UNDEF) ? queue[min_idx] : result;
 }
 
 int main() {
