@@ -5,7 +5,7 @@
 
    * Creation Date : 26-07-2020
 
-   * Last Modified : Ne 26. července 2020, 17:36:39
+   * Last Modified : Ne 26. července 2020, 17:55:01
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
@@ -58,10 +58,9 @@ int main() {
 
   long N, M;
   unsigned long long Ci;
-  REP(i,T) {
+  REP(t,T) {
     cin >> N >> M;
 //     MSG(N) MSG(M) 
-
 
     vector<long long> queue(M + 1, 0);
     long long qlen = queue.size();
@@ -70,13 +69,29 @@ int main() {
 //       MSG(queue[q])
 //     }
 
-    REP(j,N) {
+    long long min_idx = 0; // index of smallest (non-INF) value in queue
+    long long qhead;
+
+    cin >> Ci;    // skip the starting city
+    REP(n,N-1) {
       cin >> Ci;
 //       MSG(Ci) 
+
+      qhead = (n-1) % qlen;
+
+      do {
+        min_idx = (min_idx + 1) % qlen;
+        if (min_idx == qhead) {   // no reachable city with a gas station
+          // TODO break and return INF
+          return EXIT_FAILURE;
+        }
+      } while (queue[min_idx] == INF);
+
+      queue[qhead] = (Ci != 0) ? (queue[min_idx] + Ci) : INF;
     }
 
     long long result = INF; // mock output
-    cout << "Case #" << i + 1 << ": " << result << endl;
+    cout << "Case #" << t + 1 << ": " << result << endl;
   }
 
   return 0;
