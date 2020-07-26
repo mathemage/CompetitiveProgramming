@@ -5,7 +5,7 @@
 
    * Creation Date : 26-07-2020
 
-   * Last Modified : Ne 26. července 2020, 18:02:53
+   * Last Modified : Ne 26. července 2020, 18:08:24
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
@@ -63,7 +63,7 @@ long long get_result(long N, long M) {
   long long qhead;
 
   cin >> Ci;    // skip the starting city
-  REP(n,N-1) {
+  FOR(n,1,N) {
     cin >> Ci;
 //     MSG(Ci) 
 
@@ -71,9 +71,8 @@ long long get_result(long N, long M) {
 
     do {
       min_idx = (min_idx + 1) % qlen;
-      if (min_idx == qhead) {   // no reachable city with a gas station
-        // TODO break and return INF
-        return EXIT_FAILURE;
+      if (min_idx == qhead) {   // no more reachable city with a gas station
+        return INF;
       }
     } while (queue[min_idx] == INF);
 
