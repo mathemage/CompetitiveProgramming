@@ -5,7 +5,7 @@
 
    * Creation Date : 27-07-2020
 
-   * Last Modified : Po 27. července 2020, 18:40:58
+   * Last Modified : Po 27. července 2020, 18:46:36
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
@@ -50,5 +50,20 @@ void err(vector<string>::iterator it, T a, Args... args) {
 }
 
 int main() {
+  int T;
+  cin >> T;
+//   MSG(T)
+
+  REP(t,T) {
+    long N;
+    cin >> N;
+//     MSG(N)
+
+    vector<pair<long, long>> PH(N);
+    REP(n,N) {
+      cin >> PH[n].first >> PH[n].second;
+    }
+//     MSG(PH.size())
+  }
   return 0;
 }
