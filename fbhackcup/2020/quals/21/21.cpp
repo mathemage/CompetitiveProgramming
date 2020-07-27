@@ -5,7 +5,7 @@
 
    * Creation Date : 27-07-2020
 
-   * Last Modified : Po 27. července 2020, 18:48:18
+   * Last Modified : Po 27. července 2020, 18:51:40
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
@@ -64,6 +64,11 @@ int main() {
       cin >> PH[n].first >> PH[n].second;
     }
 //     MSG(PH.size())
+
+    sort(ALL(PH));
+//     REP(n,N) {
+//       cout << PH[n].first << " " << PH[n].second << endl;
+//     }
 
     long result = -1;     // mock result
     cout << "Case #" << t + 1 << ": " << result << endl;
