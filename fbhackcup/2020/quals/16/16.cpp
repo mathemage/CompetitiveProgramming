@@ -5,7 +5,7 @@
 
    * Creation Date : 26-07-2020
 
-   * Last Modified : Po 27. července 2020, 00:58:47
+   * Last Modified : Po 27. července 2020, 15:10:58
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
@@ -52,7 +52,7 @@ void err(vector<string>::iterator it, T a, Args... args) {
 #define INF -1
 #define UNDEF -2
 
-long long get_result(long N, long M) {
+long long get_result(long long N, long long M) {
   vector<long long> queue(M + 1, 0);
   long long qlen = queue.size();
 //   MSG(qlen)
@@ -65,7 +65,7 @@ long long get_result(long N, long M) {
   long long dist_head2min = (min_idx - qhead + qlen) % qlen;
 //   MSG(dist_head2min)
 
-  unsigned long long Ci;
+  long long Ci;
   cin >> Ci;    // skip the starting city
 
 //   cout << endl;
@@ -108,11 +108,11 @@ long long get_result(long N, long M) {
 }
 
 int main() {
-  int T;
+  long long T;
   cin >> T;
 //   MSG(T) 
 
-  long N, M;
+  long long N, M;
   REP(t,T) {
     cin >> N >> M;
 //     MSG(N) MSG(M) 
