@@ -5,7 +5,7 @@
 
    * Creation Date : 27-07-2020
 
-   * Last Modified : Po 27. července 2020, 18:51:40
+   * Last Modified : Po 27. července 2020, 19:04:15
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
@@ -70,7 +70,36 @@ int main() {
 //       cout << PH[n].first << " " << PH[n].second << endl;
 //     }
 
-    long result = -1;     // mock result
+    unordered_map<long, long> left_end_of; 
+    long longest_interval = 0;
+    for (auto & ph: PH) {
+      long p = ph.first;
+      long h = ph.second;
+
+      // fall left
+      long left_fall = p - h;
+      auto it_query = left_end_of.find(left_fall);
+      if (it_query == left_end_of.end()) {  // not found
+        left_end_of[p] = left_fall;
+      } else {
+        left_end_of[p] = it_query->second;
+      }
+      long len1 = p - left_end_of[p];
+
+      // fall right
+      long right_fall = p + h;
+      it_query = left_end_of.find(p);
+      if (it_query == left_end_of.end()) {  // not found
+        left_end_of[right_fall] = p;
+      } else {
+        left_end_of[right_fall] = it_query->second;
+      }
+      long len2 = right_fall - left_end_of[right_fall];
+
+      longest_interval = max(longest_interval, max(len1, len2));
+    }
+
+    long result = longest_interval;
     cout << "Case #" << t + 1 << ": " << result << endl;
   }
   return 0;
