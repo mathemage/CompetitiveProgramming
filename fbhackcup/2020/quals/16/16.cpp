@@ -5,7 +5,7 @@
 
    * Creation Date : 26-07-2020
 
-   * Last Modified : Po 27. července 2020, 00:05:03
+   * Last Modified : Po 27. července 2020, 00:58:47
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
@@ -84,9 +84,7 @@ long long get_result(long N, long M) {
         do {
           min_idx = (min_idx + 1) % qlen;
           dist_head2min++;
-            // TODO: try out version below
           if (dist_head2min >= qlen) {   // no more reachable city with a gas station
-//           if (min_idx == qhead) {   // no more reachable city with a gas station
             result = INF;
             break;
           }
