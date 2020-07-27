@@ -5,7 +5,7 @@
 
    * Creation Date : 26-07-2020
 
-   * Last Modified : Po 27. července 2020, 15:10:58
+   * Last Modified : Po 27. července 2020, 15:15:42
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
@@ -49,19 +49,19 @@ void err(vector<string>::iterator it, T a, Args... args) {
   err(++it, args...);
 }
 
-#define INF -1
-#define UNDEF -2
+#define INF -1LL
+#define UNDEF -2LL
 
 long long get_result(long long N, long long M) {
-  vector<long long> queue(M + 1, 0);
+  vector<long long> queue(M + 1LL, 0LL);
   long long qlen = queue.size();
 //   MSG(qlen)
 //   REP(q,qlen) {
 //     MSG(queue[q])
 //   }
 
-  long long min_idx = 0; // index of smallest (non-INF) value in queue
-  long long qhead = qlen - 1;
+  long long min_idx = 0LL; // index of smallest (non-INF) value in queue
+  long long qhead = qlen - 1LL;
   long long dist_head2min = (min_idx - qhead + qlen) % qlen;
 //   MSG(dist_head2min)
 
@@ -70,19 +70,19 @@ long long get_result(long long N, long long M) {
 
 //   cout << endl;
   long long result = UNDEF;
-  FOR(n,1,N) {
+  FOR(n,1LL,N) {
     cin >> Ci;
 //     MSG(Ci) 
 
     if (result == UNDEF) {
-      qhead = (n-1) % qlen;
+      qhead = (n-1LL) % qlen;
       dist_head2min--;
 
 //       cout << endl;
 //       MSG(min_idx)
-      if (dist_head2min == 0) {
+      if (dist_head2min == 0LL) {
         do {
-          min_idx = (min_idx + 1) % qlen;
+          min_idx = (min_idx + 1LL) % qlen;
           dist_head2min++;
           if (dist_head2min >= qlen) {   // no more reachable city with a gas station
             result = INF;
@@ -92,7 +92,7 @@ long long get_result(long long N, long long M) {
       }
 //       MSG(min_idx) MSG(queue[min_idx])
 
-      queue[qhead] = (Ci != 0) ? (queue[min_idx] + Ci) : INF;
+      queue[qhead] = (Ci != 0LL) ? (queue[min_idx] + Ci) : INF;
     }
 
     // display queue
@@ -117,7 +117,7 @@ int main() {
     cin >> N >> M;
 //     MSG(N) MSG(M) 
 
-    cout << "Case #" << t + 1 << ": " << get_result(N, M) << endl;
+    cout << "Case #" << t + 1LL << ": " << get_result(N, M) << endl;
   }
 
   return 0;
