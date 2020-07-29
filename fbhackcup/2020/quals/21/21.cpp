@@ -5,7 +5,7 @@
 
    * Creation Date : 27-07-2020
 
-   * Last Modified : St 29. července 2020, 19:13:58
+   * Last Modified : St 29. července 2020, 19:24:48
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
@@ -79,19 +79,22 @@ int main() {
       // fall left
       long left_fall = p - h;
       auto l_query = left_end_of.find(left_fall);
+      long l_ans = (l_query == left_end_of.end()) ? left_fall : l_query->second;
 
       // fall right
       long right_fall = p + h;
       auto r_query = left_end_of.find(p);
+      long r_ans = (r_query == left_end_of.end()) ? p : r_query->second;
 
-      left_end_of[p] = (l_query == left_end_of.end()) ? left_fall : l_query->second;
+      left_end_of[p] = l_ans;
       long len1 = p - left_end_of[p];
 
-      left_end_of[right_fall] = (r_query == left_end_of.end()) ? p : r_query->second;
+      left_end_of[right_fall] = r_ans;
       long len2 = right_fall - left_end_of[right_fall];
+//       MSG(right_fall) MSG(left_end_of[right_fall])
 
       longest_interval = max(longest_interval, max(len1, len2));
-//       MSG(longest_interval) MSG(len1) MSG(len2)
+//       MSG(longest_interval) MSG(len1) MSG(len2) cout << endl;
     }
 
     long result = longest_interval;
