@@ -5,7 +5,7 @@
 
    * Creation Date : 27-07-2020
 
-   * Last Modified : St 29. července 2020, 19:24:48
+   * Last Modified : Čt 30. července 2020, 19:55:32
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
@@ -76,10 +76,17 @@ int main() {
       long p = ph.first;
       long h = ph.second;
 
+//       cout << "map before:" << endl;
+//       for (auto m: left_end_of) {
+//         cout << m.first << " -> " << m.second << endl;
+//       }
+
       // fall left
       long left_fall = p - h;
       auto l_query = left_end_of.find(left_fall);
       long l_ans = (l_query == left_end_of.end()) ? left_fall : l_query->second;
+//       MSG(l_query == left_end_of.end())
+//       MSG((l_query == left_end_of.end()) ? left_fall : l_query->second)
 
       // fall right
       long right_fall = p + h;
@@ -88,13 +95,19 @@ int main() {
 
       left_end_of[p] = l_ans;
       long len1 = p - left_end_of[p];
+//       MSG(p) MSG(left_end_of[p])
 
       left_end_of[right_fall] = r_ans;
       long len2 = right_fall - left_end_of[right_fall];
 //       MSG(right_fall) MSG(left_end_of[right_fall])
 
+//       cout << "map after:" << endl;
+//       for (auto m: left_end_of) {
+//         cout << m.first << " -> " << m.second << endl;
+//       }
+
       longest_interval = max(longest_interval, max(len1, len2));
-//       MSG(longest_interval) MSG(len1) MSG(len2) cout << endl;
+//       MSG(p) MSG(longest_interval) MSG(len1) MSG(len2) cout << endl;
     }
 
     long result = longest_interval;
