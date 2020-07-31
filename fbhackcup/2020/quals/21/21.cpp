@@ -5,7 +5,7 @@
 
    * Creation Date : 27-07-2020
 
-   * Last Modified : Pá 31. července 2020, 18:24:35
+   * Last Modified : Pá 31. července 2020, 18:40:49
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
@@ -52,23 +52,17 @@ void err(vector<string>::iterator it, T a, Args... args) {
 int main() {
   int T;
   cin >> T;
-//   MSG(T)
 
   REP(t,T) {
     long N;
     cin >> N;
-//     MSG(N)
 
     vector<pair<long, long>> PH(N);
     REP(n,N) {
       cin >> PH[n].first >> PH[n].second;
     }
-//     MSG(PH.size())
 
     sort(ALL(PH));
-//     REP(n,N) {
-//       cout << PH[n].first << " " << PH[n].second << endl;
-//     }
 
     unordered_map<long, long> left_end_of; 
     long longest_interval = 0;
@@ -76,17 +70,10 @@ int main() {
       long p = ph.first;
       long h = ph.second;
 
-//       cout << "map before:" << endl;
-//       for (auto m: left_end_of) {
-//         cout << m.first << " -> " << m.second << endl;
-//       }
-
       // fall left
       long left_fall = p - h;
       auto l_query = left_end_of.find(left_fall);
       long l_ans = (l_query == left_end_of.end()) ? left_fall : l_query->second;
-//       MSG(l_query == left_end_of.end())
-//       MSG((l_query == left_end_of.end()) ? left_fall : l_query->second)
 
       // fall right
       long right_fall = p + h;
@@ -98,22 +85,14 @@ int main() {
       }
       left_end_of[p] = l_ans;
       long len1 = p - left_end_of[p];
-//       MSG(p) MSG(left_end_of[p])
 
       if (left_end_of.find(right_fall) != left_end_of.end()) {
         r_ans = min(r_ans, left_end_of[right_fall]);
       }
       left_end_of[right_fall] = r_ans;
       long len2 = right_fall - left_end_of[right_fall];
-//       MSG(right_fall) MSG(left_end_of[right_fall])
-
-//       cout << "map after:" << endl;
-//       for (auto m: left_end_of) {
-//         cout << m.first << " -> " << m.second << endl;
-//       }
 
       longest_interval = max(longest_interval, max(len1, len2));
-//       MSG(p) MSG(longest_interval) MSG(len1) MSG(len2) cout << endl;
     }
 
     long result = longest_interval;
