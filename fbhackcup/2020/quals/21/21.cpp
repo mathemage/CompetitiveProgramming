@@ -5,7 +5,7 @@
 
    * Creation Date : 27-07-2020
 
-   * Last Modified : Čt 30. července 2020, 19:55:32
+   * Last Modified : Pá 31. července 2020, 18:19:26
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
@@ -93,10 +93,16 @@ int main() {
       auto r_query = left_end_of.find(p);
       long r_ans = (r_query == left_end_of.end()) ? p : r_query->second;
 
+      if (left_end_of.find(p) != left_end_of.end()) {
+        l_ans = min(l_ans, left_end_of[p]);
+      }
       left_end_of[p] = l_ans;
       long len1 = p - left_end_of[p];
 //       MSG(p) MSG(left_end_of[p])
 
+      if (left_end_of.find(right_fall) != left_end_of.end()) {
+        r_ans = min(r_ans, left_end_of[right_fall]);
+      }
       left_end_of[right_fall] = r_ans;
       long len2 = right_fall - left_end_of[right_fall];
 //       MSG(right_fall) MSG(left_end_of[right_fall])
