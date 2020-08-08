@@ -5,7 +5,7 @@
 
    * Creation Date : 26-07-2020
 
-   * Last Modified : Po 27. července 2020, 15:15:42
+   * Last Modified : So 8. srpna 2020, 14:04:34
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
@@ -60,10 +60,19 @@ long long get_result(long long N, long long M) {
 //     MSG(queue[q])
 //   }
 
-  long long min_idx = 0LL; // index of smallest (non-INF) value in queue
-  long long qhead = qlen - 1LL;
-  long long dist_head2min = (min_idx - qhead + qlen) % qlen;
-//   MSG(dist_head2min)
+  multiset<long long> min_values;
+  REP(m,M+1) {
+    min_values.insert(0);
+  }
+  // display min_values
+//   MSG(M+1)
+//   cout << "min_values: ";
+//   for (auto & v: min_values) {
+//     cout << v << " ";
+//   }
+//   cout << endl;
+
+  long long qhead;
 
   long long Ci;
   cin >> Ci;    // skip the starting city
@@ -76,23 +85,26 @@ long long get_result(long long N, long long M) {
 
     if (result == UNDEF) {
       qhead = (n-1LL) % qlen;
-      dist_head2min--;
-
-//       cout << endl;
-//       MSG(min_idx)
-      if (dist_head2min == 0LL) {
-        do {
-          min_idx = (min_idx + 1LL) % qlen;
-          dist_head2min++;
-          if (dist_head2min >= qlen) {   // no more reachable city with a gas station
-            result = INF;
-            break;
-          }
-        } while (queue[min_idx] == INF);
+      if (queue[qhead] != INF) {
+        min_values.erase(min_values.find(queue[qhead]));
       }
-//       MSG(min_idx) MSG(queue[min_idx])
 
-      queue[qhead] = (Ci != 0LL) ? (queue[min_idx] + Ci) : INF;
+      if (min_values.empty()) {   // no more reachable cities with a gas station
+        result = INF;
+      } else {
+        if (Ci == 0LL) {
+          queue[qhead] = INF;
+        } else {
+          queue[qhead] = *(min_values.begin()) + Ci;
+          min_values.insert(queue[qhead]);
+        }
+      }
+
+//       cout << "min_values: ";
+//       for (auto & v: min_values) {
+//         cout << v << " ";
+//       }
+//       cout << endl;
     }
 
     // display queue
@@ -104,7 +116,7 @@ long long get_result(long long N, long long M) {
 //     cout << endl;
   }
 
-  return (result == UNDEF) ? queue[min_idx] : result;
+  return (result == UNDEF) ? *(min_values.begin()) : result;
 }
 
 int main() {
