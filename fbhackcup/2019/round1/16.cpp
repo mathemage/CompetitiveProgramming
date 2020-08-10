@@ -5,7 +5,7 @@
 
    * Creation Date : 09-08-2020
 
-   * Last Modified : Po 10. srpna 2020, 18:58:29
+   * Last Modified : Po 10. srpna 2020, 19:02:19
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
@@ -49,6 +49,8 @@ void err(vector<string>::iterator it, T a, Args... args) {
   err(++it, args...);
 }
 
+#define MOD 1000000007
+
 int get_result(const string & V, int K) {
   int N = V.size();
 
@@ -60,7 +62,12 @@ int get_result(const string & V, int K) {
   }
 //   MSG(balance)
 
-  int result = -1;    // TODO: mock result
+  int result = 0;
+  FOR(j, N-K, 0) {
+//     MSG(j)
+    // TODO: iterate backwards and count penalties
+  }
+
   return result;
 }
 
