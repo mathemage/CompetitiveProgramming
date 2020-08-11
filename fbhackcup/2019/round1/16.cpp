@@ -5,7 +5,7 @@
 
    * Creation Date : 09-08-2020
 
-   * Last Modified : Út 11. srpna 2020, 13:39:03
+   * Last Modified : Út 11. srpna 2020, 13:51:14
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
@@ -51,6 +51,10 @@ void err(vector<string>::iterator it, T a, Args... args) {
 
 #define MOD 1000000007
 
+int power(int base, int exp) {
+  return -1;    // mock result
+}
+
 int get_result(const string & V, int K) {
   int N = V.size();
 
@@ -65,7 +69,13 @@ int get_result(const string & V, int K) {
   int result = 0;
   FOR(j, N-K, 0) {
 //     MSG(j)
-    // TODO: iterate backwards and count penalties
+    balance += (V[j] == 'A') ? (-1) : 1;
+
+    if (balance > K) {                  // over threshold
+      balance -= 2;                     // swap 'B' for 'A'
+      result += power(2, j + 1) % MOD;  // pay the charge
+      result %= MOD;                    // TODO: use memo table of pows
+    }
   }
 
   return result;
