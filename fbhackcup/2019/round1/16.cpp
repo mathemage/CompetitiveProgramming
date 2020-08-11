@@ -5,7 +5,7 @@
 
    * Creation Date : 09-08-2020
 
-   * Last Modified : Po 10. srpna 2020, 19:02:19
+   * Last Modified : Út 11. srpna 2020, 13:39:03
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
@@ -55,7 +55,7 @@ int get_result(const string & V, int K) {
   int N = V.size();
 
   int init_balance = 0;    // n_B - n_A
-  int balance = -2 * K; // i.e. -INF
+  int balance = -2 * N;    // i.e. -INF
   FOR(i, N-K, N) {
     init_balance += (V[i] == 'A') ? (-1) : 1;
     balance = max(balance, init_balance);
