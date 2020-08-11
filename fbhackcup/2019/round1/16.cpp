@@ -5,7 +5,7 @@
 
    * Creation Date : 09-08-2020
 
-   * Last Modified : Út 11. srpna 2020, 14:05:18
+   * Last Modified : Út 11. srpna 2020, 19:06:09
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
@@ -63,30 +63,36 @@ int mod_power(int base, int exp) {
 //       cout << endl; MSG(i) MSG(powers[i])
     }
   }
-  return powers[exp + 1];
+  return powers[exp];
 }
 
 int get_result(const string & V, int K) {
   int N = V.size();
 
   int init_balance = 0;    // n_B - n_A
-  int balance = -2 * N;    // i.e. -INF
+  int balance = 0;
   FOR(i, N-K, N) {
     init_balance += (V[i] == 'A') ? (-1) : 1;
     balance = max(balance, init_balance);
+//     MSG(init_balance)
   }
-//   MSG(balance)
+//   cout << endl << "inital balance: "; MSG(balance)
 
   int result = 0;
   FOR(j, N-K, 0) {
-//     MSG(j)
+//     MSG(j) MSG(V[j])
+//     cout << "0: "; MSG(balance)
+    balance = max(balance, 0);
     balance += (V[j] == 'A') ? (-1) : 1;
+//     cout << "1: "; MSG(balance) MSG(result)
 
     if (balance > K) {                  // over threshold
       balance -= 2;                     // swap 'B' for 'A'
       result += mod_power(2, j + 1);    // pay the charge
+//       MSG(mod_power(2, j + 1))
       result %= MOD;                    // TODO: use memo table of pows
     }
+//     cout << "2: "; MSG(balance) MSG(result)
   }
 
   return result;
