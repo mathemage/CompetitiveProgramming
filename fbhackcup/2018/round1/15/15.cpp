@@ -5,7 +5,7 @@
 
    * Creation Date : 12-08-2020
 
-   * Last Modified : St 12. srpna 2020, 14:36:32
+   * Last Modified : St 12. srpna 2020, 14:38:38
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
@@ -51,6 +51,11 @@ void err(vector<string>::iterator it, T a, Args... args) {
 
 #define MOD 1000000007
 
+int get_result(int N, const vector<string> & G) {
+  int result = -1;    // TODO mock result
+  return result;
+}
+
 int main() {
   int T;
   cin >> T;
@@ -66,6 +71,8 @@ int main() {
       cin >> G[l];
 //       MSG(G[l]);
     }
+
+    cout << "Case #" << t+1 << ": " << get_result(N, G) << endl;
   }
 
   return 0;
