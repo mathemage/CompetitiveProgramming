@@ -5,7 +5,7 @@
 
    * Creation Date : 09-08-2020
 
-   * Last Modified : Út 11. srpna 2020, 19:06:09
+   * Last Modified : St 12. srpna 2020, 22:27:49
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
@@ -56,9 +56,9 @@ void err(vector<string>::iterator it, T a, Args... args) {
 vector<int> powers(N_MAX + 1, UNDEF);
 
 int mod_power(int base, int exp) {
-  powers[0] = 1;
-  FOR(i, 1, exp + 1) {
-    if (powers[i] == UNDEF) {
+  if (powers[exp] == UNDEF) {
+    powers[0] = 1;
+    FOR(i, 1, exp + 1) {
       powers[i] = (powers[i-1] * base) % MOD;
 //       cout << endl; MSG(i) MSG(powers[i])
     }
