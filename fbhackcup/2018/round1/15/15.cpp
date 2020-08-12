@@ -5,7 +5,7 @@
 
    * Creation Date : 12-08-2020
 
-   * Last Modified : St 12. srpna 2020, 22:47:32
+   * Last Modified : St 12. srpna 2020, 22:55:34
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
@@ -62,7 +62,17 @@ int get_result(int N, const vector<string> & G) {
   // cells next to entrance/exit are empty
   if (G[0][0] != '.' || G[2][N-1] != '.') return 0;
 
-  int result = -1;    // TODO mock result
+  int result = 1;
+  FOR(i,1,N-1) {
+    int current_ways = 0;
+    for (auto & row: {0, 2}) {
+      if (G[row][i] == '.' && G[row][i + 1] == '.') {
+        current_ways++;
+      }
+    }
+    result *= current_ways;
+    result %= MOD;
+  }
   return result;
 }
 
