@@ -5,7 +5,7 @@
 
    * Creation Date : 09-08-2020
 
-   * Last Modified : St 12. srpna 2020, 22:27:49
+   * Last Modified : St 12. srpna 2020, 22:34:28
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
@@ -50,15 +50,15 @@ void err(vector<string>::iterator it, T a, Args... args) {
 }
 
 #define MOD 1000000007
-#define UNDEF MOD
+#define UNDEF -1
 #define N_MAX 1000000
 
 vector<int> powers(N_MAX + 1, UNDEF);
 
 int mod_power(int base, int exp) {
-  if (powers[exp] == UNDEF) {
+  if (powers[exp] == UNDEF) {   // not pre-computed yet -> pre-compute powers[]
     powers[0] = 1;
-    FOR(i, 1, exp + 1) {
+    FOR(i, 1, powers.size()) {
       powers[i] = (powers[i-1] * base) % MOD;
 //       cout << endl; MSG(i) MSG(powers[i])
     }
