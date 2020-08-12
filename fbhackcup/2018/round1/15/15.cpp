@@ -5,7 +5,7 @@
 
    * Creation Date : 12-08-2020
 
-   * Last Modified : St 12. srpna 2020, 14:50:20
+   * Last Modified : St 12. srpna 2020, 22:47:32
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
@@ -58,6 +58,9 @@ int get_result(int N, const vector<string> & G) {
   for (auto & c: G[1]) {
     if (c != '.') return 0;
   }
+
+  // cells next to entrance/exit are empty
+  if (G[0][0] != '.' || G[2][N-1] != '.') return 0;
 
   int result = -1;    // TODO mock result
   return result;
