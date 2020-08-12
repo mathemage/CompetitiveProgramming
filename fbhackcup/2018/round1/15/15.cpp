@@ -5,7 +5,7 @@
 
    * Creation Date : 12-08-2020
 
-   * Last Modified : St 12. srpna 2020, 14:38:38
+   * Last Modified : St 12. srpna 2020, 14:50:20
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
@@ -52,6 +52,13 @@ void err(vector<string>::iterator it, T a, Args... args) {
 #define MOD 1000000007
 
 int get_result(int N, const vector<string> & G) {
+  if (N % 2) return 0;
+
+  // free passage thru mid row
+  for (auto & c: G[1]) {
+    if (c != '.') return 0;
+  }
+
   int result = -1;    // TODO mock result
   return result;
 }
