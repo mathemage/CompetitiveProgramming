@@ -5,7 +5,7 @@
 
    * Creation Date : 12-08-2020
 
-   * Last Modified : St 12. srpna 2020, 14:28:48
+   * Last Modified : St 12. srpna 2020, 14:36:32
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
@@ -49,6 +49,24 @@ void err(vector<string>::iterator it, T a, Args... args) {
   err(++it, args...);
 }
 
+#define MOD 1000000007
+
 int main() {
+  int T;
+  cin >> T;
+//   MSG(T);
+
+  REP(t,T) {
+    int N;
+    cin >> N;
+//     cout << endl; MSG(N);
+
+    vector<string> G(3);
+    REP(l,3) {
+      cin >> G[l];
+//       MSG(G[l]);
+    }
+  }
+
   return 0;
 }
