@@ -5,13 +5,13 @@
 
    * Creation Date : 12-08-2020
 
-   * Last Modified : Pá 14. srpna 2020, 21:51:17
+   * Last Modified : Pá 14. srpna 2020, 22:04:56
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
    * URL : https://www.facebook.com/codingcompetitions/hacker-cup/2018/round-1/problems/A
 
-   * Points Gained (in case of online contest) :
+   * Points Gained (in case of online contest) : AC
 
    ==========================================*/
 
