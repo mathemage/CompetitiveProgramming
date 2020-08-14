@@ -5,7 +5,7 @@
 
    * Creation Date : 12-08-2020
 
-   * Last Modified : St 12. srpna 2020, 22:55:34
+   * Last Modified : Pá 14. srpna 2020, 21:51:17
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
@@ -63,7 +63,7 @@ int get_result(int N, const vector<string> & G) {
   if (G[0][0] != '.' || G[2][N-1] != '.') return 0;
 
   int result = 1;
-  FOR(i,1,N-1) {
+  for (int i = 1; i <= N - 3; i += 2) {
     int current_ways = 0;
     for (auto & row: {0, 2}) {
       if (G[row][i] == '.' && G[row][i + 1] == '.') {
