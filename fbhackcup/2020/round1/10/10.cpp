@@ -5,7 +5,7 @@
 
    * Creation Date : 16-08-2020
 
-   * Last Modified : Ne 16. srpna 2020, 12:38:27
+   * Last Modified : Ne 16. srpna 2020, 12:53:14
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
@@ -50,5 +50,33 @@ void err(vector<string>::iterator it, T a, Args... args) {
 }
 
 int main() {
+  int T;
+  cin >> T;
+//   MSG(T);
+
+  REP(t,T) {
+    int N, K, W;
+    cin >> N >> K >> W;
+//     cout << endl; MSG(N); MSG(K); MSG(W);
+
+    vector<int> L(N);
+    REP(k,K) {
+      cin >> L[k];
+//       MSG(L[k]);
+    }
+    int AL, BL, CL, DL;
+    cin >> AL >> BL >> CL >> DL;
+//     MSG(AL); MSG(BL); MSG(CL); MSG(DL);
+
+    vector<int> H(N);
+    REP(k,K) {
+      cin >> H[k];
+//       MSG(H[k]);
+    }
+    int AH, BH, CH, DH;
+    cin >> AH >> BH >> CH >> DH;
+//     MSG(AH); MSG(BH); MSG(CH); MSG(DH);
+  }
+
   return 0;
 }
