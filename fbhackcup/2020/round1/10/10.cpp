@@ -5,7 +5,7 @@
 
    * Creation Date : 16-08-2020
 
-   * Last Modified : Ne 16. srpna 2020, 15:00:03
+   * Last Modified : Ne 16. srpna 2020, 15:11:20
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
@@ -109,16 +109,16 @@ int get_result(const vector<int> & L, const vector<int> & H) {
       }
     }
 
-    // TODO unwind covered boundary & decrement its length
-//     while (deq_pts.size() >= 2) {
-//       coord pt0 = deq_pts.back();
-//       deq_pts.pop_back();
-// 
-//       coord pt1 = deq_pts.back();
-//       if (pt1.second <= Hi) {
-//         Pi -= dist(pt1, pt0);
-//       }
-//     }
+    // unwind covered boundary & decrement its length - TODO test
+    while (deq_pts.size() >= 2) {
+      coord pt0 = deq_pts.back();
+      deq_pts.pop_back();
+
+      coord pt1 = deq_pts.back();
+      if (Li <= pt1.first && pt1.second <= Hi) {     // covered
+        Pi -= dist(pt1, pt0);     //  decrement its length
+      }
+    }
 
     // TODO push back new boundary & increment its length
     
