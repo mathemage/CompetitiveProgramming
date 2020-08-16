@@ -5,7 +5,7 @@
 
    * Creation Date : 16-08-2020
 
-   * Last Modified : Ne 16. srpna 2020, 12:56:02
+   * Last Modified : Ne 16. srpna 2020, 12:58:21
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
@@ -49,6 +49,10 @@ void err(vector<string>::iterator it, T a, Args... args) {
   err(++it, args...);
 }
 
+int N, K, W;
+int AL, BL, CL, DL;
+int AH, BH, CH, DH;
+
 int get_result() {
   int result = -1;    // mock result
   return result;
@@ -60,7 +64,6 @@ int main() {
 //   MSG(T);
 
   REP(t,T) {
-    int N, K, W;
     cin >> N >> K >> W;
 //     cout << endl; MSG(N); MSG(K); MSG(W);
 
@@ -69,7 +72,6 @@ int main() {
       cin >> L[k];
 //       MSG(L[k]);
     }
-    int AL, BL, CL, DL;
     cin >> AL >> BL >> CL >> DL;
 //     MSG(AL); MSG(BL); MSG(CL); MSG(DL);
 
@@ -78,7 +80,6 @@ int main() {
       cin >> H[k];
 //       MSG(H[k]);
     }
-    int AH, BH, CH, DH;
     cin >> AH >> BH >> CH >> DH;
 //     MSG(AH); MSG(BH); MSG(CH); MSG(DH);
 
