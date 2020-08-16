@@ -5,7 +5,7 @@
 
    * Creation Date : 16-08-2020
 
-   * Last Modified : Ne 16. srpna 2020, 14:13:25
+   * Last Modified : Ne 16. srpna 2020, 14:16:20
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
@@ -49,6 +49,8 @@ void err(vector<string>::iterator it, T a, Args... args) {
   err(++it, args...);
 }
 
+typedef pair<int, int> coord;
+
 int N, K, W;
 long long AL, BL, CL, DL;
 long long AH, BH, CH, DH;
@@ -58,6 +60,7 @@ int get_result(const vector<int> & L, const vector<int> & H) {
 //   REP(k,K) MSG(H[k]);
 
   int Li, Hi;
+  deque<coord> deq_pts;
 
   // streamline via the recurrence
   deque<int> deqL;
