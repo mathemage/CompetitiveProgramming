@@ -5,7 +5,7 @@
 
    * Creation Date : 16-08-2020
 
-   * Last Modified : Ne 16. srpna 2020, 16:40:04
+   * Last Modified : Ne 16. srpna 2020, 17:29:33
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
@@ -50,7 +50,7 @@ void err(vector<string>::iterator it, T a, Args... args) {
 }
 
 #define UNDEF -42
-typedef pair<int, int> coord;
+#define MOD 1000000007
 
 int N, K, W;
 long long AL, BL, CL, DL;
@@ -68,8 +68,7 @@ int get_result(const vector<int> & L, const vector<int> & H) {
   int result = 0;    // TODO
 
   int Li, Hi;
-  deque<coord> deq_pts;
-//   deque<coord> deq_pts = { {3,9}, {4, 2} };  // TODO
+  deque<int> deq_heights;
 
   // streamline via the recurrence
   deque<int> deqL;
@@ -101,61 +100,21 @@ int get_result(const vector<int> & L, const vector<int> & H) {
 //     MSG(Li);
 //     MSG(Hi);
 
-    if (i >= 1) {   // empty deq_pts when if a new (disconnected) polygon
+    int column_delta = UNDEF;
+    if (i >= 1) {
       int Li_1 = (i < K) ? L[i-1] : deqL[0];
-      if (Li_1 + W < Li) {  // new (disconnected) polygon
-//         MSG(deq_pts.size()); for (auto & v: deq_pts) cout << "(" << v.first << "," << v.second << ")"; cout << endl;
-        deq_pts.resize(0);
-//         MSG(deq_pts.size()); for (auto & v: deq_pts) cout << "(" << v.first << "," << v.second << ")"; cout << endl;
-      }
+      column_delta = Li - Li_1;
     }
 
-    // unwind covered boundary & decrement its length - TODO test
-    coord pt0, pt1;
-    coord intersect = {UNDEF, UNDEF};
-    while (deq_pts.size() >= 2) {
-      pt0 = deq_pts.back();
-      deq_pts.pop_back();
-
-      pt1 = deq_pts.back();
-      if (Li <= pt1.first && pt1.second <= Hi) {     // covered
-        Pi -= dist(pt1, pt0);     //  decrement its length
-      } else {                    // 1st outside the new rectangle
-        // compute intersection point - TODO test
-        if (pt1.first == pt0.first) {            // aligned columns
-          intersect = {pt1.first, Hi};
-        } else if (pt1.second == pt0.second) {   // aligned rows
-          intersect = {Li, pt1.second};
-        }
-
-        // decrement the dist to intersect  - TODO test
-        Pi -= dist(intersect, pt0);
-
-        break;
-      }
-    }
+    // TODO update & push back new height
     
-    // pop front pts too much left (i.e. further than `w` distance) - TODO test
-    while (!deq_pts.empty() && deq_pts.front().first < Li) {
-      deq_pts.pop_front();
-    }
-
-    // TODO push back new boundary
+    // TODO increment by column-delta
     
-    // intersect -> new boundary TODO test
-    if (intersect.first == UNDEF || intersect.second == UNDEF) {
-      return UNDEF;
-    } else {
-      deq_pts.push_back(intersect);
-    }
+    // increment by row-delta
+    Pi += column_delta;
+    Pi %= MOD;
     
-    // TODO top left -> new boundary
-    deq_pts.push_back({Li, Hi});  
-
-    deq_pts.push_back({Li+W, Hi}); // top right -> new boundary
-    deq_pts.push_back({Li+W, 0});  // bottom right -> new boundary
-    
-    // TODO increment its length
+    // multiply to result
   }
 
   return result;
