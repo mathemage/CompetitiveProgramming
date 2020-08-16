@@ -5,7 +5,7 @@
 
    * Creation Date : 16-08-2020
 
-   * Last Modified : Ne 16. srpna 2020, 12:58:21
+   * Last Modified : Ne 16. srpna 2020, 13:14:42
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
@@ -53,7 +53,10 @@ int N, K, W;
 int AL, BL, CL, DL;
 int AH, BH, CH, DH;
 
-int get_result() {
+int get_result(const vector<int> & L, const vector<int> & H) {
+//   REP(k,K) MSG(L[k]);
+//   REP(k,K) MSG(H[k]);
+
   int result = -1;    // mock result
   return result;
 }
@@ -70,7 +73,6 @@ int main() {
     vector<int> L(N);
     REP(k,K) {
       cin >> L[k];
-//       MSG(L[k]);
     }
     cin >> AL >> BL >> CL >> DL;
 //     MSG(AL); MSG(BL); MSG(CL); MSG(DL);
@@ -78,12 +80,11 @@ int main() {
     vector<int> H(N);
     REP(k,K) {
       cin >> H[k];
-//       MSG(H[k]);
     }
     cin >> AH >> BH >> CH >> DH;
 //     MSG(AH); MSG(BH); MSG(CH); MSG(DH);
 
-    cout << "Case #" << t + 1 << ": " << get_result() << endl;
+    cout << "Case #" << t + 1 << ": " << get_result(L, H) << endl;
   }
 
   return 0;
