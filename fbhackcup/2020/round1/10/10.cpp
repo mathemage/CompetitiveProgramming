@@ -5,7 +5,7 @@
 
    * Creation Date : 16-08-2020
 
-   * Last Modified : Ne 16. srpna 2020, 14:49:41
+   * Last Modified : Ne 16. srpna 2020, 15:00:03
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
@@ -54,6 +54,10 @@ typedef pair<int, int> coord;
 int N, K, W;
 long long AL, BL, CL, DL;
 long long AH, BH, CH, DH;
+
+int dist(coord ptA, coord ptB) {
+  return abs(ptA.first - ptB.first) + abs(ptA.second - ptB.second);
+}
 
 int get_result(const vector<int> & L, const vector<int> & H) {
 //   REP(k,K) MSG(L[k]);
@@ -111,7 +115,9 @@ int get_result(const vector<int> & L, const vector<int> & H) {
 //       deq_pts.pop_back();
 // 
 //       coord pt1 = deq_pts.back();
-//       if (Lpt1.first
+//       if (pt1.second <= Hi) {
+//         Pi -= dist(pt1, pt0);
+//       }
 //     }
 
     // TODO push back new boundary & increment its length
@@ -147,6 +153,8 @@ int main() {
 
     cout << "Case #" << t + 1 << ": " << get_result(L, H) << endl;
   }
+
+//   MSG(dist({39,42}, {39,39})); MSG(dist({42,42}, {39,42})); // validate dist()
 
   return 0;
 }
