@@ -5,7 +5,7 @@
 
    * Creation Date : 16-08-2020
 
-   * Last Modified : Ne 16. srpna 2020, 15:26:09
+   * Last Modified : Ne 16. srpna 2020, 16:40:04
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
@@ -49,6 +49,7 @@ void err(vector<string>::iterator it, T a, Args... args) {
   err(++it, args...);
 }
 
+#define UNDEF -42
 typedef pair<int, int> coord;
 
 int N, K, W;
@@ -110,22 +111,51 @@ int get_result(const vector<int> & L, const vector<int> & H) {
     }
 
     // unwind covered boundary & decrement its length - TODO test
+    coord pt0, pt1;
+    coord intersect = {UNDEF, UNDEF};
     while (deq_pts.size() >= 2) {
-      coord pt0 = deq_pts.back();
+      pt0 = deq_pts.back();
       deq_pts.pop_back();
 
-      coord pt1 = deq_pts.back();
+      pt1 = deq_pts.back();
       if (Li <= pt1.first && pt1.second <= Hi) {     // covered
         Pi -= dist(pt1, pt0);     //  decrement its length
+      } else {                    // 1st outside the new rectangle
+        // compute intersection point - TODO test
+        if (pt1.first == pt0.first) {            // aligned columns
+          intersect = {pt1.first, Hi};
+        } else if (pt1.second == pt0.second) {   // aligned rows
+          intersect = {Li, pt1.second};
+        }
+
+        // decrement the dist to intersect  - TODO test
+        Pi -= dist(intersect, pt0);
+
+        break;
       }
     }
-
-    // TODO push back new boundary & increment its length
     
     // pop front pts too much left (i.e. further than `w` distance) - TODO test
     while (!deq_pts.empty() && deq_pts.front().first < Li) {
       deq_pts.pop_front();
     }
+
+    // TODO push back new boundary
+    
+    // intersect -> new boundary TODO test
+    if (intersect.first == UNDEF || intersect.second == UNDEF) {
+      return UNDEF;
+    } else {
+      deq_pts.push_back(intersect);
+    }
+    
+    // TODO top left -> new boundary
+    deq_pts.push_back({Li, Hi});  
+
+    deq_pts.push_back({Li+W, Hi}); // top right -> new boundary
+    deq_pts.push_back({Li+W, 0});  // bottom right -> new boundary
+    
+    // TODO increment its length
   }
 
   return result;
