@@ -5,7 +5,7 @@
 
    * Creation Date : 16-08-2020
 
-   * Last Modified : Ne 16. srpna 2020, 14:16:20
+   * Last Modified : Ne 16. srpna 2020, 14:49:41
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
@@ -59,8 +59,12 @@ int get_result(const vector<int> & L, const vector<int> & H) {
 //   REP(k,K) MSG(L[k]);
 //   REP(k,K) MSG(H[k]);
 
+  int Pi = 0;
+  int result = 0;    // TODO
+
   int Li, Hi;
   deque<coord> deq_pts;
+//   deque<coord> deq_pts = { {3,9}, {4, 2} };  // TODO
 
   // streamline via the recurrence
   deque<int> deqL;
@@ -92,10 +96,29 @@ int get_result(const vector<int> & L, const vector<int> & H) {
 //     MSG(Li);
 //     MSG(Hi);
 
-    // TODO
+    if (i >= 1) {   // empty deq_pts when if a new (disconnected) polygon
+      int Li_1 = (i < K) ? L[i-1] : deqL[0];
+      if (Li_1 + W < Li) {  // new (disconnected) polygon
+//         MSG(deq_pts.size()); for (auto & v: deq_pts) cout << "(" << v.first << "," << v.second << ")"; cout << endl;
+        deq_pts.resize(0);
+//         MSG(deq_pts.size()); for (auto & v: deq_pts) cout << "(" << v.first << "," << v.second << ")"; cout << endl;
+      }
+    }
+
+    // TODO unwind covered boundary & decrement its length
+//     while (deq_pts.size() >= 2) {
+//       coord pt0 = deq_pts.back();
+//       deq_pts.pop_back();
+// 
+//       coord pt1 = deq_pts.back();
+//       if (Lpt1.first
+//     }
+
+    // TODO push back new boundary & increment its length
+    
+    // TODO pop front pts further than last `w` distance
   }
 
-  int result = -1;    // mock result
   return result;
 }
 
