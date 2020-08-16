@@ -5,7 +5,7 @@
 
    * Creation Date : 16-08-2020
 
-   * Last Modified : Ne 16. srpna 2020, 15:11:20
+   * Last Modified : Ne 16. srpna 2020, 15:26:09
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
@@ -122,7 +122,10 @@ int get_result(const vector<int> & L, const vector<int> & H) {
 
     // TODO push back new boundary & increment its length
     
-    // TODO pop front pts further than last `w` distance
+    // pop front pts too much left (i.e. further than `w` distance) - TODO test
+    while (!deq_pts.empty() && deq_pts.front().first < Li) {
+      deq_pts.pop_front();
+    }
   }
 
   return result;
