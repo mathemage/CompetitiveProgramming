@@ -5,7 +5,7 @@
 
    * Creation Date : 16-08-2020
 
-   * Last Modified : Ne 16. srpna 2020, 13:14:42
+   * Last Modified : Ne 16. srpna 2020, 13:45:45
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
@@ -50,12 +50,36 @@ void err(vector<string>::iterator it, T a, Args... args) {
 }
 
 int N, K, W;
-int AL, BL, CL, DL;
-int AH, BH, CH, DH;
+long long AL, BL, CL, DL;
+long long AH, BH, CH, DH;
 
 int get_result(const vector<int> & L, const vector<int> & H) {
 //   REP(k,K) MSG(L[k]);
 //   REP(k,K) MSG(H[k]);
+
+  // streamline via the recurrence
+  deque<int> deqL;
+  deqL.push_back(L[K-2]);
+  deqL.push_back(L[K-1]);
+
+  deque<int> deqH;
+  deqH.push_back(H[K-2]);
+  deqH.push_back(H[K-1]);
+
+  FOR(i,K,N) {
+//     cout << endl; MSG(i);
+//     MSG(deqL.size()); for (auto & v: deqL) cout << v << " "; cout << endl;
+//     MSG(deqH.size()); for (auto & v: deqH) cout << v << " "; cout << endl;
+
+    deqL.push_back( (AL * (long long) deqL[0] + BL * (long long) deqL[1] + CL) % DL + 1);
+    deqL.pop_front();
+
+    deqH.push_back( (AH * (long long) deqH[0] + BH * (long long) deqH[1] + CH) % DH + 1);
+    deqH.pop_front();
+
+//     MSG(deqL.size()); for (auto & v: deqL) cout << v << " "; cout << endl;
+//     MSG(deqH.size()); for (auto & v: deqH) cout << v << " "; cout << endl;
+  }
 
   int result = -1;    // mock result
   return result;
