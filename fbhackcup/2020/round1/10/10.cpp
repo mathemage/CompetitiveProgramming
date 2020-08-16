@@ -5,7 +5,7 @@
 
    * Creation Date : 16-08-2020
 
-   * Last Modified : Ne 16. srpna 2020, 13:45:45
+   * Last Modified : Ne 16. srpna 2020, 14:13:25
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
@@ -57,6 +57,8 @@ int get_result(const vector<int> & L, const vector<int> & H) {
 //   REP(k,K) MSG(L[k]);
 //   REP(k,K) MSG(H[k]);
 
+  int Li, Hi;
+
   // streamline via the recurrence
   deque<int> deqL;
   deqL.push_back(L[K-2]);
@@ -66,19 +68,28 @@ int get_result(const vector<int> & L, const vector<int> & H) {
   deqH.push_back(H[K-2]);
   deqH.push_back(H[K-1]);
 
-  FOR(i,K,N) {
+  REP(i,N) {
 //     cout << endl; MSG(i);
-//     MSG(deqL.size()); for (auto & v: deqL) cout << v << " "; cout << endl;
-//     MSG(deqH.size()); for (auto & v: deqH) cout << v << " "; cout << endl;
 
-    deqL.push_back( (AL * (long long) deqL[0] + BL * (long long) deqL[1] + CL) % DL + 1);
-    deqL.pop_front();
+    if (i < K) {
+      Li = L[i];
+      Hi = H[i];
+    } else {
+      Li = (AL * (long long) deqL[0] + BL * (long long) deqL[1] + CL) % DL + 1;
+      deqL.push_back(Li);
+      deqL.pop_front();
 
-    deqH.push_back( (AH * (long long) deqH[0] + BH * (long long) deqH[1] + CH) % DH + 1);
-    deqH.pop_front();
+      Hi = (AH * (long long) deqH[0] + BH * (long long) deqH[1] + CH) % DH + 1;
+      deqH.push_back(Hi);
+      deqH.pop_front();
 
-//     MSG(deqL.size()); for (auto & v: deqL) cout << v << " "; cout << endl;
-//     MSG(deqH.size()); for (auto & v: deqH) cout << v << " "; cout << endl;
+//       MSG(deqL.size()); for (auto & v: deqL) cout << v << " "; cout << endl;
+//       MSG(deqH.size()); for (auto & v: deqH) cout << v << " "; cout << endl;
+    }
+//     MSG(Li);
+//     MSG(Hi);
+
+    // TODO
   }
 
   int result = -1;    // mock result
