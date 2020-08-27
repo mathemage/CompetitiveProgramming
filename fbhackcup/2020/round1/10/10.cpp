@@ -5,7 +5,7 @@
 
    * Creation Date : 16-08-2020
 
-   * Last Modified : Ne 16. srpna 2020, 18:05:48
+   * Last Modified : Čt 27. srpna 2020, 21:16:21
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
@@ -99,22 +99,20 @@ int get_result(const vector<int> & L, const vector<int> & H) {
     int column_delta = UNDEF;
     int row_delta = UNDEF;
 
+    int deq_span = W + 1;
     if (i == 0) {  // 1st rectangle -> init
       column_delta = W;
       row_delta = Hi;
-      deq_heights.resize(W+1, Hi);
-//       REP(col,W+1) {
-//         deq_heights.push_back(Hi);
-//       }
+      deq_heights.resize(deq_span, Hi);
     } else {
       int Li_1 = (i < K) ? L[i-1] : deqL[0];
       column_delta = Li - Li_1;
       if (column_delta > W) {   // new disconnected polygon
         column_delta = W;
         row_delta = Hi;
-        deq_heights.resize(W+1, Hi);
+        deq_heights.resize(deq_span, Hi);
       } else {
-        // empty deq_heights to past W + 1 values TODO test
+        // empty deq_heights to past deq_span values TODO test
         REP(col,column_delta) {
           if (deq_heights.empty()) {
             break;
@@ -123,14 +121,21 @@ int get_result(const vector<int> & L, const vector<int> & H) {
           }
         }
 
+        // TODO deq_heights never empty?
         row_delta = (deq_heights.empty()) ? Hi : max(0, Hi - deq_heights.front());
 
-        // update & push back new height TODO test
+        // update heights
         for (auto & height: deq_heights) {
           height = max(height, Hi);
         }
+        
+        // push back new heights
+        while (deq_heights.size() < deq_span) {
+          deq_heights.push_back(Hi);
+        }
       }
     }
+//     MSG(deq_span); MSG(deq_heights.size());
     
     // increment by column-delta
     Pi += 2 * column_delta;
@@ -143,7 +148,7 @@ int get_result(const vector<int> & L, const vector<int> & H) {
     // multiply to result
     result *= Pi;
     result %= MOD;
-    MSG(i); MSG(Pi);
+//     MSG(i); MSG(Pi);
 //     MSG(result);
   }
 
