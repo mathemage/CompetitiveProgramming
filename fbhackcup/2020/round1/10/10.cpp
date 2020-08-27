@@ -5,7 +5,7 @@
 
    * Creation Date : 16-08-2020
 
-   * Last Modified : Čt 27. srpna 2020, 21:16:21
+   * Last Modified : Čt 27. srpna 2020, 21:22:24
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
@@ -60,8 +60,8 @@ int get_result(const vector<int> & L, const vector<int> & H) {
 //   REP(k,K) MSG(L[k]);
 //   REP(k,K) MSG(H[k]);
 
-  int Pi = 0;
-  int result = 1;
+  long long Pi = 0;
+  long long result = 1;
 
   int Li, Hi;
   deque<int> deq_heights;
@@ -149,7 +149,7 @@ int get_result(const vector<int> & L, const vector<int> & H) {
     result *= Pi;
     result %= MOD;
 //     MSG(i); MSG(Pi);
-//     MSG(result);
+//     MSG(result); cout << endl;
   }
 
   return result;
