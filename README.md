@@ -1,4 +1,4 @@
 CompetitiveProgramming
 ======================
 
-my solutions from various onilne programming contests/practices
+my solutions from various online programming contests/practices
