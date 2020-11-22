@@ -5,7 +5,7 @@
 
    * Creation Date : 21-11-2020
 
-   * Last Modified : So 21. listopadu 2020, 22:35:33
+   * Last Modified : Ne 22. listopadu 2020, 21:41:24
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
@@ -75,13 +75,17 @@ int main() {
     int n;
     cin >> n;
 
+    int parity_sum = 0;
+
     vector<int> a(n);
     REP(i,n) {
       cin >> a[i];
+      parity_sum += a[i] & 1;
     }
 
 //     cout << (solve(a) ? "YES" : "NO") << endl;
-    cout << (solve2(a) ? "YES" : "NO") << endl;
+//     cout << (solve2(a) ? "YES" : "NO") << endl;
+    cout << (parity_sum % n == 0 ? "YES" : "NO") << endl;
   }
   return 0;
 }
