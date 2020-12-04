@@ -1,0 +1,12 @@
+{".C.", "TOP", ".D.", ".E.", ".R." }
+"TOP"
+"CODER"
+{".T...", "CODER", ".P..." }
+"CODER"
+"TOP"
+{"...A.", "...A.", "...A.", "AAAAA", "...A.", "...A." }
+"AAAAA"
+"AAAAAA"
+{ }
+"CAT"
+"DOG"

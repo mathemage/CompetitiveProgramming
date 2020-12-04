@@ -1,0 +1,41 @@
+<html><body bgcolor="#000000" text="#ffffff"><table><tr><td colspan="2"><h3>Problem Statement</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><p>
+You are given two strings: <b>H</b> and <b>V</b>.
+Build the simplest possible crossword that contains these two strings and nothing else.
+<b>H</b> must appear horizontally, <b>V</b> must appear vertically, and the two strings must overlap somewhere.
+The crossword must be rectangular and it must be as small as possible.
+</p>
+<p>
+Return the crossword as a vector &lt;string&gt;, using '.' for cells that do not contain a letter.
+If there are multiple valid solutions, you may return any one of them.
+If there is no valid solution, return an empty vector &lt;string&gt; instead.
+</p></td></tr><tr><td colspan="2"><h3>Definition</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Class:</td><td>SimplestCrossword</td></tr><tr><td>Method:</td><td>construct</td></tr><tr><td>Parameters:</td><td>string, string</td></tr><tr><td>Returns:</td><td>vector &lt;string&gt;</td></tr><tr><td>Method signature:</td><td>vector &lt;string&gt; construct(string H, string V)</td></tr><tr><td colspan="2">(be sure your method is public)</td></tr></table></td></tr><tr><td colspan="2"><h3>Limits</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Time limit (s):</td><td>2.000</td></tr><tr><td>Memory limit (MB):</td><td>256</td></tr></table></td></tr><tr><td colspan="2"><h3>Constraints</h3></td></tr><tr><td align="center" valign="top">-</td><td><b>H</b> will contain between 2 and 10 characters, inclusive.</td></tr><tr><td align="center" valign="top">-</td><td><b>V</b> will contain between 2 and 10 characters, inclusive.</td></tr><tr><td align="center" valign="top">-</td><td>Each character in <b>H</b> and <b>V</b> will be an uppercase English letter ('A'-'Z').</td></tr><tr><td colspan="2"><h3>Examples</h3></td></tr><tr><td align="center" nowrap="true">0)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>&quot;TOP&quot;</pre></td></tr><tr><td><pre>&quot;CODER&quot;</pre></td></tr></table></td></tr><tr><td><pre>Returns: {&quot;.C.&quot;, &quot;TOP&quot;, &quot;.D.&quot;, &quot;.E.&quot;, &quot;.R.&quot; }</pre></td></tr><tr><td><table><tr><td colspan="2">This is what the return value looks like when formatted into a rectangle:
+<pre>
+{".C.",
+ "TOP",
+ ".D.",
+ ".E.",
+ ".R." }
+</pre>
+This return value describes the following crossword:
+<pre>
+.C.
+TOP
+.D.
+.E.
+.R.
+</pre>
+In this particular test case, this is the only valid solution.</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">1)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>&quot;CODER&quot;</pre></td></tr><tr><td><pre>&quot;TOP&quot;</pre></td></tr></table></td></tr><tr><td><pre>Returns: {&quot;.T...&quot;, &quot;CODER&quot;, &quot;.P...&quot; }</pre></td></tr><tr><td><table><tr><td colspan="2">Here we swapped the two words, so now CODER should go horizontally. The returned crossword looks as follows:
+<pre>
+.T...
+CODER
+.P...
+</pre></td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">2)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>&quot;AAAAA&quot;</pre></td></tr><tr><td><pre>&quot;AAAAAA&quot;</pre></td></tr></table></td></tr><tr><td><pre>Returns: {&quot;...A.&quot;, &quot;...A.&quot;, &quot;...A.&quot;, &quot;AAAAA&quot;, &quot;...A.&quot;, &quot;...A.&quot; }</pre></td></tr><tr><td><table><tr><td colspan="2">Returned crossword:
+<pre>
+...A.
+...A.
+...A.
+AAAAA
+...A.
+...A.
+</pre>
+In this case there are 29 other valid crosswords, and each of those would be accepted as well.</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">3)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>&quot;CAT&quot;</pre></td></tr><tr><td><pre>&quot;DOG&quot;</pre></td></tr></table></td></tr><tr><td><pre>Returns: { }</pre></td></tr><tr><td><table><tr><td colspan="2">We cannot make these two words overlap.</td></tr></table></td></tr></table></td></tr></table><p>This problem statement is the exclusive and proprietary property of TopCoder, Inc.  Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited.  (c)2003, TopCoder, Inc.  All rights reserved.  </p></body></html>
