@@ -5,13 +5,13 @@
 
    * Creation Date : 08-12-2020
 
-   * Last Modified : Út 8. prosince 2020, 23:30:11
+   * Last Modified : St 9. prosince 2020, 20:23:38
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
    * URL : https://codeforces.com/problemset/problem/807/A
 
-   * Points Gained (in case of online contest) : WA (#6) - WA (#6) - AC
+   * Points Gained (in case of online contest) : WA (#6) - WA (#6) - AC - AC
 
    ==========================================*/
 
@@ -59,13 +59,15 @@ int main() {
   while (n--) {
 //     MSG(n); cerr << endl;
     cin >> r_before >> r_after;
-    if (result != "rated") {
-//       MSG(r_before); MSG(r_after); 
-      if (r_before != r_after) {
-        result = "rated";
-      } else if (r_before > prev_r) {
-        result = "unrated";
-      }
+//     MSG(r_before); MSG(r_after); 
+
+    if (r_before != r_after) {
+      cout << "rated";
+      return 0;
+    }
+
+    if (r_before > prev_r) {
+      result = "unrated";
     }
     prev_r = r_before;
 //     MSG(result); cerr << endl; cerr << endl;
