@@ -1,0 +1,46 @@
+<html><body bgcolor="#000000" text="#ffffff"><table><tr><td colspan="2"><h3>Problem Statement</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><p>
+The official rules for a two-player ("singles") game of table tennis are as follows:
+</p>
+<ul>
+<li>The game is a sequence of exchanges. Each exchange starts by one of the two players serving the ball and ends when one of the players loses the exchange by failing to play the ball correctly. The winner of each exchange gets a point.</li>
+<li>A player wins the game as soon as they have at least 11 points <i>and at the same time</i> they lead their opponent by at least two points.</li>
+<li>The serve changes after every two points. (That is, one player has the serve in the first two exchanges, the other player in the next two, and so on.)</li>
+<li>If the score of the game reaches 10-10 ("deuce"), from that moment the serve changes after each point.</li>
+</ul>
+<p>
+A game of table tennis just ended. 
+After the game, we discovered that the intern who was supposed to record the score messed it up and recorded the number of serves instead.
+Thus, instead of the final score of the game we know two other values:
+the numbers <b>A</b> and <b>B</b> specifying how many times each of the players served the ball during the game.
+(Note that you don't know which of the two players served first, both options are possible.)
+</p>
+<br></br>
+<p>
+You are given the ints <b>A</b> and <b>B</b> reported by the intern.
+</p>
+<p>
+First, determine whether these values <b>A</b> and <b>B</b> correspond to some completed game of table tennis.
+If they don't, return an empty vector &lt;int&gt;.
+</p>
+<p>
+If the values <b>A</b> and <b>B</b> do correspond to some completed game of table tennis, the final score of the game can always be uniquely determined from <b>A</b> and <b>B</b>.
+Determine the numbers W and L of points scored by the winner and the loser of the game.
+Return the vector &lt;int&gt; {W, L}.
+</p></td></tr><tr><td colspan="2"><h3>Definition</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Class:</td><td>TableTennisGame</td></tr><tr><td>Method:</td><td>finalScore</td></tr><tr><td>Parameters:</td><td>int, int</td></tr><tr><td>Returns:</td><td>vector &lt;int&gt;</td></tr><tr><td>Method signature:</td><td>vector &lt;int&gt; finalScore(int A, int B)</td></tr><tr><td colspan="2">(be sure your method is public)</td></tr></table></td></tr><tr><td colspan="2"><h3>Limits</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Time limit (s):</td><td>2.000</td></tr><tr><td>Memory limit (MB):</td><td>256</td></tr></table></td></tr><tr><td colspan="2"><h3>Notes</h3></td></tr><tr><td align="center" valign="top">-</td><td>The return value is a vector &lt;int&gt; with two elements: element at index 0 is W, element at index 1 is L.</td></tr><tr><td align="center" valign="top">-</td><td>Note that W must always be greater than L.</td></tr><tr><td colspan="2"><h3>Constraints</h3></td></tr><tr><td align="center" valign="top">-</td><td><b>A</b> and <b>B</b> will each be between 1 and 100, inclusive.</td></tr><tr><td colspan="2"><h3>Examples</h3></td></tr><tr><td align="center" nowrap="true">0)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>8</pre></td></tr><tr><td><pre>6</pre></td></tr></table></td></tr><tr><td><pre>Returns: {11, 3 }</pre></td></tr><tr><td><table><tr><td colspan="2">The game proceeded as follows:
+<ul>
+<li>Player A served twice, then player B served twice.</li>
+<li>Player A served twice, then player B served twice.</li>
+<li>Player A served twice, then player B served twice.</li>
+<li>Player A served twice.</li>
+</ul>
+We can deduce that the final score of the game must have been 11-3. (We do not know who won the game, but we know that the winner must have had W = 11 points and the loser must have had L = 3 points.)
+</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">1)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>7</pre></td></tr><tr><td><pre>8</pre></td></tr></table></td></tr><tr><td><pre>Returns: {11, 4 }</pre></td></tr><tr><td><table><tr><td colspan="2">For this game we see that player B had to be the one to serve first. Thus, the game proceeded as follows:
+<ul>
+<li>Player B served twice, then player A served twice.</li>
+<li>Player B served twice, then player A served twice.</li>
+<li>Player B served twice, then player A served twice.</li>
+<li>Player B served twice, then player A served once and the game was over.</li>
+</ul>
+The final score of this game must have been 11-4, so we return {11, 4}.
+
+</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">2)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>13</pre></td></tr><tr><td><pre>13</pre></td></tr></table></td></tr><tr><td><pre>Returns: {14, 12 }</pre></td></tr><tr><td><table><tr><td colspan="2">Remember that once the score reaches 10-10 the serve changes after every point. Thus, it is possible that each player served exactly 13 times during a game.</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">3)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>1</pre></td></tr><tr><td><pre>3</pre></td></tr></table></td></tr><tr><td><pre>Returns: { }</pre></td></tr><tr><td><table><tr><td colspan="2">This is impossible for two separate reasons. First, the game cannot end after just four serves, as clearly nobody has 11 points yet. But the specific numbers of serves are also impossible: out of the first four balls each player has to serve two.</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">4)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>2</pre></td></tr><tr><td><pre>100</pre></td></tr></table></td></tr><tr><td><pre>Returns: { }</pre></td></tr><tr><td><table><tr><td colspan="2">This situation is also impossible: if one player served 100 times, the other could not have served only twice.</td></tr></table></td></tr></table></td></tr></table><p>This problem statement is the exclusive and proprietary property of TopCoder, Inc.  Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited.  (c)2003, TopCoder, Inc.  All rights reserved.  </p></body></html>
