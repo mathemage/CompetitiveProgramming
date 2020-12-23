@@ -1,7 +1,7 @@
 /* ========================================
- * Points : 173.45 - 135.63 - 103.05 - 75.00
+ * Points : 219.79
  * Total : 250
- * Status : WA (#13) - WA (#13) - WA (#13) - AC
+ * Status : AC
  ==========================================*/
 
 #include <bits/stdc++.h>
@@ -26,14 +26,14 @@ public:
     needed /= N;
 
     int K = loot.size();
-    vector<bool> assigned(K,false);
+    vector<bool> assigned(K, false);
     int n_assigned = 0;
     REP(i,K) {
+      MSG(i); MSG(loot[i]);
       if (assigned[i]) {
         continue;
       }
 
-      MSG(i) MSG(loot[i]);
       if (loot[i] == needed) {
         assigned[i] = true;
         n_assigned++;
@@ -41,13 +41,13 @@ public:
         return "impossible";
       } else {
         FOR(j,i+1,K) {
-          MSG(j) MSG(loot[j]) MSG(loot[i] + loot[j]);
+          MSG(j);
           if (loot[i] + loot[j] == needed && !assigned[j]) {
-            MSG(needed);
+            MSG(j); MSG(loot[j]);
             assigned[i] = true;
             assigned[j] = true;
             n_assigned += 2;
-            break;
+            break;    // bug! <- missing break!!!
           }
         }
       }
