@@ -1,0 +1,40 @@
+l == 1
+r == 3
+dist == 3
+ans == -1
+ans == -1
+ans == -4
+-4
+
+l == 2
+r == 5
+dist == 4
+ans == 1
+ans == 2
+ans == 2
+2
+
+l == 5
+r == 5
+dist == 1
+ans == -1
+ans == 0
+ans == -5
+-5
+
+l == 4
+r == 4
+dist == 1
+ans == 1
+ans == 0
+ans == 4
+4
+
+l == 2
+r == 3
+dist == 2
+ans == 1
+ans == 1
+ans == 1
+1
+
