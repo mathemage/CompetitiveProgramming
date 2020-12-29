@@ -5,13 +5,13 @@
 
    * Creation Date : 28-12-2020
 
-   * Last Modified : Po 28. prosince 2020, 17:37:21
+   * Last Modified : St 30. prosince 2020, 00:23:46
 
    * Created By : Karel Ha <mathemage@gmail.com>
 
    * URL : https://codeforces.com/contest/1469/problem/B
 
-   * Points Gained (in case of online contest) : not submitted
+   * Points Gained (in case of online contest) : not submitted - AC
 
    ==========================================*/
 
@@ -66,23 +66,31 @@ int main() {
       cin >> b[i];
     }
 
-    vector<vector<int>> dp(n+1);
-    REP(i,n+1) {
-      dp.resize(m,0);
+    int max_f = 0;
 
-      FOR(j,1,n+1) {
-        dp[0][j] = dp[0][j-1] + r[j-1];
-      }
-      FOR(i,1,m+1) {
-        dp[i][0] = dp[i-1][0] + b[i-1];
+    int n_rows = 1 + n;
+    int n_cols = 1 + m;
+    vector<vector<int>> dp(n_rows);
+    REP(row,n_rows) {
+//       MSG(row);
+      dp[row].resize(n_cols);
+      if (row == 0) {
+        dp[0][0] = 0;
+        FOR(col,1,n_cols) {
+          dp[0][col] = dp[0][col-1] + b[col-1]; 
+          max_f = max(max_f, dp[0][col]);
+        }
+      } else {
+        dp[row][0] = dp[row-1][0] + r[row-1]; 
+        max_f = max(max_f, dp[row][0]);
+
+        FOR(col,1,n_cols) {
+          dp[row][col] = max(dp[row-1][col] + r[row-1], dp[row][col-1] + b[col-1]);
+          max_f = max(max_f, dp[row][col]);
+        }
       }
     }
-
-    REP(i,n+1) {
-      REP(j,m+1) {
-        dp[i][j] = max(dp[
-      }
-    }
+    cout << max_f << '\n';
   }
   return 0;
 }
