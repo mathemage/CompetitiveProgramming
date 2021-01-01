@@ -31,3 +31,4 @@ iab usetl unordered_set<long long>
 iab acc accumulate(ALL(), 0);<ESC>2F)i
 iab accu accumulate(.begin(), .end(), 0);<ESC>2F.i
 iab sor sort(ALL());<ESC>2F)i
+iab rsor sort(REVALL());<ESC>2F)i
