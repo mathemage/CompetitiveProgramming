@@ -19,6 +19,15 @@ iab pd pair<double, double>
 iab vii vector<pair<int, int>>
 iab vdd vector<pair<double, double>>
 
+iab seti set<int>
+iab setd set<double>
+iab setc set<char>
+iab setl set<long long>
+iab useti unordered_set<int>
+iab usetd unordered_set<double>
+iab usetc unordered_set<char>
+iab usetl unordered_set<long long>
+
 iab acc accumulate(ALL(), 0);<ESC>2F)i
 iab accu accumulate(.begin(), .end(), 0);<ESC>2F.i
 iab sor sort(ALL());<ESC>2F)i
