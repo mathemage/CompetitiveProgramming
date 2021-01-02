@@ -19,6 +19,10 @@ iab pd pair<double, double>
 iab vii vector<pair<int, int>>
 iab vdd vector<pair<double, double>>
 
+iab vvi vector<vector<int>>
+iab vvd vector<vector<double>>
+iab vvl vector<vector<long long>>
+
 iab seti set<int>
 iab setd set<double>
 iab setc set<char>
