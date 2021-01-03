@@ -6,22 +6,21 @@
    LANG: C++11
 
    * File Name :
-
    * Creation Date :
-
    * Last Modified :
-
    * Created By : Karel Ha <mathemage@gmail.com>
-
    * URL :
-
+   * Points :
+   * Total :
+   * Status :
    ==========================================*/
 
 #include <bits/stdc++.h>
 
 using namespace std;
 
-#define FOR(i, begin, end) for (__typeof(end) i = (begin) - ((begin) > (end)); i != (end) - ((begin) > (end)); i += 1 - 2 * ((begin) > (end)))
+#define FOR(I,A,B) for(int I = (A); I < (B); ++I)
+#define RFOR(i, begin, end) for (__typeof(end) i = (begin) - ((begin) > (end)); i != (end) - ((begin) > (end)); i += 1 - 2 * ((begin) > (end)))
 #define REP(I,N)   FOR(I,0,N)
 #define ALL(A)     (A).begin(), (A).end()
 #define REVALL(A)     (A).rbegin(), (A).rend()
