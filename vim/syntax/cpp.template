@@ -14,6 +14,7 @@
 
 using namespace std;
 
+#define endl "\n"
 #define FOR(I,A,B) for(int I = (A); I < (B); ++I)
 #define RFOR(i, begin, end) for (__typeof(end) i = (begin) - ((begin) > (end)); i != (end) - ((begin) > (end)); i += 1 - 2 * ((begin) > (end)))
 #define REP(I,N)   FOR(I,0,N)
@@ -24,9 +25,17 @@ using namespace std;
 const int CLEAN = -1;
 const int UNDEF = -42;
 
+void solve() {
+  long long result = 0LL;
+  cout << result << endl;
+}
+
 int main() {
-  int t;
-  while (t--) {
+  int cases;
+  cin >> cases;
+//  cases = 1;
+  while (cases--) {
+    solve();
   }
   return 0;
 }
