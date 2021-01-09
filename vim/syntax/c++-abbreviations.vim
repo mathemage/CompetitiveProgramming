@@ -2,6 +2,11 @@
 iab fo for (auto & x :.) {<CR><ESC>-f.s
 iab fis for (int i = 0; i < .size(); ++i) {<CR><ESC>-f.i
 
+iab if if (.) {<CR><ESC>-f.s
+iab whi while (.) {<CR><ESC>-f.s
+iab while while (.) {<CR><ESC>-f.s
+" iab dow do {<CR><ESC>awhile (.);<ESC>-f.s TODO
+
 iab ato atoi(.c_str())<ESC>F.i
 
 iab ll long long
