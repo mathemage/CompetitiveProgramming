@@ -1,0 +1,52 @@
+<html><body bgcolor="#000000" text="#ffffff"><table><tr><td colspan="2"><h3>Problem Statement</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><p>
+Here's the beginning of an ASCII art bitmap that depicts a tape measure:
+</p>
+<pre>
+###################################################
+# # # # # # # # # # # # # # # # # # # # # # # # # #
+#         #         #         #         #         #
+#                   #                   #          
+0                   10                  20         
+</pre>
+<p>
+A more formal description:
+</p>
+<ul>
+<li>The first row is full of '#' marks and represents the top edge of the tape measure.</li>
+<li>The second row shows unit marks in every second column.</li>
+<li>Multiples of five get a longer mark that continues into the third row.</li>
+<li>Multiples of ten get a mark that reaches all the way into the fourth row, and they also get labels in the fifth row. The label always begins in the column with the mark and extends to the right as needed.</li>
+</ul>
+<p>
+You are given the ints <b>leftMark</b> and <b>rightMark</b>.
+Construct the drawing of the part of the tape measure that begins with the column containing the mark for number <b>leftMark</b> and ends with the column that contains the mark for the number <b>rightMark</b>.
+Return the drawing as a vector &lt;string&gt;.
+</p></td></tr><tr><td colspan="2"><h3>Definition</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Class:</td><td>TapeMeasure</td></tr><tr><td>Method:</td><td>draw</td></tr><tr><td>Parameters:</td><td>int, int</td></tr><tr><td>Returns:</td><td>vector &lt;string&gt;</td></tr><tr><td>Method signature:</td><td>vector &lt;string&gt; draw(int leftMark, int rightMark)</td></tr><tr><td colspan="2">(be sure your method is public)</td></tr></table></td></tr><tr><td colspan="2"><h3>Limits</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Time limit (s):</td><td>2.000</td></tr><tr><td>Memory limit (MB):</td><td>256</td></tr></table></td></tr><tr><td colspan="2"><h3>Constraints</h3></td></tr><tr><td align="center" valign="top">-</td><td><b>leftMark</b> will be between 0 and 999, inclusive.</td></tr><tr><td align="center" valign="top">-</td><td><b>rightMark</b> will be between <b>leftMark</b> and 999, inclusive.</td></tr><tr><td align="center" valign="top">-</td><td><b>rightMark</b> - <b>leftMark</b> will be at most 25.</td></tr><tr><td colspan="2"><h3>Examples</h3></td></tr><tr><td align="center" nowrap="true">0)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>0</pre></td></tr><tr><td><pre>25</pre></td></tr></table></td></tr><tr><td><pre>Returns: 
+{&quot;###################################################&quot;,
+ &quot;# # # # # # # # # # # # # # # # # # # # # # # # # #&quot;,
+ &quot;#         #         #         #         #         #&quot;,
+ &quot;#                   #                   #          &quot;,
+ &quot;0                   10                  20         &quot; }</pre></td></tr><tr><td><table><tr><td colspan="2">This is the exact example shown in the problem statement.</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">1)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>981</pre></td></tr><tr><td><pre>990</pre></td></tr></table></td></tr><tr><td><pre>Returns: 
+{&quot;###################&quot;,
+ &quot;# # # # # # # # # #&quot;,
+ &quot;        #         #&quot;,
+ &quot;                  #&quot;,
+ &quot;0                 9&quot; }</pre></td></tr><tr><td><table><tr><td colspan="2"><p>
+Note how the labels for marks 980 and 990 are partially visible in this section of the tape measure.
+</p>
+<p>
+Below we show a section of the tape measure that is one mark wider on each side (left=980, right=991) so that you can see these labels completely.
+</p>
+<pre>
+#######################
+# # # # # # # # # # # #
+#         #         #  
+#                   #  
+980                 990
+</pre>
+</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">2)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>20</pre></td></tr><tr><td><pre>20</pre></td></tr></table></td></tr><tr><td><pre>Returns: {&quot;#&quot;, &quot;#&quot;, &quot;#&quot;, &quot;#&quot;, &quot;2&quot; }</pre></td></tr><tr><td><table><tr><td colspan="2"></td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">3)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>31</pre></td></tr><tr><td><pre>38</pre></td></tr></table></td></tr><tr><td><pre>Returns: 
+{&quot;###############&quot;,
+ &quot;# # # # # # # #&quot;,
+ &quot;        #      &quot;,
+ &quot;               &quot;,
+ &quot;               &quot; }</pre></td></tr><tr><td><table><tr><td colspan="2"></td></tr></table></td></tr></table></td></tr></table><p>This problem statement is the exclusive and proprietary property of TopCoder, Inc.  Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited.  (c)2003, TopCoder, Inc.  All rights reserved.  </p></body></html>
