@@ -38,7 +38,10 @@ iab usetd unordered_set<double>
 iab usetc unordered_set<char>
 iab usetl unordered_set<long long>
 
-iab acc accumulate(ALL(.), 0);<CR><ESC>-f.c
-iab accu accumulate(.begin(), .end(), 0);<CR><ESC>-f.i
-iab sor sort(ALL(.));<CR><ESC>-f.c
-iab rsor sort(REVALL(.));<CR><ESC>-f.c
+iab minu MINUPDATE(., );<ESC>F.c
+iab maxu MAXUPDATE(., );<ESC>F.c
+
+iab acc accumulate(ALL(.), 0);<ESC>F.c
+iab accu accumulate(..begin(), .end(), 0);<ESC>3F.c
+iab sor sort(ALL(.));<ESC>F.c
+iab rsor sort(REVALL(.));<ESC>F.c
