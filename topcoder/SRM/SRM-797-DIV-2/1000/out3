@@ -1,0 +1,1217 @@
+./driver --abort-on-fail
+TAP version 13
+# input for test 1: 1, 5, {10, 8, 6, 8, 10}, 40, 10, 20
+pq.size() == 0
+at_coord.F == 0
+at_coord.S == 10
+at_dist == 0
+
+neigh_coord.F == 1
+neigh_coord.S == 10
+visited.count(neigh_coord) == 0
+
+pq.size() == 0
+at_coord.F == 1
+at_coord.S == 10
+at_dist == 20
+
+neigh_coord.F == 2
+neigh_coord.S == 10
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 0
+neigh_coord.S == 10
+pq.size() == 0
+at_coord.F == 2
+at_coord.S == 10
+at_dist == 40
+
+neigh_coord.F == 3
+neigh_coord.S == 10
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 1
+neigh_coord.S == 10
+pq.size() == 0
+at_coord.F == 3
+at_coord.S == 10
+at_dist == 60
+
+neigh_coord.F == 4
+neigh_coord.S == 10
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 2
+neigh_coord.S == 10
+pq.size() == 0
+at_coord.F == 4
+at_coord.S == 10
+at_dist == 80
+
+neigh_coord.F == 3
+neigh_coord.S == 10
+# test completed in 0.538086ms
+ok 1 - 80 must equal 80
+# input for test 2: 6, 1, {10, 8, 16, 18, 8, 12}, 40, 10, 20
+pq.size() == 0
+at_coord.F == 0
+at_coord.S == 10
+at_dist == 0
+
+neigh_coord.F == 1
+neigh_coord.S == 10
+visited.count(neigh_coord) == 0
+
+pq.size() == 0
+at_coord.F == 1
+at_coord.S == 10
+at_dist == 20
+
+neigh_coord.F == 2
+neigh_coord.S == 16
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 0
+neigh_coord.S == 10
+pq.size() == 0
+at_coord.F == 2
+at_coord.S == 16
+at_dist == 280
+
+neigh_coord.F == 3
+neigh_coord.S == 18
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 1
+neigh_coord.S == 16
+visited.count(neigh_coord) == 0
+
+pq.size() == 1
+at_coord.F == 3
+at_coord.S == 18
+at_dist == 380
+
+neigh_coord.F == 4
+neigh_coord.S == 18
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 2
+neigh_coord.S == 18
+visited.count(neigh_coord) == 0
+
+pq.size() == 2
+at_coord.F == 4
+at_coord.S == 18
+at_dist == 400
+
+neigh_coord.F == 5
+neigh_coord.S == 18
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 3
+neigh_coord.S == 18
+pq.size() == 2
+at_coord.F == 5
+at_coord.S == 18
+at_dist == 420
+
+neigh_coord.F == 4
+neigh_coord.S == 18
+neigh_coord.F == 5
+neigh_coord.S == 12
+visited.count(neigh_coord) == 0
+
+pq.size() == 2
+at_coord.F == 5
+at_coord.S == 12
+at_dist == 480
+
+neigh_coord.F == 4
+neigh_coord.S == 12
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 5
+neigh_coord.S == 18
+pq.size() == 2
+at_coord.F == 4
+at_coord.S == 12
+at_dist == 500
+
+neigh_coord.F == 5
+neigh_coord.S == 12
+neigh_coord.F == 3
+neigh_coord.S == 18
+neigh_coord.F == 4
+neigh_coord.S == 18
+pq.size() == 1
+at_coord.F == 2
+at_coord.S == 18
+at_dist == 400
+
+neigh_coord.F == 3
+neigh_coord.S == 18
+neigh_coord.F == 1
+neigh_coord.S == 18
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 2
+neigh_coord.S == 16
+pq.size() == 1
+at_coord.F == 1
+at_coord.S == 18
+at_dist == 420
+
+neigh_coord.F == 2
+neigh_coord.S == 18
+neigh_coord.F == 0
+neigh_coord.S == 18
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 1
+neigh_coord.S == 16
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 1
+neigh_coord.S == 10
+pq.size() == 1
+at_coord.F == 0
+at_coord.S == 18
+at_dist == 440
+
+neigh_coord.F == 1
+neigh_coord.S == 18
+neigh_coord.F == 0
+neigh_coord.S == 10
+pq.size() == 0
+at_coord.F == 1
+at_coord.S == 16
+at_dist == 300
+
+neigh_coord.F == 2
+neigh_coord.S == 16
+neigh_coord.F == 0
+neigh_coord.S == 16
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 1
+neigh_coord.S == 18
+neigh_coord.F == 1
+neigh_coord.S == 10
+pq.size() == 0
+at_coord.F == 0
+at_coord.S == 16
+at_dist == 320
+
+neigh_coord.F == 1
+neigh_coord.S == 16
+neigh_coord.F == 0
+neigh_coord.S == 18
+neigh_coord.F == 0
+neigh_coord.S == 10
+# test completed in 1.65088ms
+ok 2 - 480 must equal 480
+# input for test 3: 5, 5, {100, 1000, 100, 100, 100, 97, 9999, 9999, 9999, 100, 93, 9999, 0, 9999, 100, 99, 9999, 83, 65, 100, 98, 93, 90, 9999, 95}, 1000, 1000, 1
+pq.size() == 0
+at_coord.F == 0
+at_coord.S == 100
+at_dist == 0
+
+neigh_coord.F == 1
+neigh_coord.S == 1000
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 5
+neigh_coord.S == 100
+visited.count(neigh_coord) == 0
+
+pq.size() == 1
+at_coord.F == 1
+at_coord.S == 1000
+at_dist == 900001
+
+neigh_coord.F == 2
+neigh_coord.S == 1000
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 0
+neigh_coord.S == 1000
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 6
+neigh_coord.S == 9999
+visited.count(neigh_coord) == 0
+
+pq.size() == 3
+at_coord.F == 6
+at_coord.S == 9999
+at_dist == 9899002
+
+neigh_coord.F == 7
+neigh_coord.S == 9999
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 5
+neigh_coord.S == 9999
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 11
+neigh_coord.S == 9999
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 1
+neigh_coord.S == 9999
+visited.count(neigh_coord) == 0
+
+pq.size() == 6
+at_coord.F == 11
+at_coord.S == 9999
+at_dist == 9899003
+
+neigh_coord.F == 12
+neigh_coord.S == 9999
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 10
+neigh_coord.S == 9999
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 16
+neigh_coord.S == 9999
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 6
+neigh_coord.S == 9999
+pq.size() == 8
+at_coord.F == 16
+at_coord.S == 9999
+at_dist == 9899004
+
+neigh_coord.F == 17
+neigh_coord.S == 9999
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 15
+neigh_coord.S == 9999
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 21
+neigh_coord.S == 9999
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 11
+neigh_coord.S == 9999
+pq.size() == 10
+at_coord.F == 21
+at_coord.S == 9999
+at_dist == 9899005
+
+neigh_coord.F == 22
+neigh_coord.S == 9999
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 20
+neigh_coord.S == 9999
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 16
+neigh_coord.S == 9999
+pq.size() == 11
+at_coord.F == 22
+at_coord.S == 9999
+at_dist == 9899006
+
+neigh_coord.F == 23
+neigh_coord.S == 9999
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 21
+neigh_coord.S == 9999
+neigh_coord.F == 17
+neigh_coord.S == 9999
+visited.count(neigh_coord) == 0
+
+pq.size() == 11
+at_coord.F == 23
+at_coord.S == 9999
+at_dist == 9899007
+
+neigh_coord.F == 24
+neigh_coord.S == 9999
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 22
+neigh_coord.S == 9999
+neigh_coord.F == 18
+neigh_coord.S == 9999
+visited.count(neigh_coord) == 0
+
+pq.size() == 12
+at_coord.F == 24
+at_coord.S == 9999
+at_dist == 9899008
+
+neigh_coord.F == 23
+neigh_coord.S == 9999
+neigh_coord.F == 19
+neigh_coord.S == 9999
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 24
+neigh_coord.S == 95
+visited.count(neigh_coord) == 0
+
+pq.size() == 13
+at_coord.F == 24
+at_coord.S == 95
+at_dist == 19803008
+
+neigh_coord.F == 23
+neigh_coord.S == 9999
+neigh_coord.F == 19
+neigh_coord.S == 100
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 24
+neigh_coord.S == 9999
+pq.size() == 13
+at_coord.F == 19
+at_coord.S == 100
+at_dist == 19808009
+
+neigh_coord.F == 18
+neigh_coord.S == 100
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 24
+neigh_coord.S == 100
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 14
+neigh_coord.S == 100
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 19
+neigh_coord.S == 9999
+visited.count(neigh_coord) == 0
+
+pq.size() == 15
+at_coord.F == 24
+at_coord.S == 100
+at_dist == 19808010
+
+neigh_coord.F == 23
+neigh_coord.S == 9999
+neigh_coord.F == 19
+neigh_coord.S == 100
+neigh_coord.F == 24
+neigh_coord.S == 9999
+neigh_coord.F == 24
+neigh_coord.S == 95
+pq.size() == 14
+at_coord.F == 18
+at_coord.S == 100
+at_dist == 19808010
+
+neigh_coord.F == 19
+neigh_coord.S == 100
+neigh_coord.F == 17
+neigh_coord.S == 100
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 23
+neigh_coord.S == 9999
+neigh_coord.F == 13
+neigh_coord.S == 9999
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 18
+neigh_coord.S == 9999
+visited.count(neigh_coord) == 0
+
+pq.size() == 15
+at_coord.F == 13
+at_coord.S == 9999
+at_dist == 29707011
+
+neigh_coord.F == 14
+neigh_coord.S == 9999
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 12
+neigh_coord.S == 9999
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 18
+neigh_coord.S == 9999
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 8
+neigh_coord.S == 9999
+visited.count(neigh_coord) == 0
+
+pq.size() == 16
+at_coord.F == 14
+at_coord.S == 9999
+at_dist == 29707012
+
+neigh_coord.F == 13
+neigh_coord.S == 9999
+neigh_coord.F == 19
+neigh_coord.S == 9999
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 9
+neigh_coord.S == 9999
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 14
+neigh_coord.S == 100
+visited.count(neigh_coord) == 0
+
+pq.size() == 16
+at_coord.F == 9
+at_coord.S == 9999
+at_dist == 29707013
+
+neigh_coord.F == 8
+neigh_coord.S == 9999
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 14
+neigh_coord.S == 9999
+neigh_coord.F == 4
+neigh_coord.S == 9999
+visited.count(neigh_coord) == 0
+
+pq.size() == 16
+at_coord.F == 4
+at_coord.S == 9999
+at_dist == 29707014
+
+neigh_coord.F == 3
+neigh_coord.S == 9999
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 9
+neigh_coord.S == 9999
+pq.size() == 16
+at_coord.F == 3
+at_coord.S == 9999
+at_dist == 29707015
+
+neigh_coord.F == 4
+neigh_coord.S == 9999
+neigh_coord.F == 2
+neigh_coord.S == 9999
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 8
+neigh_coord.S == 9999
+visited.count(neigh_coord) == 0
+
+pq.size() == 16
+at_coord.F == 2
+at_coord.S == 9999
+at_dist == 29707016
+
+neigh_coord.F == 3
+neigh_coord.S == 9999
+neigh_coord.F == 1
+neigh_coord.S == 9999
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 7
+neigh_coord.S == 9999
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 2
+neigh_coord.S == 1000
+visited.count(neigh_coord) == 0
+
+pq.size() == 15
+at_coord.F == 8
+at_coord.S == 9999
+at_dist == 29707012
+
+neigh_coord.F == 9
+neigh_coord.S == 9999
+neigh_coord.F == 7
+neigh_coord.S == 9999
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 13
+neigh_coord.S == 9999
+neigh_coord.F == 3
+neigh_coord.S == 9999
+pq.size() == 14
+at_coord.F == 17
+at_coord.S == 100
+at_dist == 19808011
+
+neigh_coord.F == 18
+neigh_coord.S == 100
+neigh_coord.F == 16
+neigh_coord.S == 9999
+neigh_coord.F == 22
+neigh_coord.S == 100
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 12
+neigh_coord.S == 100
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 17
+neigh_coord.S == 9999
+visited.count(neigh_coord) == 0
+
+pq.size() == 15
+at_coord.F == 22
+at_coord.S == 100
+at_dist == 19808012
+
+neigh_coord.F == 23
+neigh_coord.S == 9999
+neigh_coord.F == 21
+neigh_coord.S == 100
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 17
+neigh_coord.S == 100
+neigh_coord.F == 22
+neigh_coord.S == 9999
+pq.size() == 15
+at_coord.F == 21
+at_coord.S == 100
+at_dist == 19808013
+
+neigh_coord.F == 22
+neigh_coord.S == 100
+neigh_coord.F == 20
+neigh_coord.S == 100
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 16
+neigh_coord.S == 9999
+neigh_coord.F == 21
+neigh_coord.S == 9999
+pq.size() == 15
+at_coord.F == 20
+at_coord.S == 100
+at_dist == 19808014
+
+neigh_coord.F == 21
+neigh_coord.S == 100
+neigh_coord.F == 15
+neigh_coord.S == 100
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 20
+neigh_coord.S == 9999
+visited.count(neigh_coord) == 0
+
+pq.size() == 15
+at_coord.F == 15
+at_coord.S == 100
+at_dist == 19808015
+
+neigh_coord.F == 16
+neigh_coord.S == 9999
+neigh_coord.F == 20
+neigh_coord.S == 100
+neigh_coord.F == 10
+neigh_coord.S == 100
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 15
+neigh_coord.S == 9999
+visited.count(neigh_coord) == 0
+
+pq.size() == 15
+at_coord.F == 10
+at_coord.S == 100
+at_dist == 19808016
+
+neigh_coord.F == 11
+neigh_coord.S == 9999
+neigh_coord.F == 15
+neigh_coord.S == 100
+neigh_coord.F == 5
+neigh_coord.S == 100
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 10
+neigh_coord.S == 9999
+visited.count(neigh_coord) == 0
+
+pq.size() == 14
+at_coord.F == 12
+at_coord.S == 100
+at_dist == 19808012
+
+neigh_coord.F == 13
+neigh_coord.S == 9999
+neigh_coord.F == 11
+neigh_coord.S == 9999
+neigh_coord.F == 17
+neigh_coord.S == 100
+neigh_coord.F == 7
+neigh_coord.S == 9999
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 12
+neigh_coord.S == 9999
+visited.count(neigh_coord) == 0
+
+pq.size() == 13
+at_coord.F == 14
+at_coord.S == 100
+at_dist == 19808010
+
+neigh_coord.F == 13
+neigh_coord.S == 9999
+neigh_coord.F == 19
+neigh_coord.S == 100
+neigh_coord.F == 9
+neigh_coord.S == 100
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 14
+neigh_coord.S == 9999
+pq.size() == 13
+at_coord.F == 9
+at_coord.S == 100
+at_dist == 19808011
+
+neigh_coord.F == 8
+neigh_coord.S == 9999
+neigh_coord.F == 14
+neigh_coord.S == 100
+neigh_coord.F == 4
+neigh_coord.S == 100
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 9
+neigh_coord.S == 9999
+pq.size() == 13
+at_coord.F == 4
+at_coord.S == 100
+at_dist == 19808012
+
+neigh_coord.F == 3
+neigh_coord.S == 100
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 9
+neigh_coord.S == 100
+neigh_coord.F == 4
+neigh_coord.S == 9999
+pq.size() == 13
+at_coord.F == 3
+at_coord.S == 100
+at_dist == 19808013
+
+neigh_coord.F == 4
+neigh_coord.S == 100
+neigh_coord.F == 2
+neigh_coord.S == 100
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 8
+neigh_coord.S == 9999
+neigh_coord.F == 3
+neigh_coord.S == 9999
+pq.size() == 13
+at_coord.F == 2
+at_coord.S == 100
+at_dist == 19808014
+
+neigh_coord.F == 3
+neigh_coord.S == 100
+neigh_coord.F == 1
+neigh_coord.S == 1000
+neigh_coord.F == 7
+neigh_coord.S == 9999
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 2
+neigh_coord.S == 9999
+neigh_coord.F == 2
+neigh_coord.S == 1000
+visited.count(neigh_coord) == 0
+
+pq.size() == 12
+at_coord.F == 19
+at_coord.S == 9999
+at_dist == 9899009
+
+neigh_coord.F == 18
+neigh_coord.S == 9999
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 24
+neigh_coord.S == 9999
+neigh_coord.F == 14
+neigh_coord.S == 9999
+neigh_coord.F == 19
+neigh_coord.S == 100
+pq.size() == 11
+at_coord.F == 18
+at_coord.S == 9999
+at_dist == 9899008
+
+neigh_coord.F == 19
+neigh_coord.S == 9999
+neigh_coord.F == 17
+neigh_coord.S == 9999
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 23
+neigh_coord.S == 9999
+neigh_coord.F == 13
+neigh_coord.S == 9999
+neigh_coord.F == 18
+neigh_coord.S == 100
+pq.size() == 10
+at_coord.F == 20
+at_coord.S == 9999
+at_dist == 9899006
+
+neigh_coord.F == 21
+neigh_coord.S == 9999
+neigh_coord.F == 15
+neigh_coord.S == 9999
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 20
+neigh_coord.S == 100
+pq.size() == 9
+at_coord.F == 17
+at_coord.S == 9999
+at_dist == 9899005
+
+neigh_coord.F == 18
+neigh_coord.S == 9999
+neigh_coord.F == 16
+neigh_coord.S == 9999
+neigh_coord.F == 22
+neigh_coord.S == 9999
+neigh_coord.F == 12
+neigh_coord.S == 9999
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 17
+neigh_coord.S == 100
+pq.size() == 8
+at_coord.F == 15
+at_coord.S == 9999
+at_dist == 9899005
+
+neigh_coord.F == 16
+neigh_coord.S == 9999
+neigh_coord.F == 20
+neigh_coord.S == 9999
+neigh_coord.F == 10
+neigh_coord.S == 9999
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 15
+neigh_coord.S == 100
+pq.size() == 7
+at_coord.F == 12
+at_coord.S == 9999
+at_dist == 9899004
+
+neigh_coord.F == 13
+neigh_coord.S == 9999
+neigh_coord.F == 11
+neigh_coord.S == 9999
+neigh_coord.F == 17
+neigh_coord.S == 9999
+neigh_coord.F == 7
+neigh_coord.S == 9999
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 12
+neigh_coord.S == 100
+pq.size() == 6
+at_coord.F == 10
+at_coord.S == 9999
+at_dist == 9899004
+
+neigh_coord.F == 11
+neigh_coord.S == 9999
+neigh_coord.F == 15
+neigh_coord.S == 9999
+neigh_coord.F == 5
+neigh_coord.S == 9999
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 10
+neigh_coord.S == 100
+pq.size() == 5
+at_coord.F == 7
+at_coord.S == 9999
+at_dist == 9899003
+
+neigh_coord.F == 8
+neigh_coord.S == 9999
+neigh_coord.F == 6
+neigh_coord.S == 9999
+neigh_coord.F == 12
+neigh_coord.S == 9999
+neigh_coord.F == 2
+neigh_coord.S == 9999
+pq.size() == 4
+at_coord.F == 5
+at_coord.S == 9999
+at_dist == 9899003
+
+neigh_coord.F == 6
+neigh_coord.S == 9999
+neigh_coord.F == 10
+neigh_coord.S == 9999
+neigh_coord.F == 0
+neigh_coord.S == 9999
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 5
+neigh_coord.S == 100
+visited.count(neigh_coord) == 0
+
+pq.size() == 4
+at_coord.F == 0
+at_coord.S == 9999
+at_dist == 9899004
+
+neigh_coord.F == 1
+neigh_coord.S == 9999
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 5
+neigh_coord.S == 9999
+neigh_coord.F == 0
+neigh_coord.S == 1000
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 0
+neigh_coord.S == 100
+pq.size() == 3
+at_coord.F == 1
+at_coord.S == 9999
+at_dist == 9899003
+
+neigh_coord.F == 2
+neigh_coord.S == 9999
+neigh_coord.F == 0
+neigh_coord.S == 9999
+neigh_coord.F == 6
+neigh_coord.S == 9999
+neigh_coord.F == 1
+neigh_coord.S == 1000
+pq.size() == 2
+at_coord.F == 2
+at_coord.S == 1000
+at_dist == 900002
+
+neigh_coord.F == 3
+neigh_coord.S == 1000
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 1
+neigh_coord.S == 1000
+neigh_coord.F == 7
+neigh_coord.S == 9999
+neigh_coord.F == 2
+neigh_coord.S == 100
+neigh_coord.F == 2
+neigh_coord.S == 9999
+pq.size() == 2
+at_coord.F == 3
+at_coord.S == 1000
+at_dist == 900003
+
+neigh_coord.F == 4
+neigh_coord.S == 1000
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 2
+neigh_coord.S == 1000
+neigh_coord.F == 8
+neigh_coord.S == 9999
+neigh_coord.F == 3
+neigh_coord.S == 100
+neigh_coord.F == 3
+neigh_coord.S == 9999
+pq.size() == 2
+at_coord.F == 4
+at_coord.S == 1000
+at_dist == 900004
+
+neigh_coord.F == 3
+neigh_coord.S == 1000
+neigh_coord.F == 9
+neigh_coord.S == 1000
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 4
+neigh_coord.S == 100
+neigh_coord.F == 4
+neigh_coord.S == 9999
+pq.size() == 2
+at_coord.F == 9
+at_coord.S == 1000
+at_dist == 900005
+
+neigh_coord.F == 8
+neigh_coord.S == 9999
+neigh_coord.F == 14
+neigh_coord.S == 1000
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 4
+neigh_coord.S == 1000
+neigh_coord.F == 9
+neigh_coord.S == 100
+neigh_coord.F == 9
+neigh_coord.S == 9999
+pq.size() == 2
+at_coord.F == 14
+at_coord.S == 1000
+at_dist == 900006
+
+neigh_coord.F == 13
+neigh_coord.S == 9999
+neigh_coord.F == 19
+neigh_coord.S == 1000
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 9
+neigh_coord.S == 1000
+neigh_coord.F == 14
+neigh_coord.S == 9999
+neigh_coord.F == 14
+neigh_coord.S == 100
+pq.size() == 2
+at_coord.F == 19
+at_coord.S == 1000
+at_dist == 900007
+
+neigh_coord.F == 18
+neigh_coord.S == 1000
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 24
+neigh_coord.S == 1000
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 14
+neigh_coord.S == 1000
+neigh_coord.F == 19
+neigh_coord.S == 100
+neigh_coord.F == 19
+neigh_coord.S == 9999
+pq.size() == 3
+at_coord.F == 24
+at_coord.S == 1000
+at_dist == 900008
+
+neigh_coord.F == 23
+neigh_coord.S == 9999
+neigh_coord.F == 19
+neigh_coord.S == 1000
+neigh_coord.F == 24
+neigh_coord.S == 100
+neigh_coord.F == 24
+neigh_coord.S == 9999
+neigh_coord.F == 24
+neigh_coord.S == 95
+pq.size() == 2
+at_coord.F == 18
+at_coord.S == 1000
+at_dist == 900008
+
+neigh_coord.F == 19
+neigh_coord.S == 1000
+neigh_coord.F == 17
+neigh_coord.S == 1000
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 23
+neigh_coord.S == 9999
+neigh_coord.F == 13
+neigh_coord.S == 9999
+neigh_coord.F == 18
+neigh_coord.S == 100
+neigh_coord.F == 18
+neigh_coord.S == 9999
+pq.size() == 2
+at_coord.F == 17
+at_coord.S == 1000
+at_dist == 900009
+
+neigh_coord.F == 18
+neigh_coord.S == 1000
+neigh_coord.F == 16
+neigh_coord.S == 9999
+neigh_coord.F == 22
+neigh_coord.S == 1000
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 12
+neigh_coord.S == 1000
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 17
+neigh_coord.S == 100
+neigh_coord.F == 17
+neigh_coord.S == 9999
+pq.size() == 3
+at_coord.F == 22
+at_coord.S == 1000
+at_dist == 900010
+
+neigh_coord.F == 23
+neigh_coord.S == 9999
+neigh_coord.F == 21
+neigh_coord.S == 1000
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 17
+neigh_coord.S == 1000
+neigh_coord.F == 22
+neigh_coord.S == 100
+neigh_coord.F == 22
+neigh_coord.S == 9999
+pq.size() == 3
+at_coord.F == 21
+at_coord.S == 1000
+at_dist == 900011
+
+neigh_coord.F == 22
+neigh_coord.S == 1000
+neigh_coord.F == 20
+neigh_coord.S == 1000
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 16
+neigh_coord.S == 9999
+neigh_coord.F == 21
+neigh_coord.S == 100
+neigh_coord.F == 21
+neigh_coord.S == 9999
+pq.size() == 3
+at_coord.F == 20
+at_coord.S == 1000
+at_dist == 900012
+
+neigh_coord.F == 21
+neigh_coord.S == 1000
+neigh_coord.F == 15
+neigh_coord.S == 1000
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 20
+neigh_coord.S == 100
+neigh_coord.F == 20
+neigh_coord.S == 9999
+pq.size() == 3
+at_coord.F == 15
+at_coord.S == 1000
+at_dist == 900013
+
+neigh_coord.F == 16
+neigh_coord.S == 9999
+neigh_coord.F == 20
+neigh_coord.S == 1000
+neigh_coord.F == 10
+neigh_coord.S == 1000
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 15
+neigh_coord.S == 100
+neigh_coord.F == 15
+neigh_coord.S == 9999
+pq.size() == 3
+at_coord.F == 10
+at_coord.S == 1000
+at_dist == 900014
+
+neigh_coord.F == 11
+neigh_coord.S == 9999
+neigh_coord.F == 15
+neigh_coord.S == 1000
+neigh_coord.F == 5
+neigh_coord.S == 1000
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 10
+neigh_coord.S == 100
+neigh_coord.F == 10
+neigh_coord.S == 9999
+pq.size() == 3
+at_coord.F == 5
+at_coord.S == 1000
+at_dist == 900015
+
+neigh_coord.F == 6
+neigh_coord.S == 9999
+neigh_coord.F == 10
+neigh_coord.S == 1000
+neigh_coord.F == 0
+neigh_coord.S == 1000
+visited.count(neigh_coord) == 0
+
+neigh_coord.F == 5
+neigh_coord.S == 9999
+neigh_coord.F == 5
+neigh_coord.S == 100
+visited.count(neigh_coord) == 0
+
+pq.size() == 2
+at_coord.F == 12
+at_coord.S == 1000
+at_dist == 900010
+
+neigh_coord.F == 13
+neigh_coord.S == 9999
+neigh_coord.F == 11
+neigh_coord.S == 9999
+neigh_coord.F == 17
+neigh_coord.S == 1000
+neigh_coord.F == 7
+neigh_coord.S == 9999
+neigh_coord.F == 12
+neigh_coord.S == 100
+neigh_coord.F == 12
+neigh_coord.S == 9999
+pq.size() == 1
+at_coord.F == 0
+at_coord.S == 1000
+at_dist == 900002
+
+neigh_coord.F == 1
+neigh_coord.S == 1000
+neigh_coord.F == 5
+neigh_coord.S == 1000
+neigh_coord.F == 0
+neigh_coord.S == 9999
+neigh_coord.F == 0
+neigh_coord.S == 100
+pq.size() == 0
+at_coord.F == 5
+at_coord.S == 100
+at_dist == 1
+
+neigh_coord.F == 6
+neigh_coord.S == 9999
+neigh_coord.F == 10
+neigh_coord.S == 100
+neigh_coord.F == 0
+neigh_coord.S == 100
+neigh_coord.F == 5
+neigh_coord.S == 1000
+neigh_coord.F == 5
+neigh_coord.S == 9999
+# test completed in 11.698ms
+not ok 3 - 19803008 must equal 5010
+make: *** [Makefile:31: test] Aborted (core dumped)
