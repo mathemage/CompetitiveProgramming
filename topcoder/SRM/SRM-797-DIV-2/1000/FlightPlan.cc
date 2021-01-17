@@ -6,8 +6,13 @@
    * 2h 39m 50s (300/1000) 
    * 2h 46m 50s (300/1000) 
    * 3h  1m 10s (300/1000) 
+   * 3h 14m 40s (300/1000) 
+   * 3h 21m 50s (300/1000) 
+   * 3h 25m 50s (300/1000) 
+   * 3h 31m 50s (300/1000) 
+   * 3h 31m 00s (300/1000) 
  * Total : 1000
- * Status : TLE - WA - TLE (x2) - TLE #12 - TLE #7,#14,#13
+ * Status : TLE - WA - TLE (x2) - TLE #12 - TLE #7,#14,#13,#9 - TLE #12 - WA #57 - TLE #25&WA #57 - TLE #14,#7 - TLE #25
  ==========================================*/
 
 #include <bits/stdc++.h>
@@ -78,8 +83,17 @@ public:
     return neighbors;
   }
 
+  long long get_dist(coord_t at_coord, coord_t neigh_coord, long long C, long long clr, long long cdn, long long cup) {
+    long long delta_row = abs(at_coord.F / C - neigh_coord.F / C);
+    long long delta_col = abs(at_coord.F % C - neigh_coord.F % C);
+
+    return (delta_row + delta_col) * clr
+      + max(0LL, (long long)(at_coord.S - neigh_coord.S)) * cdn
+      + max(0LL, (long long)(neigh_coord.S - at_coord.S)) * cup;
+  }
+
 //   long long fly(int R, int C, vector <int> H, int cup, int cdn, int clr) {
-  long long fly(int R, int C, vector <int> H, long long cup, long long cdn, long long clr) {
+  long long fly(long long R, long long C, vector <int> H, long long cup, long long cdn, long long clr) {
     vector<unordered_set<int>> current_heights(R * C);
 
     // ===Dijkstra===
@@ -100,7 +114,7 @@ public:
 
     int end_rc = R*C-1;
     int end_h = H[end_rc];
-    coord_t end = MP(end_rc,end_h);
+    coord_t end_coord = MP(end_rc,end_h);
     current_heights[end_rc].insert(end_h);
 
     // until PQ empty
@@ -113,12 +127,18 @@ public:
 //       MSG(pq.size());
 //       MSG(at_coord.F); MSG(at_coord.S); MSG(at_dist); cerr << endl;
 
-      if (at_coord == end) {
+      if (at_coord == end_coord) {
         break;
       }
 
       // set `at` as visited
       visited.insert(at_coord);
+
+      // optimize out coords already too far from end_coord
+      if (dist.count(end_coord) > 0 &&
+          dist[at_coord] + get_dist(at_coord, end_coord, C, clr, cdn, cup) >= dist[end_coord]) {
+        continue;
+      }
 
       // if (at_dist > dist[at_coord]) continue;
       if (at_dist > dist[at_coord]) {
@@ -131,11 +151,8 @@ public:
         // if unvisited neighbor
         if (visited.count(neigh_coord) == 0) {
 //           MSG(visited.count(neigh_coord)); cerr << endl;
-          // new_dist =
-          dist_t new_dist = dist[at_coord]
-            + (at_coord.F != neigh_coord.F) * clr
-            + max(0LL, (long long)(at_coord.S - neigh_coord.S)) * cdn
-            + max(0LL, (long long)(neigh_coord.S - at_coord.S)) * cup;
+          // compute new_dist
+          dist_t new_dist = dist[at_coord] + get_dist(at_coord, neigh_coord, C, clr, cdn, cup);
           // new_dist < dist[neigh]?
           bool neigh_dist_undef = dist.count(neigh_coord) == 0;
           if (neigh_dist_undef || new_dist < dist[neigh_coord]) {
@@ -154,6 +171,6 @@ public:
       }
     }
 
-    return dist[end];
+    return dist[end_coord];
   }
 };
