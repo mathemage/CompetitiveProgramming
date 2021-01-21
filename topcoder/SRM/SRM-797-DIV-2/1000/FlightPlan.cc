@@ -40,18 +40,18 @@ class FlightPlan {
 public:
   typedef pair<int, int> coord_t;   // (xy position, height)
   typedef long long dist_t;
-  typedef pair<dist_t, coord_t> pq_t;
+  typedef pair<dist_t, coord_t> next_wakes_t;
 
   // TODO include into C++ template
-  struct hash_pair { 
-    template <class T1, class T2> 
+  struct hash_pair {
+    template <class T1, class T2>
       size_t operator()(const pair<T1, T2>& p) const
-      { 
-        auto hash1 = hash<T1>{}(p.first); 
-        auto hash2 = hash<T2>{}(p.second); 
-        return hash1 ^ hash2; 
-      } 
-  }; 
+      {
+        auto hash1 = hash<T1>{}(p.first);
+        auto hash2 = hash<T2>{}(p.second);
+        return hash1 ^ hash2;
+      }
+  };
 
   vector<coord_t> get_neighbors(coord_t at_coord, int R, int C, vector<int> & H, vector<unordered_set<int>> & current_heights) {
     vector<coord_t> neighbors;
@@ -99,21 +99,22 @@ public:
     // ===stats===
     long long n_push = 0LL;
     long long n_pop = 0LL;
+    long long n_dec = 0LL;
+    long long n_while = 0LL;
 
     // ===Dijkstra===
     // dist
     unordered_map<coord_t, dist_t, hash_pair> dist;
-    // priority queue (PQ)
-    auto cmp = [](pq_t left, pq_t right) { return (left.F) > (right.F); };
-    priority_queue<pq_t, vector<pq_t>, decltype(cmp)> pq(cmp);
+    // priority queue (next_wakes)
+    set<next_wakes_t> next_wakes;
     // visited
     unordered_set<coord_t, hash_pair> visited;
     // dist(start)
     coord_t start_coord = MP(0,H[0]);
     dist_t start_dist = 0LL; 
     dist[start_coord] = start_dist;
-    // PQ <- start
-    pq.push(MP(start_dist, start_coord));
+    // next_wakes <- start
+    next_wakes.insert(MP(start_dist, start_coord));
     n_push++;
     current_heights[0].insert(H[0]);
 
@@ -122,17 +123,21 @@ public:
     coord_t end_coord = MP(end_rc,end_h);
     current_heights[end_rc].insert(end_h);
 
-    // until PQ empty
-    while (!pq.empty()) {
-      // (at_dist, at_coord) <- PQ.pop
-      pq_t at = pq.top();
+    // until next_wakes empty
+    while (!next_wakes.empty()) {
+      n_while++;
+
+      // (at_dist, at_coord) <- next_wakes.top
+      next_wakes_t at = *next_wakes.begin();
       dist_t at_dist = at.F;
       coord_t at_coord = at.S;
-      pq.pop();
+      // next_wakes.pop
+      next_wakes.erase(next_wakes.begin());
       n_pop++;
-//       MSG(pq.size());
+//       MSG(next_wakes.size());
 //       MSG(at_coord.F); MSG(at_coord.S); MSG(at_dist); cerr << endl;
 
+      // early stop
       if (at_coord == end_coord) {
         break;
       }
@@ -146,7 +151,7 @@ public:
         continue;
       }
 
-      // if (at_dist > dist[at_coord]) continue;
+      // lazy Dijkstra: if (at_dist > dist[at_coord]) continue;
       if (at_dist > dist[at_coord]) {
         continue;
       }
@@ -160,16 +165,20 @@ public:
           // compute new_dist
           dist_t new_dist = dist[at_coord] + get_dist(at_coord, neigh_coord, C, clr, cdn, cup);
           // new_dist < dist[neigh]?
-          bool neigh_dist_undef = dist.count(neigh_coord) == 0;
-          if (neigh_dist_undef || new_dist < dist[neigh_coord]) {
-            // relax dist[neigh]
+          bool neigh_dist_undef = (dist.count(neigh_coord) == 0);
+          if (neigh_dist_undef || new_dist < dist[neigh_coord]) {     // relax dist[neigh]
+            if (!neigh_dist_undef) {
+              next_wakes.erase(MP(dist[neigh_coord], neigh_coord));
+              n_dec++;
+            }
+
             dist[neigh_coord] = new_dist;
 
             if (at_coord.F == neigh_coord.F && !neigh_dist_undef) {   // optimize out redundant heights
               current_heights[neigh_coord.F].erase(neigh_coord.S);
             } else {
-              // PQ <- neigh
-              pq.push(MP(new_dist, neigh_coord));
+              // next_wakes <- push neigh
+              next_wakes.insert(MP(new_dist, neigh_coord));
               n_push++;
               current_heights[neigh_coord.F].insert(neigh_coord.S);
             }
@@ -178,7 +187,7 @@ public:
       }
     }
 
-    MSG(n_push); MSG(n_pop);
+    MSG(n_while); MSG(n_push); MSG(n_pop); MSG(n_dec);
 
     return dist[end_coord];
   }
