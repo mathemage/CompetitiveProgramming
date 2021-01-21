@@ -2,12 +2,12 @@
 /* ========================================
    * File Name : schedule.cpp
    * Creation Date : 20-01-2021
-   * Last Modified : St 20. ledna 2021, 15:52:56
+   * Last Modified : Čt 21. ledna 2021, 21:05:17
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://www.hackerrank.com/contests/quora-haqathon/challenges/schedule
-   * Points/Time : 46 m + 
+   * Points/Time : 46 m - 1h 2m 30s - 1h 5m 30s
    * Total :
-   * Status : WA (almost ALL)
+   * Status : WA (almost ALL) - WA (#0) - AC (:-) !!!)
    ==========================================*/
 
 #include <bits/stdc++.h>
@@ -35,32 +35,25 @@ const int UNDEF = -42;
 void solve() {
   int N;
   cin >> N;
-  vector<pair<double, double>> PT(N);
+  vector<double> T(N);
+  vector<double> P(N);
+  vector<pair<double, int>> fail_rates(N);
   REP(i,N) {
-    cin >> PT[i].S >> PT[i].F;
+    cin >> T[i] >> P[i];
+    fail_rates[i] = MP((1.0-P[i]) /T[i], i);
   }
 
-  sort(ALL(PT));
+  sort(ALL(fail_rates));
 //   REP(i,N) {
-//     cerr << PT[i].F << "\t" << PT[i].S << endl;
+//     cerr << fail_rates[i].F << "\t" << fail_rates[i].S << endl;
 //   }
 
-  double sum_time = 0.0;
-  double prod_prob = 1.0;
-  for (auto & pt: PT) {
-    prod_prob *= pt.F;
-    sum_time += pt.S;
+  double result = 0.0;
+  for (auto & fr : fail_rates) {
+    int i = fr.S;
+    result = T[i] + P[i] * result;
   }
-  double result = prod_prob * sum_time;
-
-  sum_time = 0.0;
-  prod_prob = 1.0;
-  for (auto & pt: PT) {
-    sum_time += pt.S;
-    result += (1 - pt.F) * prod_prob * sum_time;
-    prod_prob *= pt.F;
-  }
-
+  cout.precision(16);
   cout << result << endl;
 }
 
