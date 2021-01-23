@@ -1,0 +1,57 @@
+<html><body bgcolor="#000000" text="#ffffff"><table><tr><td colspan="2"><h3>Problem Statement</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><p>
+Three logicians walk into a bar. 
+The bartender asks them: "Do all of you want a beer?"
+<br></br>
+The first logician answers "I don't know."
+<br></br>
+The second logician answers "I don't know."
+<br></br>
+The third logician answers "Yes."
+<br></br>
+The bartender brings them three beers.
+</p>
+<br></br>
+<p>
+If you don't understand what's going on, here's an explanation of the joke:
+</p>
+<p>
+In the joke, all three logicians clearly do want a beer, but they are also logicians.
+The first two logicians have to give the logically correct answer "I don't know", because the question asked whether <i>everyone</i> wants a beer and these logicians are not sure yet whether that's true.
+Only the third logician, after hearing the first two logicians, correctly deduces that everyone really wants a beer.
+</p>
+<br></br>
+<p>
+This problem is a generalized version of the above joke.
+</p>
+<p>
+There are N perfectly logical logicians.
+Each logician either wants a beer or doesn't want a beer.
+Each logician only knows their own preference, they have no idea whether their friends want a beer.
+</p>
+<p>
+The bartender asks them the same question as above: "Do all of you want a beer?"
+The logicians answer, one after another.
+Each logician considers their own preference and everything they heard before when formulating their statement.
+Each statement is one of "Yes", "No", and "I don't know".
+</p>
+<br></br>
+<p>
+You are given the statements made by the logicians: a string <b>responses</b> with N characters.
+The character '+' represents the answer "Yes", '-' represents "No", and '?' represents "I don't know".
+</p>
+<p>
+First, determine whether <b>responses</b> represents a valid set of responses that could have been given by N logicians with some preferences.
+If it is not valid, return -1.
+</p>
+<p>
+If <b>responses</b> represents a valid set of responses, imagine that you are the bartender.
+After hearing all the responses, you can make the conclusion that at least A and at most B of the logicians want a beer.
+Find and return the value of A.
+</p></td></tr><tr><td colspan="2"><h3>Definition</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Class:</td><td>LogiciansAndBeer</td></tr><tr><td>Method:</td><td>bringBeer</td></tr><tr><td>Parameters:</td><td>string</td></tr><tr><td>Returns:</td><td>int</td></tr><tr><td>Method signature:</td><td>int bringBeer(string responses)</td></tr><tr><td colspan="2">(be sure your method is public)</td></tr></table></td></tr><tr><td colspan="2"><h3>Limits</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Time limit (s):</td><td>2.000</td></tr><tr><td>Memory limit (MB):</td><td>256</td></tr></table></td></tr><tr><td colspan="2"><h3>Notes</h3></td></tr><tr><td align="center" valign="top">-</td><td>The value of N is not given explicitly. You can determine it as the number of characters in <b>responses</b>.</td></tr><tr><td colspan="2"><h3>Constraints</h3></td></tr><tr><td align="center" valign="top">-</td><td><b>responses</b> will contain between 1 and 50 characters, inclusive.</td></tr><tr><td align="center" valign="top">-</td><td>Each character in <b>responses</b> will be '+', '-', or '?'.</td></tr><tr><td colspan="2"><h3>Examples</h3></td></tr><tr><td align="center" nowrap="true">0)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>&quot;??+&quot;</pre></td></tr></table></td></tr><tr><td><pre>Returns: 3</pre></td></tr><tr><td><table><tr><td colspan="2">The responses from the original joke. The only possibility is that all three of them want beer.</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">1)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>&quot;????-&quot;</pre></td></tr></table></td></tr><tr><td><pre>Returns: 4</pre></td></tr><tr><td><table><tr><td colspan="2">Here the only possibility is that the first four logicians do want a beer but the last one does not.</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">2)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>&quot;-+-+-+&quot;</pre></td></tr></table></td></tr><tr><td><pre>Returns: -1</pre></td></tr><tr><td><table><tr><td colspan="2">These responses are impossible, they contradict each other. In particular, the second logician cannot give the answer "Yes" (meaning "everyone wants a beer") when the first logician already said "No" (meaning that there is someone who doesn't want a beer).</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">3)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>&quot;?-----&quot;</pre></td></tr></table></td></tr><tr><td><pre>Returns: 1</pre></td></tr><tr><td><table><tr><td colspan="2"><p>Now there are many possibilities. For example:
+</p>
+<ul>
+<li>It's possible that only the second logician does not want beer and all five others do.</li>
+<li>It's also possible that only the first and the fourth logicians want beer.</li>
+<li>And it's also possible that only the first logician wants beer.</li>
+</ul>
+<p>The bartender's correct conclusion after hearing one "I don't know" followed by five "No"s is that the number of wanted beers is somewhere between A=1 and B=5, inclusive.</p></td></tr></table></td></tr></table></td></tr></table><p>This problem statement is the exclusive and proprietary property of TopCoder, Inc.  Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited.  (c)2003, TopCoder, Inc.  All rights reserved.  </p></body></html>
