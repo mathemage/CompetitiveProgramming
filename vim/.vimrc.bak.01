@@ -113,6 +113,19 @@ let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
 au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 set completeopt=menuone,menu,longest,preview
 
+" PLUGINS
+" Specify a directory for plugins
+" - Avoid using standard Vim directory names like 'plugin'
+" Make sure you use single quotes
+call plug#begin('~/.vim/plugged')
+
+function! DoRemote(arg)
+  UpdateRemotePlugins
+endfunction
+Plug 'daeyun/vim-matlab', { 'do': function('DoRemote') }
+
+call plug#end()
+
 "let g:matlab_server_launcher = 'tmux'  "launch the server in a Neovim terminal buffer
 let g:matlab_server_split = 'vertical'
 let g:atp_Compiler='bash'
@@ -144,5 +157,3 @@ if has('gui_running')
   set guifont=Monospace\ 13
   set lines=65 columns=108 linespace=0
 endif
-
-map ,t :!tig<CR>
