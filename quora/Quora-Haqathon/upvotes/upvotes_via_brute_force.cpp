@@ -2,7 +2,7 @@
 /* ========================================
    * File Name : upvotes.cpp
    * Creation Date : 22-01-2021
-   * Last Modified : Út 26. ledna 2021, 20:58:04
+   * Last Modified : Út 26. ledna 2021, 21:10:20
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://www.hackerrank.com/contests/quora-haqathon/challenges/upvotes
    * Points/Time : (57m 20 s + 33 m 50 s) = 1h 31 m 10 s
@@ -46,9 +46,10 @@ void solve_via_brute_force() {
     if (i>0) {
       signs[i] = SGN(upvotes[i]-upvotes[i-1]);
     }
-//     MSG(upvotes[i]); cerr << endl;
+//     MSG(upvotes[i]); MSG(signs[i]); cerr << endl;
 //     cerr << signs[i] << " ";
   }
+//   cerr << endl;
 
   for (int win_start=0, win_end=win_start+K-1 ; win_end < N; win_start++, win_end++) {
 //     cerr << endl << endl; MSG(win_start); MSG(win_end);
