@@ -117,9 +117,9 @@ set completeopt=menuone,menu,longest,preview
 let g:matlab_server_split = 'vertical'
 let g:atp_Compiler='bash'
 
-" spell check
-set spell spelllang=en
-set iskeyword-=_
+" " spell check
+" set spell spelllang=en
+" set iskeyword-=_
 
 autocmd BufEnter *Dockerfile set nospell
 autocmd BufLeave *Dockerfile set spell
