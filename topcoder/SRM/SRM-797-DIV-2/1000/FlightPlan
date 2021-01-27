@@ -9,8 +9,9 @@
    * 3h 14m 40s (300/1000) 
    * 3h 21m 50s (300/1000) 
    * 3h 25m 50s (300/1000) 
+   * 3h 31m 50s (300/1000) 
  * Total : 1000
- * Status : TLE - WA - TLE (x2) - TLE #12 - TLE #7,#14,#13,#9 - TLE #12 - WA #57 - TLE #25&WA #57
+ * Status : TLE - WA - TLE (x2) - TLE #12 - TLE #7,#14,#13,#9 - TLE #12 - WA #57 - TLE #25&WA #57 - TLE #14,#7
  ==========================================*/
 
 #include <bits/stdc++.h>
@@ -134,7 +135,7 @@ public:
 
       // optimize out coords already too far from end_coord
       if (dist.count(end_coord) > 0 &&
-          dist[at_coord] + get_dist(at_coord, end_coord, C, clr, cdn, cup) > dist[end_coord]) {
+          dist[at_coord] + get_dist(at_coord, end_coord, C, clr, cdn, cup) >= dist[end_coord]) {
         continue;
       }
 

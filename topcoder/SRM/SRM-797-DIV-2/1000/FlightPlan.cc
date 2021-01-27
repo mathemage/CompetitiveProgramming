@@ -11,8 +11,10 @@
    * 3h 25m 50s (300/1000) 
    * 3h 31m 50s (300/1000) 
    * 3h 31m 00s (300/1000) 
+   * 5h 00m 10s (300/1000) 
  * Total : 1000
- * Status : TLE - WA - TLE (x2) - TLE #12 - TLE #7,#14,#13,#9 - TLE #12 - WA #57 - TLE #25&WA #57 - TLE #14,#7 - TLE #25
+ * Status : TLE - WA - TLE (x2) - TLE #12 - TLE #7,#14,#13,#9 - TLE #12 - WA #57 - TLE #25&WA #57 - TLE #14,#7 - TLE #25 - segfault #28
+
  ==========================================*/
 
 #include <bits/stdc++.h>
@@ -34,6 +36,7 @@ using namespace std;
 
 const int CLEAN = -1;
 const int UNDEF = -42;
+const long long INF = LLONG_MAX;
 
 
 class FlightPlan {
@@ -53,7 +56,7 @@ public:
       }
   };
 
-  vector<coord_t> get_neighbors(coord_t at_coord, int R, int C, vector<int> & H, vector<unordered_set<int>> & current_heights) {
+  vector<coord_t> get_neighbors(coord_t at_coord, int R, int C, vector<int> & H) {
     vector<coord_t> neighbors;
     int row = at_coord.F / C;
     int col = at_coord.F % C;
@@ -70,13 +73,6 @@ public:
         int neigh_rc = neigh_row * C + neigh_col;
         int neigh_height = max(at_height, H[neigh_rc]);
         neighbors.PB(MP(neigh_rc, neigh_height));
-      }
-    }
-
-    // vertical neighbors
-    for (auto & neigh_h : current_heights[at_coord.F]) {
-      if (neigh_h != at_height) {
-        neighbors.PB(MP(at_coord.F, neigh_h));
       }
     }
 
@@ -109,6 +105,13 @@ public:
     set<next_wakes_t> next_wakes;
     // visited
     unordered_set<coord_t, hash_pair> visited;
+
+    int end_rc = R*C-1;
+    int end_h = H[end_rc];
+    coord_t end_coord = MP(end_rc,end_h);
+    dist[end_coord] = INF;
+    current_heights[end_rc].insert(end_h);
+
     // dist(start)
     coord_t start_coord = MP(0,H[0]);
     dist_t start_dist = 0LL; 
@@ -117,11 +120,6 @@ public:
     next_wakes.insert(MP(start_dist, start_coord));
     n_push++;
     current_heights[0].insert(H[0]);
-
-    int end_rc = R*C-1;
-    int end_h = H[end_rc];
-    coord_t end_coord = MP(end_rc,end_h);
-    current_heights[end_rc].insert(end_h);
 
     // until next_wakes empty
     while (!next_wakes.empty()) {
@@ -156,8 +154,25 @@ public:
         continue;
       }
 
-      // for neighbors
-      for (auto & neigh_coord : get_neighbors(at_coord, R, C, H, current_heights)) {
+      // vertical neighbors
+      for (auto & neigh_h: current_heights[at_coord.F]) {
+        // compute new_dist
+        coord_t neigh_coord = MP(at_coord.F, neigh_h);
+        dist_t new_dist = dist[at_coord] + get_dist(at_coord, neigh_coord, C, clr, cdn, cup);
+
+        if (new_dist < dist[neigh_coord]) {   // optimize out redundant heights
+          if (neigh_coord == end_coord) {
+            dist[end_coord] = new_dist;
+          } else {
+            next_wakes.erase(MP(dist[neigh_coord], neigh_coord));
+            n_dec++;
+            current_heights[neigh_coord.F].erase(neigh_coord.S);
+          }
+        }
+      }
+
+      // horizontal neighbors
+      for (auto & neigh_coord : get_neighbors(at_coord, R, C, H)) {
 //         MSG(neigh_coord.F); MSG(neigh_coord.S);
         // if unvisited neighbor
         if (visited.count(neigh_coord) == 0) {
@@ -174,14 +189,10 @@ public:
 
             dist[neigh_coord] = new_dist;
 
-            if (at_coord.F == neigh_coord.F && !neigh_dist_undef) {   // optimize out redundant heights
-              current_heights[neigh_coord.F].erase(neigh_coord.S);
-            } else {
-              // next_wakes <- push neigh
-              next_wakes.insert(MP(new_dist, neigh_coord));
-              n_push++;
-              current_heights[neigh_coord.F].insert(neigh_coord.S);
-            }
+            // next_wakes <- push neigh
+            next_wakes.insert(MP(new_dist, neigh_coord));
+            n_push++;
+            current_heights[neigh_coord.F].insert(neigh_coord.S);
           }
         }
       }
