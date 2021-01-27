@@ -25,6 +25,19 @@ using namespace std;
 const int CLEAN = -1;
 const int UNDEF = -42;
 
+// direction vectors - 4 directions
+const vector<int> DX4 = { 0, 0, -1, 1};
+const vector<int> DY4 = {-1, 1,  0, 0};
+const vector<pair<int,int>> DXY4 = { {0,-1}, {0,1}, {-1,0}, {1,0} };
+// direction vectors - 8 directions
+const vector<int> DX8 = {-1, -1, -1,   0, 0,   1,  1,  1};
+const vector<int> DY8 = {-1,  0,  1,  -1, 1,  -1,  0,  1};
+const vector<pair<int,int>> DXY8 = {
+  {-1,-1}, {-1,0}, {-1,1},
+  { 0,-1},         { 0,1},
+  { 1,-1}, { 1,0}, { 1,1}
+};
+
 
 class $CLASSNAME$ {
 public:
