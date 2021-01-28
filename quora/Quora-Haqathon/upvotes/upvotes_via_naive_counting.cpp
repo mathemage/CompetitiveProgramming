@@ -2,10 +2,10 @@
 /* ========================================
    * File Name : upvotes.cpp
    * Creation Date : 22-01-2021
-   * Last Modified : St 27. ledna 2021, 21:08:32
+   * Last Modified : Čt 28. ledna 2021, 17:32:32
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://www.hackerrank.com/contests/quora-haqathon/challenges/upvotes
-   * Points/Time : (1h 31 m 10 s (previous) + ) = 
+   * Points/Time : 1h 31 m 10 s (previous) + ? (~30 m) + 
    * Total :
    * Status :
    ==========================================*/
@@ -54,43 +54,43 @@ void solve_via_naive_counting() {
   }
 //   cerr << endl;
 
-  vector<int> pm_l_end_pos, pm_l_end_sgn;
-  vector<int> pm_r_end_pos, pm_r_end_sgn;
+  vector<int> l_end_pos, l_end_sgn;
+  vector<int> r_end_pos, r_end_sgn;
 
   vector<pair<int, int>> pm_sgn;
-  pm_l_end_pos.PB(1); pm_l_end_sgn.PB(signs[1]);
+  l_end_pos.PB(1); l_end_sgn.PB(signs[1]);
   FO(i,1,N) {
     if (signs[i] != 0) {
       if (!pm_sgn.empty() && pm_sgn.back().S == -signs[i]) {
-        pm_r_end_pos.PB(i-1);
-        pm_r_end_sgn.PB(pm_sgn.back().S);
+        r_end_pos.PB(i-1);
+        r_end_sgn.PB(pm_sgn.back().S);
 
-        pm_l_end_pos.PB(pm_sgn.back().F+1);
-        pm_l_end_sgn.PB(signs[i]);
+        l_end_pos.PB(pm_sgn.back().F+1);
+        l_end_sgn.PB(signs[i]);
       }
 
       pm_sgn.PB(MP(i, signs[i]));
     }
   }
-  pm_r_end_pos.PB(N-1);
-  pm_r_end_sgn.PB(pm_sgn.back().S);
+  r_end_pos.PB(N-1);
+  r_end_sgn.PB(pm_sgn.back().S);
 
 //   cerr << "pm_sgn: ";
 //   for (auto & sg: pm_sgn) {
 //     cerr << sg.F << "(" << sg.S << ")\t";
 //   }
 //   cerr << endl;
-//   cerr << "pm_lr_end_pos_sgn: ";
-//   for (int j = 0; j < pm_l_end_pos.size(); j += 1) {
-//     cerr << "[" << pm_l_end_pos[j] << ","  << pm_r_end_pos[j] << "]";
-//     cerr << "(" << pm_l_end_sgn[j] << ","  << pm_r_end_sgn[j] << ")\t";
-//   }
-//   cerr << endl;
+  cerr << "lr_end_pos_sgn: ";
+  for (int j = 0; j < l_end_pos.size(); j += 1) {
+    cerr << "[" << l_end_pos[j] << ","  << r_end_pos[j] << "]";
+    cerr << "(" << l_end_sgn[j] << ","  << r_end_sgn[j] << ")\t";
+  }
+  cerr << endl;
 
   int win_start = 0, win_end=win_start+K-1;
 //   int i_l = 0;
 //   int i_r = 0;
-//   while (! (pm_l_end_pos[i_r] <= win_end && win_end <= pm_r_end_pos[i_r]) ) {
+//   while (! (l_end_pos[i_r] <= win_end && win_end <= r_end_pos[i_r]) ) {
 //     i_r++;  // TODO test
 //   }
 
@@ -109,25 +109,6 @@ void solve_via_naive_counting() {
       if (min_sign == -1 && max_sign <= 0) { result--; }
 //       cerr << endl; MSG(start); MSG(end); MSG(min_sign); MSG(max_sign); MSG(result);
     }
-
-//   // get maximal monotonous intervals
-//   FO(i,1,N) {
-//     if (abs(signs[i]) == 1) {
-//       for (auto & di: {-1,1}) {
-//         int pos = i + di;
-//         while (0 < pos && pos < N) {
-// 
-//         }
-//       }
-//     }
-//   }
-
-//   long long result = 0LL;
-//   for (int start = 1; start + k - 1 < signs.size(); start += 1) {
-//     FO(pos,start,start + k - 1) {
-//       result += signs[pos];   // TODO maximal intervals needed here
-//     }
-//   }
 
     cout << result << endl;
   }
