@@ -2,10 +2,10 @@
 /* ========================================
    * File Name : upvotes.cpp
    * Creation Date : 22-01-2021
-   * Last Modified : Čt 28. ledna 2021, 18:13:46
+   * Last Modified : Čt 28. ledna 2021, 18:33:04
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://www.hackerrank.com/contests/quora-haqathon/challenges/upvotes
-   * Points/Time : 1h 31 m 10 s (previous) + ? (~30 m) + 
+   * Points/Time : 1h 31 m 10 s (previous) + ? (~30 m) + 1h 5 m 50 s
    * Total :
    * Status :
    ==========================================*/
@@ -60,29 +60,9 @@ void solve_via_naive_counting() {
 //     cerr << signs[i] << " ";
   }
 //   cerr << endl;
+  //--------------------------
 
   //-----maximal monotonous intervals-----
-//   vector<int> l_end_pos, l_end_sgn;
-//   vector<int> r_end_pos, r_end_sgn;
-// 
-//   vector<pair<int, int>> nonzero_pos_sgn;
-//   l_end_pos.PB(1); l_end_sgn.PB(signs[1]);
-//   FO(i,1,N) {
-//     if (signs[i] != 0) {
-//       if (!nonzero_pos_sgn.empty() && nonzero_pos_sgn.back().S == -signs[i]) {
-//         r_end_pos.PB(i-1);
-//         r_end_sgn.PB(nonzero_pos_sgn.back().S);
-// 
-//         l_end_pos.PB(nonzero_pos_sgn.back().F+1);
-//         l_end_sgn.PB(signs[i]);
-//       }
-// 
-//       nonzero_pos_sgn.PB(MP(i, signs[i]));
-//     }
-//   }
-//   r_end_pos.PB(N-1);
-//   r_end_sgn.PB(nonzero_pos_sgn.back().S);
-//
   vector<interval_t> nonzero_intervals = { {1, 1, signs[1]} };
   vector<pair<int, int>> nonzero_pos_sgn;
   FO(i,1,N) {
@@ -99,6 +79,7 @@ void solve_via_naive_counting() {
     }
   }
   nonzero_intervals.back().R = N-1;
+  //--------------------------------------------------
 
   //-----debug-print maximal monotonous intervals-----
   cerr << "nonzero_pos_sgn: ";
@@ -106,26 +87,32 @@ void solve_via_naive_counting() {
     cerr << sg.F << "(" << sg.S << ")\t";
   }
   cerr << endl;
-//   cerr << "lr_end_pos_sgn: ";
-//   for (int j = 0; j < l_end_pos.size(); j += 1) {
-//     cerr << "[" << l_end_pos[j] << ","  << r_end_pos[j] << "]";
-//     cerr << "(" << l_end_sgn[j] << ","  << r_end_sgn[j] << ")\t";
-//   }
-//   cerr << endl;
   cerr << "nonzero_intervals: ";
   for (auto & interval : nonzero_intervals) {
     cerr << "[" << interval.L << ","  << interval.R << "]";
     cerr << "(" << (interval.sgn? (interval.sgn>0?'+':'-') : '0')<< ")\t";
   }
   cerr << endl;
+  //--------------------------------------------------
 
+  //-----initialize indices i_l, i_r into nonzero_intervals-----
+  int win_start = 0, win_end=win_start+K-1;
+  int i_l = 0;
+  //-----search for i_r-----
   //-----TODO-----
-//   int win_start = 0, win_end=win_start+K-1;
-//   int i_l = 0;
-//   int i_r = 0;
-//   while (! (l_end_pos[i_r] <= win_end && win_end <= r_end_pos[i_r]) ) {
-//     i_r++;  // TODO test
-//   }
+  int i_r = 0;
+  while (! (nonzero_intervals[i_r].L <= win_end && win_end <= nonzero_intervals[i_r].R) ) {
+    i_r++;  // TODO test
+  }
+  //-----debug-print i_l, i_r-----
+  MSG(win_start); MSG(win_end);
+  cerr << "i_l, i_r: ";
+  for (auto & interval: {nonzero_intervals[i_l], nonzero_intervals[i_r]}) {
+    cerr << "[" << interval.L << ","  << interval.R << "]";
+    cerr << "(" << (interval.sgn? (interval.sgn>0?'+':'-') : '0')<< ")\t";
+  }
+  cerr << endl;
+  //--------------------------------------------------
 
 //   for (win_start=1, win_end=win_start+K-1 ; win_end < N; win_start++, win_end++) {
   for (int win_start=0, win_end=win_start+K-1 ; win_end < N; win_start++, win_end++) {
