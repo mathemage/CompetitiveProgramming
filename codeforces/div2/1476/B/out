@@ -1,0 +1,42 @@
+k == 1.01
+denominator == 1.01
+i == 1
+p[i] == 1
+denominator == 1.01
+bound == 0
+result == 0
+
+i == 2
+p[i] == 202
+denominator == 2.0301
+bound == 0
+result == 0
+
+i == 3
+p[i] == 202
+denominator == 4.0805
+bound == 0
+result == 0
+
+p[0] == 20100
+
+
+0
+k == 2
+denominator == 2
+i == 1
+p[i] == 1
+denominator == 2
+bound == 0
+result == 0
+
+i == 2
+p[i] == 1
+denominator == 6
+bound == 0
+result == 0
+
+p[0] == 1
+
+
+0
