@@ -7,7 +7,7 @@
 
    * File Name : gen_max_test.cxx
    * Creation Date : 07-01-2021
-   * Last Modified : Pá 29. ledna 2021, 16:36:50
+   * Last Modified : Ne 31. ledna 2021, 18:15:47
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL :
    * Points :
@@ -43,7 +43,7 @@ int main() {
   while (cases--) {
     // n, m...
     int n = 100;
-    int k = 100;
+    int k = 1+cases%100;
     cout << n << " " << k << endl;
 
     // vector<int> v1(n);
