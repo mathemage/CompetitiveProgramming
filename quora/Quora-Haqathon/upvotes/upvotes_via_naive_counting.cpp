@@ -2,10 +2,10 @@
 /* ========================================
    * File Name : upvotes.cpp
    * Creation Date : 22-01-2021
-   * Last Modified : Út 2. února 2021, 20:07:42
+   * Last Modified : Út 2. února 2021, 20:33:51
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://www.hackerrank.com/contests/quora-haqathon/challenges/upvotes
-   * Points/Time : 1h 31 m 10 s (previous) + ? (~30 m) + 1h 5 m 50 s + 
+   * Points/Time : 1h 31 m 10 s (previous) + ? (~30 m) + 1h 5 m 50 s + (45m )
    * Total :
    * Status :
    ==========================================*/
@@ -66,11 +66,12 @@ void solve_via_naive_counting() {
 //   cerr << endl;
   //--------------------------
 
-  //-----maximal monotonous intervals-----
-  vector<interval_t> nonzero_intervals = { {1, 1, signs[1]} };
+  //-----maximal nonzero and zero intervals-----
+  vector<interval_t> nonzero_intervals = { {1,1,signs[1]} };
   vector<pair<int, int>> nonzero_possgn;
-  FO(i,1,N) {
-    if (signs[i] != 0) {
+  vector<interval_t> zero_intervals = { };
+  FO(i,1,N-1) {
+    if (signs[i] != 0) {  // nonzero intervals
       if (!nonzero_possgn.empty() ) {
         auto & last_possgn = nonzero_possgn.back();
         if (last_possgn.S == -signs[i]) {
@@ -80,19 +81,33 @@ void solve_via_naive_counting() {
       }
 
       nonzero_possgn.PB(MP(i, signs[i]));
+    } else {  // zero intervals
+      if (zero_intervals.empty() || zero_intervals.back().R!=i-1) {
+        zero_intervals.PB({i,i,0});
+      } else {
+        zero_intervals.back().R = i;
+      }
     }
   }
   nonzero_intervals.back().R = N-1;
   //--------------------------------------------------
 
-  //-----debug-print maximal monotonous intervals-----
+  //-----debug-print maximal nonzero and zero intervals-----
   cerr << "nonzero_possgn: ";
   for (auto & sg: nonzero_possgn) {
     cerr << sg.F << "(" << sgn_int2char(sg.S) << ")\t";
   }
   cerr << endl;
+
   cerr << "nonzero_intervals: ";
   for (auto & interval : nonzero_intervals) {
+    cerr << "[" << interval.L << ","  << interval.R << "]";
+    cerr << "(" << sgn_int2char(interval.sgn) << ")\t";
+  }
+  cerr << endl;
+
+  cerr << "zero_intervals: ";
+  for (auto & interval : zero_intervals) {
     cerr << "[" << interval.L << ","  << interval.R << "]";
     cerr << "(" << sgn_int2char(interval.sgn) << ")\t";
   }
