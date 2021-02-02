@@ -50,6 +50,8 @@ const vector<pair<int,int>> DXY8 = {
 void solve() {
   long long result = 0LL;
   cout << result << endl;
+//   bool result = false;
+//   cout << (result?"YES":"NO") << endl;
 }
 
 int main() {
