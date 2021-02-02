@@ -2,10 +2,10 @@
 /* ========================================
    * File Name : upvotes.cpp
    * Creation Date : 22-01-2021
-   * Last Modified : Čt 28. ledna 2021, 18:33:04
+   * Last Modified : Út 2. února 2021, 19:51:59
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://www.hackerrank.com/contests/quora-haqathon/challenges/upvotes
-   * Points/Time : 1h 31 m 10 s (previous) + ? (~30 m) + 1h 5 m 50 s
+   * Points/Time : 1h 31 m 10 s (previous) + ? (~30 m) + 1h 5 m 50 s + 
    * Total :
    * Status :
    ==========================================*/
@@ -64,33 +64,33 @@ void solve_via_naive_counting() {
 
   //-----maximal monotonous intervals-----
   vector<interval_t> nonzero_intervals = { {1, 1, signs[1]} };
-  vector<pair<int, int>> nonzero_pos_sgn;
+  vector<pair<int, int>> nonzero_possgn;
   FO(i,1,N) {
     if (signs[i] != 0) {
-      if (!nonzero_pos_sgn.empty() ) {
-        auto & last_pos_sgn = nonzero_pos_sgn.back();
-        if (last_pos_sgn.S == -signs[i]) {
+      if (!nonzero_possgn.empty() ) {
+        auto & last_possgn = nonzero_possgn.back();
+        if (last_possgn.S == -signs[i]) {
           nonzero_intervals.back().R = i-1;
-          nonzero_intervals.PB( {last_pos_sgn.F+1, last_pos_sgn.F+1, signs[i]} );
+          nonzero_intervals.PB( {last_possgn.F+1, last_possgn.F+1, signs[i]} );
         }
       }
 
-      nonzero_pos_sgn.PB(MP(i, signs[i]));
+      nonzero_possgn.PB(MP(i, signs[i]));
     }
   }
   nonzero_intervals.back().R = N-1;
   //--------------------------------------------------
 
   //-----debug-print maximal monotonous intervals-----
-  cerr << "nonzero_pos_sgn: ";
-  for (auto & sg: nonzero_pos_sgn) {
+  cerr << "nonzero_possgn: ";
+  for (auto & sg: nonzero_possgn) {
     cerr << sg.F << "(" << sg.S << ")\t";
   }
   cerr << endl;
   cerr << "nonzero_intervals: ";
   for (auto & interval : nonzero_intervals) {
     cerr << "[" << interval.L << ","  << interval.R << "]";
-    cerr << "(" << (interval.sgn? (interval.sgn>0?'+':'-') : '0')<< ")\t";
+    cerr << "(" << (interval.sgn? (interval.sgn>0?'+':'-') : '0') << ")\t";
   }
   cerr << endl;
   //--------------------------------------------------
