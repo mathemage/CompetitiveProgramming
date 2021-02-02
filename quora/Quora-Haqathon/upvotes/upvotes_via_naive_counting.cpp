@@ -2,7 +2,7 @@
 /* ========================================
    * File Name : upvotes.cpp
    * Creation Date : 22-01-2021
-   * Last Modified : Út 2. února 2021, 20:02:47
+   * Last Modified : Út 2. února 2021, 20:07:42
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://www.hackerrank.com/contests/quora-haqathon/challenges/upvotes
    * Points/Time : 1h 31 m 10 s (previous) + ? (~30 m) + 1h 5 m 50 s + 
@@ -103,10 +103,9 @@ void solve_via_naive_counting() {
   int win_start = 0, win_end=win_start+K-1;
   int i_l = 0;
   //-----search for i_r-----
-  //-----TODO-----
   int i_r = 0;
   while (! (nonzero_intervals[i_r].L <= win_end && win_end <= nonzero_intervals[i_r].R) ) {
-    i_r++;  // TODO test
+    i_r++;
   }
   //-----debug-print i_l, i_r-----
   MSG(win_start); MSG(win_end);
