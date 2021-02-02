@@ -2,7 +2,7 @@
 /* ========================================
    * File Name : upvotes.cpp
    * Creation Date : 22-01-2021
-   * Last Modified : Út 2. února 2021, 19:51:59
+   * Last Modified : Út 2. února 2021, 20:02:47
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://www.hackerrank.com/contests/quora-haqathon/challenges/upvotes
    * Points/Time : 1h 31 m 10 s (previous) + ? (~30 m) + 1h 5 m 50 s + 
@@ -39,6 +39,10 @@ struct interval_t {
   int R;
   int sgn;
 };
+
+char sgn_int2char(int sgn) {
+  return sgn? (sgn>0?'+':'-') : '0';
+}
 
 void solve_via_naive_counting() {
   int N, K;
@@ -84,13 +88,13 @@ void solve_via_naive_counting() {
   //-----debug-print maximal monotonous intervals-----
   cerr << "nonzero_possgn: ";
   for (auto & sg: nonzero_possgn) {
-    cerr << sg.F << "(" << sg.S << ")\t";
+    cerr << sg.F << "(" << sgn_int2char(sg.S) << ")\t";
   }
   cerr << endl;
   cerr << "nonzero_intervals: ";
   for (auto & interval : nonzero_intervals) {
     cerr << "[" << interval.L << ","  << interval.R << "]";
-    cerr << "(" << (interval.sgn? (interval.sgn>0?'+':'-') : '0') << ")\t";
+    cerr << "(" << sgn_int2char(interval.sgn) << ")\t";
   }
   cerr << endl;
   //--------------------------------------------------
@@ -109,7 +113,7 @@ void solve_via_naive_counting() {
   cerr << "i_l, i_r: ";
   for (auto & interval: {nonzero_intervals[i_l], nonzero_intervals[i_r]}) {
     cerr << "[" << interval.L << ","  << interval.R << "]";
-    cerr << "(" << (interval.sgn? (interval.sgn>0?'+':'-') : '0')<< ")\t";
+    cerr << "(" << sgn_int2char(interval.sgn) << ")\t";
   }
   cerr << endl;
   //--------------------------------------------------
