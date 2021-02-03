@@ -4,6 +4,7 @@ zero_intervals: [4,4](0)
 win_start == 0
 win_end == 2
 i_l, i_r: [1,2](+)	[1,2](+)	
+win_balance: 3
 3
 0
 -2

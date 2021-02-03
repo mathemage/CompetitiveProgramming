@@ -2,10 +2,10 @@
 /* ========================================
    * File Name : upvotes.cpp
    * Creation Date : 22-01-2021
-   * Last Modified : St 3. února 2021, 14:44:39
+   * Last Modified : St 3. února 2021, 15:32:55
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://www.hackerrank.com/contests/quora-haqathon/challenges/upvotes
-   * Points/Time : 1h 31 m 10 s (previous) + ? (~30 m) + 1h 5 m 50 s + (45m )
+   * Points/Time : 1h 31 m 10 s (previous) + ? (~30 m) + 1h 5 m 50 s + (1h 39m 40s )
    * Total :
    * Status :
    ==========================================*/
@@ -92,16 +92,40 @@ void solve_via_naive_counting() {
   nonzero_intervals.back().R = N-1;
   //--------------------------------------------------
 
-  //-----initialize indices i_l, i_r into nonzero_intervals-----
   int win_start = 0, win_end=win_start+K-1;
+
+  //-----initialize indices i_l, i_r into nonzero_intervals-----
   int i_l = 0;
   //-----search for i_r-----
   int i_r = 0;
   while (! (nonzero_intervals[i_r].L <= win_end && win_end <= nonzero_intervals[i_r].R) ) {
     i_r++;
   }
+  int i_0 = 0;  // index zero_intervals
   //--------------------------------------------------
   
+  //-----calculate balance for the first window-----
+  long long win_balance = 0LL;
+  FO(i,i_l,i_r) {
+    int sgn_i = nonzero_intervals[i].sgn;
+    long long width = min(win_end, nonzero_intervals[i].R) - max(win_start, nonzero_intervals[i].L) + 1;
+    win_balance += sgn_i * width * (width+1LL) / 2LL; // TODO: extract interval_contribution(interval_t interval, sgn_i)
+
+    // subtract subranges inside zero_intervals
+    while (nonzero_intervals[i_l].L <= zero_intervals[i_0].L     
+          && zero_intervals[i_0].R <= nonzero_intervals[i_r].R) { // TODO: extract is_subinterval(interval_t inner, interval_t outer)
+      long long width_0 = min(win_end, zero_intervals[i_0].R) - max(win_start, zero_intervals[i_0].L) + 1;
+      win_balance -= sgn_i * width_0 * (width_0+1LL) / 2LL;
+
+      if (zero_intervals[i_0].R < min(win_end, nonzero_intervals[i].R)) {
+        i_0++;
+      } else {
+        break;
+      }
+    }
+  }
+  //--------------------------------------------------
+
 
   //----------------DEBUG-print-----------------------
   cerr << "nonzero_possgn: ";
@@ -110,7 +134,7 @@ void solve_via_naive_counting() {
   }
   cerr << endl;
 
-  cerr << "nonzero_intervals: ";
+  cerr << "nonzero_intervals: "; // TODO: extract print_interval(string name, interval_t interval)
   for (auto & interval : nonzero_intervals) {
     cerr << "[" << interval.L << ","  << interval.R << "]";
     cerr << "(" << sgn_int2char(interval.sgn) << ")\t";
@@ -131,6 +155,9 @@ void solve_via_naive_counting() {
     cerr << "(" << sgn_int2char(interval.sgn) << ")\t";
   }
   cerr << endl;
+
+  cout << "win_balance: ";
+  cout << win_balance << endl;
   //--------------------------------------------------
 
 
