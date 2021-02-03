@@ -2,7 +2,7 @@
 /* ========================================
    * File Name : upvotes.cpp
    * Creation Date : 22-01-2021
-   * Last Modified : St 3. února 2021, 23:04:09
+   * Last Modified : St 3. února 2021, 23:54:57
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://www.hackerrank.com/contests/quora-haqathon/challenges/upvotes
    * Points/Time : 1h 31 m 10 s (previous) + ? (~30 m) + 1h 5 m 50 s + (1h 39m 40s )
@@ -105,78 +105,68 @@ void solve_via_naive_counting() {
   nonzero_intervals.back().R = N-1;
   //--------------------------------------------------
 
-  int win_start = 0, win_end=win_start+K-1;
-
-  //-----initialize indices i_l, i_r into nonzero_intervals-----
-  int i_l = 0;
-  //-----search for i_r-----
-  int i_r = 0;
-  while (! (nonzero_intervals[i_r].L <= win_end && win_end <= nonzero_intervals[i_r].R) ) {
-    i_r++;
-  }
-  int i0_l = 0;  // leftmost index for i0
-  //--------------------------------------------------
-  
-  //-----calculate balance for the first window-----
-  long long win_balance = 0LL;
-  int i0 = i0_l;  // index to zero_intervals
-  FO(i,i_l,i_r) {
-    int sgn_i = nonzero_intervals[i].sgn;
-    long long width = min(win_end, nonzero_intervals[i].R) - max(win_start, nonzero_intervals[i].L) + 1;
-    win_balance += sgn_i * width * (width+1LL) / 2LL; // TODO: extract interval_contribution(interval_t interval, sgn_i)
-
-    // subtract subranges inside zero_intervals
-    while ( is_subinterval(zero_intervals[i0],
-          {nonzero_intervals[i_l].L, nonzero_intervals[i_r].R, 0}) ) {
-      long long width_0 = min(win_end, zero_intervals[i0].R) - max(win_start, zero_intervals[i0].L) + 1;
-      win_balance -= sgn_i * width_0 * (width_0+1LL) / 2LL;
-
-      if (zero_intervals[i0].R < min(win_end, nonzero_intervals[i].R)) {
-        i0++;
-      } else {
-        break;
-      }
-    }
-  }
-  //--------------------------------------------------
-
 
   //----------------DEBUG-print-----------------------
-  cerr << "nonzero_possgn: ";
-  for (auto & sg: nonzero_possgn) {
-    cerr << sg.F << "(" << sgn_int2char(sg.S) << ")\t";
-  }
-  cerr << endl;
-
-  print_interval("nonzero_intervals", nonzero_intervals);
-  print_interval("zero_intervals", zero_intervals);
-
-  MSG(win_start); MSG(win_end);
-  print_interval("i_l, i_r", {nonzero_intervals[i_l], nonzero_intervals[i_r]});
-
-  cout << "win_balance: ";
-  cout << win_balance << endl;
+//   cerr << "nonzero_possgn: ";
+//   for (auto & sg: nonzero_possgn) {
+//     cerr << sg.F << "(" << sgn_int2char(sg.S) << ")\t";
+//   }
+//   cerr << endl;
+// 
+//   print_interval("nonzero_intervals", nonzero_intervals);
+//   print_interval("zero_intervals", zero_intervals);
   //--------------------------------------------------
 
 
-//   for (win_start=1, win_end=win_start+K-1 ; win_end < N; win_start++, win_end++) {
+  int i_l = 0, i_r = 0;   // indices i_l, i_r into nonzero_intervals
+  int i0_l = 0;  // leftmost index for i0
+  
   for (int win_start=0, win_end=win_start+K-1 ; win_end < N; win_start++, win_end++) {
-//     cerr << endl << endl; MSG(win_start); MSG(win_end);
-    long long result = 0LL;
-    FO(start,win_start,win_end) FO(end,start+1,win_end) {
-      int min_sign = INF;
-      int max_sign = -INF;
-      FO(i,start+1,end) {
-        MINUPDATE(min_sign, signs[i]);
-        MAXUPDATE(max_sign, signs[i]);
-      }
-
-      if (min_sign >= 0 && max_sign == 1) { result++; }
-      if (min_sign == -1 && max_sign <= 0) { result--; }
-//       cerr << endl; MSG(start); MSG(end); MSG(min_sign); MSG(max_sign); MSG(result);
+    //-----advance with i_l-----
+    while (! (nonzero_intervals[i_l].L <= win_start+1 && win_start+1 <= nonzero_intervals[i_l].R) ) {
+      i_l++;
+    }
+    //-----advance with i_r-----
+    while (! (nonzero_intervals[i_r].L <= win_end && win_end <= nonzero_intervals[i_r].R) ) {
+      i_r++;
+    }
+    //-----advance with i_0l-----
+    while (zero_intervals[i0_l].R < win_start+1) {
+      i0_l++;
     }
 
-    cout << result << endl;
+//     cerr << endl;
+//     MSG(win_start); MSG(win_end);
+//     MSG(i_l); MSG(i_r);
+//     print_interval("i_l, i_r", {nonzero_intervals[i_l], nonzero_intervals[i_r]});
+
+    //-----calculate balance for the current window-----
+    long long win_balance = 0LL;
+    int i0 = i0_l;  // initialize index to zero_intervals
+    FO(i,i_l,i_r) {
+      int sgn_i = nonzero_intervals[i].sgn;
+      long long width = min(win_end, nonzero_intervals[i].R) - max(win_start+1, nonzero_intervals[i].L) + 1;
+      win_balance += sgn_i * width * (width+1LL) / 2LL; // TODO: extract interval_contribution(interval_t interval, sgn_i)
+//       MSG(i); MSG(win_balance);
+
+      // subtract subranges inside zero_intervals
+      while ( is_subinterval(zero_intervals[i0],
+            {nonzero_intervals[i_l].L, nonzero_intervals[i_r].R, 0}) ) {
+        long long width_0 = min(win_end, zero_intervals[i0].R) - max(win_start+1, zero_intervals[i0].L) + 1;
+        win_balance -= sgn_i * width_0 * (width_0+1LL) / 2LL;
+
+        if (zero_intervals[i0].R < min(win_end, nonzero_intervals[i].R)) {
+          i0++;
+        } else {
+          break;
+        }
+      }
+//       MSG(win_balance);
+    }
+    //--------------------------------------------------
+
+//     cerr << "win_balance: ";
+    cout << win_balance << endl;
   }
 }
 
