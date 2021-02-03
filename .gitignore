@@ -4,6 +4,7 @@ build*/
 *.pro.user
 *main
 *driver
+*driver_*
 *core
 *.swp
 /.idea/
