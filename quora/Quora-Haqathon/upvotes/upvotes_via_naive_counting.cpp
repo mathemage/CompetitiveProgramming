@@ -2,7 +2,7 @@
 /* ========================================
    * File Name : upvotes.cpp
    * Creation Date : 22-01-2021
-   * Last Modified : St 3. února 2021, 22:59:10
+   * Last Modified : St 3. února 2021, 23:04:09
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://www.hackerrank.com/contests/quora-haqathon/challenges/upvotes
    * Points/Time : 1h 31 m 10 s (previous) + ? (~30 m) + 1h 5 m 50 s + (1h 39m 40s )
@@ -114,24 +114,25 @@ void solve_via_naive_counting() {
   while (! (nonzero_intervals[i_r].L <= win_end && win_end <= nonzero_intervals[i_r].R) ) {
     i_r++;
   }
-  int i_0 = 0;  // index zero_intervals
+  int i0_l = 0;  // leftmost index for i0
   //--------------------------------------------------
   
   //-----calculate balance for the first window-----
   long long win_balance = 0LL;
+  int i0 = i0_l;  // index to zero_intervals
   FO(i,i_l,i_r) {
     int sgn_i = nonzero_intervals[i].sgn;
     long long width = min(win_end, nonzero_intervals[i].R) - max(win_start, nonzero_intervals[i].L) + 1;
     win_balance += sgn_i * width * (width+1LL) / 2LL; // TODO: extract interval_contribution(interval_t interval, sgn_i)
 
     // subtract subranges inside zero_intervals
-    while ( is_subinterval(zero_intervals[i_0],
+    while ( is_subinterval(zero_intervals[i0],
           {nonzero_intervals[i_l].L, nonzero_intervals[i_r].R, 0}) ) {
-      long long width_0 = min(win_end, zero_intervals[i_0].R) - max(win_start, zero_intervals[i_0].L) + 1;
+      long long width_0 = min(win_end, zero_intervals[i0].R) - max(win_start, zero_intervals[i0].L) + 1;
       win_balance -= sgn_i * width_0 * (width_0+1LL) / 2LL;
 
-      if (zero_intervals[i_0].R < min(win_end, nonzero_intervals[i].R)) {
-        i_0++;
+      if (zero_intervals[i0].R < min(win_end, nonzero_intervals[i].R)) {
+        i0++;
       } else {
         break;
       }
