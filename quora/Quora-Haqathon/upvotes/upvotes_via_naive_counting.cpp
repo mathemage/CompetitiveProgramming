@@ -2,7 +2,7 @@
 /* ========================================
    * File Name : upvotes.cpp
    * Creation Date : 22-01-2021
-   * Last Modified : St 3. února 2021, 22:53:17
+   * Last Modified : St 3. února 2021, 22:59:10
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://www.hackerrank.com/contests/quora-haqathon/challenges/upvotes
    * Points/Time : 1h 31 m 10 s (previous) + ? (~30 m) + 1h 5 m 50 s + (1h 39m 40s )
@@ -51,6 +51,10 @@ void print_interval(string name, vector<interval_t> intervals) {
     cerr << "(" << sgn_int2char(interval.sgn) << ")\t";
   }
   cerr << endl;
+}
+
+bool is_subinterval(interval_t inner, interval_t outer) {
+  return outer.L <= inner.L && inner.R <= outer.R;
 }
 
 void solve_via_naive_counting() {
@@ -121,8 +125,8 @@ void solve_via_naive_counting() {
     win_balance += sgn_i * width * (width+1LL) / 2LL; // TODO: extract interval_contribution(interval_t interval, sgn_i)
 
     // subtract subranges inside zero_intervals
-    while (nonzero_intervals[i_l].L <= zero_intervals[i_0].L     
-          && zero_intervals[i_0].R <= nonzero_intervals[i_r].R) { // TODO: extract is_subinterval(interval_t inner, interval_t outer)
+    while ( is_subinterval(zero_intervals[i_0],
+          {nonzero_intervals[i_l].L, nonzero_intervals[i_r].R, 0}) ) {
       long long width_0 = min(win_end, zero_intervals[i_0].R) - max(win_start, zero_intervals[i_0].L) + 1;
       win_balance -= sgn_i * width_0 * (width_0+1LL) / 2LL;
 
