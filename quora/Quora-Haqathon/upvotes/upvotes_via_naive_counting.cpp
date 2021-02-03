@@ -2,7 +2,7 @@
 /* ========================================
    * File Name : upvotes.cpp
    * Creation Date : 22-01-2021
-   * Last Modified : Út 2. února 2021, 20:33:51
+   * Last Modified : St 3. února 2021, 14:44:39
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://www.hackerrank.com/contests/quora-haqathon/challenges/upvotes
    * Points/Time : 1h 31 m 10 s (previous) + ? (~30 m) + 1h 5 m 50 s + (45m )
@@ -92,7 +92,18 @@ void solve_via_naive_counting() {
   nonzero_intervals.back().R = N-1;
   //--------------------------------------------------
 
-  //-----debug-print maximal nonzero and zero intervals-----
+  //-----initialize indices i_l, i_r into nonzero_intervals-----
+  int win_start = 0, win_end=win_start+K-1;
+  int i_l = 0;
+  //-----search for i_r-----
+  int i_r = 0;
+  while (! (nonzero_intervals[i_r].L <= win_end && win_end <= nonzero_intervals[i_r].R) ) {
+    i_r++;
+  }
+  //--------------------------------------------------
+  
+
+  //----------------DEBUG-print-----------------------
   cerr << "nonzero_possgn: ";
   for (auto & sg: nonzero_possgn) {
     cerr << sg.F << "(" << sgn_int2char(sg.S) << ")\t";
@@ -112,17 +123,7 @@ void solve_via_naive_counting() {
     cerr << "(" << sgn_int2char(interval.sgn) << ")\t";
   }
   cerr << endl;
-  //--------------------------------------------------
 
-  //-----initialize indices i_l, i_r into nonzero_intervals-----
-  int win_start = 0, win_end=win_start+K-1;
-  int i_l = 0;
-  //-----search for i_r-----
-  int i_r = 0;
-  while (! (nonzero_intervals[i_r].L <= win_end && win_end <= nonzero_intervals[i_r].R) ) {
-    i_r++;
-  }
-  //-----debug-print i_l, i_r-----
   MSG(win_start); MSG(win_end);
   cerr << "i_l, i_r: ";
   for (auto & interval: {nonzero_intervals[i_l], nonzero_intervals[i_r]}) {
@@ -131,6 +132,7 @@ void solve_via_naive_counting() {
   }
   cerr << endl;
   //--------------------------------------------------
+
 
 //   for (win_start=1, win_end=win_start+K-1 ; win_end < N; win_start++, win_end++) {
   for (int win_start=0, win_end=win_start+K-1 ; win_end < N; win_start++, win_end++) {
