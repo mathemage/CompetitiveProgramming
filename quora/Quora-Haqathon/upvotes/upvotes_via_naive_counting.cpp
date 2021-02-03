@@ -2,7 +2,7 @@
 /* ========================================
    * File Name : upvotes.cpp
    * Creation Date : 22-01-2021
-   * Last Modified : St 3. února 2021, 15:32:55
+   * Last Modified : St 3. února 2021, 22:53:17
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://www.hackerrank.com/contests/quora-haqathon/challenges/upvotes
    * Points/Time : 1h 31 m 10 s (previous) + ? (~30 m) + 1h 5 m 50 s + (1h 39m 40s )
@@ -42,6 +42,15 @@ struct interval_t {
 
 char sgn_int2char(int sgn) {
   return sgn? (sgn>0?'+':'-') : '0';
+}
+
+void print_interval(string name, vector<interval_t> intervals) {
+  cerr << name << ": ";
+  for (auto & interval : intervals) {
+    cerr << "[" << interval.L << ","  << interval.R << "]";
+    cerr << "(" << sgn_int2char(interval.sgn) << ")\t";
+  }
+  cerr << endl;
 }
 
 void solve_via_naive_counting() {
@@ -134,27 +143,11 @@ void solve_via_naive_counting() {
   }
   cerr << endl;
 
-  cerr << "nonzero_intervals: "; // TODO: extract print_interval(string name, interval_t interval)
-  for (auto & interval : nonzero_intervals) {
-    cerr << "[" << interval.L << ","  << interval.R << "]";
-    cerr << "(" << sgn_int2char(interval.sgn) << ")\t";
-  }
-  cerr << endl;
-
-  cerr << "zero_intervals: ";
-  for (auto & interval : zero_intervals) {
-    cerr << "[" << interval.L << ","  << interval.R << "]";
-    cerr << "(" << sgn_int2char(interval.sgn) << ")\t";
-  }
-  cerr << endl;
+  print_interval("nonzero_intervals", nonzero_intervals);
+  print_interval("zero_intervals", zero_intervals);
 
   MSG(win_start); MSG(win_end);
-  cerr << "i_l, i_r: ";
-  for (auto & interval: {nonzero_intervals[i_l], nonzero_intervals[i_r]}) {
-    cerr << "[" << interval.L << ","  << interval.R << "]";
-    cerr << "(" << sgn_int2char(interval.sgn) << ")\t";
-  }
-  cerr << endl;
+  print_interval("i_l, i_r", {nonzero_intervals[i_l], nonzero_intervals[i_r]});
 
   cout << "win_balance: ";
   cout << win_balance << endl;
