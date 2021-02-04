@@ -2,12 +2,12 @@
 /* ========================================
    * File Name : upvotes_via_dp.cpp
    * Creation Date : 04-02-2021
-   * Last Modified : Pá 5. února 2021, 00:07:32
+   * Last Modified : Pá 5. února 2021, 00:24:55
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://www.hackerrank.com/contests/quora-haqathon/challenges/upvotes/problem
-   * Points/Time : 1h 2m - ?
+   * Points/Time : 1h 2m - ? - +9m 50s
    * Total/ETA : 1h 15m
-   * Status : WA (10/29) & TLE (3/29 when debug print) - WA (10/29)
+   * Status : WA (10/29) & TLE (3/29 when debug print) - WA (10/29) - WA (9/29)
    ==========================================*/
 
 #include <bits/stdc++.h>
@@ -104,15 +104,15 @@ void solve() {
   long long balance = 0LL;
   FO(win_pos,win_start,win_end) {
     balance += counts_inc[win_pos] - counts_dec[win_pos];
-//     MSG(win_pos); MSG(counts_inc[win_pos]); MSG(counts_dec[win_pos]); MSG(balance);
+//       MSG(win_pos); MSG(counts_inc[win_pos]); MSG(counts_dec[win_pos]); MSG(balance);
   }
   cout << balance << endl;
   /**********************/
 
   for (win_start=1, win_end=win_start+K-1 ; win_end < N; win_start++, win_end++) {
-//     cerr << endl; MSG(win_start); MSG(win_end); MSG(balance);
+//       cerr << endl; MSG(win_start); MSG(win_end); MSG(balance);
     balance += counts_inc[win_end] - counts_dec[win_end];
-//     MSG(balance);
+//       MSG(balance);
 
     if (lengths_inc.front()==0) {
       lengths_inc.pop();
@@ -120,7 +120,7 @@ void solve() {
       balance -= min((long long)K, lengths_inc.front());
       lengths_inc.front()--;
     }
-//     MSG(balance);
+//       MSG(balance);
 
     if (lengths_dec.front()==0) {
       lengths_dec.pop();
@@ -128,8 +128,8 @@ void solve() {
       balance -= -min((long long)K, lengths_dec.front());
       lengths_dec.front()--;
     }
-//     MSG(balance);
-    cout << balance << endl;
+//       MSG(balance);
+    cout << (K==1?0:balance) << endl;
   }
 }
 
