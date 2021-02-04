@@ -2,12 +2,12 @@
 /* ========================================
    * File Name : upvotes_via_dp.cpp
    * Creation Date : 04-02-2021
-   * Last Modified : Čt 4. února 2021, 16:24:13
+   * Last Modified : Čt 4. února 2021, 23:27:21
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://www.hackerrank.com/contests/quora-haqathon/challenges/upvotes/problem
    * Points/Time : 1h 2m
    * Total/ETA : 1h 15m
-   * Status :
+   * Status : WA (10/29) & TLE (3/29 when debug print)
    ==========================================*/
 
 #include <bits/stdc++.h>

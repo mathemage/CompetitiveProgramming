@@ -1,13 +1,13 @@
  
 /* ========================================
-   * File Name : upvotes_via_brute_force.cpp
-   * Creation Date : 22-01-2021
-   * Last Modified : Čt 4. února 2021, 23:29:39
+   * File Name : upvotes_via_brute_force_v2.cpp
+   * Creation Date : 04-02-2021
+   * Last Modified : Čt 4. února 2021, 23:35:32
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://www.hackerrank.com/contests/quora-haqathon/challenges/upvotes
-   * Points/Time : (57m 20 s + 33 m 50 s) = 1h 31 m 10 s
-   * Total :
-   * Status : AC 9/29 & TLE (rest)
+   * Points/Time : 5m
+   * Total/ETA : 7m
+   * Status : same git diff
    ==========================================*/
 
 #include <bits/stdc++.h>
@@ -30,10 +30,23 @@ using namespace std;
 #define SGN(X) ((X) ? ( (X)>0?1:-1 ) : 0)
 #define MSG(a) cerr << #a << " == " << (a) << endl;
 
+// direction vectors - 4 directions
+const vector<int> DX4 = { 0, 0, -1, 1};
+const vector<int> DY4 = {-1, 1,  0, 0};
+const vector<pair<int,int>> DXY4 = { {0,-1}, {0,1}, {-1,0}, {1,0} };
+// direction vectors - 8 directions
+const vector<int> DX8 = {-1, -1, -1,   0, 0,   1,  1,  1};
+const vector<int> DY8 = {-1,  0,  1,  -1, 1,  -1,  0,  1};
+const vector<pair<int,int>> DXY8 = {
+  {-1,-1}, {-1,0}, {-1,1},
+  { 0,-1},         { 0,1},
+  { 1,-1}, { 1,0}, { 1,1}
+};
+
 const int CLEAN = -1;
-// const int UNDEF = -42;
 const int UNDEF = INT_MAX;
 const int INF = INT_MAX;
+
 
 void solve_via_brute_force() {
   int N, K;
@@ -43,37 +56,28 @@ void solve_via_brute_force() {
   vector<int> signs(N, UNDEF);
   REP(i,N) {
     cin >> upvotes[i];
-    if (i>0) {
-      signs[i] = SGN(upvotes[i]-upvotes[i-1]);
-    }
-//     MSG(upvotes[i]); MSG(signs[i]); cerr << endl;
-//     cerr << signs[i] << " ";
   }
-//   cerr << endl;
 
   for (int win_start=0, win_end=win_start+K-1 ; win_end < N; win_start++, win_end++) {
 //     cerr << endl << endl; MSG(win_start); MSG(win_end);
     long long result = 0LL;
     FO(start,win_start,win_end) FO(end,start+1,win_end) {
-      int min_sign = INF;
-      int max_sign = -INF;
+      bool is_inc = true, is_dec = true;
       FO(i,start+1,end) {
-        MINUPDATE(min_sign, signs[i]);
-        MAXUPDATE(max_sign, signs[i]);
+        is_inc &= upvotes[i-1]<=upvotes[i];
+        is_dec &= upvotes[i-1]>=upvotes[i];
       }
 
-      if (min_sign >= 0 && max_sign == 1) { result++; }
-      if (min_sign == -1 && max_sign <= 0) { result--; }
-//       cerr << endl; MSG(start); MSG(end); MSG(min_sign); MSG(max_sign); MSG(result);
+      if (is_inc) { result++; }
+      if (is_dec) { result--; }
+//       cerr << endl; MSG(start); MSG(end); MSG(result);
     }
     cout << result << endl;
   }
 }
 
 int main() {
-  int cases;
-//   cin >> cases;
-  cases = 1;
+  int cases = 1;
   while (cases--) {
     solve_via_brute_force();
   }
