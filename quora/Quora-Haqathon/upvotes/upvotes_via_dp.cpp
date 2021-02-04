@@ -2,7 +2,7 @@
 /* ========================================
    * File Name : upvotes_via_dp.cpp
    * Creation Date : 04-02-2021
-   * Last Modified : Čt 4. února 2021, 16:00:02
+   * Last Modified : Čt 4. února 2021, 16:08:19
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://www.hackerrank.com/contests/quora-haqathon/challenges/upvotes/problem
    * Points/Time :
@@ -99,8 +99,19 @@ void solve() {
   print_queue(lengths_dec, "lengths_dec");
   /*********/
 
+  /* initial 1st window */
+  int win_start=0, win_end=win_start+K-1;
   long long balance = 0LL;
+  FO(win_pos,win_start,win_end) {
+    balance += counts_inc[win_pos] - counts_dec[win_pos];
+  }
   cout << balance << endl;
+  /**********************/
+
+//   for (win_start=1, win_end=win_start+K-1 ; win_end < N; win_start++, win_end++) {
+//     cerr << endl << endl; MSG(win_start); MSG(win_end);
+//     cout << balance << endl;
+//   }
 }
 
 int main() {
