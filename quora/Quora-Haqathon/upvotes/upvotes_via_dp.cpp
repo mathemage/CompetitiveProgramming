@@ -2,12 +2,12 @@
 /* ========================================
    * File Name : upvotes_via_dp.cpp
    * Creation Date : 04-02-2021
-   * Last Modified : Čt 4. února 2021, 23:27:21
+   * Last Modified : Pá 5. února 2021, 00:07:32
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://www.hackerrank.com/contests/quora-haqathon/challenges/upvotes/problem
-   * Points/Time : 1h 2m
+   * Points/Time : 1h 2m - ?
    * Total/ETA : 1h 15m
-   * Status : WA (10/29) & TLE (3/29 when debug print)
+   * Status : WA (10/29) & TLE (3/29 when debug print) - WA (10/29)
    ==========================================*/
 
 #include <bits/stdc++.h>
@@ -104,6 +104,7 @@ void solve() {
   long long balance = 0LL;
   FO(win_pos,win_start,win_end) {
     balance += counts_inc[win_pos] - counts_dec[win_pos];
+//     MSG(win_pos); MSG(counts_inc[win_pos]); MSG(counts_dec[win_pos]); MSG(balance);
   }
   cout << balance << endl;
   /**********************/
@@ -116,16 +117,18 @@ void solve() {
     if (lengths_inc.front()==0) {
       lengths_inc.pop();
     } else {
-      balance -= lengths_inc.front();
+      balance -= min((long long)K, lengths_inc.front());
       lengths_inc.front()--;
     }
+//     MSG(balance);
 
     if (lengths_dec.front()==0) {
       lengths_dec.pop();
     } else {
-      balance -= -lengths_dec.front();
+      balance -= -min((long long)K, lengths_dec.front());
       lengths_dec.front()--;
     }
+//     MSG(balance);
     cout << balance << endl;
   }
 }
