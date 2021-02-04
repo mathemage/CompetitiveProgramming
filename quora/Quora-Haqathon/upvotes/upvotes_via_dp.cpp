@@ -2,7 +2,7 @@
 /* ========================================
    * File Name : upvotes_via_dp.cpp
    * Creation Date : 04-02-2021
-   * Last Modified : Čt 4. února 2021, 15:44:57
+   * Last Modified : Čt 4. února 2021, 16:00:02
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://www.hackerrank.com/contests/quora-haqathon/challenges/upvotes/problem
    * Points/Time :
@@ -55,6 +55,15 @@ void print_vector(vector<long long> vec, string name) {
   cerr << endl;
 }
 
+void print_queue(queue<long long> q, string name) {
+  cerr << name << ": ";
+	while (!q.empty()){
+		cerr << q.front() << "  ";
+		q.pop();
+	}
+	cerr << endl;
+}
+
 void solve() {
   int N,K;
   cin >> N >> K;
@@ -65,18 +74,29 @@ void solve() {
 
   vector<long long> counts_inc(N,0LL);
   vector<long long> counts_dec(N,0LL);
+  queue<long long> lengths_inc, lengths_dec;
+  lengths_inc.push(0LL), lengths_dec.push(0LL); // because of `upvotes[0]`
   FOR(i,1,N) {
     if (upvotes[i-1]<=upvotes[i]) {
       counts_inc[i] = counts_inc[i-1]+1;
+      lengths_inc.back()++;
+    } else {
+      lengths_inc.push(0LL);
     }
+
     if (upvotes[i-1]>=upvotes[i]) {
       counts_dec[i] = counts_dec[i-1]+1;
+      lengths_dec.back()++;
+    } else {
+      lengths_dec.push(0LL);
     }
   }
 
   /* DEBUG */
   print_vector(counts_inc, "counts_inc");
   print_vector(counts_dec, "counts_dec");
+  print_queue(lengths_inc, "lengths_inc");
+  print_queue(lengths_dec, "lengths_dec");
   /*********/
 
   long long balance = 0LL;
