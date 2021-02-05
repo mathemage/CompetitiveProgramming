@@ -2,7 +2,7 @@
 /* ========================================
    * File Name : quora_nearby_via_brute_force.cpp
    * Creation Date : 05-02-2021
-   * Last Modified : Pá 5. února 2021, 20:21:22
+   * Last Modified : Pá 5. února 2021, 20:46:19
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://www.hackerrank.com/contests/cs-quora/challenges/quora-nearby
    * Points/Time : 58m +~45m
@@ -10,6 +10,8 @@
    * Status :
    * - WA (3/9) & TLE (4/9)
    * - WA (2/9)
+   *   -> but these should be AC (OJ's issues w/ empty lines)
+   *   -> see https://www.hackerrank.com/contests/cs-quora/challenges/quora-nearby/forum/comments/924264
    ==========================================*/
 
 #include <bits/stdc++.h>
