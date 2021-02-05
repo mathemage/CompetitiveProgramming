@@ -2,13 +2,14 @@
 /* ========================================
    * File Name : quora_nearby_via_brute_force.cpp
    * Creation Date : 05-02-2021
-   * Last Modified : Pá 5. února 2021, 18:11:46
+   * Last Modified : Pá 5. února 2021, 20:21:22
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://www.hackerrank.com/contests/cs-quora/challenges/quora-nearby
-   * Points/Time : 58m
+   * Points/Time : 58m +~45m
    * Total/ETA : 15m
    * Status :
    * - WA (3/9) & TLE (4/9)
+   * - WA (2/9)
    ==========================================*/
 
 #include <bits/stdc++.h>
@@ -81,21 +82,23 @@ void solve() {
     cin >> q_type >> n_results >> query_xy.F >> query_xy.S;
 //     MSG(q_type);
 
+    /* calculate distances to Ts */
     vector<pair<double, int>> dist_T(T);
     map<int, double> T2dist;
     REP(i,T) {
-      T2dist[i] = pow(Txy[i].F-query_xy.F, 2) + pow(Txy[i].S-query_xy.S, 2);
-      dist_T[i].F = T2dist[i];
-      dist_T[i].S = -i;
+      T2dist[Tid[i]] = pow(Txy[i].F-query_xy.F, 2) + pow(Txy[i].S-query_xy.S, 2);
+      dist_T[i].F = T2dist[Tid[i]];
+      dist_T[i].S = -Tid[i];
     }
     sort(ALL(dist_T));
+    /*****************************/
 
     switch (q_type) {
       case 't': {
+        MINUPDATE(n_results, (int)dist_T.size());
         REP(j,n_results) {
-          cout << -dist_T[j].S << " ";
+          cout << -dist_T[j].S << (j<n_results-1? " " : endl);
         }
-        cout << endl;
         break;
       }
 
@@ -103,20 +106,20 @@ void solve() {
         vector<pair<double, int>> dist_Q;
         REP(j,Q) {
           double min_dist = INF;
-          for (auto & tid: Q2T[j]) {
+          for (auto & tid: Q2T[Qid[j]]) {
             MINUPDATE(min_dist, T2dist[tid]);
           }
           if (min_dist != INF) {
-            dist_Q.PB(MP(min_dist,-j));
+            dist_Q.PB(MP(min_dist,-Qid[j]));
           }
         }
         sort(ALL(dist_Q));
 
 //         MSG(dist_Q.size()); MSG(n_results);
-        REP(j, min(n_results,(int)dist_Q.size()) ) {
-          cout << -dist_Q[j].S << " ";
+        MINUPDATE(n_results, (int)dist_Q.size());
+        REP(j,n_results) {
+          cout << -dist_Q[j].S << (j<n_results-1? " " : endl);
         }
-        cout << endl;
         break;
       }
     }
