@@ -2,7 +2,7 @@
 /* ========================================
    * File Name : digest_brute_force.cpp
    * Creation Date : 06-02-2021
-   * Last Modified : So 6. února 2021, 18:40:42
+   * Last Modified : So 6. února 2021, 18:23:49
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL :
    * Points/Time :
@@ -10,22 +10,12 @@
    * - 2h 27m 10s
    * - 2h 32m 20s
    * - 2h 42m 50s
-   * - 2h 43m 50s
-   *
-   * - 2h 47m 40s
-   * - 2h 51m 00s
-   * - 2h 52m 50s
    * Total/ETA : 25m
    * Status : 
    * - 76/100 (Execution killed (could be triggered by violating memory limits))
    * - 76/100 (Execution killed (could be triggered by violating memory limits))
    * - 76/100 (Execution killed (could be triggered by violating memory limits))
-   * - 76/100 (Execution killed (could be triggered by violating memory limits))
-   * - 80/100 (Execution killed (could be triggered by violating memory limits)) !!
-   *
-   * - 72/100 (Execution killed (could be triggered by violating memory limits)) :-/
-   * - 68/100 (Execution killed (could be triggered by violating memory limits) + Execution timed out) :-(
-   * - 76/100 (Execution killed (could be triggered by violating memory limits))
+   * - 
    ==========================================*/
 
 #include <bits/stdc++.h>

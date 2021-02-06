@@ -2,22 +2,35 @@
 /* ========================================
    * File Name : digest_brute_force.cpp
    * Creation Date : 06-02-2021
-   * Last Modified : So 6. února 2021, 18:24:29
+   * Last Modified : So 6. února 2021, 18:59:22
    * Created By : Karel Ha <mathemage@gmail.com>
-   * URL :
+   * URL : see the included PDF
    * Points/Time :
    * - 2h 3m 40s
    * - 2h 27m 10s
    * - 2h 32m 20s
    * - 2h 42m 50s
    * - 2h 43m 50s
+   *
+   * - 2h 47m 40s
+   * - 2h 51m 00s
+   * - 2h 52m 50s
+   * - 3h 00m 50s
+   *
    * Total/ETA : 25m
+   *
    * Status : 
    * - 76/100 (Execution killed (could be triggered by violating memory limits))
    * - 76/100 (Execution killed (could be triggered by violating memory limits))
    * - 76/100 (Execution killed (could be triggered by violating memory limits))
-   * - 80/100 (Execution killed (could be triggered by violating memory limits))
-   * - 
+   * - 76/100 (Execution killed (could be triggered by violating memory limits))
+   * - 80/100 (Execution killed (could be triggered by violating memory limits)) !! == digest_best.cpp
+   *
+   * - 72/100 (Execution killed (could be triggered by violating memory limits)) :-/
+   * - 68/100 (Execution killed (could be triggered by violating memory limits) + Execution timed out) :-(
+   * - 76/100 (Execution killed (could be triggered by violating memory limits))
+   * - 16/100 (Execution killed (could be triggered by violating memory limits) + Output isn't correct)
+   *
    ==========================================*/
 
 #include <bits/stdc++.h>
@@ -84,18 +97,20 @@ void solve() {
   }
   vector<set<int>> follows_story(q+5);
   vector<set<int>> follows_story_author(q+5);
+  vector<set<int>> story_followed_by(n+5);
   REP(f,q) {
     cin >> i >> k;
     follows_story[i].insert(k);
     follows_story_author[i].insert(story_authors[k]);
+    story_followed_by[k].insert(i);
   }
 
   vector<vector<bool>> follow_common_stories(m+5);
-  FO(i,1,m) FO(j,i+1,m) {
-    FO(k,1,n) {
-      if (SETCONTAINS(follows_story[i], k) && SETCONTAINS(follows_story[j], k)) {
-        int mi=min(i,j);
-        int ma=max(i,j);
+  FO(k,1,n) {
+    for (auto & follower1: story_followed_by[k]) {
+      for (auto & follower2: story_followed_by[k]) {
+        int mi=min(follower1,follower2);
+        int ma=max(follower1,follower2);
         if (follow_common_stories[mi].empty()) {
           follow_common_stories[mi].assign(m+5,false);
         }
@@ -104,6 +119,7 @@ void solve() {
       }
     }
   }
+  story_followed_by.clear();
 
   long long aj,bj;
   vector<long long> story_scores;
