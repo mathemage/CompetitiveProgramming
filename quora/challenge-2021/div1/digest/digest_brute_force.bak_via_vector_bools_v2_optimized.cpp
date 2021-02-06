@@ -2,22 +2,18 @@
 /* ========================================
    * File Name : digest_brute_force.cpp
    * Creation Date : 06-02-2021
-   * Last Modified : So 6. února 2021, 18:24:29
+   * Last Modified : So 6. února 2021, 18:09:58
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL :
    * Points/Time :
    * - 2h 3m 40s
    * - 2h 27m 10s
    * - 2h 32m 20s
-   * - 2h 42m 50s
-   * - 2h 43m 50s
    * Total/ETA : 25m
    * Status : 
    * - 76/100 (Execution killed (could be triggered by violating memory limits))
    * - 76/100 (Execution killed (could be triggered by violating memory limits))
    * - 76/100 (Execution killed (could be triggered by violating memory limits))
-   * - 80/100 (Execution killed (could be triggered by violating memory limits))
-   * - 
    ==========================================*/
 
 #include <bits/stdc++.h>
@@ -76,24 +72,36 @@ void solve() {
 
   int p,q;
   cin >> p >> q;
-  vector<set<int>> follows_users(p+5);
+  vector<vector<bool>> follows_users(p+5);
   int i,j,k;
   REP(f,p) {
     cin >> i >> j;
-    follows_users[i].insert(j);
+    if (follows_users[i].empty()) {
+      follows_users[i].assign(m+5,false);
+    }
+    follows_users[i][j]=true;
   }
-  vector<set<int>> follows_story(q+5);
-  vector<set<int>> follows_story_author(q+5);
+  vector<vector<bool>> follows_story(q+5);
+  vector<vector<bool>> follows_story_author(q+5);
   REP(f,q) {
     cin >> i >> k;
-    follows_story[i].insert(k);
-    follows_story_author[i].insert(story_authors[k]);
+
+    if (follows_story[i].empty()) {
+      follows_story[i].assign(n+5,false);
+    }
+    follows_story[i][k]=true;
+
+    if (follows_story_author[i].empty()) {
+      follows_story_author[i].assign(m+5,false);
+    }
+    follows_story_author[i][story_authors[k]]=true;
   }
 
-  vector<vector<bool>> follow_common_stories(m+5);
+  vector<vector<bool>> follow_common_stories(m+5); // TODO optimize too
   FO(i,1,m) FO(j,i+1,m) {
     FO(k,1,n) {
-      if (SETCONTAINS(follows_story[i], k) && SETCONTAINS(follows_story[j], k)) {
+      if (!follows_story[i].empty() && !follows_story[j].empty()
+          && follows_story[i][k] && follows_story[j][k]) {
         int mi=min(i,j);
         int ma=max(i,j);
         if (follow_common_stories[mi].empty()) {
@@ -116,7 +124,8 @@ void solve() {
 //     cerr << "here" << endl;
     FO(k,1,n) {
 //       MSG(k);
-      if (story_authors[k]==i || SETCONTAINS(follows_story[i], k) ) {
+      if (story_authors[k]==i
+          || (!follows_story[i].empty() && follows_story[i][k])) {
         story_scores[k]=-1;
         continue;
       }
@@ -126,9 +135,9 @@ void solve() {
         /* aj */
         if (i==j) {
           continue;
-        } else if (SETCONTAINS(follows_users[i], j)) {
+        } else if (!follows_users[i].empty() && follows_users[i][j]) {
           aj=3;
-        } else if (SETCONTAINS(follows_story_author[i], j)) {
+        } else if (!follows_story_author[i].empty() && follows_story_author[i][j]) {
           aj=2;
         } else if (!follow_common_stories[min(i,j)].empty() && follow_common_stories[min(i,j)][max(i,j)] ) {
           aj=1;
@@ -139,7 +148,7 @@ void solve() {
         /* bj */
         if (story_authors[k]==j) {
           bj=2;
-        } else if (SETCONTAINS(follows_story[j], k)) {
+        } else if (!follows_story[j].empty() && follows_story[j][k]) {
           bj=1;
         } else {
           continue;
