@@ -29,7 +29,14 @@ using namespace std;
 #define MAXUPDATE(A,B) A = max((A), (B));
 #define SGN(X) ((X) ? ( (X)>0?1:-1 ) : 0)
 #define SETCONTAINS(S,E) ((S).find(E) != (S).end())
-#define MSG(a) cerr << #a << " == " << (a) << endl;
+
+#define MSG(a) cerr << "> " << #a << ": " << (a) << endl;
+template<typename T>
+void print_vector(const vector<T> & vec, const string & name) {
+  cerr << name << ": ";
+  for (const auto & x: vec) cerr << x << "  ";
+  cerr << endl;
+}
 
 const int CLEAN = -1;
 const int UNDEF = -42;
@@ -56,9 +63,8 @@ void solve() {
 }
 
 int main() {
-  int cases;
+  int cases = 1;
   cin >> cases;
-//   cases = 1;
   while (cases--) {
     solve();
   }
