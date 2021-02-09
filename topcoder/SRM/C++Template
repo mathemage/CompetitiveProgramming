@@ -32,6 +32,7 @@ void print_vector(const vector<T> & vec, const string & name) {
 
 const int CLEAN = -1;
 const int UNDEF = -42;
+const long long MOD = 1000000007;
 
 // direction vectors - 4 directions
 const vector<int> DX4 = { 0, 0, -1, 1};
