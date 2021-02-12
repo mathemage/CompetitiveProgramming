@@ -1,0 +1,15 @@
+1
+{"elton", "tom", "john"}
+{"john", "jones", "cena"}
+2
+{"james", "taylor"}
+{"taylor", "james"}
+0
+{"jar"}
+{"jar"}
+6
+{"lee", "stan", "ang", "marvin", "lee", "grace", "kelly", "jeremy"}
+{"marvin", "lee", "lee", "gaye", "mack", "kelly", "clarkson", "clarkson"}
+6
+{"major", "major", "major"}
+{"major", "major", "major"}
