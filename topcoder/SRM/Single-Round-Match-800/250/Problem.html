@@ -1,0 +1,31 @@
+<html><body bgcolor="#000000" text="#ffffff"><table><tr><td colspan="2"><h3>Problem Statement</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><pre>
+ 
+    |-O-|    |-O-|    |-O-|    |-O-|    |-O-|
+
+</pre>
+<p>
+Above you see a tiny fraction of our glorious imperial fleet, the Twin Ion Engine starfighters (known as "TIE fighters" for short).
+</p>
+<p>
+Each TIE fighter consists of two solar array wings ('<tt>|</tt>'), two wing braces ('<tt>-</tt>') and one central cabin ('<tt>O</tt>').
+</p>
+<br></br>
+<p>
+Even though our TIE fighters are clearly superior to the X-wing fighters flown by those pesky rebels, occasionally some TIE fighter will receive some accidental combat damage.
+Whenever a damaged TIE fighter is recovered, we disasemble it and salvage the parts that are still in working condition.
+It is now up to you to use these salvaged parts to assemble as many complete TIE fighters as possible.
+</p>
+<br></br>
+<p>
+You are given the string <b>salvagedParts</b>.
+Each character of <b>salvagedParts</b> represents one piece of machinery that has been salvaged.
+As mentioned above, the characters '<tt>|</tt>', '<tt>-</tt>', and '<tt>O</tt>' (uppercase oh) represent the parts you need to build a TIE fighter.
+</p>
+<p>
+There may also be other characters in <b>salvagedParts</b>.
+These represent machinery that isn't used in a TIE fighter.
+</p>
+<br></br>
+<p>
+Calculate and return the maximum number of TIE fighters you can assemble from the given parts.
+</p></td></tr><tr><td colspan="2"><h3>Definition</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Class:</td><td>TIEFighterAssembly</td></tr><tr><td>Method:</td><td>assemble</td></tr><tr><td>Parameters:</td><td>string</td></tr><tr><td>Returns:</td><td>int</td></tr><tr><td>Method signature:</td><td>int assemble(string salvagedParts)</td></tr><tr><td colspan="2">(be sure your method is public)</td></tr></table></td></tr><tr><td colspan="2"><h3>Limits</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Time limit (s):</td><td>2.000</td></tr><tr><td>Memory limit (MB):</td><td>256</td></tr></table></td></tr><tr><td colspan="2"><h3>Constraints</h3></td></tr><tr><td align="center" valign="top">-</td><td><b>salvagedParts</b> will contain between 1 and 50 characters, inclusive.</td></tr><tr><td align="center" valign="top">-</td><td>Each character of <b>salvagedParts</b> will be one of "<tt>|-O=+()*</tt>" (quotes for clarity).</td></tr><tr><td colspan="2"><h3>Examples</h3></td></tr><tr><td align="center" nowrap="true">0)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>&quot;|-O-|&quot;</pre></td></tr></table></td></tr><tr><td><pre>Returns: 1</pre></td></tr><tr><td><table><tr><td colspan="2">One fully functional TIE fighter.</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">1)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>&quot;||--O&quot;</pre></td></tr></table></td></tr><tr><td><pre>Returns: 1</pre></td></tr><tr><td><table><tr><td colspan="2">The same parts as in the previous example. Again, we can use them to build one TIE fighter.</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">2)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>&quot;|||||-----OOO&quot;</pre></td></tr></table></td></tr><tr><td><pre>Returns: 2</pre></td></tr><tr><td><table><tr><td colspan="2">These parts are enough to build two TIE fighters. We will have one '<tt>|</tt>', one '<tt>-</tt>' and one '<tt>O</tt>' left over.</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">3)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>&quot;=+()*=+()*=+()*&quot;</pre></td></tr></table></td></tr><tr><td><pre>Returns: 0</pre></td></tr><tr><td><table><tr><td colspan="2">Useless debris that cannot be used in a TIE fighter.</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">4)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>&quot;||+||-||+||-||+||-||+||-&quot;</pre></td></tr></table></td></tr><tr><td><pre>Returns: 0</pre></td></tr><tr><td><table><tr><td colspan="2">We have a lot of solar panels and a lot of wing pylons (and also some '<tt>+</tt>' that we have no use for). However, we have no central cabins and so we cannot assemble any complete TIE fighters.</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">5)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>&quot;===O|O-O|O-O|O===&quot;</pre></td></tr></table></td></tr><tr><td><pre>Returns: 1</pre></td></tr><tr><td><table><tr><td colspan="2">In this example we have the opposite problem: too many cabins but not enough wing parts to use all of them. We can put together just one single TIE fighter. A lot of material will remain unused.</td></tr></table></td></tr></table></td></tr></table><p>This problem statement is the exclusive and proprietary property of TopCoder, Inc.  Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited.  (c)2003, TopCoder, Inc.  All rights reserved.  </p></body></html>
