@@ -41,7 +41,8 @@ iab usetl unordered_set<long long>
 iab minu MINUPDATE(., );<ESC>F.c
 iab maxu MAXUPDATE(., );<ESC>F.c
 
-iab acc accumulate(ALL(.), 0);<ESC>F.c
+iab acc accumulate(ALL(.), 0LL);<ESC>F.c
+iab accd accumulate(ALL(.), 0.0);<ESC>2F.c
 iab accu accumulate(..begin(), .end(), 0);<ESC>3F.c
 iab sor sort(ALL(.));<ESC>F.c
 iab rsor sort(REVALL(.));<ESC>F.c
