@@ -1,9 +1,15 @@
 /* ========================================
  * Points/Time :
  * - 281.04 (30m 40s)
+ * - 150.00 (39m 40s)
+ * - 150.00 (55m 00s)
+ *
  * Total/ETA : 500 (15m)
  * Status :
  * - WA #3
+ * - WA #32
+ * - AC !!!!!!
+ *
  ==========================================*/
 
 #include <bits/stdc++.h>
@@ -33,6 +39,7 @@ void print_vector(const vector<T> & vec, const string & name) {
 
 const int CLEAN = -1;
 const int UNDEF = -42;
+const int INF = 2e9;
 const long long MOD = 1000000007;
 
 // direction vectors - 4 directions
@@ -52,7 +59,7 @@ const vector<pair<int,int>> DXY8 = {
 class PlanningTrips {
 public:
   int find(int a, vector <int> num) {
-    sort(ALL(num));
+//     sort(ALL(num));
     map<int, int> freq;
     for (auto & n: num) {
       if (!SETCONTAINS(freq, n)) {
@@ -61,27 +68,35 @@ public:
       freq[n]++;
     }
 
-    int max_exp=UNDEF;
-    int min_exp=2e9;
-    for (auto & n: num) {
-      if (!SETCONTAINS(freq, n)) {
-        freq[n+1] = 0;
-      }
-      freq[n+1] += freq[n]/a;
-      freq[n] %= a;
+//     for (auto & nf: freq) { cerr << "> " << nf.F << ": " << nf.S << "\t"; } cerr << endl;
 
-      if (freq[n]) {
+    int min_exp=INF;
+    int max_exp=-INF;
+    int n;
+    int f;
+    while (!freq.empty()) {
+      n=(*freq.begin()).F;
+      f=(*freq.begin()).S;
+      freq.erase(freq.begin());
+
+      if (f%a!=0) {
         MINUPDATE(min_exp, n);
         MAXUPDATE(max_exp, n);
       }
-      if (freq[n+1]) {
-        MINUPDATE(min_exp, n+1);
-        MAXUPDATE(max_exp, n+1);
+
+      if (f/a!=0) {
+        if (!SETCONTAINS(freq, n+1)) {
+          freq[n+1] = 0;
+        }
+        freq[n+1] += f/a;
       }
-//       MSG(n); MSG(freq[n]); MSG(freq[n+1]); MSG(min_exp); MSG(max_exp);
+
+//       MSG(n); MSG(f); MSG(f/a); MSG(min_exp); MSG(max_exp);
+//       for (auto & nf: freq) { cerr << "> " << nf.F << ": " << nf.S << "\t"; } cerr << endl;
     }
 
-    if (max_exp != min_exp || freq[max_exp]>1) {
+//     MSG(min_exp); MSG(max_exp);
+    if (max_exp != min_exp || f>1) {
       return max_exp+1;
     } else {
       return max_exp;
