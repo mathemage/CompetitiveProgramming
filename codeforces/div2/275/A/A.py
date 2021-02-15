@@ -1,3 +1,5 @@
+# https://codeforces.com/contest/275/problem/A
+
 def switch(v: int, d: int):
     new_v = (v + d) % 2
     return new_v
