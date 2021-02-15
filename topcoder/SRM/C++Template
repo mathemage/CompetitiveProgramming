@@ -19,7 +19,7 @@ using namespace std;
 #define MINUPDATE(A,B) A = min((A), (B));
 #define MAXUPDATE(A,B) A = max((A), (B));
 #define SGN(X) ((X) ? ( (X)>0?1:-1 ) : 0)
-#define SETCONTAINS(S,E) ((S).find(E) != (S).end())
+#define CONTAINS(S,E) ((S).find(E) != (S).end())
 
 #define MSG(a) cerr << "> " << #a << ": " << (a) << endl;
 template<typename T>
