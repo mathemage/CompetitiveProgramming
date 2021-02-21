@@ -1,5 +1,5 @@
 /* ========================================
- * Points/Time : 199.80
+ * Points/Time : 199.31
  * Total/ETA : 200
  * Status : AC
  ==========================================*/
@@ -50,11 +50,12 @@ const vector<pair<int,int>> DXY8 = {
 class NumberofFiboCalls {
 public:
   vector <int> fiboCallsMade(int n) {
-    vector <int> f(45,0);
-    f[0]=1;
-    FOR(i,2,44) {
-      f[i]=f[i-1]+f[i-2];
+    int fn=1,fn1=0,fn2;
+    while (n-->0) {
+      fn2=fn+fn1;
+      fn=fn1;
+      fn1=fn2;
     }
-    return {f[n],f[n+1]};
+    return {fn,fn1};
   }
 };
