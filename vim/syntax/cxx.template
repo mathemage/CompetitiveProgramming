@@ -29,6 +29,7 @@ using namespace std;
 #define S second
 #define PB push_back
 #define MP make_pair
+#define MTP make_tuple
 #define MINUPDATE(A,B) A = min((A), (B));
 #define MAXUPDATE(A,B) A = max((A), (B));
 #define SGN(X) ((X) ? ( (X)>0?1:-1 ) : 0)
