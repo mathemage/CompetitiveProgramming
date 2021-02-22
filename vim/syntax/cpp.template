@@ -42,6 +42,10 @@ const int CLEAN = -1;
 const int UNDEF = -42;
 const long long MOD = 1000000007;
 
+const int INF = INT_MAX;
+const long long INF_LL = LLONG_MAX;
+const long long INF_ULL = ULLONG_MAX;
+
 // direction vectors - 4 directions
 const vector<int> DX4 = { 0, 0, -1, 1};
 const vector<int> DY4 = {-1, 1,  0, 0};
