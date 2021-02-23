@@ -1,5 +1,5 @@
 " abbreviations
-iab fo for (auto & i :.) {<CR><ESC>-f.s
+iab fo for (auto & it:.) {<CR><ESC>-f.s
 iab fis for (int i = 0; i <.size(); i += 1) {<CR><ESC>-f.i
 
 iab if if (.) {<CR><ESC>-f.c
