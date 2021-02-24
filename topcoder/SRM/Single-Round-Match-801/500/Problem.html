@@ -1,0 +1,66 @@
+<html><body bgcolor="#000000" text="#ffffff"><table><tr><td colspan="2"><h3>Problem Statement</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><p>
+You have an unlimited supply of two substances: substance 0 is distilled water and substance 1 is pure <i>chemical X</i>.
+</p>
+<br></br>
+<p>
+You cannot manipulate chemicals directly, you can only use a mixing machine.
+The mixing machine has ten inputs and one output.
+Each time you use it, you can use as many inputs as you want (between 1 and 10, inclusive).
+The machine will take the substances it gets as inputs and produce an output that is their uniform mixture.
+For example, if you use three inputs, the output chemical will contain one third of each of the input chemicals.
+</p>
+<p>
+The mixing machine always produces a large amount of the new substance, so you can freely use each new substance as inputs for mixing in the future.
+The substances you'll produce will be numbered 2, 3, 4, ...
+</p>
+<br></br>
+<p>
+You want to have a diluted sample of chemical X. Your sample should contain <b>concentration</b> promille of chemical X. In other words, out of 1000 parts of this chemical, exactly <b>concentration</b> parts should be chemical X and the rest should be distilled water.
+</p>
+<p>
+Find one way of producing the desired concentration using the mixing machine.
+The number N of new substances you'll produce must be at most ten.
+After the last use of the mixing machine any one of the substances you have must have the correct concentration.
+</p>
+<br></br>
+<p>
+Return a vector &lt;int&gt; with 10*N elements: 10 for each use of the mixing machine.
+More precisely, for each use of the mixing machine output 10 numbers that describe the substances you use as the inputs for the machine.
+Use the value -1 for an input that remains unused.
+See the examples for a detailed explanation.
+</p></td></tr><tr><td colspan="2"><h3>Definition</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Class:</td><td>CreateMixture</td></tr><tr><td>Method:</td><td>mix</td></tr><tr><td>Parameters:</td><td>int</td></tr><tr><td>Returns:</td><td>vector &lt;int&gt;</td></tr><tr><td>Method signature:</td><td>vector &lt;int&gt; mix(int concentration)</td></tr><tr><td colspan="2">(be sure your method is public)</td></tr></table></td></tr><tr><td colspan="2"><h3>Limits</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Time limit (s):</td><td>2.000</td></tr><tr><td>Memory limit (MB):</td><td>256</td></tr></table></td></tr><tr><td colspan="2"><h3>Notes</h3></td></tr><tr><td align="center" valign="top">-</td><td>A valid solution exists for each input that matches the constraints.</td></tr><tr><td align="center" valign="top">-</td><td>Any valid solution will be accepted.</td></tr><tr><td align="center" valign="top">-</td><td>You do not have to minimize the number of times the machine is used, but remember that you may only use the machine at most ten times.</td></tr><tr><td colspan="2"><h3>Constraints</h3></td></tr><tr><td align="center" valign="top">-</td><td><b>concentration</b> will be between 0 and 1000, inclusive.</td></tr><tr><td colspan="2"><h3>Examples</h3></td></tr><tr><td align="center" nowrap="true">0)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>500</pre></td></tr></table></td></tr><tr><td><pre>Returns: {0, 1, -1, 1, -1, 0, -1, -1, -1, -1 }</pre></td></tr><tr><td><table><tr><td colspan="2"><p>
+We want a substance that's exactly half water and half chemical X.
+The example output above produces it by mixing four inputs: two containing water and two containing chemical X.
+</p>
+<p>
+There are many other valid solutions.
+For example, {0, 1, -1, -1, -1, -1, -1, -1, -1, -1} is one way to describe mixing one input with water and one input with chemical X.
+</p></td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">1)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>250</pre></td></tr></table></td></tr><tr><td><pre>Returns: {0, 1, -1, 1, -1, 0, -1, -1, -1, -1, 2, 0, -1, -1, -1, -1, -1, -1, -1, -1 }</pre></td></tr><tr><td><table><tr><td colspan="2"><p>
+Our solution first produces the mixture from the previous example and then mixes it again with water.
+</p>
+<p>
+Here is the example return value separated into individual steps:
+</p>
+<ul>
+<li>we produce substance 2: {0, 1, -1, 1, -1, 0, -1, -1, -1, -1}</li>
+<li>we produce substance 3: {2, 0, -1, -1, -1, -1, -1, -1, -1, -1}</li>
+</ul>
+</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">2)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>0</pre></td></tr></table></td></tr><tr><td><pre>Returns: { }</pre></td></tr><tr><td><table><tr><td colspan="2"><p>We want water. We already have water, so we don't have to do anything.</p>
+<p>
+Again, there are also other valid solutions. For example, {0, -1, -1, -1, -1, -1, -1, -1, -1, -1} and {0, 0, 0, 0, 0, 0, 0, 0, 0, 0} are both correct outputs that produce substance 2 that is also pure water.
+</p>
+<p>
+The output {0, 1, 1, 0, 1, 1, 0, 0, 1, 1, 2, 2, 2, 0, 0, 0, 1, 2, 1, 0} is also valid, even though it produces two new substances with non-zero concentrations of chemical X. In the end you have four substances and one of them (substance 0) has the desired concentration, so everything is OK.
+</p></td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">3)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>400</pre></td></tr></table></td></tr><tr><td><pre>Returns: {0, 1, -1, 1, -1, 0, -1, -1, -1, -1, 0, 0, 1, 2, 2, -1, -1, -1, -1, -1 }</pre></td></tr><tr><td><table><tr><td colspan="2"><p>
+Our example output shows that it's not necessary to minimize the number of times you use the machine. Even though it's possible to produce this desired mixture in one use of the machine, we do it in two.
+</p>
+<p>
+Here is the example return value separated into individual steps:
+</p>
+<ul>
+<li>we produce substance 2 which has 500 parts of chemical X per 1000: {0, 1, -1, 1, -1, 0, -1, -1, -1, -1}</li>
+<li>we produce substance 3: {0, 0, 1, 2, 2, -1, -1, -1, -1, -1}</li>
+</ul>
+</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">4)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>2</pre></td></tr></table></td></tr><tr><td><pre>Returns: 
+{0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0,
+ 0, 3, -1, -1, -1, -1, -1 }</pre></td></tr><tr><td><table><tr><td colspan="2"></td></tr></table></td></tr></table></td></tr></table><p>This problem statement is the exclusive and proprietary property of TopCoder, Inc.  Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited.  (c)2003, TopCoder, Inc.  All rights reserved.  </p></body></html>
