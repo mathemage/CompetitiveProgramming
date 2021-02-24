@@ -34,6 +34,7 @@ using namespace std;
 #define MAXUPDATE(A,B) A = max((A), (B));
 #define SGN(X) ((X) ? ( (X)>0?1:-1 ) : 0)
 #define CONTAINS(S,E) ((S).find(E) != (S).end())
+#define SZ(x) ((int) (x).size())
 
 #define MSG(a) cerr << "> " << #a << ": " << (a) << endl;
 template<typename T>
