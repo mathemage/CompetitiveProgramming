@@ -1,5 +1,5 @@
 /* ========================================
- * Points/Time : 244.17
+ * Points/Time : 249.90
  * Total/ETA : 250
  * Status : AC
  ==========================================*/
@@ -21,6 +21,7 @@ using namespace std;
 #define MAXUPDATE(A,B) A = max((A), (B));
 #define SGN(X) ((X) ? ( (X)>0?1:-1 ) : 0)
 #define CONTAINS(S,E) ((S).find(E) != (S).end())
+#define SZ(x) ((int) (x).size())
 
 #define MSG(a) cerr << "> " << #a << ": " << (a) << endl;
 template<typename T>
@@ -55,15 +56,13 @@ const vector<pair<int,int>> DXY8 = {
 class HouseNumbering {
 public:
   vector <int> prepareDigits(int firstHouse, int numberOfHouses) {
-    vector <int> result(10,0);
-    REP(i,numberOfHouses) {
-      string s= to_string(firstHouse);
-      for (auto & c: s) {
-        result[c-'0']++;
+    vector <int> result(10);
+    while (numberOfHouses--) {
+      for (auto & it: to_string(firstHouse)) {
+        result[it-'0']++;
       }
-      firstHouse += 2;
+      firstHouse+=2;
     }
-
     return result;
   }
 };
