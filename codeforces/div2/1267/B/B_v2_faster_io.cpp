@@ -1,10 +1,10 @@
-:insert
+ 
 /* ========================================
-   * File Name :
-   * Creation Date :
-   * Last Modified :
+   * File Name : B_v2_faster_io.cpp
+   * Creation Date : 26-02-2021
+   * Last Modified : Pá 26. února 2021, 22:19:58
    * Created By : Karel Ha <mathemage@gmail.com>
-   * URL :
+   * URL : https://codeforces.com/problemset/problem/1267/B
    * Points/Time :
    * Total/ETA :
    * Status :
@@ -62,10 +62,37 @@ const vector<pair<int,int>> DXY8 = {
 
 
 void solve() {
+  string s;
+  cin >> s;
+
+  vector<int> cnt;
+  vector<char> colors;
+  for (auto & c: s) {
+    if (colors.empty() || c!=colors.back()) {
+      cnt.PB(1);
+      colors.PB(c);
+    } else {
+      cnt.back()++;
+    }
+  }
+//   print_vector(cnt, "cnt");
+//   print_vector(colors, "colors");
+
+  int l=0, r=SZ(colors)-1;
+  while (l<r) {
+    if (colors[l]==colors[r] && cnt[l]+cnt[r]>=3) {
+//       MSG(l) MSG(r) 
+      l++, r--;
+    } else {
+      break;
+    }
+  }
+
   long long result = 0LL;
+  if (l==r && cnt[l]>=2) {
+    result=cnt[l]+1;
+  }
   cout << result << endl;
-//   bool result = false;
-//   cout << (result?"YES":"NO") << endl;
 }
 
 int main() {
@@ -73,10 +100,8 @@ int main() {
   cin.tie(NULL);
 
   int cases = 1;
-  cin >> cases;
   while (cases--) {
     solve();
   }
   return 0;
 }
-.

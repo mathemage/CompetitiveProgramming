@@ -52,6 +52,12 @@ const vector<pair<int,int>> DXY8 = {
   { 1,-1}, { 1,0}, { 1,1}
 };
 
+int start_up() {
+  ios_base::sync_with_stdio(false);
+  cin.tie(NULL);
+  return 0;
+}
+int static r = start_up();
 
 class $CLASSNAME$ {
 public:
