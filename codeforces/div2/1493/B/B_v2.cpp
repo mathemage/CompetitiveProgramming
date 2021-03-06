@@ -1,13 +1,17 @@
  
 /* ========================================
-   * File Name : A.cpp
+   * File Name : B.cpp
    * Creation Date : 06-03-2021
-   * Last Modified : Ne 7. března 2021, 00:21:26
+   * Last Modified : Ne 7. března 2021, 00:23:40
    * Created By : Karel Ha <mathemage@gmail.com>
-   * URL : https://codeforces.com/contest/1493/problem/0
-   * Points/Time : 699
-   * Total/ETA : 750
-   * Status : pretests passed - AC
+   * URL : https://codeforces.com/contest/1493/problem/B
+   * Points/Time : 
+   * Total/ETA : 1250
+   * Status :
+   * WA #3
+   * WA #3
+   * AC :-/ !!
+   *
    ==========================================*/
 
 #include <bits/stdc++.h>
@@ -60,23 +64,63 @@ const vector<pair<int,int>> DXY8 = {
   { 1,-1}, { 1,0}, { 1,1}
 };
 
+inline long long cc(char c) {
+  return c-'0';
+}
+
+inline long long cc2(char c) {
+  if (c=='2') {
+    c='5';
+  } else if (c=='5') {
+    c='2';
+  }
+  return c-'0';
+}
+
+inline string ss(long long hh, long long mm) {
+  return to_string(hh/10) + to_string(hh%10) + ":"
+       + to_string(mm/10) + to_string(mm%10);
+}
 
 void solve() {
-  int n,k;
-  cin >> n >> k;
+  long long h,m;
+  cin >> h >> m;
+  string s;
+  cin >> s;
 
-  vector<int> result = {};
-  FORD(x,n,k+1) {
-    result.PB(x);
+  REP(i,10*h*m) {
+    long long hh=cc(s[0]) * 10 + cc(s[1]);
+    long long mm=cc(s[3]) * 10 + cc(s[4]);
+    long long rh=cc2(s[4]) * 10 + cc2(s[3]);
+    long long rm=cc2(s[1]) * 10 + cc2(s[0]);
+
+//     MSG(s);
+//     MSG(hh) MSG(mm)
+//     MSG(rh) MSG(rm)
+    bool ok=true;
+    for (auto & c: s) {
+      if ( !(c==':' || c=='0' || c=='1' || c=='2' || c=='5' || c=='8') || rh>=h || rm>=m) {
+        ok=false;
+        break;
+      }
+    }
+
+    if (ok) {
+      cout << s << endl;
+//       cerr << endl << endl;
+      return;
+    }
+
+    mm++;
+    if (mm>=m) {
+      hh = (hh+1)%h;
+      mm %= m;
+    }
+    s=ss(hh,mm);
+//     MSG(hh) MSG(mm)
+//     MSG(s); cerr << endl;
   }
-  FORD(x,k-1,(k+1)/2) {
-    result.PB(x);
-  }
-  cout << result.size() << endl;
-  for (auto & it: result) {
-    cout << it << " ";
-  }
-  cout << endl;
+//   cerr << "> INVALID ALL" << endl << endl;
 }
 
 int main() {

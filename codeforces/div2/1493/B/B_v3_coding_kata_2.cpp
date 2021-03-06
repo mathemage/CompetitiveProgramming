@@ -1,13 +1,13 @@
  
 /* ========================================
-   * File Name : A.cpp
-   * Creation Date : 06-03-2021
-   * Last Modified : Ne 7. března 2021, 00:21:26
+   * File Name : B_v3_coding_kata_2.cpp
+   * Creation Date : 07-03-2021
+   * Last Modified : Ne 7. března 2021, 00:37:13
    * Created By : Karel Ha <mathemage@gmail.com>
-   * URL : https://codeforces.com/contest/1493/problem/0
-   * Points/Time : 699
-   * Total/ETA : 750
-   * Status : pretests passed - AC
+   * URL : https://codeforces.com/contest/1493/problem/B
+   * Points/Time : 10m10s
+   * Total/ETA : 1250 (15m)
+   * Status : AC
    ==========================================*/
 
 #include <bits/stdc++.h>
@@ -60,23 +60,50 @@ const vector<pair<int,int>> DXY8 = {
   { 1,-1}, { 1,0}, { 1,1}
 };
 
+inline int cc(char c) {
+  return c-'0';
+}
+
+inline int cr(char c) {
+  if (c=='2') {
+    return 5;
+  } else if (c=='5') {
+    return 2;
+  }
+  return cc(c);
+}
 
 void solve() {
-  int n,k;
-  cin >> n >> k;
+  int h,m;
+  cin>>h>>m;
+  string s;
+  cin>>s;
 
-  vector<int> result = {};
-  FORD(x,n,k+1) {
-    result.PB(x);
+  string valid=":01258";
+  while (true) {
+    int rh=cr(s[4])*10 + cr(s[3]);
+    int rm=cr(s[1])*10 + cr(s[0]);
+
+    bool ok=true;
+    for (auto & c: s) {
+      if (count(ALL(valid), c)==0 || rh>=h || rm>=m) {
+        ok=false;
+        break;
+      }
+    }
+
+    if (ok) {
+      cout << s << endl;
+      return;
+    }
+
+    int hh=cc(s[0])*10 + cc(s[1]);
+    int mm=cc(s[3])*10 + cc(s[4]);
+    hh=(hh+ ++mm/m)%h;
+    mm%=m;
+
+    s = to_string(hh/10) + to_string(hh%10) + ":" + to_string(mm/10) + to_string(mm%10);
   }
-  FORD(x,k-1,(k+1)/2) {
-    result.PB(x);
-  }
-  cout << result.size() << endl;
-  for (auto & it: result) {
-    cout << it << " ";
-  }
-  cout << endl;
 }
 
 int main() {
