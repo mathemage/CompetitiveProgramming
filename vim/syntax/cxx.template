@@ -39,8 +39,15 @@ using namespace std;
 #define MSG(a) cerr << "> " << #a << ": " << (a) << endl;
 template<typename T>
 void print_vector(const vector<T> & vec, const string & name) {
-  cerr << name << ": ";
+  cerr << "> " << name << ": ";
   for (const auto & x: vec) cerr << x << "  ";
+  cerr << endl;
+}
+
+template<typename T>
+void print_vector_pairs(const vector<pair<T, T>> & vec, const string & name) {
+  cerr << "> " << name << ": ";
+  for (const auto & x: vec) cerr << "(" << x.F << ", " << x.S << ")\t";
   cerr << endl;
 }
 
