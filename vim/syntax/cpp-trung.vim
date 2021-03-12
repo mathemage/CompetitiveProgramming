@@ -25,8 +25,10 @@ map <F10> :cl<cr><cr>
 colorscheme desert
 
 " g++ for CodeChef beginning
-map <F5> <Esc>:wa<cr>:!g++ % -o `basename % .cpp`<cr>
-map! <F5> <Esc>:wa<cr>:!g++ % -o `basename % .cpp`<cr>
+" map <F5> <Esc>:wa<cr>:!g++ % -o `basename % .cpp`<cr>
+" map! <F5> <Esc>:wa<cr>:!g++ % -o `basename % .cpp`<cr>
+map <F5> <Esc>:wa<cr>:!./drive_all.sh<cr>
+map! <F5> <Esc>:wa<cr>:!./drive_all.sh<cr>
 map <F6> <Esc>:wa<cr>:!g++ % -pthread -o `basename % .cpp`<cr>
 map! <F6> <Esc>:wa<cr>:!g++ % -pthread -o `basename % .cpp`<cr>
 
