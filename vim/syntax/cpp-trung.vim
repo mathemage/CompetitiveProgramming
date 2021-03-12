@@ -10,11 +10,11 @@ map! m :wa:!make
 map ,q :wa:!qmake -project:!qmake `basename % .cpp`".pro":make
 map! ,q :wa:!qmake -project:!qmake `basename % .cpp`".pro":make
 
-" skok na předchozí chybové hlášení
-map <F3> :cp<cr>
-
-" skok na následující chybové hlášení
-map <F4> :cn<cr>
+" " skok na předchozí chybové hlášení
+" map <F3> :cp<cr>
+" 
+" " skok na následující chybové hlášení
+" map <F4> :cn<cr>
 
 " uložení aktuálně editovaného souboru a spuštění překladu
 map <F9> :wa<cr>:make<cr>
@@ -44,6 +44,8 @@ map! <F8> <Esc>:wa<cr>:!g++ -g -std=c++0x % -o driver && (ulimit -c unlimited; .
 " https://codeforces.com/blog/entry/15547 - -Wextra -pedantic TODO
 map <F2> <Esc>:wa<cr>:!g++ -static -DONLINE_JUDGE -Wall -Wextra -pedantic -O2 -std=c++17 % -o driver && (ulimit -s 268435456; time ./driver <in) <cr>
 map! <F2> <Esc>:wa<cr>:!g++ -static -DONLINE_JUDGE -Wall -Wextra -pedantic -O2 -std=c++17 % -o driver && (ulimit -s 268435456; time ./driver <in) <cr>
+map <F3> <Esc>:wa<cr>:!g++ -static -DMATHEMAGE_DEBUG -Wall -Wextra -pedantic -O2 -std=c++17 % -o driver && (ulimit -s 268435456; time ./driver <in) <cr>
+map! <F3> <Esc>:wa<cr>:!g++ -static -DMATHEMAGE_DEBUG -Wall -Wextra -pedantic -O2 -std=c++17 % -o driver && (ulimit -s 268435456; time ./driver <in) <cr>
 
 " abbreviations
 so ~/.vim/syntax/c++-abbreviations.vim

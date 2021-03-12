@@ -36,19 +36,32 @@ using namespace std;
 #define CONTAINS(S,E) ((S).find(E) != (S).end())
 #define SZ(x) ((int) (x).size())
 
-#define MSG(a) cerr << "> " << #a << ": " << (a) << endl;
+#ifdef ONLINE_JUDGE
+  #undef MATHEMAGE_DEBUG
+#endif
+
+#ifdef MATHEMAGE_DEBUG
+  #define MSG(a) cerr << "> " << (#a) << ": " << (a) << endl;
+#else
+  #define MSG(a)
+#endif
+
 template<typename T>
 void print_vector(const vector<T> & vec, const string & name) {
+#ifdef MATHEMAGE_DEBUG
   cerr << "> " << name << ": ";
   for (const auto & x: vec) cerr << x << "  ";
   cerr << endl;
+#endif
 }
 
 template<typename T>
 void print_vector_pairs(const vector<pair<T, T>> & vec, const string & name) {
+#ifdef MATHEMAGE_DEBUG
   cerr << "> " << name << ": ";
   for (const auto & x: vec) cerr << "(" << x.F << ", " << x.S << ")\t";
   cerr << endl;
+#endif
 }
 
 template<typename T>
@@ -79,6 +92,8 @@ const vector<pair<int,int>> DXY8 = {
 void solve() {
   long long result = 0LL;
   cout << result << endl;
+//   bool result = false;
+//   cout << (result?"YES":"NO") << endl;
 }
 
 int main() {
