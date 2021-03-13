@@ -42,8 +42,12 @@ using namespace std;
 
 #ifdef MATHEMAGE_DEBUG
   #define MSG(a) cerr << "> " << (#a) << ": " << (a) << endl;
+  #define LINESEP1 cerr << "-----------------------------------------------                  " << endl;
+  #define LINESEP2 cerr << "_________________________________________________________________" << endl;
 #else
   #define MSG(a)
+  #define LINESEP1
+  #define LINESEP2
 #endif
 
 template<typename T>
@@ -104,6 +108,7 @@ int main() {
   cin >> cases;
   while (cases--) {
     solve();
+    LINESEP2;
   }
   return 0;
 }
