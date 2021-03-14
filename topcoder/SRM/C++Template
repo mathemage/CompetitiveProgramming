@@ -5,6 +5,7 @@
  ==========================================*/
 
 #include <bits/stdc++.h>
+
 using namespace std;
 
 #define REP(i,n) for(int i=0;i<(n);i++)
@@ -23,19 +24,36 @@ using namespace std;
 #define CONTAINS(S,E) ((S).find(E) != (S).end())
 #define SZ(x) ((int) (x).size())
 
-#define MSG(a) cerr << "> " << #a << ": " << (a) << endl;
+#ifdef ONLINE_JUDGE
+  #undef MATHEMAGE_DEBUG
+#endif
+
+#ifdef MATHEMAGE_DEBUG
+  #define MSG(a) cerr << "> " << (#a) << ": " << (a) << endl;
+  #define LINESEP1 cerr << "-----------------------------------------------                  " << endl;
+  #define LINESEP2 cerr << "_________________________________________________________________" << endl;
+#else
+  #define MSG(a)
+  #define LINESEP1
+  #define LINESEP2
+#endif
+
 template<typename T>
 void print_vector(const vector<T> & vec, const string & name) {
+#ifdef MATHEMAGE_DEBUG
   cerr << "> " << name << ": ";
   for (const auto & x: vec) cerr << x << "  ";
   cerr << endl;
+#endif
 }
 
 template<typename T>
 void print_vector_pairs(const vector<pair<T, T>> & vec, const string & name) {
+#ifdef MATHEMAGE_DEBUG
   cerr << "> " << name << ": ";
   for (const auto & x: vec) cerr << "(" << x.F << ", " << x.S << ")\t";
   cerr << endl;
+#endif
 }
 
 template<typename T>
