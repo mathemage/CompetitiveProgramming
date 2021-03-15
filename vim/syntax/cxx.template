@@ -42,30 +42,30 @@ using namespace std;
 
 #ifdef MATHEMAGE_DEBUG
   #define MSG(a) cerr << "> " << (#a) << ": " << (a) << endl;
+  #define MSG_VEC(v) print_vector((v), (#v));
+  #define MSG_VEC_PAIRS(v) print_vector_pairs((v), (#v));
   #define LINESEP1 cerr << "-----------------------------------------------                  " << endl;
   #define LINESEP2 cerr << "_________________________________________________________________" << endl;
 #else
   #define MSG(a)
+  #define MSG_VEC(v)
+  #define MSG_VEC_PAIRS(v)
   #define LINESEP1
   #define LINESEP2
 #endif
 
 template<typename T>
 void print_vector(const vector<T> & vec, const string & name) {
-#ifdef MATHEMAGE_DEBUG
   cerr << "> " << name << ": ";
   for (const auto & x: vec) cerr << x << "  ";
   cerr << endl;
-#endif
 }
 
-template<typename T>
-void print_vector_pairs(const vector<pair<T, T>> & vec, const string & name) {
-#ifdef MATHEMAGE_DEBUG
+template<typename T1, typename T2>
+void print_vector_pairs(const vector<pair<T1, T2>> & vec, const string & name) {
   cerr << "> " << name << ": ";
   for (const auto & x: vec) cerr << "(" << x.F << ", " << x.S << ")\t";
   cerr << endl;
-#endif
 }
 
 template<typename T>
