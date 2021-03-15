@@ -197,3 +197,8 @@ if has('gui_running')
 endif
 
 map ,t :!tig<CR>
+
+" Automatically closing braces
+inoremap {<CR> {<CR>}<Esc>ko
+inoremap [<CR> [<CR>]<Esc>ko
+inoremap (<CR> (<CR>)<Esc>ko
