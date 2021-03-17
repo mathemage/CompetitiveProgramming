@@ -1,0 +1,42 @@
+<html><body bgcolor="#000000" text="#ffffff"><table><tr><td colspan="2"><h3>Problem Statement</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><p>
+You have a two-dimensional plane.
+You have already drawn some lines onto the plane: exactly <b>H</b> distinct horizontal lines and exactly <b>V</b> distinct vertical lines.
+</p>
+<p>
+The lines can be seen as region boundaries.
+You want to divide your plane into at least <b>N</b> regions.
+If necessary, you can draw additional straight lines.
+Each of the new lines must also be either horizontal or vertical.
+</p>
+<p>
+Compute and return the minimum number of additional lines you need.
+</p></td></tr><tr><td colspan="2"><h3>Definition</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Class:</td><td>DivideThePlane</td></tr><tr><td>Method:</td><td>makeCuts</td></tr><tr><td>Parameters:</td><td>int, int, long long</td></tr><tr><td>Returns:</td><td>long long</td></tr><tr><td>Method signature:</td><td>long long makeCuts(int H, int V, long long N)</td></tr><tr><td colspan="2">(be sure your method is public)</td></tr></table></td></tr><tr><td colspan="2"><h3>Limits</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Time limit (s):</td><td>2.000</td></tr><tr><td>Memory limit (MB):</td><td>256</td></tr></table></td></tr><tr><td colspan="2"><h3>Constraints</h3></td></tr><tr><td align="center" valign="top">-</td><td><b>H</b> will be between 0 and 10^6, inclusive.</td></tr><tr><td align="center" valign="top">-</td><td><b>V</b> will be between 0 and 10^6, inclusive.</td></tr><tr><td align="center" valign="top">-</td><td><b>N</b> will be between 1 and 10^14, inclusive.</td></tr><tr><td colspan="2"><h3>Examples</h3></td></tr><tr><td align="center" nowrap="true">0)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>0</pre></td></tr><tr><td><pre>0</pre></td></tr><tr><td><pre>1</pre></td></tr></table></td></tr><tr><td><pre>Returns: 0</pre></td></tr><tr><td><table><tr><td colspan="2">You don't have any lines drawn yet. You want to have at least one region. Luckily, the whole plane is now one region and that's exactly what you need, so you do not have to draw any lines.</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">1)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>0</pre></td></tr><tr><td><pre>0</pre></td></tr><tr><td><pre>3</pre></td></tr></table></td></tr><tr><td><pre>Returns: 2</pre></td></tr><tr><td><table><tr><td colspan="2"><p>If you draw a single line, you will have two regions, which isn't enough. Thus, you need at least two lines.</p>
+<p>Drawing two lines is clearly sufficient. We can draw two parallel lines and get three regions, or we can draw two perpendicular lines and get four regions. Both of these ways are valid optimal solutions for this test case.</p></td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">2)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>4</pre></td></tr><tr><td><pre>0</pre></td></tr><tr><td><pre>3</pre></td></tr></table></td></tr><tr><td><pre>Returns: 0</pre></td></tr><tr><td><table><tr><td colspan="2">You already have four horizontal lines. These already divide the plane into five regions, so you have enough regions and you do not have to draw any more lines.</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">3)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>4</pre></td></tr><tr><td><pre>0</pre></td></tr><tr><td><pre>20</pre></td></tr></table></td></tr><tr><td><pre>Returns: 3</pre></td></tr><tr><td><table><tr><td colspan="2">The only optimal solution here is to draw three vertical lines. This will produce exactly 20 regions. The plane will look as follows:
+<pre>
+    |  |  |
+    |  |  |
+----+--+--+----
+    |  |  |
+----+--+--+----
+    |  |  |
+----+--+--+----
+    |  |  |
+----+--+--+----
+    |  |  |
+    |  |  |
+</pre>
+and here are the individual regions numbered:
+<pre>
+    |  |  |
+   1| 2| 3| 4
+----+--+--+----
+   5| 6| 7| 8
+----+--+--+----
+   9|10|11|12
+----+--+--+----
+  13|14|15|16
+----+--+--+----
+  17|18|19|20
+    |  |  |
+</pre>
+</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">4)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>1</pre></td></tr><tr><td><pre>3</pre></td></tr><tr><td><pre>35</pre></td></tr></table></td></tr><tr><td><pre>Returns: 6</pre></td></tr><tr><td><table><tr><td colspan="2">One of the multiple optimal solutions is to add five new horizontal lines and one new vertical line (so there will be a total of six horizontal and four vertical lines). Another optimal solution is to add four horizontal and two vertical lines. In either case the total number of new lines is six.</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">5)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>99999</pre></td></tr><tr><td><pre>99997</pre></td></tr><tr><td><pre>10000000000</pre></td></tr></table></td></tr><tr><td><pre>Returns: 2</pre></td></tr><tr><td><table><tr><td colspan="2">Watch out for integer overflow.</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">6)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>4</pre></td></tr><tr><td><pre>7</pre></td></tr><tr><td><pre>12345</pre></td></tr></table></td></tr><tr><td><pre>Returns: 210</pre></td></tr><tr><td><table><tr><td colspan="2"></td></tr></table></td></tr></table></td></tr></table><p>This problem statement is the exclusive and proprietary property of TopCoder, Inc.  Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited.  (c)2003, TopCoder, Inc.  All rights reserved.  </p></body></html>
