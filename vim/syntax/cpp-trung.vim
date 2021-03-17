@@ -42,10 +42,10 @@ map! <F8> <Esc>:wa<cr>:!g++ -g -std=c++0x % -o driver && (ulimit -c unlimited; .
 "
 " https://codeforces.com/blog/entry/75004 - g++ -static -DONLINE_JUDGE -Wl,--stack=268435456 -O2 -std=c++17 program.cpp
 " https://codeforces.com/blog/entry/15547 - -Wextra -pedantic TODO
-map <F2> <Esc>:wa<cr>:!g++ -static -DONLINE_JUDGE -Wall -Wextra -pedantic -O2 -std=c++17 % -o driver && (ulimit -s 65536; time ./driver <in) <cr>
-map! <F2> <Esc>:wa<cr>:!g++ -static -DONLINE_JUDGE -Wall -Wextra -pedantic -O2 -std=c++17 % -o driver && (ulimit -s 65536; time ./driver <in) <cr>
-map <F3> <Esc>:wa<cr>:!g++ -static -DMATHEMAGE_DEBUG -Wall -Wextra -pedantic -O2 -std=c++17 % -o driver && (ulimit -s 65536; time ./driver <in) <cr>
-map! <F3> <Esc>:wa<cr>:!g++ -static -DMATHEMAGE_DEBUG -Wall -Wextra -pedantic -O2 -std=c++17 % -o driver && (ulimit -s 65536; time ./driver <in) <cr>
+map <F2> <Esc>:wa<cr>:!g++ -static -DONLINE_JUDGE -Wall -Wextra -pedantic -O2 -std=c++17 % -o driver && (ulimit -s 65536 -t 4; time ./driver <in) <cr>
+map! <F2> <Esc>:wa<cr>:!g++ -static -DONLINE_JUDGE -Wall -Wextra -pedantic -O2 -std=c++17 % -o driver && (ulimit -s 65536 -t 4; time ./driver <in) <cr>
+map <F3> <Esc>:wa<cr>:!g++ -static -DMATHEMAGE_DEBUG -Wall -Wextra -pedantic -O2 -std=c++17 % -o driver && (ulimit -s 65536 -t 7; time ./driver <in) <cr>
+map! <F3> <Esc>:wa<cr>:!g++ -static -DMATHEMAGE_DEBUG -Wall -Wextra -pedantic -O2 -std=c++17 % -o driver && (ulimit -s 65536 -t 7; time ./driver <in) <cr>
 
 " abbreviations
 so ~/.vim/syntax/c++-abbreviations.vim
