@@ -39,12 +39,14 @@ using namespace std;
   #define MSG(a) cerr << "> " << (#a) << ": " << (a) << endl;
   #define MSG_VEC(v) print_vector((v), (#v));
   #define MSG_VEC_PAIRS(v) print_vector_pairs((v), (#v));
+  #define MSG_VEC_STR(v) print_vector_string((v), (#v));
   #define LINESEP1 cerr << "-----------------------------------------------                  " << endl;
   #define LINESEP2 cerr << "_________________________________________________________________" << endl;
 #else
   #define MSG(a)
   #define MSG_VEC(v)
   #define MSG_VEC_PAIRS(v)
+  #define MSG_VEC_STR(v)
   #define LINESEP1
   #define LINESEP2
 #endif
@@ -61,6 +63,12 @@ void print_vector_pairs(const vector<pair<T1, T2>> & vec, const string & name) {
   cerr << "> " << name << ": ";
   for (const auto & x: vec) cerr << "(" << x.F << ", " << x.S << ")\t";
   cerr << endl;
+}
+
+template<typename T>
+void print_vector_string(const vector<T> & vec, const string & name) {
+  cerr << "> " << name << ": " << endl;
+  for (const auto & s: vec) cerr << s << endl;
 }
 
 template<typename T>
