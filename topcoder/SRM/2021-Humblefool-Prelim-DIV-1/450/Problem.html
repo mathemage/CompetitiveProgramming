@@ -1,0 +1,41 @@
+<html><body bgcolor="#000000" text="#ffffff"><table><tr><td colspan="2"><h3>Problem Statement</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><p>
+You have a box with a rectangular bottom.
+The box is divided into a grid of compartments.
+The grid has <b>R</b> rows and <b>C</b> columns.
+Rows are numbered from 0 to <b>R</b>-1, columns from 0 to <b>C</b>-1.
+The compartment in row r, column c will be denoted (r, c).
+</p>
+<p>
+Initially, all compartments are empty except for one: the compartment (0, 0) contains <b>N</b> marbles.
+</p>
+<p>
+You want to move all <b>N</b> marbles to the compartment (<b>R</b>-1, <b>C</b>-1).
+While doing so, you have to follow a set of rules:
+</p>
+<ul>
+<li>The marbles must be moved in a series of steps.</li>
+<li>In each step you may only move one marble.</li>
+<li>Whenever you move a marble, its new compartment must share a side with its previous compartment. (I.e., one coordinate must remain the same and the other must change by exactly 1.)</li>
+<li>Compartments other than (0, 0) and (<b>R</b>-1, <b>C</b>-1) must never contain more than one marble at the same time.</li>
+<li>You may only put a marble into the destination compartment (<b>R</b>-1, <b>C</b>-1) if the starting compartment (0, 0) is already empty.</li>
+<li>The total number of steps must be as small as possible.</li>
+</ul>
+<p>
+You are given the dimensions <b>R</b>, <b>C</b> of the grid.
+Construct any valid sequence of steps that transfers all three marbles to the opposite corner of the given grid.
+Each step can be represented as an array of length 4: the array { oldr, oldc, newr, newc } corresponds to a step in which we moved one of the marbles from (oldr, oldc) to (newr, newc).
+Construct these 4-element arrays for your sequence of steps and return their concatenation.
+</p></td></tr><tr><td colspan="2"><h3>Definition</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Class:</td><td>MoveAllMarbles</td></tr><tr><td>Method:</td><td>move</td></tr><tr><td>Parameters:</td><td>int, int, int</td></tr><tr><td>Returns:</td><td>vector &lt;int&gt;</td></tr><tr><td>Method signature:</td><td>vector &lt;int&gt; move(int R, int C, int N)</td></tr><tr><td colspan="2">(be sure your method is public)</td></tr></table></td></tr><tr><td colspan="2"><h3>Limits</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Time limit (s):</td><td>2.000</td></tr><tr><td>Memory limit (MB):</td><td>256</td></tr></table></td></tr><tr><td colspan="2"><h3>Notes</h3></td></tr><tr><td align="center" valign="top">-</td><td>For the constraints specified below a valid solution always exists.</td></tr><tr><td align="center" valign="top">-</td><td>Any valid solution will be accepted.</td></tr><tr><td colspan="2"><h3>Constraints</h3></td></tr><tr><td align="center" valign="top">-</td><td><b>R</b> will be between 1 and 10, inclusive.</td></tr><tr><td align="center" valign="top">-</td><td><b>C</b> will be between 1 and 10, inclusive.</td></tr><tr><td align="center" valign="top">-</td><td><b>R</b>*<b>C</b> will be at least 3.</td></tr><tr><td align="center" valign="top">-</td><td><b>N</b> will be between 1 and 50, inclusive.</td></tr><tr><td align="center" valign="top">-</td><td><b>N</b> will not exceed <b>R</b>*<b>C</b> - 2.</td></tr><tr><td colspan="2"><h3>Examples</h3></td></tr><tr><td align="center" nowrap="true">0)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>2</pre></td></tr><tr><td><pre>3</pre></td></tr><tr><td><pre>1</pre></td></tr></table></td></tr><tr><td><pre>Returns: {0, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 2 }</pre></td></tr><tr><td><table><tr><td colspan="2">We have a 2x3 grid and a single marble. The example output describes the following sequence of moves: from (0,0) to (0,1), from (0,1) to (1,1), and from (1,1) to (1,2).
+</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">1)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>2</pre></td></tr><tr><td><pre>3</pre></td></tr><tr><td><pre>2</pre></td></tr></table></td></tr><tr><td><pre>Returns: {0, 0, 0, 1, 0, 1, 0, 2, 0, 0, 1, 0, 0, 2, 1, 2, 1, 0, 1, 1, 1, 1, 1, 2 }</pre></td></tr><tr><td><table><tr><td colspan="2">The same grid but now we have two marbles. Let's call them marble A and marble B. The example output describes the following sequence of moves:
+<pre>
+Marble A from (0,0) to (0,1).
+Marble A from (0,1) to (0,2).
+Marble B from (0,0) to (1,0).
+Marble A from (0,2) to (1,2).
+Marble B from (1,0) to (1,1).
+Marble B from (1,1) to (1,2).
+</pre></td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">2)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>6</pre></td></tr><tr><td><pre>1</pre></td></tr><tr><td><pre>3</pre></td></tr></table></td></tr><tr><td><pre>Returns: 
+{0, 0, 1, 0, 1, 0, 2, 0, 0, 0, 1, 0, 2, 0, 3, 0, 3, 0, 4, 0, 1, 0, 2,
+ 0, 0, 0, 1, 0, 4, 0, 5, 0, 2, 0, 3, 0, 3, 0, 4, 0, 1, 0, 2, 0, 2, 0, 3,
+ 0, 4, 0, 5, 0, 3, 0, 4, 0, 4, 0, 5, 0 }</pre></td></tr><tr><td><table><tr><td colspan="2">A grid with dimensions 6x1, three marbles, and one of many optimal solutions for this input.
+</td></tr></table></td></tr></table></td></tr></table><p>This problem statement is the exclusive and proprietary property of TopCoder, Inc.  Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited.  (c)2003, TopCoder, Inc.  All rights reserved.  </p></body></html>
