@@ -3,7 +3,7 @@
 
    ID: mathema6
    TASK: 
-   LANG: C++11
+   LANG: C++14
 
    * File Name :
    * Creation Date :
@@ -108,9 +108,18 @@ void solve() {
 //   cout << (result?"YES":"NO") << endl;
 }
 
+#define PROBLEMNAME "test"
+void setIO(string filename) {    // the argument is the filename without the extension
+	freopen((filename+".in").c_str(), "r", stdin);
+	freopen((filename+".out").c_str(), "w", stdout);
+  MSG(filename);
+}
+
 int main() {
-  ios_base::sync_with_stdio(false);
-  cin.tie(NULL);
+  ios_base::sync_with_stdio(0);
+  cin.tie(0);
+
+  setIO(PROBLEMNAME);
 
   int cases = 1;
   cin >> cases;
