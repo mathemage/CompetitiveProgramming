@@ -17,6 +17,7 @@ iab vs vector<string>
 iab vi vector<int>
 iab vll vector<long long>
 iab vb vector<bool>
+iab vd vector<double>
 
 iab ii pair<int, int>
 iab dd pair<double, double>
