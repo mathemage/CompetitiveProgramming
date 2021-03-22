@@ -79,6 +79,7 @@ inline bool bounded(const T & x, const T & u, const T & l=0) {
 const int CLEAN = -1;
 const int UNDEF = -42;
 const long long MOD = 1000000007;
+const double EPS = 1e-8;
 
 const int INF = INT_MAX;
 const long long INF_LL = LLONG_MAX;
