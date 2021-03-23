@@ -104,17 +104,19 @@ const vector<pair<int,int>> DXY8 = {
 };
 
 
+void setIO(string filename) {    // the argument is the filename without the extension
+	freopen((filename+".in").c_str(), "r", stdin);
+#ifndef MATHEMAGE_LOCAL
+	freopen((filename+".out").c_str(), "w", stdout);
+#endif
+  MSG(filename);
+}
+
 void solve() {
   long long result = 0LL;
   cout << result << endl;
 //   bool result = false;
 //   cout << (result?"YES":"NO") << endl;
-}
-
-void setIO(string filename) {    // the argument is the filename without the extension
-	freopen((filename+".in").c_str(), "r", stdin);
-	freopen((filename+".out").c_str(), "w", stdout);
-  MSG(filename);
 }
 
 int main() {
