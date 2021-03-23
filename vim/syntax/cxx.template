@@ -104,13 +104,13 @@ const vector<pair<int,int>> DXY8 = {
 };
 
 
+#ifndef MATHEMAGE_LOCAL
 void setIO(string filename) {    // the argument is the filename without the extension
 	freopen((filename+".in").c_str(), "r", stdin);
-#ifndef MATHEMAGE_LOCAL
 	freopen((filename+".out").c_str(), "w", stdout);
-#endif
   MSG(filename);
 }
+#endif
 
 void solve() {
   long long result = 0LL;
@@ -123,7 +123,9 @@ int main() {
   ios_base::sync_with_stdio(0);
   cin.tie(0);
 
+#ifndef MATHEMAGE_LOCAL
   setIO(PROBLEMNAME);
+#endif
 
   int cases = 1;
   cin >> cases;
