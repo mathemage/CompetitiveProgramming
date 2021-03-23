@@ -149,3 +149,5 @@ if has('gui_running')
 endif
 
 map ,t :!tig<CR>
+nnoremap S :wa<CR>
+

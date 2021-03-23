@@ -200,6 +200,7 @@ if has('gui_running')
 endif
 
 map ,t :!tig<CR>
+nnoremap S :wa<CR>
 
 " Automatically closing braces
 inoremap {<CR> {<CR>}<Esc>ko
