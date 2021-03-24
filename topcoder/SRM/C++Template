@@ -1,8 +1,20 @@
 /* ========================================
- * Points/Time :
- * Total/ETA :
- * Status :
- ==========================================*/
+
+   ID: mathema6
+   TASK: 
+   LANG: C++14
+
+   * File Name :
+   * Creation Date :
+   * Last Modified :
+   * Created By : Karel Ha <mathemage@gmail.com>
+   * URL :
+   * Points/Time :
+   * Total/ETA :
+   * Status :
+   ==========================================*/
+
+#define PROBLEMNAME "TASK_PLACEHOLDER_FOR_VIM"
 
 #include <bits/stdc++.h>
 
