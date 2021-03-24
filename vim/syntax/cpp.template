@@ -37,26 +37,39 @@ using namespace std;
 
 #ifdef MATHEMAGE_DEBUG
   #define MSG(a) cerr << "> " << (#a) << ": " << (a) << endl;
-  #define MSG_VEC(v) print_vector((v), (#v));
+  #define MSG_VEC_VEC(v) cerr << "> " << (#v) << ":\n" << (v) << endl;
   #define MSG_VEC_PAIRS(v) print_vector_pairs((v), (#v));
   #define MSG_VEC_STR(v) print_vector_string((v), (#v));
   #define LINESEP1 cerr << "-----------------------------------------------                  " << endl;
   #define LINESEP2 cerr << "_________________________________________________________________" << endl;
 #else
   #define MSG(a)
-  #define MSG_VEC(v)
+  #define MSG_VEC_VEC(v)
   #define MSG_VEC_PAIRS(v)
   #define MSG_VEC_STR(v)
   #define LINESEP1
   #define LINESEP2
 #endif
 
-template<typename T>
-void print_vector(const vector<T> & vec, const string & name) {
-  cerr << "> " << name << ": ";
-  for (const auto & x: vec) cerr << x << "  ";
-  cerr << endl;
-}
+template<typename T> 
+ostream& operator<<(ostream& os, const vector<T> & vec) { 
+  for (const auto & x: vec) os << x << " ";
+  return os; 
+} 
+
+template<typename T> 
+ostream& operator<<(ostream& os, const vector<vector<T>> & vec) { 
+  for (const auto & v: vec) os << v << endl;
+  return os; 
+} 
+
+template<typename T> 
+ostream& operator<<(ostream& os, const set<T>& vec) { 
+  os << "{ | ";
+  for (const auto & x: vec) os << x << "| ";
+  os << "}";
+  return os; 
+} 
 
 template<typename T1, typename T2>
 void print_vector_pairs(const vector<pair<T1, T2>> & vec, const string & name) {
@@ -105,8 +118,8 @@ void solve() {
 }
 
 int main() {
-  ios_base::sync_with_stdio(false);
-  cin.tie(NULL);
+  ios_base::sync_with_stdio(0);
+  cin.tie(0);
 
   int cases = 1;
   cin >> cases;
