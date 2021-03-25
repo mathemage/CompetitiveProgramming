@@ -151,3 +151,5 @@ endif
 map ,t :!tig<CR>
 nnoremap S :wa<CR>
 
+
+let g:ycm_key_list_stop_completion = ['<C-y>', '<CR>']

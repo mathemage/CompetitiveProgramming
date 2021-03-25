@@ -206,3 +206,5 @@ nnoremap S :wa<CR>
 inoremap {<CR> {<CR>}<Esc>ko
 inoremap [<CR> [<CR>]<Esc>ko
 inoremap (<CR> (<CR>)<Esc>ko
+
+let g:ycm_key_list_stop_completion = ['<C-y>', '<CR>']
