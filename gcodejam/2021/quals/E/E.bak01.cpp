@@ -1,23 +1,20 @@
 /* ========================================
-   * File Name : B.cpp
-   * Creation Date : 26-03-2021
-   * Last Modified : Sat 27 Mar 2021 08:29:31 PM CET
+   * File Name : E.cpp
+   * Creation Date : 27-03-2021
+   * Last Modified : Sat 27 Mar 2021 07:50:43 PM CET
    * Created By : Karel Ha <mathemage@gmail.com>
-   * URL : https://codingcompetitions.withgoogle.com/codejam/round/000000000043580a/00000000006d1145
+   * URL : https://codingcompetitions.withgoogle.com/codejam/round/000000000043580a/00000000006d1155
    * Points/Time :
-   *  1h
-   * +1h19m10s = 2h19m10s :-/
+   * 6m
    *
-   * Total/ETA : 5+11+1pts ~40m
+   * Total/ETA :
    * Status :
-   * AC (the 2 visible testsets)
-   * + WA (hidden testset) :-/
+   * AC (Test Set 1)
    *
    ==========================================*/
 
 #include <algorithm>
 #include <bits/stdc++.h>
-#include <string>
 
 using namespace std;
 
@@ -95,8 +92,7 @@ inline bool bounded(const T & x, const T & u, const T & l=0) {
 }
 
 const int CLEAN = -1;
-// const int UNDEF = -42;
-const char UNDEF = '_';
+const int UNDEF = -42;
 const long long MOD = 1000000007;
 const double EPS = 1e-8;
 
@@ -115,87 +111,27 @@ const vector<pair<int,int>> DXY8 = {
   { 1,-1}, { 1,0}, { 1,1}
 };
 
+int P;
 
 void solve() {
-  int x,y;
-  string s;
-  cin >> x >> y >> s;
-  MSG(s);
+  vector<vector<bool>> m(100, vector<bool>(10000));
+  vector<vector<bool>> mT(10000, vector<bool>(100));
+  string line;
 
-  vector<string> options = {"CC", "JJ", "CJ", "JC"};
+  vector<int> rowSums(100);
+  vector<int> colSums(10000);
 
-  map<string, int> cost;
-  cost["CC"] = cost["JJ"] = 0;
-  cost["CJ"] = x; cost["JC"] = y;
-
-  map<string, char> prevChar;
-//   for (auto & opt: options) prevChar[opt]=UNDEF;
-  for (auto & opt: options) prevChar[opt]=opt[0];
-
-  map<string, int> deltas;
-
-  int n=s.size();
-
-  int result = 0;
-  int delta;
-  string key;
-  FOR(pos,1,n-1) {
-    LINESEP1;
-//     MSG(pos-1); MSG(pos);
-    MSG(s.substr(pos-1));
-    MSG(s[pos-1]); MSG(s[pos]);
-
-    if (s[pos]=='?') {
-      LINESEP1;
-      MSG(prevChar["CC"]) MSG(prevChar["JJ"]) MSG(prevChar["CJ"]) MSG(prevChar["JC"]);
-      if (s[pos-1]=='?') { // ??
-        for (auto & opt: {"CJ", "JC"} ) {
-          s[pos-1]=opt[0];
-          s[pos]=opt[1];
-          deltas[opt] += cost[s.substr(pos-1,2)];
-
-          prevChar[opt]^='C'^'J';
-        }
-        s[pos-1]='?';
-      } else {             // C? or J?
-        for (auto & opt: options) {
-          s[pos]=opt[0];
-          deltas[opt] += cost[s.substr(pos-1,2)];
-
-          prevChar[opt]=opt[0];
-        }
-      }
-      s[pos]='?';
-      LINESEP1;
-      MSG(prevChar["CC"]) MSG(prevChar["JJ"]) MSG(prevChar["CJ"]) MSG(prevChar["JC"]);
-      MSG(deltas["CC"]) MSG(deltas["JJ"]) MSG(deltas["CJ"]) MSG(deltas["JC"]);
-
-      if (pos==n-1) {
-        result+=min( min(deltas["CC"], deltas["JJ"]), min(deltas["CJ"], deltas["JC"]) );
-      }
-    } else {    // J or C
-      if (s[pos-1]=='?') { // ?C or ?J
-        MSG(prevChar["CC"]) MSG(prevChar["JJ"]) MSG(prevChar["CJ"]) MSG(prevChar["JC"]);
-        for (auto & opt: options) {
-          s[pos-1]=prevChar[opt];
-          deltas[opt] += cost[s.substr(pos-1,2)];
-        }
-        delta=min( min(deltas["CC"], deltas["JJ"]), min(deltas["CJ"], deltas["JC"]) );
-
-        MSG(deltas["CC"]) MSG(deltas["JJ"]) MSG(deltas["CJ"]) MSG(deltas["JC"])
-        deltas["CC"]=deltas["JJ"]=deltas["CJ"]=deltas["JC"]=0;
-        s[pos-1]='?';
-      } else {
-        delta=cost[s.substr(pos-1,2)];
-      }
-
-      MSG(delta);
-      result += delta;
+  REP(row,100) {
+    cin >> line;
+    REP(col,10000) {
+      m[row][col] = line[col]=='1';
+      mT[col][row] = line[col]=='1';
+      rowSums[row]+=int(line[col]-'0');
+      colSums[col]+=int(line[col]-'0');
     }
-
-    MSG(result);
   }
-  
+
+  int result = 1+max_element(ALL(rowSums))-rowSums.begin();
   cout << result << endl;
 }
 
@@ -205,6 +141,7 @@ int main() {
 
   int cases = 1;
   cin >> cases;
+  cin >> P;
   REP(i,cases) {
     cout << "Case #" << i+1 << ": ";
     solve();
