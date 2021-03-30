@@ -46,46 +46,52 @@ using namespace std;
   #define MSG_VEC_PAIRS(v) print_vector_pairs((v), (#v));
   #define LINESEP1 cerr << "-----------------------------------------------                  " << endl;
   #define LINESEP2 cerr << "_________________________________________________________________" << endl;
+
+  #define MSG_VEC(v) cerr << "> " << (#v) << ": "; (print_vector(cerr, (v))) << endl;
+  #define MSG_VEC_STR(v) cerr << "> " << (#v) << ": "; (print_vector_string(cerr, (v))) << endl;
 #else
   #define MSG(a)
   #define MSG_VEC_VEC(v)
   #define MSG_VEC_PAIRS(v)
   #define LINESEP1
   #define LINESEP2
+
+  #define MSG_VEC(v)
+  #define MSG_VEC_STR(v)
 #endif
 
-ostream& operator<<(ostream& os, const vector<string> & vec) {
+ostream& print_vector_string(ostream& os, const vector<string> & vec) {
   os << endl;
   for (const auto & s: vec) cerr << s << endl;
   return os;
 }
 
 template<typename T> 
-ostream& operator<<(ostream& os, const vector<T> & vec) { 
+ostream& print_vector(ostream& os, const vector<T> & vec) { 
   for (const auto & x: vec) os << x << " ";
   return os; 
 } 
 
-template<typename T> 
-ostream& operator<<(ostream& os, const vector<vector<T>> & vec) { 
-  for (const auto & v: vec) os << v << endl;
-  return os; 
-} 
-
-template<typename T> 
-ostream& operator<<(ostream& os, const set<T>& vec) { 
-  os << "{ | ";
-  for (const auto & x: vec) os << x << "| ";
-  os << "}";
-  return os; 
-} 
-
-template<typename T1, typename T2>
-void print_vector_pairs(const vector<pair<T1, T2>> & vec, const string & name) {
-  cerr << "> " << name << ": ";
-  for (const auto & x: vec) cerr << "(" << x.F << ", " << x.S << ")\t";
-  cerr << endl;
-}
+// template<typename T> 
+// ostream& operator<<(ostream& os, const vector<vector<T>> & vec) { 
+//   for (const auto & v: vec) os << v << endl;
+//   return os; 
+// } 
+// 
+// template<typename T> 
+// ostream& operator<<(ostream& os, const set<T>& vec) { 
+//   os << "{ | ";
+//   for (const auto & x: vec) os << x << "| ";
+//   os << "}";
+//   return os; 
+// } 
+// 
+// template<typename T1, typename T2>
+// void print_vector_pairs(const vector<pair<T1, T2>> & vec, const string & name) {
+//   cerr << "> " << name << ": ";
+//   for (const auto & x: vec) cerr << "(" << x.F << ", " << x.S << ")\t";
+//   cerr << endl;
+// }
 
 template<typename T>
 inline bool bounded(const T & x, const T & u, const T & l=0) {
