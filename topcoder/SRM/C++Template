@@ -42,7 +42,7 @@ using namespace std;
 
 #ifdef MATHEMAGE_DEBUG
   #define MSG(a) cerr << "> " << (#a) << ": " << (a) << endl;
-  #define MSG_VEC_VEC(v) cerr << "> " << (#v) << ":\n" << (v) << endl;
+  #define MSG_VEC_VEC(v) cerr << "> " << (#v) << ":\n"; (print_vector_vector(cerr, (v))) << endl;
   #define MSG_VEC_PAIRS(v) print_vector_pairs((v), (#v));
   #define LINESEP1 cerr << "-----------------------------------------------                  " << endl;
   #define LINESEP2 cerr << "_________________________________________________________________" << endl;
@@ -67,17 +67,22 @@ inline ostream& print_vector_string(ostream& os, const vector<string> & vec) {
 }
 
 template<typename T> 
-ostream& print_vector(ostream& os, const vector<T> & vec) { 
+inline ostream& print_vector(ostream& os, const vector<T> & vec) {
   for (const auto & x: vec) os << x << " ";
   return os; 
 } 
 
-// template<typename T> 
-// ostream& operator<<(ostream& os, const vector<vector<T>> & vec) { 
-//   for (const auto & v: vec) os << v << endl;
-//   return os; 
-// } 
-// 
+template<typename T>
+inline ostream& print_vector_vector(ostream& os, const vector<vector<T>> & vec) {
+  for (const auto & line: vec) {
+    for (const auto & it: line) {
+      os << it << " ";
+    }
+    os << endl;
+  }
+  return os;
+}
+
 // template<typename T> 
 // ostream& operator<<(ostream& os, const set<T>& vec) { 
 //   os << "{ | ";
