@@ -134,3 +134,13 @@ public:
 //   return (result?"Possible":"Impossible");
   }
 };
+
+/*
+Remember:
+
+1) (RE-)COMPILE LAST VERSION BEFORE SUBMITTING!!!!!
+2) CHECK ADDITIONALLY IN THE ROOM SUMMARY (whether CORRECT source code was submitted)!!!!
+  - Or `vimdiff solutionName*` should produce no diffs!
+3) Never submit brute-force/inferior solution when it might be too slow!!
+  - Or always re-compile again!
+*/
