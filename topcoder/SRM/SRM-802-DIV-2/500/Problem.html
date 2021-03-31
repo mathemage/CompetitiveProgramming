@@ -1,0 +1,90 @@
+<html><body bgcolor="#000000" text="#ffffff"><table><tr><td colspan="2"><h3>Problem Statement</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><p>
+DuckTales: The Quest for Gold is an old computer game.
+In the game, the player had to navigate the characters through various minigames.
+One of those is a cavern exploration game that inspired this problem.
+</p>
+<br></br>
+<p>
+The cave consists of a rectangular grid of chambers.
+Two chambers are adjacent if they are next to each other in the same row or column of the grid.
+When in the cave, the player may only move between adjacent chambers.
+</p>
+<p>
+Some of those chambers contain pits.
+If the player enters such a chamber, they fall into the pit and die.
+The player's primary goal is to avoid dying.
+</p>
+<p>
+Pits spread moisture.
+Therefore, each chamber that is directly adjacent to a pit will have slime on its walls.
+Slime does not occur anywhere else and therefore it can be used as a warning system: if the player sees the slime, they know that at least one of the adjacent chambers contains a pit.
+</p>
+<p>
+At most one chamber contains treasure.
+The player's secondary goal is to find the treasure, if there is one.
+</p>
+<p>
+The player has no knowledge of the cave.
+At the beginning of the game they are teleported into one of the chambers.
+When they find the treasure or give up, they are teleported back out.
+</p>
+<br></br>
+<p>
+You are shown the map of such a cave: a vector &lt;string&gt; <b>cave</b> in which each character represents one cell.
+The character 'P' is a pit, the character 'S' is where the player starts, the character 'T' is the treasure, and '.' are all other cells.
+Note that slime isn't explicitly shown on the map.
+We also stress that only you know the entire map, the player does not know it.
+</p>
+<p>
+If the player will find the treasure, return "gold" (quotes for clarity), if they won't, return "no gold".
+</p>
+
+</td></tr><tr><td colspan="2"><h3>Definition</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Class:</td><td>TheQuestForGold</td></tr><tr><td>Method:</td><td>explore</td></tr><tr><td>Parameters:</td><td>vector &lt;string&gt;</td></tr><tr><td>Returns:</td><td>string</td></tr><tr><td>Method signature:</td><td>string explore(vector &lt;string&gt; cave)</td></tr><tr><td colspan="2">(be sure your method is public)</td></tr></table></td></tr><tr><td colspan="2"><h3>Limits</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Time limit (s):</td><td>2.000</td></tr><tr><td>Memory limit (MB):</td><td>256</td></tr></table></td></tr><tr><td colspan="2"><h3>Notes</h3></td></tr><tr><td align="center" valign="top">-</td><td>As implied by the input format, the player's starting chamber and the treasure chamber are always two distinct chambers.</td></tr><tr><td align="center" valign="top">-</td><td>The chambers 'S' and 'T' do not contain a pit.</td></tr><tr><td colspan="2"><h3>Constraints</h3></td></tr><tr><td align="center" valign="top">-</td><td><b>cave</b> will contain between 1 and 50 elements, inclusive.</td></tr><tr><td align="center" valign="top">-</td><td>Each element of <b>cave</b> will contain between 1 and 50 characters, inclusive.</td></tr><tr><td align="center" valign="top">-</td><td>Each element of <b>cave</b> will contain the same number of characters.</td></tr><tr><td align="center" valign="top">-</td><td>Each character in <b>cave</b> will be 'P', 'S', 'T', or '.'.</td></tr><tr><td align="center" valign="top">-</td><td>There will be exactly one 'S'.</td></tr><tr><td align="center" valign="top">-</td><td>There will be at most one 'T'.</td></tr><tr><td colspan="2"><h3>Examples</h3></td></tr><tr><td align="center" nowrap="true">0)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{&quot;S....&quot;,
+ &quot;.....&quot;,
+ &quot;...T.&quot;,
+ &quot;.....&quot;}</pre></td></tr></table></td></tr><tr><td><pre>Returns: &quot;gold&quot;</pre></td></tr><tr><td><table><tr><td colspan="2">No pits anywhere. The player will explore the cave and eventually find the treasure.</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">1)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{&quot;S....&quot;,
+ &quot;...P.&quot;,
+ &quot;..PTP&quot;,
+ &quot;...P.&quot;}</pre></td></tr></table></td></tr><tr><td><pre>Returns: &quot;no gold&quot;</pre></td></tr><tr><td><table><tr><td colspan="2">The access to the treasure chest is completely blocked by the pits.</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">2)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{&quot;S....&quot;,
+ &quot;..P.P&quot;,
+ &quot;.P.T.&quot;,
+ &quot;.....&quot;}</pre></td></tr></table></td></tr><tr><td><pre>Returns: &quot;no gold&quot;</pre></td></tr><tr><td><table><tr><td colspan="2">There is no way to reach this treasure safely. To explain why, let's see what might happen to the player while exploring this cave.
+<ul>
+<li>The player starts in the top left corner. They don't see any slime.</li>
+<li>They take one step to the right and discover another room without slime.</li>
+<li>They take another step to the right and discover a room with slime. At this moment, the player cannot go right or down from that room because they would risk dying.</li>
+<li>The only remaining option is to return by making a step left.</li>
+<li>Another way to reach an unexplored chamber is to make a step down. This discovers a second chamber with slime.</li>
+<li>... and so on.</li>
+</ul>
+The part of the map that will end up explored by the player is shown below, with '+' showing an explored chamber without slime and '*' an explored chamber with slime.
+<pre>
+  ++*..
+  +*P.P
+  *P.T.
+  .....
+</pre>
+We know that there are safe ways of accessing the rest of the cave (including the treasure) but the player does not know the map and they cannot move into any other chamber without risking death.</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">3)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{&quot;S....&quot;,
+ &quot;P....&quot;,
+ &quot;...T.&quot;,
+ &quot;.....&quot;}</pre></td></tr></table></td></tr><tr><td><pre>Returns: &quot;no gold&quot;</pre></td></tr><tr><td><table><tr><td colspan="2">The player sees slime in their starting chamber. They are too afraid to move anywhere (they could die if they move), so the starting chamber will be the only explored chamber in this game. Again, the treasure remains undiscovered.</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">4)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{&quot;S....&quot;,
+ &quot;.....&quot;,
+ &quot;PPP..&quot;,
+ &quot;.....&quot;,
+ &quot;.....&quot;,
+ &quot;.....&quot;,
+ &quot;..PPP&quot;,
+ &quot;..T..&quot;}
+</pre></td></tr></table></td></tr><tr><td><pre>Returns: &quot;gold&quot;</pre></td></tr><tr><td><table><tr><td colspan="2">The player can navigate their way around these pits and eventually discover the treasure (in a chamber with slime).</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">5)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{&quot;.......&quot;,
+ &quot;.......&quot;,
+ &quot;..P.P..&quot;,
+ &quot;..PPP..&quot;,
+ &quot;..P.P..&quot;,
+ &quot;.......&quot;,
+ &quot;..S....&quot;}</pre></td></tr></table></td></tr><tr><td><pre>Returns: &quot;no gold&quot;</pre></td></tr><tr><td><table><tr><td colspan="2">There is no treasure, so the player will not find any treasure.</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">6)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{&quot;.......&quot;,
+ &quot;.......&quot;,
+ &quot;..P.P..&quot;,
+ &quot;..PTP..&quot;,
+ &quot;..P.P..&quot;,
+ &quot;.......&quot;,
+ &quot;..S....&quot;}</pre></td></tr></table></td></tr><tr><td><pre>Returns: &quot;no gold&quot;</pre></td></tr><tr><td><table><tr><td colspan="2">This is the same map as in the previous example, but now the middle chamber contains the treasure. The player will explore everything except for the pits and the room with the treasure. As the player isn't sure whether there is a treasure at all, they cannot step into the middle chamber: there can be a pit in that chamber and they could die.</td></tr></table></td></tr></table></td></tr></table><p>This problem statement is the exclusive and proprietary property of TopCoder, Inc.  Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited.  (c)2003, TopCoder, Inc.  All rights reserved.  </p></body></html>
