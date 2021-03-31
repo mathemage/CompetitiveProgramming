@@ -1,0 +1,44 @@
+<html><body bgcolor="#000000" text="#ffffff"><table><tr><td colspan="2"><h3>Problem Statement</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><p>
+One of the challenges that comes with a marriage ceremony is charging phones. Our fortunate bride is always busy, people always call her and her phone always needs to be recharged. In this problem you will have to help her.
+</p>
+<br></br>
+<p>
+The bride is about to enter the wedding forum. The wedding forum is circular. Along its circumference there is a walkway. The walkway is exactly <b>forumLength</b> meters long.
+</p>
+<p>
+We will introduce a coordinate system for the walkway. One designated spot will have the coordinate 0. All other points on the walkway will have increasing coordinates as you go around the forum clockwise. For example, if your current coordinate is <b>forumLength</b>-2 and you start walking in clockwise direction, after two meters you will be back at coordinate 0.
+</p>
+<br></br>
+<p>
+There are N dear relatives of the bride sitting around the forum.
+The relatives are numbered from 0 to N-1 in the order in which they are sitting.
+Relative number i is located at the coordinate <b>relative</b>[i].
+</p>
+<p>
+Each relative wants to greet the bride and talk to her for some amount of time.
+The bride can talk to the relative when she is at the relative's coordinate.
+As long as they talk, the bride can also charge her cell phone.
+The greeting with relative i can last for at most <b>greeting</b>[i] seconds.
+Charging the cellphone for X seconds gives it enough charge to survive for X more meters of the bride's walk.
+</p>
+<br></br>
+<p>
+The bride will enter the forum with a completely empty battery in her cell phone. Once she enters, she is expected to walk one complete loop around the forum in clockwise direction, eventually returning back to the spot where she started. During the loop she may stop to greet relatives and recharge her cell phone as many times as she wants. Can she do it in such a way that her phone always has some charge while she's walking?
+</p>
+<p>
+The bride can choose any entrance she wants to enter the forum. More precisely, she can start her walk at any coordinate.
+Count all locations from which it is possible to complete the loop in such a way that she never walks with a cell phone that is completely out of charge.
+Return the number of such locations.
+</p></td></tr><tr><td colspan="2"><h3>Definition</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Class:</td><td>MarriageAndChargingChallenge</td></tr><tr><td>Method:</td><td>solve</td></tr><tr><td>Parameters:</td><td>int, vector &lt;int&gt;, vector &lt;int&gt;</td></tr><tr><td>Returns:</td><td>int</td></tr><tr><td>Method signature:</td><td>int solve(int forumLength, vector &lt;int&gt; relative, vector &lt;int&gt; greeting)</td></tr><tr><td colspan="2">(be sure your method is public)</td></tr></table></td></tr><tr><td colspan="2"><h3>Limits</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Time limit (s):</td><td>2.000</td></tr><tr><td>Memory limit (MB):</td><td>256</td></tr></table></td></tr><tr><td colspan="2"><h3>Notes</h3></td></tr><tr><td align="center" valign="top">-</td><td>The value N is not given explicitly. You can determine it by looking at the length of <b>relative</b>.</td></tr><tr><td align="center" valign="top">-</td><td>There is no upper bound on the amount of charge in the bride's cell phone: it has a battery with a sufficiently large capacity.</td></tr><tr><td colspan="2"><h3>Constraints</h3></td></tr><tr><td align="center" valign="top">-</td><td><b>forumLength</b> will be between 1 and 10^9, inclusive.</td></tr><tr><td align="center" valign="top">-</td><td><b>relative</b> will contain between 1 and 50 elements, inclusive.</td></tr><tr><td align="center" valign="top">-</td><td>Each element of <b>relative</b> will be between 0 and <b>forumLength</b>-1, inclusive.</td></tr><tr><td align="center" valign="top">-</td><td>Elements of <b>relative</b> will be in increasing order.</td></tr><tr><td align="center" valign="top">-</td><td><b>greeting</b> will contain the same number of elements as <b>relative</b>.</td></tr><tr><td align="center" valign="top">-</td><td>Each element of <b>greeting</b> will be positive.</td></tr><tr><td align="center" valign="top">-</td><td>The sum of all elements of <b>greeting</b> won't exceed 10^9.</td></tr><tr><td colspan="2"><h3>Examples</h3></td></tr><tr><td align="center" nowrap="true">0)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>1000</pre></td></tr><tr><td><pre>{100, 300, 500, 700, 900}</pre></td></tr><tr><td><pre>{200, 200, 200, 200, 200}</pre></td></tr></table></td></tr><tr><td><pre>Returns: 5</pre></td></tr><tr><td><table><tr><td colspan="2"><p>
+The walk has 1000 meters. There are five relatives. They sit at coordinates 100, 300, 500, 700, and 900. The bride can talk to each relative for up to 200 seconds. If she does so, she will recharge her phone just enough to last for the walk to the next relative.
+</p>
+<p>
+Clearly, the bride must start her walk at the coordinate of one of her relatives (otherwise she would have a dead cell phone immediately). She can pick any of these five, in each case we will be able to complete the loop.
+</p></td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">1)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>1000</pre></td></tr><tr><td><pre>{0, 42}</pre></td></tr><tr><td><pre>{1234567, 47}</pre></td></tr></table></td></tr><tr><td><pre>Returns: 1</pre></td></tr><tr><td><table><tr><td colspan="2"><p>
+The bride can start at location 0. If she talks to the relative there for at least 1000 seconds, she will charge her phone enough to complete the full circuit without having to stop again.
+</p>
+<p>
+The best the bride can to if she starts at location 42 is to talk to the relative there for 47 seconds. Then she will walk for 47 meters and at that point (at coordinate 89) her phone will die. (Note that the bride is not allowed to walk in the opposite direction: she cannot go backwards from location 42 to location 0.)
+</p></td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">2)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>1000000000</pre></td></tr><tr><td><pre>{123456, 7890123, 456789012}</pre></td></tr><tr><td><pre>{222222222, 333333333, 444444444}</pre></td></tr></table></td></tr><tr><td><pre>Returns: 0</pre></td></tr><tr><td><table><tr><td colspan="2">Regardless of where the bride starts, she will not be able to make a complete loop. (If she starts at 123456, she will almost be able to do it: her phone will die one meter before she completes the loop.)</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">3)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>1</pre></td></tr><tr><td><pre>{0}</pre></td></tr><tr><td><pre>{1}</pre></td></tr></table></td></tr><tr><td><pre>Returns: 1</pre></td></tr><tr><td><table><tr><td colspan="2">The smallest possible test: the circuit has just one meter. The bride starts at the only relative here. She will charge her phone for one second and then walk for one meter to complete the loop.
+</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">4)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>1000000</pre></td></tr><tr><td><pre>{42, 47}</pre></td></tr><tr><td><pre>{6, 999994}</pre></td></tr></table></td></tr><tr><td><pre>Returns: 1</pre></td></tr><tr><td><table><tr><td colspan="2">Intuitively you may expect that the bride should always start at a relative that is willing to talk to her for a long time, so that she can recharge her phone for a long time. However, that's not always the optimal strategy. Here, starting at location 42 works but starting at location 47 does not.
+</td></tr></table></td></tr></table></td></tr></table><p>This problem statement is the exclusive and proprietary property of TopCoder, Inc.  Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited.  (c)2003, TopCoder, Inc.  All rights reserved.  </p></body></html>
