@@ -60,7 +60,7 @@ using namespace std;
   #define MSG_VEC_STR(v)
 #endif
 
-ostream& print_vector_string(ostream& os, const vector<string> & vec) {
+inline ostream& print_vector_string(ostream& os, const vector<string> & vec) {
   os << endl;
   for (const auto & s: vec) cerr << s << endl;
   return os;
