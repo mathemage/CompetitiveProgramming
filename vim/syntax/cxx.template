@@ -38,6 +38,11 @@ using namespace std;
 #define CONTAINS(S,E) ((S).find(E) != (S).end())
 #define SZ(x) ((int) (x).size())
 
+using ll = long long;
+using ul = unsigned long long;
+using llll = pair<ll, ll>;
+using ulul = pair<ul, ul>;
+
 #ifdef ONLINE_JUDGE
   #undef MATHEMAGE_DEBUG
 #endif
@@ -124,7 +129,7 @@ void setIO(string filename) {    // the argument is the filename without the ext
 #endif
 
 void solve() {
-  long long result = 0LL;
+  ll result = 0LL;
   cout << result << endl;
 //   bool result = false;
 //   cout << (result?"YES":"NO") << endl;

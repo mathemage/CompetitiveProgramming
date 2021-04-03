@@ -1,5 +1,10 @@
 :insert
 /* ========================================
+
+   ID: mathema6
+   TASK: 
+   LANG: C++14
+
    * File Name :
    * Creation Date :
    * Last Modified :
@@ -9,6 +14,8 @@
    * Total/ETA :
    * Status :
    ==========================================*/
+
+#define PROBLEMNAME "TASK_PLACEHOLDER_FOR_VIM"
 
 #include <bits/stdc++.h>
 
@@ -30,6 +37,11 @@ using namespace std;
 #define SGN(X) ((X) ? ( (X)>0?1:-1 ) : 0)
 #define CONTAINS(S,E) ((S).find(E) != (S).end())
 #define SZ(x) ((int) (x).size())
+
+using ll = long long;
+using ul = unsigned long long;
+using llll = pair<ll, ll>;
+using ulul = pair<ul, ul>;
 
 #ifdef ONLINE_JUDGE
   #undef MATHEMAGE_DEBUG
@@ -109,7 +121,7 @@ const vector<pair<int,int>> DXY8 = {
 
 
 void solve() {
-  long long result = 0LL;
+  ll result = 0LL;
   cout << result << endl;
 //   bool result = false;
 //   cout << (result?"YES":"NO") << endl;

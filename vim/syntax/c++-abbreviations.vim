@@ -11,7 +11,7 @@ iab switch switch (.) {<CR>case '': <ESC>-f.c
 
 iab ato atoi(.c_str())<ESC>F.i
 
-iab ll long long
+" iab ll long long
 
 iab vs vector<string>
 iab vi vector<int>
