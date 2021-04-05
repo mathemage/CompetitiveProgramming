@@ -6,7 +6,7 @@
 
    * File Name : tracing.cxx
    * Creation Date : 01-04-2021
-   * Last Modified : Thu 01 Apr 2021 11:13:13 PM CEST
+   * Last Modified : Út 6. dubna 2021, 01:00:32
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : http://usaco.org/index.php?page=viewproblem2&cpid=1037
    * Points/Time :
@@ -15,11 +15,15 @@
    * +  10m40s = 1h53m40s
    * +   1m40s = 1h55m20s
    * +   9m    = 2h04m20s
+   * +  23m10s = 2h27m30s
+   * +   8m    ~ 2h35m30s
    *
    * Total/ETA :
    * Status :
    * 13/16 WAs :-/
    * 12/16 WAs :-/
+   *  7/16 WAs :-/
+   *  7/16 WAs :-/ :-/
    *
    ==========================================*/
 
@@ -138,12 +142,10 @@ void solve() {
 
   int len=1+N;
   vector<bool> infected(len);
-  set<int> candidateZeroes;
   char ch;
   FOR(i,1,N) {
     cin >> ch;
     infected[i]=ch=='1';
-    if (infected[i]) { candidateZeroes.insert(i); }
   }
 
   int t,x,y;
@@ -156,14 +158,12 @@ void solve() {
   int Kmin=0, Kmax=INF;
 
   set<int> trueZeroes;
-  MSG(candidateZeroes); LINESEP1;
   FOR(zero,1,N) {                        // brute force over all possible patient "zero"
     MSG(zero); LINESEP1;
     if (infected[zero]) {
       MSG(infected[zero]); LINESEP1;
 
-      bool canBeZero=false;
-      FOR(K,Kmin,min(Kmax, 300)) {
+      FOR(K,Kmin,min(Kmax, T+1)) {
         MSG(K); MSG(Kmin); MSG(Kmax); LINESEP1;
         vector<bool> spread(len);
         vector<int> nShakes(len);
@@ -174,51 +174,40 @@ void solve() {
         for (auto & shake: shakes) {
           t=shake.F, x=shake.S.F, y=shake.S.S;
           MSG(t); MSG(x); MSG(y); LINESEP1;
-          nShakes[x]++, nShakes[y]++;
 
-          if (spread[x] && !infected[y]) {
-            if (nShakes[x]<=K) {  // impossible => x would have infected y
-              break;
-            } else {
-              MINUPDATE(candidateKmax, nShakes[x]-1);
-            }
-          }
-          if (spread[y] && !infected[x]) {
-            if (nShakes[y]<=K) {  // impossible <= y would have infected x
-              break;
-            } else {
-              MINUPDATE(candidateKmax, nShakes[y]-1);
-            }
-          }
+          if (spread[y]) { swap(x,y); }
+          if (spread[x]) {
+            nShakes[x]++;
 
-          if (infected[x] && !spread[y]) {
-            if (nShakes[x]<=K) {
-              spread[y]=true;
-            } else {    // K is not sufficient
-              break;
+            if (spread[y]) {
+              nShakes[y]++;
+              continue;
             }
-          }
 
-          if (infected[y] && !spread[x]) {
-            if (nShakes[y]<=K) {
-              spread[x]=true;
-            } else {    // K is not sufficient
-              break;
+            if (!infected[y]) {
+              if (nShakes[x]<=K) {  // impossible => x would have infected y
+                break;
+              } else {
+                MINUPDATE(candidateKmax, nShakes[x]-1);
+              }
+            }
+
+            if (infected[y] && !spread[y]) {
+              if (nShakes[x]<=K) {
+                spread[y]=true;
+              }
             }
           }
         }
 
         MSG(infected); MSG(spread); LINESEP1;
         if (spread==infected) { // "zero" is a viable patient zero
-          canBeZero=true;
-
+          trueZeroes.insert(zero); 
           MAXUPDATE(Kmin,K);
           MINUPDATE(Kmax,candidateKmax);
           break;
         }
       }
-
-      if (canBeZero) { trueZeroes.insert(zero); }
     }
     MSG(trueZeroes); LINESEP1;
   }
