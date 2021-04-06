@@ -49,6 +49,7 @@ iab max( max(., .)<ESC>2F.c
 iab acc accumulate(ALL(.), 0LL)<ESC>F.c
 iab accd accumulate(ALL(.), 0.0)<ESC>2F.c
 iab accu accumulate(..begin(), .end(), 0)<ESC>3F.c
+iab accum accumulate(ALL(.), 0, [](auto & a, auto & b) { return a+b; } )<ESC>F.c
 iab sor sort(ALL(.));<ESC>F.c
 iab sort sort(ALL(?), [](auto & a, auto & b) { return a.S < b.S; } );<ESC>F?c
 iab rsor sort(REVALL(.));<ESC>F.c
