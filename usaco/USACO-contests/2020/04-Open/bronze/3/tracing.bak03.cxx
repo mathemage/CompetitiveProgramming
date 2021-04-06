@@ -6,7 +6,7 @@
 
    * File Name : tracing.cxx
    * Creation Date : 01-04-2021
-   * Last Modified : St 7. dubna 2021, 01:54:13
+   * Last Modified : St 7. dubna 2021, 01:34:24
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : http://usaco.org/index.php?page=viewproblem2&cpid=1037
    * Points/Time :
@@ -19,8 +19,6 @@
    * +   8m    ~ 2h35m30s
    * +  13m10s ~ 2h48m40s
    * +  13m30s ~ 3h02m10s
-   * read testdata
-   * +  37m10s ~ 3h39m20s
    *
    * Total/ETA :
    * Status :
@@ -30,8 +28,6 @@
    *  7/16 WAs :-/ :-/
    *  6/16 WAs :-/
    *  6/16 WAs :-/
-   * 16/16 ACs <- OMG !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-   *  <- (bug with not clearing spread.clear(); when K has impossible value)
    *
    ==========================================*/
 
@@ -171,13 +167,14 @@ void solve() {
     if (infected[zero]) {
       MSG(infected[zero]); LINESEP1;
 
-      FOR(K,0,T+1) {
+      FOR(K,0,T) {
         MSG(K); MSG(Kmin); MSG(Kmax); LINESEP1;
         vector<bool> spread(len);
         vector<int> nShakes(len);
 
         spread[zero]=true;
 
+        int candidateKmax=Kmax;
         for (auto & shake: shakes) {
           t=shake.F, x=shake.S.F, y=shake.S.S;
           MSG(t); MSG(x); MSG(y); LINESEP1;
@@ -192,12 +189,11 @@ void solve() {
             }
 
             if (!infected[y]) {
-              LINESEP1;
-              MSG(x) MSG(y) MSG(nShakes[x]) MSG(K);
               if (nShakes[x]<=K) {  // impossible => x would have infected y
-                spread.clear();
-                MSG(infected); MSG(spread); LINESEP1;
                 break;
+              } else {
+                MINUPDATE(candidateKmax, nShakes[x]-1);
+                MSG(candidateKmax);
               }
             }
 
@@ -213,7 +209,9 @@ void solve() {
         if (spread==infected) { // "zero" is a viable patient zero
           trueZeroes.insert(zero); 
           MINUPDATE(Kmin,K);
-          MAXUPDATE(Kmax,K);
+//           MINUPDATE(Kmax,candidateKmax); // TODO MAXUPDATE?
+          MAXUPDATE(Kmax,candidateKmax); // TODO MAXUPDATE?
+          break;
         }
       }
     }
@@ -223,7 +221,7 @@ void solve() {
 
   cout << trueZeroes.size() << " "
        << Kmin << " "
-       << (Kmax==T+1?"Infinity":to_string(Kmax)) << endl;
+       << (Kmax==INF?"Infinity":to_string(Kmax)) << endl;
 }
 
 int main() {
