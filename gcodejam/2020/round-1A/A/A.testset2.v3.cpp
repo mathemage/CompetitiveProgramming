@@ -5,24 +5,20 @@
    TASK: 
    LANG: C++14
 
-   * File Name : A.testset2.cpp
+   * File Name : A.testset1.cpp
    * Creation Date : 05-04-2021
-   * Last Modified : Út 6. dubna 2021, 20:32:00
+   * Last Modified : Út 6. dubna 2021, 20:25:23
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://codingcompetitions.withgoogle.com/codejam/round/000000000019fd74/00000000002b3034
    * Points/Time : 
    * ~36m
    * +  1m10s = 37m10s
    * + 10m30s = 47m40s
-   * +    40s = 48m20s
-   * +  1m30s = 49m50s
    *
    * Total/ETA : 50m
    * Status :
    * S AC AC WA (i.e. AC TS1 & TS2)
    * S AC AC WA (i.e. AC TS1 & TS2)
-   * S AC AC WA (i.e. AC TS1 & TS2)
-   * S AC AC RE (i.e. AC TS1 & TS2)
    *
    ==========================================*/
 
@@ -159,10 +155,10 @@ void solve() {
     if (SZ(part)==1) {
       part.PB("");
     }
-    reverse(ALL(part.back()));
+    reverse(ALL(part[1]));
     MSG(part);
 
-    for (int i: {0,SZ(part)-1}) {
+    REP(i,2) {
       REP(pos,max(SZ(result[i]), SZ(part[i]))) {
         if (pos>=SZ(result[i])) {
           result[i]+=part[i][pos];

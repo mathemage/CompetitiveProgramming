@@ -1,28 +1,24 @@
- 
 /* ========================================
 
    ID: mathema6
    TASK: 
    LANG: C++14
 
-   * File Name : A.testset2.cpp
+   * File Name : A.testset3.cpp
    * Creation Date : 05-04-2021
-   * Last Modified : Út 6. dubna 2021, 20:32:00
+   * Last Modified : Út 6. dubna 2021, 21:07:32
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://codingcompetitions.withgoogle.com/codejam/round/000000000019fd74/00000000002b3034
    * Points/Time : 
-   * ~36m
-   * +  1m10s = 37m10s
-   * + 10m30s = 47m40s
-   * +    40s = 48m20s
-   * +  1m30s = 49m50s
+   *   8m30s
+   * +12m30s = 21m00s
+   * +10m50s = 31m50s (under ETA!!!)
    *
-   * Total/ETA : 50m
+   * Total/ETA : 35m
    * Status :
    * S AC AC WA (i.e. AC TS1 & TS2)
-   * S AC AC WA (i.e. AC TS1 & TS2)
-   * S AC AC WA (i.e. AC TS1 & TS2)
-   * S AC AC RE (i.e. AC TS1 & TS2)
+   * S AC AC WA (i.e. AC TS1 & TS2) :-/
+   * S AC AC AC (i.e. AC all test sets) !!!!!!!! :-D
    *
    ==========================================*/
 
@@ -144,25 +140,29 @@ void solve() {
   sort(ALL(P), [](auto & a, auto & b) { return a.size() > b.size(); } );
 //   MSG(P);
 
-  vector<string> result(2);
+  vector<string> result(3);
   for (auto & Pi: P) {
     MSG(Pi);
-    stringstream ss(Pi);
-    string token;
 
     vector<string> part;
+    if (Pi.front()=='*') { part.PB(""); }
+
+    stringstream ss(Pi);
+    string token;
     while (getline(ss, token, '*')) {
         part.PB(token);
     }
 
-    MSG(part.size());
-    if (SZ(part)==1) {
-      part.PB("");
-    }
+    if (Pi.back()=='*') { part.PB(""); }
+
     reverse(ALL(part.back()));
     MSG(part);
 
-    for (int i: {0,SZ(part)-1}) {
+    swap(part[1], part.back());
+    REP(i,2) {
+      LINESEP1;
+      MSG(i); MSG(result[i]); MSG(part[i]);
+
       REP(pos,max(SZ(result[i]), SZ(part[i]))) {
         if (pos>=SZ(result[i])) {
           result[i]+=part[i][pos];
@@ -175,12 +175,17 @@ void solve() {
         }
       }
     }
+    swap(part[1], part.back());
+
+    FOR(i,1,SZ(part)-2) {
+      result[2] += part[i];
+    }
     MSG(result);
     LINESEP1;
   }
 
   reverse(ALL(result[1]));
-  cout << result[0]+result[1] << endl;
+  cout << result[0]+result[2]+result[1] << endl;
 }
 
 int main() {
