@@ -63,7 +63,7 @@ using ulul = pair<ul, ul>;
 
 ostream& operator<<(ostream& os, const vector<string> & vec) {
   os << endl;
-  for (const auto & s: vec) cerr << s << endl;
+  for (const auto & s: vec) os << s << endl;
   return os;
 }
 
@@ -124,7 +124,7 @@ void solve() {
   ll result = 0LL;
   cout << result << endl;
 //   bool result = false;
-//   cout << (result?"YES":"NO") << endl;
+//   cout << (result?"Yes":"No") << endl;
 }
 
 int main() {
