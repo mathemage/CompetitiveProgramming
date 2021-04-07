@@ -21,8 +21,8 @@ iab vd vector<double>
 
 iab ii pair<int, int>
 iab dd pair<double, double>
-iab pi pair<int, int>
-iab pd pair<double, double>
+" iab pi pair<int, int>
+" iab pd pair<double, double>
 
 iab vii vector<pair<int, int>>
 iab vdd vector<pair<double, double>>
