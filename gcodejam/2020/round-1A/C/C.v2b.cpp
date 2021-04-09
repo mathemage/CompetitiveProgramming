@@ -7,14 +7,13 @@
 
    * File Name : C.cpp
    * Creation Date : 07-04-2021
-   * Last Modified : Fri 09 Apr 2021 04:06:17 PM CEST
+   * Last Modified : Fri 09 Apr 2021 03:51:04 PM CEST
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://codingcompetitions.withgoogle.com/codejam/round/000000000019fd74/00000000002b1355
    * Points/Time :
    *  21m10s
    * +17m    =   38m10s
    * +55m20s = 1h33m30s
-   * + 5m10s = 1h38m40s
    *
    * Total/ETA :
    *   45m (TS1)
@@ -23,7 +22,6 @@
    * Status :
    * S AC TLE (i.e. passed TS1)
    * S AC TLE (i.e. passed TS1)
-   * S AC  AC (i.e. passed all test sets!!!! ^_^)
    *
    ==========================================*/
 
@@ -161,7 +159,6 @@ void solve() {
 
   vector<vector<int>> S(nRows, vector<int>(nCols));
   vector<vector<vector<int>>> neighSteps(4, vector<vector<int>>(nRows, vector<int>(nCols, UNDEF)));
-  set<pair<int, int>> incoming;
   REP(i,nRows) {
     REP(j,nCols) {
       cin >> S[i][j];
@@ -171,8 +168,6 @@ void solve() {
         x=i+DXY4[due].F, y=j+DXY4[due].S;
         if (bounded(x,nRows) && bounded(y,nCols)) { neighSteps[due][i][j]=1; }
       }
-
-      incoming.insert(MP(i,j));
     }
   }
   competition+=round;
@@ -184,28 +179,26 @@ void solve() {
 
   int nSum,nCnt;
   pair<int, int> at;
-  int i,j;
   do {
-    // use incoming queue instead
-    for (auto & ij: incoming) {
-      i=ij.F, j=ij.S;
-      if (S[i][j]!=ELIMINATED) {
-        nSum=nCnt=0;
-        for (auto & due: dues) {
-          x=i+neighSteps[due][i][j]*DXY4[due].F;
-          y=j+neighSteps[due][i][j]*DXY4[due].S; // use neighSteps instead
-          if (bounded(x,nRows) && bounded(y,nCols) && S[x][y]!=ELIMINATED) {
-            nSum+=S[x][y];
-            nCnt++;
+    REP(i,nRows) {      // TODO use incoming queue instead
+      REP(j,nCols) {
+        if (S[i][j]!=ELIMINATED) {
+          nSum=nCnt=0;
+          for (auto & due: dues) {
+            x=i+neighSteps[due][i][j]*DXY4[due].F;
+            y=j+neighSteps[due][i][j]*DXY4[due].S; // use neighSteps instead
+            if (bounded(x,nRows) && bounded(y,nCols) && S[x][y]!=ELIMINATED) {
+              nSum+=S[x][y];
+              nCnt++;
+            }
           }
-        }
 
-        if (S[i][j]*nCnt < nSum) {
-          qDel.push(ij);
+          if (S[i][j]*nCnt < nSum) {
+            qDel.push(MP(i,j));
+          }
         }
       }
     }
-    incoming.clear();
 
     MSG(qDel.size());
     if (qDel.empty()) { break; }
@@ -223,12 +216,13 @@ void solve() {
         yy=y+neighSteps[due][x][y]*DXY4[due].S;
         if (bounded(xx,nRows) && bounded(yy,nCols)) {
           neighSteps[due^2][xx][yy] += neighSteps[due^2][x][y];
-          incoming.insert(MP(xx,yy));   // add to incoming queue
 
           MSG(due); MSG(due^2);
           LINESEP1;
         }
       }
+      
+      // TODO add to incoming queue
     }
 
     competition+=round;
