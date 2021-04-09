@@ -79,6 +79,17 @@ ostream& operator<<(ostream& os, const vector<vector<T>> & vec) {
   return os; 
 } 
 
+template<typename T>
+inline ostream& operator<<(ostream& os, const vector<vector<vector<T>>> & vec) {
+  for (const auto & row: vec) {
+    for (const auto & col: row) {
+      os << "[ " << col << "]   ";
+    }
+    os << endl;
+  }
+  return os;
+}
+
 template<typename T> 
 ostream& operator<<(ostream& os, const set<T>& vec) { 
   os << "{ | ";
@@ -108,9 +119,9 @@ const int INF = INT_MAX;
 const long long INF_LL = LLONG_MAX;
 const long long INF_ULL = ULLONG_MAX;
 
-const vector<int> DX4 = { 0, 0, -1, 1};
-const vector<int> DY4 = {-1, 1,  0, 0};
-const vector<pair<int,int>> DXY4 = { {0,-1}, {0,1}, {-1,0}, {1,0} };
+const vector<int> DX4 = {-1, 0, 1,  0};
+const vector<int> DY4 = { 0, 1, 0, -1};
+const vector<pair<int,int>> DXY4 = { {-1,0}, {0,1}, {1,0}, {0,-1} };
 const vector<int> DX8 = {-1, -1, -1,   0, 0,   1,  1,  1};
 const vector<int> DY8 = {-1,  0,  1,  -1, 1,  -1,  0,  1};
 const vector<pair<int,int>> DXY8 = {
@@ -133,7 +144,8 @@ int main() {
 
   int cases = 1;
   cin >> cases;
-  while (cases--) {
+  FOR(tt,1,cases) {
+//     cout << "Case #" << tt << ": ";
     solve();
     LINESEP2;
   }
