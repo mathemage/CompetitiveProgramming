@@ -98,6 +98,14 @@ ostream& operator<<(ostream& os, const set<T>& vec) {
   return os; 
 } 
 
+template<typename T>
+ostream& operator<<(ostream& os, const multiset<T>& vec) {
+  os << "{ | ";
+  for (const auto & x: vec) os << x << "| ";
+  os << "}";
+  return os;
+}
+
 template<typename T1, typename T2>
 void print_vector_pairs(const vector<pair<T1, T2>> & vec, const string & name) {
   cerr << "> " << name << ": ";
