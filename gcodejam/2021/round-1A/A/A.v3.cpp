@@ -6,7 +6,7 @@
 
    * File Name : A.cpp
    * Creation Date : 10-04-2021
-   * Last Modified : Tue 13 Apr 2021 11:12:59 PM CEST
+   * Last Modified : Sat 10 Apr 2021 05:16:46 PM CEST
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://codingcompetitions.withgoogle.com/codejam/round/000000000043585d/00000000007549e5
    * Points/Time :
@@ -14,10 +14,10 @@
    * 2h30m -> practice mode already :-( :-( :-(
    *
    * upsolve:
-   * +  7m20s =    7m20s
-   * +  1m20s =    8m40s
-   * +  2m30s =   11m10s
-   * +~80m10s = 1h31m20s
+   * +7m20s =  7m20s
+   * +1m20s =  8m40s
+   * +2m30s = 11m10s
+   * +6m30s
    *
    * Total/ETA :
    * 15m :-/ :-(
@@ -29,7 +29,6 @@
    * S AC TLE :-O
    * S AC TLE :-/
    * S AC RE (probed while-loop with exit code -> RE)
-   * S AC AC YESSSSSSSSSSSSSSSSS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
    *
    ==========================================*/
 
@@ -149,66 +148,46 @@ const vector<pair<int,int>> DXY8 = {
   { 1,-1}, { 1,0}, { 1,1}
 };
 
-string atLeast, newNum;
 
 void solve() {
   int N;
   cin >> N;
-  MSG(N);
+  vector<ul> X(N);
 
-  vector<string> X(N);
   REP(i,N) {
-    MSG(i);
     cin >> X[i];
   }
-  MSG(X); cerr.flush();
+  MSG(X);
 
-  int result = 0;
+  ul result = 0LL;
   FOR(i,1,N-1) {
-    MSG(i); cerr.flush();
-    if (SZ(X[i-1])<SZ(X[i])) { continue; }
-    if (SZ(X[i-1])==SZ(X[i]) && X[i-1]<X[i]) { continue; }
+    if (X[i-1]>=X[i]) {
+      ul atLeast=X[i-1]+1;
 
-    atLeast=X[i-1];
-    bool only9s=true;
-    FORD(pos,SZ(atLeast)-1,0) {
-      if (atLeast[pos]=='9') {
-        atLeast[pos]='0';
-      } else {
-        atLeast[pos]++;
-        only9s=false;
-        break;
+      ul newNum=X[i];
+      while (newNum<atLeast) {
+        newNum*=10;
+        if (newNum>1e19) {
+          exit(1);
+        }
       }
-    }
-//     if (count(ALL(atLeast), '0')==SZ(atLeast)) {
-    if (only9s) {
-      atLeast='1'+atLeast;
-    }
-    MSG(X[i-1]); MSG(atLeast); cerr.flush();
 
-    newNum=X[i];
-    if (atLeast.substr(0,SZ(X[i])) == X[i]) {  // it's a prefix
-      newNum = atLeast;
-    } else {
-      while (SZ(newNum)<SZ(atLeast)) {
-        newNum+='0';
+      string sX=to_string(X[i]);
+      string sAtLeast=to_string(atLeast);
+      if (sAtLeast.substr(0,SZ(sX)) == sX) {  // it's prefix
+        MINUPDATE(newNum,atLeast);
       }
-      if (newNum<atLeast) { newNum+='0'; }
+
+      result+=SZ(to_string(newNum)) - SZ(sX);
+      MSG(X[i]); MSG(newNum); MSG(result);
+
+      X[i]=newNum;
+      LINESEP1;
     }
-
-    result+=SZ(newNum) - SZ(X[i]);
-    MSG(X[i]); MSG(newNum); MSG(result); cerr.flush();
-
-    X[i]=newNum;
-    newNum.clear();
-    atLeast.clear();
-    LINESEP1;
   }
-  MSG(X); cerr.flush();
+  MSG(X);
 
   cout << result << endl;
-  X.clear();
-  MSG(X); cerr.flush();
 }
 
 int main() {
@@ -219,9 +198,8 @@ int main() {
   cin >> cases;
   FOR(tt,1,cases) {
     cout << "Case #" << tt << ": ";
-    cout.flush(); cerr.flush();
     solve();
-    LINESEP2; cout.flush(); cerr.flush();
+    LINESEP2;
   }
   return 0;
 }
