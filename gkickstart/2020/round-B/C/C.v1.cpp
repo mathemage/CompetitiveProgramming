@@ -6,16 +6,15 @@
 
    * File Name : C.cpp
    * Creation Date : 13-04-2021
-   * Last Modified : Wed 14 Apr 2021 09:47:40 PM CEST
+   * Last Modified : Wed 14 Apr 2021 09:12:30 PM CEST
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://codingcompetitions.withgoogle.com/kickstart/round/000000000019ffc8/00000000002d83dc
    * Points/Time :
-   *    31m
-   * +1h 4m = 1h35m
+   *  31m30s
+   * +
    *
-   * Total/ETA : 50m
+   * Total/ETA :
    * Status :
-   * S AC AC !!! YES !
    *
    ==========================================*/
 
@@ -144,52 +143,47 @@ const vector<pair<int,int>> DXY8 = {
 
 string prog;
 string dues="NESW";
-int pos,di;
+int di;
 
-inline void mod(ll & k) {
+inline void mod(int & k) {
   k = (k%MOD+MOD)%MOD;
 }
 
-pair<ll, ll> getShift() {
-  LINESEP1;
-  pair<ll, ll> dhw={0,0};
+pair<int, int> getShift(int l, int r) {
+  pair<int, int> dhw={0,0};
 
-  while (pos<SZ(prog)) {
-    MSG(prog.substr(pos));
+  if (l<=r) {
+    FOR(pos,l,r) {
+      auto it = find(ALL(dues),prog[pos]);
+      if (it!=dues.end()) {
+        di=it-dues.begin();
+        MSG(prog[pos]); MSG(dues[di]); MSG(di);
 
-    auto it = find(ALL(dues),prog[pos]);
-    if (it!=dues.end()) {
-      di=it-dues.begin();
-      dhw.F+=DXY4[di].F, dhw.S+=DXY4[di].S;
-      mod(dhw.F), mod(dhw.S);
-    } else if ('2'<=prog[pos] && prog[pos]<='9') {
-      ll mul=prog[pos]-'0';
-      MSG(mul);
+        dhw.F+=DXY4[di].F, dhw.S+=DXY4[di].S;
+        mod(dhw.F), mod(dhw.S);
+        MSG(dhw);
+        LINESEP1;
+      } else if ('2'<=prog[pos] && prog[pos]<='9') {  // TODO
+        assert(prog[pos+1]=='(');
 
-      pos+=2;
-      pair<ll, ll> dhw2 = getShift();
+        int closePos = prog.find_last_of(')', r);
+        pair<int, int> dhw2 = getShift(pos+2, closePos);
 
-      MSG(dhw);
-      dhw.F += mul * dhw2.F;
-      dhw.S += mul * dhw2.S;
-      MSG(dhw);
-    } else if (prog[pos]==')') {
-      MSG(prog[pos]);
-      MSG(dhw); LINESEP1;
-      return dhw;
-    } else {
-      cerr.flush();
-      exit(1);
+        int mul=prog[pos]-'0';
+        dhw.F+=mul*dhw2.F, dhw.S+=mul*dhw2.S;
+        mod(dhw.F), mod(dhw.S);
+
+        pos=closePos;     // and increment afterward in the FOR
+      } else {
+        MSG(l); MSG(r); MSG(pos);
+        MSG(prog[pos]);
+        cerr.flush();
+        exit(1);
+      }
     }
-
-    mod(dhw.F), mod(dhw.S);
-    MSG(dhw);
-    pos++;
-    LINESEP1;
   }
 
   mod(dhw.F), mod(dhw.S);
-  LINESEP1;
   return dhw;
 }
 
@@ -197,8 +191,7 @@ void solve() {
   cin >> prog;
   MSG(prog);
 
-  pos=0;
-  pair<ll, ll> dhw = getShift();
+  pair<int, int> dhw = getShift(0, SZ(prog)-1);
   cout << 1+dhw.S << " " << 1+dhw.F << endl;
 }
 
