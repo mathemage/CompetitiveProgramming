@@ -6,7 +6,7 @@
 
    * File Name : D.cpp
    * Creation Date : 15-04-2021
-   * Last Modified : Fri 16 Apr 2021 12:51:38 AM CEST
+   * Last Modified : Fri 16 Apr 2021 12:40:02 AM CEST
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://codingcompetitions.withgoogle.com/kickstart/round/000000000019ffc8/00000000002d8565
    * Points/Time :
@@ -24,7 +24,6 @@
    * + 1m ~ 1h21m
    * + 0m ~ 1h21m
    * + 4m ~ 1h25m
-   * +10m -> complete different (non-DP solution!)
    *
    * Total/ETA : 40m
    * Status :
@@ -40,7 +39,6 @@
    * S AC WA
    * S AC WA
    * S WA -
-   * [editorial]
    *
    ==========================================*/
 
