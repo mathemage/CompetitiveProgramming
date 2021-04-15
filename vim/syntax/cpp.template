@@ -114,6 +114,12 @@ void print_vector_pairs(const vector<pair<T1, T2>> & vec, const string & name) {
 }
 
 template<typename T>
+istream& operator>>(istream& is, vector<T> & vec) {
+  for (auto & x: vec) is >> x;
+  return is;
+}
+
+template<typename T>
 inline bool bounded(const T & x, const T & u, const T & l=0) {
   return min(l,u)<=x && x<max(l,u);
 }
@@ -138,6 +144,14 @@ const vector<pair<int,int>> DXY8 = {
   { 1,-1}, { 1,0}, { 1,1}
 };
 
+
+#ifndef MATHEMAGE_LOCAL
+void setIO(string filename) {    // the argument is the filename without the extension
+	freopen((filename+".in").c_str(), "r", stdin);
+	freopen((filename+".out").c_str(), "w", stdout);
+  MSG(filename);
+}
+#endif
 
 void solve() {
   ll result = 0LL;

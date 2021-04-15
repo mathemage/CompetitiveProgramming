@@ -114,6 +114,12 @@ void print_vector_pairs(const vector<pair<T1, T2>> & vec, const string & name) {
 }
 
 template<typename T>
+istream& operator>>(istream& is, vector<T> & vec) {
+  for (auto & x: vec) is >> x;
+  return is;
+}
+
+template<typename T>
 inline bool bounded(const T & x, const T & u, const T & l=0) {
   return min(l,u)<=x && x<max(l,u);
 }
