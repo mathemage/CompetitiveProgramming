@@ -1,0 +1,51 @@
+<html><body bgcolor="#000000" text="#ffffff"><table><tr><td colspan="2"><h3>Problem Statement</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><p>
+Elly wants to send a ransom note.
+And everybody knows how to produce a proper ransom note: by cutting out letters from a newspaper and pasting them to a sheet of paper.
+</p>
+<br></br>
+<p>
+Elly has one page from a newspaper as her source of letters.
+Her page has text on both sides and she can use letters from both sides in the ransom note.
+But, of course, once she cuts out a letter and glues it to the ransom note, she can no longer use the letter that was on the other side of that piece of paper.
+</p>
+<p>
+The letters in Elly's newspaper are perfectly aligned: whenever she cuts out a letter from the page, the cutout will have exactly one letter on the other side as well.
+</p>
+<br></br>
+<p>
+The girl has asked you to help her find one possible way in which she can produce the desired ransom note.
+</p>
+<p>
+You will be given the strings <b>A</b>, <b>B</b> and <b>T</b>.
+</p>
+<p>
+The strings <b>A</b> and <b>B</b> both have the same length N.
+These strings describe the newspaper page: <b>A</b> are the letters on the front side and <b>B</b> are the corresponding letters on the back side of the page.
+The order of letters in <b>A</b> and <b>B</b> is such that for each index i the letters <b>A</b>[i] and <b>B</b>[i] are opposite each other.
+</p>
+<p>
+The string <b>T</b> is the text of the ransom note Elly wants to write.
+</p>
+<br></br>
+<p>
+Return a string of N characters.
+For each i, character i of the returned string must be one of <b>A</b>[i], <b>B</b>[i] and '_' (underscore).
+Here, <b>A</b>[i] and <b>B</b>[i] mean that you are using that character somewhere in the ransom note and '_' means that this character will remain unused.
+</p>
+<p>
+A solution is valid if <b>T</b> can be obtained by rearranging the letters that appear in the returned string.
+Any valid solution will be accepted.
+If no valid solution exists, return "NO SOLUTION" instead (quotes for clarity).
+</p></td></tr><tr><td colspan="2"><h3>Definition</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Class:</td><td>EllysRansom</td></tr><tr><td>Method:</td><td>getRansom</td></tr><tr><td>Parameters:</td><td>string, string, string</td></tr><tr><td>Returns:</td><td>string</td></tr><tr><td>Method signature:</td><td>string getRansom(string A, string B, string T)</td></tr><tr><td colspan="2">(be sure your method is public)</td></tr></table></td></tr><tr><td colspan="2"><h3>Limits</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Time limit (s):</td><td>2.000</td></tr><tr><td>Memory limit (MB):</td><td>256</td></tr></table></td></tr><tr><td colspan="2"><h3>Constraints</h3></td></tr><tr><td align="center" valign="top">-</td><td><b>A</b> and <b>B</b> will each contain between 1 and 1000 characters, inclusive.</td></tr><tr><td align="center" valign="top">-</td><td><b>A</b> and <b>B</b> will contain the same number of characters.</td></tr><tr><td align="center" valign="top">-</td><td><b>T</b> will contain between 1 and N characters, inclusive, where N is the number of characters in <b>A</b>.</td></tr><tr><td align="center" valign="top">-</td><td>All strings will contain only uppercase letters from the English alphabet ({'A'-'Z'}).</td></tr><tr><td colspan="2"><h3>Examples</h3></td></tr><tr><td align="center" nowrap="true">0)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>&quot;GOODLUCKANDHAVEFUNN&quot;</pre></td></tr><tr><td><pre>&quot;RPSETSUJMITITUOHTIW&quot;</pre></td></tr><tr><td><pre>&quot;TOPCODER&quot;</pre></td></tr></table></td></tr><tr><td><pre>Returns: &quot;RPOET_C___D___O____&quot;</pre></td></tr><tr><td><table><tr><td colspan="2"><p>
+The answer "RPOET_C___D___O____" is one of multiple valid answers for this test case.
+</p>
+<p>
+According to this answer, we take the letters 'R' and 'P' from the back side of the page, 'O' from the front, 'E' and 'T' from the back, then we skip a letter, then we take 'C' from the front, skip 3 more letters, take a 'D' from the front, skip 3 more letters, and finally we take an 'O' from the back of the page.
+</p>
+<p>
+In total, we have cut out exactly eight letters: R, P, O, E, T, C, D, O. These can be rearranged to spell "TOPCODER" exactly.
+</p></td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">1)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>&quot;HELP&quot;</pre></td></tr><tr><td><pre>&quot;ELLY&quot;</pre></td></tr><tr><td><pre>&quot;HELL&quot;</pre></td></tr></table></td></tr><tr><td><pre>Returns: &quot;NO SOLUTION&quot;</pre></td></tr><tr><td><table><tr><td colspan="2"><p>
+The last letter is useless: we do not need 'P' or 'Y' for our ransom note.
+The other three letters are not enough to form a four-letter ransom note.
+</p>
+</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">2)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>&quot;NEVERMINDTHENOISEYOUHEARD&quot;</pre></td></tr><tr><td><pre>&quot;DEBRUOYREDNUTSAEBATSUJSTI&quot;</pre></td></tr><tr><td><pre>&quot;ENTERSANDMANYEAH&quot;</pre></td></tr></table></td></tr><tr><td><pre>Returns: &quot;NE_ERMYNDTHENSA__A____A__&quot;</pre></td></tr><tr><td><table><tr><td colspan="2"></td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">3)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>&quot;THISWASATRIUMPHIMMAKINANOTEHEREHUGE&quot;</pre></td></tr><tr><td><pre>&quot;EVILALLITSERAOHWELPOEPEHTROFSSECCUS&quot;</pre></td></tr><tr><td><pre>&quot;APERTURESCIENCEPORTALHASEVILTESTS&quot;</pre></td></tr></table></td></tr><tr><td><pre>Returns: &quot;TVISALSATRERAPHIELPOENE_TTE_SRECCUS&quot;</pre></td></tr><tr><td><table><tr><td colspan="2"></td></tr></table></td></tr></table></td></tr></table><p>This problem statement is the exclusive and proprietary property of TopCoder, Inc.  Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited.  (c)2003, TopCoder, Inc.  All rights reserved.  </p></body></html>
