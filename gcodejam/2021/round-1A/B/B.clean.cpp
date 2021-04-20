@@ -6,7 +6,7 @@
 
    * File Name : B.cpp
    * Creation Date : 15-04-2021
-   * Last Modified : Tue 20 Apr 2021 04:32:01 PM CEST
+   * Last Modified : Tue 20 Apr 2021 04:35:38 PM CEST
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://codingcompetitions.withgoogle.com/codejam/round/000000000043585d/00000000007543d8
    * Points/Time :
@@ -15,6 +15,7 @@
    * +17m = 1h11m
    * [editorial]
    * +35m = 1h46m
+   * + 2m = 1h48m
    *
    * Total/ETA :
    * 15m (TS1 - brute force)
@@ -24,6 +25,7 @@
    * S AC  AC TLE !!!!
    * [editorial]
    * S AC  AC  AC !!!!!!!!!!!!
+   * S AC  AC  AC !
    *
    ==========================================*/
 
@@ -166,17 +168,12 @@ void setIO(string filename) {    // the argument is the filename without the ext
 }
 #endif
 
-const ll MAX_CARDS=59;  // https://www.wolframalpha.com/input/?i=log2%28+499+*+1e15%29
-const ll MAX_G2_SUM=29441; // https://www.wolframalpha.com/input/?i=59+*+499
-
-vector<int> primes;
+const ll MAX_G2_SUM=29441; // https://www.wolframalpha.com/input/?i=log2%28+499+*+1e15%29 && https://www.wolframalpha.com/input/?i=59+*+499
 
 void solve() {
-  ll M;
-  cin >> M;
+  ll M; cin >> M;
 
-  vector<long long> P(M);
-  vector<long long> N(M);
+  vector<ll> P(M); vector<ll> N(M);
   map<ll, ll> cnt;
   ll s=0;
   REP(i,M) {
@@ -184,12 +181,10 @@ void solve() {
     s+=P[i]*N[i];
     cnt[P[i]] = N[i];
   }
-  MSG(s);
 
   ll result = 0LL;
   FORD(prod, s-1, max(2LL, s-MAX_G2_SUM)) {
-    ll candidProd=prod;
-    ll sum=s;
+    ll candidProd=prod, sum=s;
     for (auto & p: P) {
       REP(_, cnt[p]) {
         if (candidProd%p==0) {
@@ -203,33 +198,15 @@ void solve() {
 
     if (candidProd==1 && sum==prod) {
       MAXUPDATE(result, prod);
-
-      MSG(candidProd); MSG(prod); MSG(sum); MSG(result);
-      LINESEP1;
     }
   }
 
   cout << result << endl;
 }
 
-const int MAX_PR = 5000000;
-bitset<MAX_PR> isprime;
-vector<int> eratosthenes_sieve(int lim) {
-  isprime.set(); isprime[0] = isprime[1] = 0;
-  for (int i = 4; i < lim; i += 2) isprime[i] = 0;
-  for (int i = 3; i*i < lim; i += 2) if (isprime[i])
-    for (int j = i*i; j < lim; j += i*2) isprime[j] = 0;
-  vector<int> pr;
-  FOR(i,2,lim) if (isprime[i]) pr.push_back(i);
-  return pr;
-}
-
 int main() {
   ios_base::sync_with_stdio(0);
   cin.tie(0);
-
-  primes=eratosthenes_sieve(500);
-  MSG(primes);
 
   int cases = 1;
   cin >> cases;
