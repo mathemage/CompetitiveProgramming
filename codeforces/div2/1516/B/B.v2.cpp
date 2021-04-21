@@ -6,24 +6,32 @@
 
    * File Name : B.cpp
    * Creation Date : 21-04-2021
-   * Last Modified : Wed 21 Apr 2021 11:59:34 PM CEST
+   * Last Modified : Wed 21 Apr 2021 11:22:21 PM CEST
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://codeforces.com/contest/1516/problem/B
-   * Points/Time :
-   *      = 6m
-   * +~4m = 10m
+   * Points/Time : 
+   *      = 18m
+   * +~2m = 20m
+   * + 5m = 25m
+   * +~9m = 34m
    *
-   * Total/ETA : 15m (upsolve)
+   * Total/ETA : 10m
    * Status :
-   * [editorial]
-   * WA #2 :-O
-   * AC !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-   *   - missing case for 2 groups (i.e. 1 separator)
+   * AC pretests
+   * WA systests :-( - only 3355/8903 AC overall (~37% success rate)
+   * AC !!!!
+   *  - tricky cases with 0's -> they don't change xSum yet xSum shouldn't be resetted before them
+   *  - remove 0's before main processing
+   *    - handle case when only 0's
+   * WA #17 - they added a testcase???!!! :-O :-(
+   * WA  #4 :-O
+   * [testdata]
+   * WA  #4 :-(
+   * AC !!!!!!!!!!
+   *  - count actual finalValues achieved
    *
    ==========================================*/
 
-#include <functional>
-#include <numeric>
 #define PROBLEMNAME "TASK_PLACEHOLDER_FOR_VIM"
 
 #include <bits/stdc++.h>
@@ -164,24 +172,55 @@ void setIO(string filename) {    // the argument is the filename without the ext
 
 void solve() {
   ll n; cin >> n;
-  vector<ll> a(n); cin >> a;
+//   vector<ll> a(n); cin >> a;
+  vector<ll> a;
+  ll ai;
+  REP(_,n) {
+    cin >> ai;
+    if (ai) {
+      a.PB(ai);
+    }
+  }
   MSG(a);
-
-  vector<long long> pref(n);
-  partial_sum(ALL(a), pref.begin(), std::bit_xor<ll>());
-  MSG(pref);
-  if (pref[n-1]==0) {
+  
+  n=SZ(a);
+  if (n==0) {
     cout << "YES" << endl;
     return;
   }
 
-  FOR(sep1,0,n-2) {
-    FOR(sep2,sep1+1,n-1) {
-      if (pref[sep1]==(pref[sep2]^pref[sep1]) && (pref[sep2]^pref[sep1])==(pref[n-1]^pref[sep2])) {
-        cout << "YES" << endl;
-        return;
+  ll finalVal=0LL;
+  FOR(startPos,1,n-1) {
+    finalVal^=a[startPos-1];
+    MSG(startPos-1); MSG(finalVal);
+    ll cnt=1;
+
+    ll xSum=0;
+    FOR(pos,startPos,n-1) {
+      MSG(pos); MSG(xSum); MSG(a[pos]);
+
+      xSum^=a[pos];
+      MSG(xSum);
+
+      if (a[pos]==0) {
+        continue;
       }
+
+      if (xSum==finalVal) {
+        xSum=0;
+        cnt++;
+      }
+      MSG(xSum);
+      LINESEP1;
     }
+
+//     if (xSum==finalVal || xSum==0) {
+    if (cnt>=2 && xSum==0) {
+      cout << "YES" << endl;
+      return;
+    }
+
+    LINESEP1;
   }
 
   cout << "NO" << endl;
