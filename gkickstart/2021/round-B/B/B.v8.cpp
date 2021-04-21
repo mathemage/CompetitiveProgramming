@@ -6,17 +6,16 @@
 
    * File Name : B.cpp
    * Creation Date : 22-04-2021
-   * Last Modified : Thu 22 Apr 2021 01:03:30 AM CEST
+   * Last Modified : Thu 22 Apr 2021 12:35:34 AM CEST
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL :
    * ~26m
-   * +27m ~ 53m
+   * +
    *
    * Points/Time :
    * Total/ETA : 40m (upsolve after seeing testdata)
    * Status :
    * S WA - :-/
-   * S AC AC !!!!!!!!!!
    *
    ==========================================*/
 
@@ -193,25 +192,14 @@ void solve() {
 
   REP(pos,N) {
     if (pos-1>=1) {
-      if (pos+1<N && A[pos+1]-A[pos-1]==2*diff[FW][pos-1]) {
-//         MSG(result); MSG(pos); MSG(2*diff[FW][pos-1]);
-        MAXUPDATE(result, len[FW][pos-1]+2);
-//         MSG(result); LINESEP1;
-      } else {
-        MAXUPDATE(result, len[FW][pos-1]+1);
-      }
+      MAXUPDATE(result, len[FW][pos-1]+1);
     }
 
     if (pos+1<=N-2) {
-      if (pos-1>=0 && A[pos-1]-A[pos+1]==2*diff[BW][pos+1]) {
-        MAXUPDATE(result, len[BW][pos+1]+2);
-      } else {
-        MAXUPDATE(result, len[BW][pos+1]+1);
-      }
+      MAXUPDATE(result, len[BW][pos+1]+1);
     }
 
-//     if (pos-1>=0 && pos+1<N && diff[FW][pos-1]==-diff[BW][pos+1]) {
-    if (pos-1>=0 && pos+1<N && diff[FW][pos-1]==-diff[BW][pos+1] && A[pos+1]-A[pos-1]==2*diff[FW][pos-1]) {
+    if (pos-1>=0 && pos+1<N && diff[FW][pos-1]==-diff[BW][pos+1]) {
       MAXUPDATE(result, len[FW][pos-1]+1+len[BW][pos+1]);
     }
   }

@@ -6,7 +6,7 @@
 
    * File Name : B.cpp
    * Creation Date : 19-04-2021
-   * Last Modified : Mon 19 Apr 2021 03:59:07 AM CEST
+   * Last Modified : Thu 22 Apr 2021 12:09:29 AM CEST
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://codingcompetitions.withgoogle.com/kickstart/round/0000000000435a5b/000000000077a3a5
    * Points/Time :
@@ -18,7 +18,7 @@
    * S WA -
    * S WA -
    * S WA -
-   *
+   * S WA -
    *
    ==========================================*/
 

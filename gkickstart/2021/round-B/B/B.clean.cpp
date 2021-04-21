@@ -6,7 +6,7 @@
 
    * File Name : B.cpp
    * Creation Date : 22-04-2021
-   * Last Modified : Thu 22 Apr 2021 01:03:30 AM CEST
+   * Last Modified : Thu 22 Apr 2021 01:06:59 AM CEST
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL :
    * ~26m
@@ -17,6 +17,7 @@
    * Status :
    * S WA - :-/
    * S AC AC !!!!!!!!!!
+   * S AC AC
    *
    ==========================================*/
 
@@ -163,12 +164,10 @@ const int FW=0, BW=1;
 void solve() {
   ll N; cin >> N;
   vector<ll> A(N); cin >> A;
-  MSG(A);
 
   vector<vector<ll>> diff(2, vector<ll>(N, UNDEF));
   FOR(i,1,N-1) { diff[FW][i] = A[i]-A[i-1]; }
   FORD(i,N-2,0) { diff[BW][i] = A[i]-A[i+1]; }
-  MSG_VEC_VEC(diff);
 
   ll result = 2LL;
 
@@ -189,14 +188,11 @@ void solve() {
     }
     MAXUPDATE(result, len[BW][i]);
   }
-  MSG_VEC_VEC(len);
 
   REP(pos,N) {
     if (pos-1>=1) {
       if (pos+1<N && A[pos+1]-A[pos-1]==2*diff[FW][pos-1]) {
-//         MSG(result); MSG(pos); MSG(2*diff[FW][pos-1]);
         MAXUPDATE(result, len[FW][pos-1]+2);
-//         MSG(result); LINESEP1;
       } else {
         MAXUPDATE(result, len[FW][pos-1]+1);
       }
@@ -210,7 +206,6 @@ void solve() {
       }
     }
 
-//     if (pos-1>=0 && pos+1<N && diff[FW][pos-1]==-diff[BW][pos+1]) {
     if (pos-1>=0 && pos+1<N && diff[FW][pos-1]==-diff[BW][pos+1] && A[pos+1]-A[pos-1]==2*diff[FW][pos-1]) {
       MAXUPDATE(result, len[FW][pos-1]+1+len[BW][pos+1]);
     }
