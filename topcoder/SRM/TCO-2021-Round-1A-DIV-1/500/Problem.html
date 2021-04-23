@@ -1,0 +1,41 @@
+<html><body bgcolor="#000000" text="#ffffff"><table><tr><td colspan="2"><h3>Problem Statement</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><p>
+We say that a letter in a string <i>has a twin</i> if it has the same letter immediately to its left or immediately to its right (or both).
+</p>
+<p>
+For example, in the string "AARDVARK" each of the first two 'A' has a twin (but the third 'A' does not) and in the string "FLUSSSAND" each of the three 'S' has a twin.
+</p>
+<br></br>
+<p>
+Elly has a string <b>S</b> containing at least two characters.
+</p>
+<p>
+The girl can alter her string as many times as she likes. 
+In each operation she chooses one valid index i and either <i>increments</i> or <i>decrements</i> the letter <b>S</b>[i].
+</p>
+<p>
+Incrementing a letter changes it to the next letter in the alphabet (e.g., 'A' to 'B', 'L' to 'M', and 'Y' to 'Z').
+Decrementing a letter changes it to the previous letter in the alphabet (e.g., 'B' to 'A', 'M' to 'L', and 'Z' to 'Y').
+The letter 'A' cannot be decremented and the letter 'Z' cannot be incremented.
+</p>
+<p>
+Multiple operations may be applied to the same index.
+Thus, <b>S</b> can be transformed into any other string of the same length.
+</p>
+<br></br>
+<p>
+Elly wants to alter her <b>S</b> into a string in which each letter has a twin.
+Please find and return the minimal number of operations needed.
+</p></td></tr><tr><td colspan="2"><h3>Definition</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Class:</td><td>EllysTwinLetters</td></tr><tr><td>Method:</td><td>getMin</td></tr><tr><td>Parameters:</td><td>string</td></tr><tr><td>Returns:</td><td>int</td></tr><tr><td>Method signature:</td><td>int getMin(string S)</td></tr><tr><td colspan="2">(be sure your method is public)</td></tr></table></td></tr><tr><td colspan="2"><h3>Limits</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Time limit (s):</td><td>2.000</td></tr><tr><td>Memory limit (MB):</td><td>256</td></tr></table></td></tr><tr><td colspan="2"><h3>Constraints</h3></td></tr><tr><td align="center" valign="top">-</td><td><b>S</b> will contain between 2 and 100 characters, inclusive.</td></tr><tr><td align="center" valign="top">-</td><td>Each character of <b>S</b> will be an uppercase letter of the English alphabet ({'A'-'Z'}).</td></tr><tr><td colspan="2"><h3>Examples</h3></td></tr><tr><td align="center" nowrap="true">0)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>&quot;TOPCODER&quot;</pre></td></tr></table></td></tr><tr><td><pre>Returns: 30</pre></td></tr><tr><td><table><tr><td colspan="2"><p>
+Some of the strings we can produce from the string "TOPCODER" are:
+<ul>
+<li>"TTPPOOEE" in 0 + 5 + 0 + 13 + 0 + 11 + 0 + 13 = 42 operations;</li>
+<li>"PPPEEEEE" in 4 + 1 + 0 + 2 + 10 + 1 + 0 + 13 = 31 operations;</li>
+<li>"OOOOOOOO" in 5 + 0 + 1 + 12 + 0 + 11 + 10 + 3 = 42 operations;</li>
+<li>"SSEEEKKK" in 1 + 4 + 11 + 2 + 10 + 7 + 6 + 7 = 48  operations;</li>
+<li>"PPPDDDLL" in 4 + 1 + 0 + 1 + 11 + 0 + 7 + 6 = 30 operations;</li>
+<li>"GGLLHHFF" in 13 + 8 + 4 + 9 + 7 + 4 + 1 + 12 = 58 operations.</li>
+</ul>
+Out of the options above, the transformation into "PPPDDDLL" is the one with the fewest operations: 30.
+As it turns out, this answer is optimal: there is no solution with fewer operations for the string "TOPCODER".
+(There are other optimal solutions that also require exactly 30 operations but produce a different string.)
+</p></td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">1)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>&quot;ABCDEFGHIJKLMNOPQRSTUVWXYZ&quot;</pre></td></tr></table></td></tr><tr><td><pre>Returns: 13</pre></td></tr><tr><td><table><tr><td colspan="2">Each letter on an even position (counting from zero) can be incremented, achieving "BBDDFFHHJJLLNNPPRRTTVVXXZZ". We have incremented once 13 letters, thus the number of operations we have used is 13. This is the minimal number of operations for this test.</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">2)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>&quot;ESPRIT&quot;</pre></td></tr></table></td></tr><tr><td><pre>Returns: 25</pre></td></tr><tr><td><table><tr><td colspan="2"></td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">3)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>&quot;WITHOUTITIMJUSTESPR&quot;</pre></td></tr></table></td></tr><tr><td><pre>Returns: 54</pre></td></tr><tr><td><table><tr><td colspan="2"></td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">4)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>&quot;NOZAPHODJUSTVERYVERYIMPROBABLE&quot;</pre></td></tr></table></td></tr><tr><td><pre>Returns: 93</pre></td></tr><tr><td><table><tr><td colspan="2"></td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">5)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>&quot;FROMALLTHETHINGSIVELOSTMYMINDIMISSTHEMOST&quot;</pre></td></tr></table></td></tr><tr><td><pre>Returns: 111</pre></td></tr><tr><td><table><tr><td colspan="2"></td></tr></table></td></tr></table></td></tr></table><p>This problem statement is the exclusive and proprietary property of TopCoder, Inc.  Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited.  (c)2003, TopCoder, Inc.  All rights reserved.  </p></body></html>
