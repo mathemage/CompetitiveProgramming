@@ -57,13 +57,14 @@ autocmd bufwritepost,filewritepost *.cpp execute "normal `a"
 autocmd BufRead,BufNewFile *.[ch]pp source ~/.vim/syntax/cpp-trung.vim
 
 " .cxx setting
-autocmd bufnewfile *.cxx so ~/.vim/syntax/cxx.template
+autocmd bufnewfile *.cxx so ~/.vim/syntax/TEMPLATE.cpp
 autocmd bufnewfile *.cxx exe "1," . 10 . "g/File Name :.*/s//File Name : " .expand("%")
 autocmd bufnewfile *.cxx exe "1," . 10 . "g/TASK:.*/s//TASK: " .expand("%")
 autocmd bufnewfile *.cxx exe "1," . 10 . "g/TASK: [^ ]*\.cxx/s/\.cxx//"
 autocmd bufnewfile *.cxx exe "1," . 10 . "g/Creation Date :.*/s//Creation Date : " .strftime("%d-%m-%Y")
 autocmd bufnewfile *.cxx exe "1," . 25 . "g/TASK_PLACEHOLDER_FOR_VIM.*/s/TASK_PLACEHOLDER_FOR_VIM/" .expand("%")
 autocmd bufnewfile *.cxx exe "1," . 25 . "g/#define PROBLEMNAME \"[^ ]*\.cxx\"/s/\.cxx//"
+autocmd bufnewfile *.cxx exe "g/setIO(PROBLEMNAME)/s:// ::"
 autocmd bufnewfile *.cxx execute "normal G"
 autocmd Bufwritepre,filewritepre *.cxx execute "normal ma"
 autocmd Bufwritepre,filewritepre *.cxx exe "1," . 10 . "g/Last Modified :.*/s/Last Modified :.*/Last Modified : " .strftime("%c")
