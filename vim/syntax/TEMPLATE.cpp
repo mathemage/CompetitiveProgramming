@@ -7,7 +7,7 @@
 
    * File Name :
    * Creation Date :
-   * Last Modified : Tue 20 Apr 2021 07:34:01 PM CEST
+   * Last Modified : Fri 23 Apr 2021 10:16:32 PM CEST
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL :
    * Points/Time :
@@ -90,19 +90,17 @@ inline ostream& operator<<(ostream& os, const vector<vector<vector<T>>> & vec) {
   return os;
 }
 
-template<typename T> 
-ostream& operator<<(ostream& os, const set<T>& vec) { 
-  os << "{ | ";
-  for (const auto & x: vec) os << x << "| ";
-  os << "}";
-  return os; 
+template<typename T, class Compare>
+ostream& operator<<(ostream& os, const set<T, Compare>& vec) {
+  for (const auto & x: vec) os << x << " ";
+  os << endl;
+  return os;
 } 
 
-template<typename T>
-ostream& operator<<(ostream& os, const multiset<T>& vec) {
-  os << "{ | ";
-  for (const auto & x: vec) os << x << "| ";
-  os << "}";
+template<typename T, class Compare>
+ostream& operator<<(ostream& os, const multiset<T, Compare>& vec) {
+  for (const auto & x: vec) os << x << " ";
+  os << endl;
   return os;
 }
 
