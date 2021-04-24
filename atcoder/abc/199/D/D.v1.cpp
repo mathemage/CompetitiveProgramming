@@ -6,20 +6,14 @@
 
    * File Name : D.cpp
    * Creation Date : 24-04-2021
-   * Last Modified : Sat 24 Apr 2021 11:56:06 PM CEST
+   * Last Modified : Sat 24 Apr 2021 03:42:04 PM CEST
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://atcoder.jp/contests/abc199/tasks/abc199_d
    * Points/Time :
-   * 29m :-/
-   * 
    * Total/ETA : 400
-   * 13m [upsolve]
-   *
    * Status :
    * [after contest] - too late :-/
-   * WAs & TLEs
-   * [upsolve]
-   * WAs & TLEs
+   * WA
    *
    ==========================================*/
 
@@ -173,17 +167,12 @@ set<string> solutions;
 
 ll compSize;
 ll df(ll at) {
-  vis[at]=true;         // bug #2 was here
-//   LINESEP1; MSG(at); MSG(adj[at]); MSG(vis);
-
-//   ll result=0;         // bug #1 was here!
-  ll result=1;
+  ll result=0;
   for (auto & neigh: adj[at]) {
     if (!vis[neigh]) {
-//       vis[neigh]=true;
+      vis[neigh]=true;
       result+=df(neigh);
     }
-//     LINESEP1; MSG(at); MSG(neigh); MSG(result);
   }
   return result;
 }
@@ -193,19 +182,15 @@ string colors="RGB";
 ll nColored;
 void dfs(ll at) {
   vis[at]=true;
-//   nColored++;             // bug #4
+  nColored++;
 
   for (auto & neigh: adj[at]) {
     if (sol[neigh]=='_') {
       for (auto & color: colors) {
         if (color!=sol[at]) {
           sol[neigh]=color;
-          nColored++;             // bug #4
-
           dfs(neigh);
-
           sol[neigh]='_';
-          nColored--;             // bug #4
         }
       }
     } else if (sol[neigh]==sol[at]) {
@@ -213,9 +198,8 @@ void dfs(ll at) {
     }
   }
 
-  if (nColored==compSize) {
+  if (nColored==compSize) { // TODO
     solutions.insert(sol);
-    MSG(nColored); MSG(sol); LINESEP1;
     return;
   }
 }
@@ -238,30 +222,23 @@ void solve() {
   vis.assign(N, false);
   map<ll,ll> compSizes;
   REP(at,N) {
-    if (!vis[at]) {         // -> inefficiency
-      compSizes[at]=df(at);
-//       MSG(at); MSG(compSizes[at]);
-    }
+    compSizes[at]=df(at);
   }
-  MSG(compSizes);
 
   vis.assign(N, false);
   REP(at,N) {
     if (vis[at]) {
       continue;
     }
-//     compSize=df(at);     // typo -> inefficiency
-    compSize=compSizes[at];
+    compSize=df(at);
     sol.assign(N,'_');
-
     sol[at]='R';
-    nColored=1;      // bug #3
     vis[at]=true;
 
+    nColored=0;
     solutions.clear();
-//     solutions.insert(sol);  // bug #5 <- stupid mistake!!!
+    solutions.insert(sol);
     dfs(at);
-    MSG(solutions);
 
     ll ways=3*solutions.size();
     if (result==0) {
