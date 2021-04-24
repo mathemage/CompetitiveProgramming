@@ -6,20 +6,17 @@
 
    * File Name : A.cpp
    * Creation Date : 22-04-2021
-   * Last Modified : Sat 24 Apr 2021 10:10:04 PM CEST
+   * Last Modified : Thu 22 Apr 2021 08:38:02 PM CEST
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://codingcompetitions.withgoogle.com/codejam/round/000000000019fef2/00000000002d5b62
    * Points/Time :
    *  23m
    * [editorial]
    * + 5m = 28m
-   * [editorial] +11m = 39m
-   * +26m = 54m (1h5m w/ editorail reading)
    *
    * Total/ETA :
    * Status :
    * [editorial]
-   * S AC AC AC !!!!!!!!!!!! finally :-/
    *
    ==========================================*/
 
@@ -161,51 +158,27 @@ void setIO(string filename) {    // the argument is the filename without the ext
 
 ll X,Y;
 
-inline ll manhattan(ll X1, ll Y1, ll X2=0LL, ll Y2=0LL) {
+inline ll L1Dist(ll X1, ll Y1, ll X2=0LL, ll Y2=0LL) {
   return abs(X1-X2) + abs(Y1-Y2);
 }
-
-map<char, pair<int, int> > dueDXY;
 
 void solve() {
   cin >> X >> Y;
 
-  string result,choices;
-  bool goaled=false;
-  while (!goaled) {
-    MSG(X); MSG(Y);
-
-    for (auto & it: dueDXY) {
-      if (X==it.S.F && Y==it.S.S) {
-        result+=it.F;
-        goaled=true;
-        break;
-      }
-    }
-    if (goaled) { break; }
-
-    if (manhattan(X,Y)%2==0) {
-      cout << "IMPOSSIBLE" << endl;
-      return;
-    }
-
-    choices= X%2==0 ? "NS" : "WE";
-    for (auto & ch: choices) {
-      pair<int, int> dxy=dueDXY[ch];
-      ll XX=X-dxy.F, YY=Y-dxy.S; 
-
-      XX/=2, YY/=2;
-      if (manhattan(XX,YY)%2==1) {
-        result+=ch;
-        X=XX, Y=YY;
-        break;
-      }
-    }
-
-    MSG(result);
+  ll dist=L1Dist(X,Y);
+  ll mask=1;
+  while (mask<=dist) {
+    mask<<=1;
   }
 
+  if (--mask!=dist) {
+    cout << "IMPOSSIBLE" << endl;
+    return;
+  }
+
+  string result = "UNDEF";
   cout << result << endl;
+
 }
 
 int main() {
@@ -215,11 +188,6 @@ int main() {
 #ifndef MATHEMAGE_LOCAL
 //   setIO(PROBLEMNAME);
 #endif
-  //    char -> X,Y
-  dueDXY['W']={-1,0};
-  dueDXY['N']={0,1};
-  dueDXY['E']={1,0};
-  dueDXY['S']={0,-1};
 
   int cases = 1;
   cin >> cases;
