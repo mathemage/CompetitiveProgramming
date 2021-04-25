@@ -6,22 +6,17 @@
 
    * File Name : A.cpp
    * Creation Date : 25-04-2021
-   * Last Modified : Mon 26 Apr 2021 12:11:59 AM CEST
+   * Last Modified : Sun 25 Apr 2021 08:30:17 PM CEST
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://codingcompetitions.withgoogle.com/codejam/round/0000000000435baf/00000000007ae694
    * Points/Time :
-   * = 2m
    *
    * Total/ETA :
-   * [upsolve 15m]
-   *
    * Status :
    * S AC WA - !!
    * S AC WA -
    * S WA - -
    * S WA - -
-   * [editorial] -> upsolve
-   * S AC AC WA :-/
    *
    ==========================================*/
 
@@ -175,7 +170,7 @@ const ll FULL_CIRCLE=(360*12LL*1e10);
 
 void solve() {
   cin >> A >> B >> C;
-  multiset<ll> angles = {A,B,C};
+  set<ll> angles = {A,B,C};
 
   h=m=s=n=UNDEF;
 
@@ -195,12 +190,12 @@ void solve() {
     phiTicks["m"]=remSec["m"]*12*NSEC_IN_SEC;
     phiTicks["h"]=remSec["h"]*NSEC_IN_SEC;
 
-    multiset<ll> angles2 = {phiTicks["s"], phiTicks["m"], phiTicks["h"],};
+    set<ll> angles2 = {phiTicks["s"], phiTicks["m"], phiTicks["h"],};
 
     bool found=false;
     for (auto & ang: {A,B,C}) {
       offset=ang-phiTicks["h"];
-      multiset<ll> angles3 = {
+      set<ll> angles3 = {
         (A-offset+2*FULL_CIRCLE)%FULL_CIRCLE,
         (B-offset+2*FULL_CIRCLE)%FULL_CIRCLE,
         (C-offset+2*FULL_CIRCLE)%FULL_CIRCLE,
