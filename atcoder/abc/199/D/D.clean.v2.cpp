@@ -6,15 +6,19 @@
 
    * File Name : D.cpp
    * Creation Date : 26-04-2021
-   * Last Modified : Mon 26 Apr 2021 12:56:19 AM CEST
+   * Last Modified : Mon 26 Apr 2021 01:04:58 AM CEST
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://atcoder.jp/contests/abc199/tasks/abc199_d
    * Points/Time :
    * 30m :-/
+   * +1m = 31m
+   * +1m = 32m
    *
    * Total/ETA : 400 (~14m)
    * Status :
    * AC !!!
+   * AC !
+   * AC - not that faster :-/
    *
    ==========================================*/
 
@@ -181,42 +185,20 @@ void dfs(ll at) {
   }
 }
 
-string colors="RGB";
-
 void search(const vector<long long> & comp, int idx=0) {
-  LINESEP1;
-  MSG(comp); MSG(idx); MSG(sol);
-
   if (idx>=SZ(comp)) {
     solutions.insert(sol);
     return;
   }
 
   ll at=comp[idx];
-//   string availColors;  // TODO optimize via set of availColors
-//   for (auto & color: colors) {
-//     bool ok=true;
-//     for (auto & neigh: adj[at]) {
-//       MSG(neigh); MSG(sol[neigh]);
-// 
-//       if (sol[neigh]==sol[at]) {
-//         ok=false;
-//         break;
-//       }
-//     }
-// 
-//     if (ok) {
-//       availColors+=color;
-//     }
-//     MSG(color); MSG(ok);
-//     LINESEP1;
-//   }
-
   set<char> availColors={'R', 'G', 'B'};
   for (auto & neigh: adj[at]) {
     availColors.erase(sol[neigh]);
+    if (SZ(availColors)<=0) {
+      return;
+    }
   }
-  MSG(at); MSG(sol[at]); MSG(availColors);
 
   for (auto & color: availColors) {
     sol[at]=color;
@@ -233,7 +215,6 @@ void solve() {
     adj[Ai].PB(Bi);
     adj[Bi].PB(Ai);
   }
-  MSG(adj);
 
   vis.assign(N,false);
   REP(at,N) {
@@ -242,7 +223,6 @@ void solve() {
       dfs(at);
     }
   }
-  MSG_VEC_VEC(connComps);
 
   ll result = UNDEF;
 
@@ -256,9 +236,6 @@ void solve() {
     } else {
       result*=solutions.size();
     }
-
-    MSG(solutions); MSG(result);
-    LINESEP1;
   }
 
   cout << result << endl;

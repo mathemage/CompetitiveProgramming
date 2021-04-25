@@ -5,16 +5,21 @@
    LANG: C++14
 
    * File Name : D.cpp
-   * Creation Date : 26-04-2021
-   * Last Modified : Mon 26 Apr 2021 12:56:19 AM CEST
+   * Creation Date : 24-04-2021
+   * Last Modified : Sat 24 Apr 2021 11:56:06 PM CEST
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://atcoder.jp/contests/abc199/tasks/abc199_d
    * Points/Time :
-   * 30m :-/
+   * 29m :-/
+   * 
+   * Total/ETA : 400
+   * 13m [upsolve]
    *
-   * Total/ETA : 400 (~14m)
    * Status :
-   * AC !!!
+   * [after contest] - too late :-/
+   * WAs & TLEs
+   * [upsolve]
+   * WAs & TLEs
    *
    ==========================================*/
 
@@ -130,7 +135,7 @@ template<typename T>
 inline bool bounded(const T & x, const T & u, const T & l=0) { return min(l,u)<=x && x<max(l,u); }
 
 const int CLEAN = -1;
-// const int UNDEF = -42;
+const int UNDEF = -42;
 const long long MOD = 1000000007;
 const double EPS = 1e-8;
 
@@ -159,106 +164,111 @@ void setIO(string filename) {    // the argument is the filename without the ext
 #endif
 
 ll N,M;
-ll Ai,Bi;
-
 map<ll, vector<long long>> adj;
-vector<vector<long long>> connComps;
 vector<bool> vis;
 
-set<string> solutions;
+// set<map<ll,char>> solutions;
 string sol;
+set<string> solutions;
 
-const ll UNDEF = 0LL;
+ll compSize;
+ll df(ll at) {
+  vis[at]=true;         // bug #2 was here
+//   LINESEP1; MSG(at); MSG(adj[at]); MSG(vis);
 
-void dfs(ll at) {
-  vis[at]=true;
-  connComps.back().PB(at);
-
+//   ll result=0;         // bug #1 was here!
+  ll result=1;
   for (auto & neigh: adj[at]) {
     if (!vis[neigh]) {
-      dfs(neigh);
+//       vis[neigh]=true;
+      result+=df(neigh);
     }
+//     LINESEP1; MSG(at); MSG(neigh); MSG(result);
   }
+  return result;
 }
 
 string colors="RGB";
 
-void search(const vector<long long> & comp, int idx=0) {
-  LINESEP1;
-  MSG(comp); MSG(idx); MSG(sol);
+ll nColored;
+void dfs(ll at) {
+  vis[at]=true;
+//   nColored++;             // bug #4
 
-  if (idx>=SZ(comp)) {
-    solutions.insert(sol);
-    return;
-  }
-
-  ll at=comp[idx];
-//   string availColors;  // TODO optimize via set of availColors
-//   for (auto & color: colors) {
-//     bool ok=true;
-//     for (auto & neigh: adj[at]) {
-//       MSG(neigh); MSG(sol[neigh]);
-// 
-//       if (sol[neigh]==sol[at]) {
-//         ok=false;
-//         break;
-//       }
-//     }
-// 
-//     if (ok) {
-//       availColors+=color;
-//     }
-//     MSG(color); MSG(ok);
-//     LINESEP1;
-//   }
-
-  set<char> availColors={'R', 'G', 'B'};
   for (auto & neigh: adj[at]) {
-    availColors.erase(sol[neigh]);
-  }
-  MSG(at); MSG(sol[at]); MSG(availColors);
+    if (sol[neigh]=='_') {
+      for (auto & color: colors) {
+        if (color!=sol[at]) {
+          sol[neigh]=color;
+          nColored++;             // bug #4
 
-  for (auto & color: availColors) {
-    sol[at]=color;
-    search(comp, idx+1);
-    sol[at]='_';
+          dfs(neigh);
+
+          sol[neigh]='_';
+          nColored--;             // bug #4
+        }
+      }
+    } else if (sol[neigh]==sol[at]) {
+      return;
+    }
+  }
+
+  if (nColored==compSize) {
+    solutions.insert(sol);
+    MSG(nColored); MSG(sol); LINESEP1;
+    return;
   }
 }
 
 void solve() {
   cin >> N >> M;
-  REP(_,M) {
-    cin >> Ai >> Bi;
-    Ai--, Bi--; 
-    adj[Ai].PB(Bi);
-    adj[Bi].PB(Ai);
+
+  vector<ll> A(M); vector<ll> B(M);
+  REP(i,M) {
+    cin >> A[i] >> B[i];
+    A[i]--, B[i]--;
+    adj[A[i]].PB(B[i]);
+    adj[B[i]].PB(A[i]);
   }
+  MSG(A); MSG(B);
   MSG(adj);
 
-  vis.assign(N,false);
+  ll result = 0LL;
+
+  vis.assign(N, false);
+  map<ll,ll> compSizes;
   REP(at,N) {
-    if (!vis[at]) {
-      connComps.PB({});
-      dfs(at);
+    if (!vis[at]) {         // -> inefficiency
+      compSizes[at]=df(at);
+//       MSG(at); MSG(compSizes[at]);
     }
   }
-  MSG_VEC_VEC(connComps);
+  MSG(compSizes);
 
-  ll result = UNDEF;
-
-  for (auto & comp: connComps) {
-    solutions.clear();
+  vis.assign(N, false);
+  REP(at,N) {
+    if (vis[at]) {
+      continue;
+    }
+//     compSize=df(at);     // typo -> inefficiency
+    compSize=compSizes[at];
     sol.assign(N,'_');
 
-    search(comp);
-    if (result==UNDEF) {
-      result=solutions.size();
-    } else {
-      result*=solutions.size();
-    }
+    sol[at]='R';
+    nColored=1;      // bug #3
+    vis[at]=true;
 
-    MSG(solutions); MSG(result);
-    LINESEP1;
+    solutions.clear();
+//     solutions.insert(sol);  // bug #5 <- stupid mistake!!!
+    dfs(at);
+    MSG(solutions);
+
+    ll ways=3*solutions.size();
+    if (result==0) {
+      result=ways;
+    } else {
+      result*=ways;
+    }
   }
 
   cout << result << endl;
@@ -274,7 +284,7 @@ int main() {
 
   int cases = 1;
   FOR(tt,1,cases) {
-//     adj.clear();
+//     cout << "Case #" << tt << ": ";
     solve();
     LINESEP2;
   }
