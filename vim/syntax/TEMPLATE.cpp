@@ -7,7 +7,7 @@
 
    * File Name :
    * Creation Date :
-   * Last Modified : Fri 23 Apr 2021 10:16:32 PM CEST
+   * Last Modified : Mon 26 Apr 2021 08:57:18 PM CEST
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL :
    * Points/Time :
@@ -101,6 +101,12 @@ template<typename T, class Compare>
 ostream& operator<<(ostream& os, const multiset<T, Compare>& vec) {
   for (const auto & x: vec) os << x << " ";
   os << endl;
+  return os;
+}
+
+template<typename T1, typename T2> 
+ostream& operator<<(ostream& os, const map<T1, T2>& vec) {
+  for (const auto & x: vec) os << x.F << ":" << x.S << " | ";
   return os;
 }
 
