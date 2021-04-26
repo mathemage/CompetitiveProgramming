@@ -6,28 +6,19 @@
 
    * File Name : A.cpp
    * Creation Date : 26-04-2021
-   * Last Modified : Tue 27 Apr 2021 12:33:51 AM CEST
+   * Last Modified : Tue 27 Apr 2021 12:01:54 AM CEST
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://codingcompetitions.withgoogle.com/codejam/round/0000000000435baf/00000000007ae694
    * Points/Time :
-   *  -4m (wash up)
-   *  45m =   41m :-/
-   * +17m =   58m :-/ :-(
-   * + 6m = 1h 4m
+   * -4m (wash up)
+   * 45m = 41m :-/
    *
-   * Total/ETA :
-   * 25m
-   * 48m
-   *
+   * Total/ETA : 25m
    * Status :
    * S AC AC WA :-)
-   * S AC AC MLE :-O
-   * S AC AC TLE !
-   * MLE on S(ample) [when multi == 100] :-/
    *
    ==========================================*/
 
-#include <algorithm>
 #include <unordered_map>
 #define PROBLEMNAME "A"
 
@@ -192,45 +183,19 @@ vector<vector<long long>> getCanon(vector<long long> angles) {
   return result;
 }
 
-// ll MULTI=1000;
-// ll MULTI=100;
-ll MULTI=10;
-ll NANO_IN_MULTI=1e9/MULTI;
-
 vector<long long> hms;
 
 void solve() {
   cin >> ABC;
   MSG(ABC);
 
-  vector<long long> ABC2;
-  REP(n,NANO_IN_MULTI) {
-    ABC2=ABC;
-    do {
-      // shift back angles by n nanosecs
-      ABC2[0]-=n;     // hour hand
-      ABC2[1]-=12*n;  // min hand
-      ABC2[2]-=720*n; // sec hand
-
-      for (auto & canon: getCanon(ABC2)) {
-        if ( CONTAINS(angle2time, MP(canon[0],canon[1])) ) {
-          hms=angle2time[MP(canon[0],canon[1])];
-          cout << hms[0] << " "
-               << hms[1] << " "
-               << hms[2] << " "
-               << MULTI*hms[3] + n << endl;
-          return;
-        }
-//         hms=angle2time[MP(canon[0], canon[1])];
-//         if (!hms.empty()) {
-//           cout << hms[0] << " "
-//                << hms[1] << " "
-//                << hms[2] << " "
-//                << MULTI*hms[3] + n << endl;
-//           return;
-//         }
-      }
-    } while (next_permutation(ALL(ABC2)));
+  ll n=0;
+  for (auto & canon: getCanon(ABC)) {
+    hms=angle2time[MP(canon[0], canon[1])];
+    if (!hms.empty()) {
+      cout << hms << n << endl;
+      return;
+    }
   }
 }
 
@@ -242,24 +207,21 @@ int main() {
 //   setIO(PROBLEMNAME);
 #endif
 
-  ll totalSec, totalMultiSec;
+  ll totalSec;
   REP(h,12) {
     REP(m,60) {
       REP(s,60) {
-        REP(ms,MULTI) {
-          totalSec=60*60*h + 60*m + s;
-          totalMultiSec=MULTI*totalSec+ms;
+        totalSec=60*60*h + 60*m + s;
 
-          ang[0]=totalMultiSec * NANO_IN_MULTI;                    // hour hand
-          ang[1]= 12 * (MULTI * (60*m + s) + ms) * NANO_IN_MULTI;  // min hand
-          ang[2]=720 * (MULTI * s + ms) * NANO_IN_MULTI;           // sec hand
+        ang[0]=totalSec * 1e9;          // hour hand
+        ang[1]=12 * (60*m + s) * 1e9;   // min hand
+        ang[2]=720 * s * 1e9;           // sec hand
 
-//           MSG(h); MSG(m); MSG(s); MSG(ang);
-          for (auto & canon: getCanon(ang)) {
-//             MSG(canon);
-            angle2time[MP(canon[0], canon[1])]={h,m,s,ms};
-          };
-        }
+        MSG(h); MSG(m); MSG(s); MSG(ang);
+        for (auto & canon: getCanon(ang)) {
+          MSG(canon);
+          angle2time[MP(canon[0], canon[1])]={h,m,s};
+        };
       }
     }
   }

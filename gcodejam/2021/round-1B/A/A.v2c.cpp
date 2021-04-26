@@ -5,30 +5,26 @@
    LANG: C++14
 
    * File Name : A.cpp
-   * Creation Date : 26-04-2021
-   * Last Modified : Tue 27 Apr 2021 12:33:51 AM CEST
+   * Creation Date : 25-04-2021
+   * Last Modified : Mon 26 Apr 2021 12:11:59 AM CEST
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://codingcompetitions.withgoogle.com/codejam/round/0000000000435baf/00000000007ae694
    * Points/Time :
-   *  -4m (wash up)
-   *  45m =   41m :-/
-   * +17m =   58m :-/ :-(
-   * + 6m = 1h 4m
+   * = 2m
    *
    * Total/ETA :
-   * 25m
-   * 48m
+   * [upsolve 15m]
    *
    * Status :
-   * S AC AC WA :-)
-   * S AC AC MLE :-O
-   * S AC AC TLE !
-   * MLE on S(ample) [when multi == 100] :-/
+   * S AC WA - !!
+   * S AC WA -
+   * S WA - -
+   * S WA - -
+   * [editorial] -> upsolve
+   * S AC AC WA :-/
    *
    ==========================================*/
 
-#include <algorithm>
-#include <unordered_map>
 #define PROBLEMNAME "A"
 
 #include <bits/stdc++.h>
@@ -36,9 +32,9 @@
 using namespace std;
 
 #define endl "\n"
-#define REP(i,n) for(ll i=0;i<(n);i++)
-#define FOR(i,a,b) for(ll i=(a);i<=(b);i++)
-#define FORD(i,a,b) for(ll i=(a);i>=(b);i--)
+#define REP(i,n) for(int i=0;i<(n);i++)
+#define FOR(i,a,b) for(int i=(a);i<=(b);i++)
+#define FORD(i,a,b) for(int i=(a);i>=(b);i--)
 #define ALL(A)     (A).begin(), (A).end()
 #define REVALL(A)     (A).rbegin(), (A).rend()
 #define F first
@@ -118,7 +114,7 @@ ostream& operator<<(ostream& os, const multiset<T, Compare>& vec) {
   return os;
 }
 
-template<typename T1, typename T2> 
+template<typename T1, typename T2>
 ostream& operator<<(ostream& os, const map<T1, T2>& vec) {
   for (const auto & x: vec) os << x.F << ":" << x.S << " | ";
   return os;
@@ -169,69 +165,65 @@ void setIO(string filename) {    // the argument is the filename without the ext
 }
 #endif
 
-using l3 = tuple<ll, ll, ll>;
-vector<long long> ABC(3);
-vector<long long> ang(3);
-map<llll, vector<long long>> angle2time;
+ll A, B, C;
+ll h,m,s,n;
+ll Tnsec,offset;
 
-const ll TICKS_IN_FULL_CIRCLE = 360 * 12 * 1e10;
-
-vector<vector<long long>> getCanon(vector<long long> angles) {
-  vector<vector<long long>> result;
-  REP(iOffset,3) {
-    result.PB({});
-    REP(iAng,3) {
-      if (iOffset!=iAng) {
-        result.back().PB(
-            (angles[iAng]-angles[iOffset]+TICKS_IN_FULL_CIRCLE) % TICKS_IN_FULL_CIRCLE
-            );
-      }
-      sort(ALL(result.back()));
-    }
-  }
-  return result;
-}
-
-// ll MULTI=1000;
-// ll MULTI=100;
-ll MULTI=10;
-ll NANO_IN_MULTI=1e9/MULTI;
-
-vector<long long> hms;
+const ll SEC_IN_DAY = 12 * 60 * 60;
+const ll NSEC_IN_SEC=1e9;
+const ll FULL_CIRCLE=(360*12LL*1e10);
 
 void solve() {
-  cin >> ABC;
-  MSG(ABC);
+  cin >> A >> B >> C;
+  multiset<ll> angles = {A,B,C};
 
-  vector<long long> ABC2;
-  REP(n,NANO_IN_MULTI) {
-    ABC2=ABC;
-    do {
-      // shift back angles by n nanosecs
-      ABC2[0]-=n;     // hour hand
-      ABC2[1]-=12*n;  // min hand
-      ABC2[2]-=720*n; // sec hand
+  h=m=s=n=UNDEF;
 
-      for (auto & canon: getCanon(ABC2)) {
-        if ( CONTAINS(angle2time, MP(canon[0],canon[1])) ) {
-          hms=angle2time[MP(canon[0],canon[1])];
-          cout << hms[0] << " "
-               << hms[1] << " "
-               << hms[2] << " "
-               << MULTI*hms[3] + n << endl;
-          return;
-        }
-//         hms=angle2time[MP(canon[0], canon[1])];
-//         if (!hms.empty()) {
-//           cout << hms[0] << " "
-//                << hms[1] << " "
-//                << hms[2] << " "
-//                << MULTI*hms[3] + n << endl;
-//           return;
-//         }
+//   map<string, ll> remNSec;
+  map<string, ll> remSec;
+  map<string, ll> phiTicks;
+
+  for (ll Tsec = 0LL; Tsec < SEC_IN_DAY; Tsec += 1) {
+    MSG(Tsec); MSG(Tnsec);
+
+    remSec["s"]=Tsec%60;
+    remSec["m"]=Tsec%3600;
+    remSec["h"]=Tsec;
+    MSG(remSec);
+
+    phiTicks["s"]=remSec["s"]*720*NSEC_IN_SEC;
+    phiTicks["m"]=remSec["m"]*12*NSEC_IN_SEC;
+    phiTicks["h"]=remSec["h"]*NSEC_IN_SEC;
+
+    multiset<ll> angles2 = {phiTicks["s"], phiTicks["m"], phiTicks["h"],};
+
+    bool found=false;
+    for (auto & ang: {A,B,C}) {
+      offset=ang-phiTicks["h"];
+      multiset<ll> angles3 = {
+        (A-offset+2*FULL_CIRCLE)%FULL_CIRCLE,
+        (B-offset+2*FULL_CIRCLE)%FULL_CIRCLE,
+        (C-offset+2*FULL_CIRCLE)%FULL_CIRCLE,
+      };
+
+      if (angles3==angles2) {
+        h=Tsec/3600;
+        Tsec%=3600;
+
+        m=Tsec/60;
+        s=Tsec%60;
+
+        n=0;  // TODO
+        found=true;
+        break;
       }
-    } while (next_permutation(ALL(ABC2)));
+    }
+
+    if (found) { break; }
+    LINESEP1;
   }
+
+  cout << h << " " << m << " " << s << " " <<  n << endl;
 }
 
 int main() {
@@ -241,29 +233,6 @@ int main() {
 #ifndef MATHEMAGE_LOCAL
 //   setIO(PROBLEMNAME);
 #endif
-
-  ll totalSec, totalMultiSec;
-  REP(h,12) {
-    REP(m,60) {
-      REP(s,60) {
-        REP(ms,MULTI) {
-          totalSec=60*60*h + 60*m + s;
-          totalMultiSec=MULTI*totalSec+ms;
-
-          ang[0]=totalMultiSec * NANO_IN_MULTI;                    // hour hand
-          ang[1]= 12 * (MULTI * (60*m + s) + ms) * NANO_IN_MULTI;  // min hand
-          ang[2]=720 * (MULTI * s + ms) * NANO_IN_MULTI;           // sec hand
-
-//           MSG(h); MSG(m); MSG(s); MSG(ang);
-          for (auto & canon: getCanon(ang)) {
-//             MSG(canon);
-            angle2time[MP(canon[0], canon[1])]={h,m,s,ms};
-          };
-        }
-      }
-    }
-  }
-  MSG(angle2time.size());
 
   int cases = 1;
   cin >> cases;

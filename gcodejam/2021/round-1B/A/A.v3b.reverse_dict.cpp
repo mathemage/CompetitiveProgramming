@@ -6,14 +6,13 @@
 
    * File Name : A.cpp
    * Creation Date : 26-04-2021
-   * Last Modified : Tue 27 Apr 2021 12:33:51 AM CEST
+   * Last Modified : Tue 27 Apr 2021 12:20:20 AM CEST
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://codingcompetitions.withgoogle.com/codejam/round/0000000000435baf/00000000007ae694
    * Points/Time :
    *  -4m (wash up)
-   *  45m =   41m :-/
-   * +17m =   58m :-/ :-(
-   * + 6m = 1h 4m
+   *  45m = 41m :-/
+   * +17m = 58m :-/ :-(
    *
    * Total/ETA :
    * 25m
@@ -22,8 +21,6 @@
    * Status :
    * S AC AC WA :-)
    * S AC AC MLE :-O
-   * S AC AC TLE !
-   * MLE on S(ample) [when multi == 100] :-/
    *
    ==========================================*/
 
@@ -213,22 +210,14 @@ void solve() {
       ABC2[2]-=720*n; // sec hand
 
       for (auto & canon: getCanon(ABC2)) {
-        if ( CONTAINS(angle2time, MP(canon[0],canon[1])) ) {
-          hms=angle2time[MP(canon[0],canon[1])];
+        hms=angle2time[MP(canon[0], canon[1])];
+        if (!hms.empty()) {
           cout << hms[0] << " "
                << hms[1] << " "
                << hms[2] << " "
                << MULTI*hms[3] + n << endl;
           return;
         }
-//         hms=angle2time[MP(canon[0], canon[1])];
-//         if (!hms.empty()) {
-//           cout << hms[0] << " "
-//                << hms[1] << " "
-//                << hms[2] << " "
-//                << MULTI*hms[3] + n << endl;
-//           return;
-//         }
       }
     } while (next_permutation(ALL(ABC2)));
   }
