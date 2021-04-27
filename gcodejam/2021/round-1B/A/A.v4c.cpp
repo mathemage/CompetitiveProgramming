@@ -6,7 +6,7 @@
 
    * File Name : A.cpp
    * Creation Date : 26-04-2021
-   * Last Modified : Tue 27 Apr 2021 11:56:48 PM CEST
+   * Last Modified : Tue 27 Apr 2021 11:31:21 PM CEST
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://codingcompetitions.withgoogle.com/codejam/round/0000000000435baf/00000000007ae694
    * Points/Time :
@@ -20,9 +20,6 @@
    * + 7m = 1h38m
    * + 6m = 1h44m
    * + 2m = 1h46m
-   * + 9m = 1h54m [testdata]
-   * + 9m = 2h 3m [editorial]
-   * +
    *
    * Total/ETA :
    *   25m
@@ -38,8 +35,6 @@
    * S AC AC RE :-O (couldn't find full seconds??)
    * S AC AC RE :-O (non-zero nanosecond even after shift??)
    * S AC AC RE :-O (couldn't find full seconds??)
-   * [testdata] -> wrong approach (remainders after 1e9 not divisible by 11, 719, 708?)
-   * [editorial]
    *
    ==========================================*/
 
@@ -222,30 +217,19 @@ void solve() {
 
   ll H,M,S;
   do {
-    LINESEP1;
-
     H=ABC[0], M=ABC[1], S=ABC[2];
     n=modulo(M-H)/(12-1);
-    MSG(H); MSG(M); MSG(S); MSG(n);
-    LINESEP1;
-    MSG(M-H); MSG(S-H); MSG(S-M);
-    LINESEP1;
-    MSG((12-1)*n); MSG((720-1)*n); MSG((720-12)*n);
-    LINESEP1;
+//     MSG(H); MSG(M); MSG(S); MSG(n);
 
     if (   modulo(M-H)==(12-1)*n
         && modulo(S-H)==(720-1)*n
         && modulo(S-M)==(720-12)*n ) {
-      LINESEP1;
       MSG(H); MSG(M); MSG(S); MSG(n);
 
       break;
-    } else {
-      n=UNDEF;
     }
   } while (next_permutation(ALL(ABC)));
   assert(n!=UNDEF);
-  MSG(n);
 
   // shift back by n nanosecs
   MSG(ABC);

@@ -6,7 +6,7 @@
 
    * File Name : A.cpp
    * Creation Date : 26-04-2021
-   * Last Modified : Tue 27 Apr 2021 11:56:48 PM CEST
+   * Last Modified : Tue 27 Apr 2021 11:56:16 PM CEST
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://codingcompetitions.withgoogle.com/codejam/round/0000000000435baf/00000000007ae694
    * Points/Time :
@@ -22,7 +22,6 @@
    * + 2m = 1h46m
    * + 9m = 1h54m [testdata]
    * + 9m = 2h 3m [editorial]
-   * +
    *
    * Total/ETA :
    *   25m

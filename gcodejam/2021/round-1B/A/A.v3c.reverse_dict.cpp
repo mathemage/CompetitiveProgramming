@@ -6,7 +6,7 @@
 
    * File Name : A.cpp
    * Creation Date : 26-04-2021
-   * Last Modified : Tue 27 Apr 2021 11:56:48 PM CEST
+   * Last Modified : Tue 27 Apr 2021 12:33:51 AM CEST
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://codingcompetitions.withgoogle.com/codejam/round/0000000000435baf/00000000007ae694
    * Points/Time :
@@ -14,32 +14,16 @@
    *  45m =   41m :-/
    * +17m =   58m :-/ :-(
    * + 6m = 1h 4m
-   * +24m
-   * + 3m =
-   * +27m = 1h31m
-   * + 7m = 1h38m
-   * + 6m = 1h44m
-   * + 2m = 1h46m
-   * + 9m = 1h54m [testdata]
-   * + 9m = 2h 3m [editorial]
-   * +
    *
    * Total/ETA :
-   *   25m
-   *   48m
-   * 1h30m
+   * 25m
+   * 48m
    *
    * Status :
    * S AC AC WA :-)
    * S AC AC MLE :-O
    * S AC AC TLE !
    * MLE on S(ample) [when multi == 100] :-/
-   * S AC AC WA :-( :-(
-   * S AC AC RE :-O (couldn't find full seconds??)
-   * S AC AC RE :-O (non-zero nanosecond even after shift??)
-   * S AC AC RE :-O (couldn't find full seconds??)
-   * [testdata] -> wrong approach (remainders after 1e9 not divisible by 11, 719, 708?)
-   * [editorial]
    *
    ==========================================*/
 
@@ -189,10 +173,8 @@ using l3 = tuple<ll, ll, ll>;
 vector<long long> ABC(3);
 vector<long long> ang(3);
 map<llll, vector<long long>> angle2time;
-vector<long long> hms;
 
 const ll TICKS_IN_FULL_CIRCLE = 360 * 12 * 1e10;
-const ll NANO_IN_SEC = 1e9;
 
 vector<vector<long long>> getCanon(vector<long long> angles) {
   vector<vector<long long>> result;
@@ -210,62 +192,46 @@ vector<vector<long long>> getCanon(vector<long long> angles) {
   return result;
 }
 
-inline ll modulo(ll x, ll mod=NANO_IN_SEC) {
-  return (x%mod + mod) % mod;
-}
+// ll MULTI=1000;
+// ll MULTI=100;
+ll MULTI=10;
+ll NANO_IN_MULTI=1e9/MULTI;
+
+vector<long long> hms;
 
 void solve() {
   cin >> ABC;
   MSG(ABC);
 
-  ll n=UNDEF;
+  vector<long long> ABC2;
+  REP(n,NANO_IN_MULTI) {
+    ABC2=ABC;
+    do {
+      // shift back angles by n nanosecs
+      ABC2[0]-=n;     // hour hand
+      ABC2[1]-=12*n;  // min hand
+      ABC2[2]-=720*n; // sec hand
 
-  ll H,M,S;
-  do {
-    LINESEP1;
-
-    H=ABC[0], M=ABC[1], S=ABC[2];
-    n=modulo(M-H)/(12-1);
-    MSG(H); MSG(M); MSG(S); MSG(n);
-    LINESEP1;
-    MSG(M-H); MSG(S-H); MSG(S-M);
-    LINESEP1;
-    MSG((12-1)*n); MSG((720-1)*n); MSG((720-12)*n);
-    LINESEP1;
-
-    if (   modulo(M-H)==(12-1)*n
-        && modulo(S-H)==(720-1)*n
-        && modulo(S-M)==(720-12)*n ) {
-      LINESEP1;
-      MSG(H); MSG(M); MSG(S); MSG(n);
-
-      break;
-    } else {
-      n=UNDEF;
-    }
-  } while (next_permutation(ALL(ABC)));
-  assert(n!=UNDEF);
-  MSG(n);
-
-  // shift back by n nanosecs
-  MSG(ABC);
-  ABC[0]-=n;     // hour hand
-  ABC[1]-=12*n;  // min hand
-  ABC[2]-=720*n; // sec hand
-  MSG(ABC);
-
-  for (auto & a: ABC) { a=modulo(a, TICKS_IN_FULL_CIRCLE); }
-  MSG(ABC);
-
-  for (auto & canon: getCanon(ABC)) {
-    if (CONTAINS(angle2time, MP(canon[0], canon[1]))) {
-      hms=angle2time[MP(canon[0], canon[1])];
-      cout << hms << n << endl;
-      return;
-    }
+      for (auto & canon: getCanon(ABC2)) {
+        if ( CONTAINS(angle2time, MP(canon[0],canon[1])) ) {
+          hms=angle2time[MP(canon[0],canon[1])];
+          cout << hms[0] << " "
+               << hms[1] << " "
+               << hms[2] << " "
+               << MULTI*hms[3] + n << endl;
+          return;
+        }
+//         hms=angle2time[MP(canon[0], canon[1])];
+//         if (!hms.empty()) {
+//           cout << hms[0] << " "
+//                << hms[1] << " "
+//                << hms[2] << " "
+//                << MULTI*hms[3] + n << endl;
+//           return;
+//         }
+      }
+    } while (next_permutation(ALL(ABC2)));
   }
-
-  assert(false);
 }
 
 int main() {
@@ -276,21 +242,24 @@ int main() {
 //   setIO(PROBLEMNAME);
 #endif
 
-  ll totalSec;
+  ll totalSec, totalMultiSec;
   REP(h,12) {
     REP(m,60) {
       REP(s,60) {
-        totalSec=60*60*h + 60*m + s;
+        REP(ms,MULTI) {
+          totalSec=60*60*h + 60*m + s;
+          totalMultiSec=MULTI*totalSec+ms;
 
-        ang[0]=totalSec * 1e9;          // hour hand
-        ang[1]=12 * (60*m + s) * 1e9;   // min hand
-        ang[2]=720 * s * 1e9;           // sec hand
+          ang[0]=totalMultiSec * NANO_IN_MULTI;                    // hour hand
+          ang[1]= 12 * (MULTI * (60*m + s) + ms) * NANO_IN_MULTI;  // min hand
+          ang[2]=720 * (MULTI * s + ms) * NANO_IN_MULTI;           // sec hand
 
-//         MSG(h); MSG(m); MSG(s); MSG(ang);
-        for (auto & canon: getCanon(ang)) {
-//           MSG(canon);
-          angle2time[MP(canon[0], canon[1])]={h,m,s};
-        };
+//           MSG(h); MSG(m); MSG(s); MSG(ang);
+          for (auto & canon: getCanon(ang)) {
+//             MSG(canon);
+            angle2time[MP(canon[0], canon[1])]={h,m,s,ms};
+          };
+        }
       }
     }
   }
