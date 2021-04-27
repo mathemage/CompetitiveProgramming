@@ -7,7 +7,7 @@
 
    * File Name :
    * Creation Date :
-   * Last Modified : Mon 26 Apr 2021 08:57:18 PM CEST
+   * Last Modified : Tue 27 Apr 2021 02:11:19 PM CEST
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL :
    * Points/Time :
@@ -135,9 +135,11 @@ const int INF = INT_MAX;
 const long long INF_LL = LLONG_MAX;
 const long long INF_ULL = ULLONG_MAX;
 
-const vector<int> DX4 = {-1, 0, 1,  0};
-const vector<int> DY4 = { 0, 1, 0, -1};
-const vector<pair<int,int>> DXY4 = { {-1,0}, {0,1}, {1,0}, {0,-1} };
+const vector<int> DX4 = {0, 1,  0, -1};
+const vector<int> DY4 = {1, 0, -1,  0};
+const vector<pair<int,int>> DXY4 = { {0,1}, {1,0}, {0,-1}, {-1,0} };
+const string dues="NESW";
+
 const vector<int> DX8 = {-1, -1, -1,   0, 0,   1,  1,  1};
 const vector<int> DY8 = {-1,  0,  1,  -1, 1,  -1,  0,  1};
 const vector<pair<int,int>> DXY8 = {
