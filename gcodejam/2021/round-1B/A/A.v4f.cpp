@@ -6,7 +6,7 @@
 
    * File Name : A.cpp
    * Creation Date : 26-04-2021
-   * Last Modified : Thu 29 Apr 2021 12:11:23 AM CEST
+   * Last Modified : Wed 28 Apr 2021 11:19:50 PM CEST
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://codingcompetitions.withgoogle.com/codejam/round/0000000000435baf/00000000007ae694
    * Points/Time :
@@ -23,7 +23,7 @@
    * + 9m = 1h54m [testdata]
    * + 9m = 2h 3m [editorial]
    * +~4m [testcase in6]
-   * +1h15m = 3h22m :-( :-( :-(
+   * + 
    *
    * Total/ETA :
    *   25m
@@ -41,7 +41,6 @@
    * S AC AC RE :-O (couldn't find full seconds??)
    * [testdata] -> wrong approach (remainders after 1e9 not divisible by 11, 719, 708?)
    * [editorial]
-   * S AC RE - :-O :-( :-( :-(
    *
    ==========================================*/
 
@@ -189,7 +188,6 @@ void setIO(string filename) {    // the argument is the filename without the ext
 
 using l3 = tuple<ll, ll, ll>;
 vector<long long> ABC(3);
-vector<long long> ABC2(3);
 vector<long long> ang(3);
 map<llll, vector<long long>> angle2time;
 vector<long long> hms;
@@ -224,52 +222,52 @@ void solve() {
   ll n=UNDEF;
   ll nsSince=UNDEF;  // nanosecs since the last full hour
 
-  ll angH,angM;
-  ll m,s;            // whole mins, secs
-  REP(h,12) {        // whole hours
-    LINESEP1;
-    MSG(h);
+  ll angH,angM,angS;
+  ll H,M,S;
+  REP(h,12) {
     do {
-      angH=ABC[0], angM=ABC[1];
+      LINESEP1;
 
-      // angM-angH == 12*ns - (3600*h*1e9 + ns)
-      // angM-angH == 11*ns - 3600*h*1e9
-      // angM-angH+3600*h*1e9 == 11*ns 
-      if ((angM-angH+3600LL*h*NANO_IN_SEC) % 11LL != 0LL) continue;
-      nsSince=(angM-angH+3600LL*h*NANO_IN_SEC)/11LL;
-      MSG(ABC);
-      MSG(nsSince); MSG(nsSince/NANO_IN_SEC);
+      angH=ABC[0], angM=ABC[1], angS=ABC[2];
+      nsSince=(angM-angH-3600*h*NANO_IN_SEC)/(12-1);  // angM-angH == 12*ns - (3600*h*1e9 + ns)
 
-      if (! (0<=nsSince && nsSince<3600*NANO_IN_SEC)) continue;
-//       if (!bounded(nsSince, 3600LL*NANO_IN_SEC)) continue;
+      ll secSince=nsSince/NANO_IN_SEC;  // secs since the last full hour
+      S=secSince%60;
 
-      n=nsSince%NANO_IN_SEC;
-      s=(nsSince/NANO_IN_SEC)%60LL;
-      m=(nsSince/NANO_IN_SEC)/60LL;
-      vector<long long> need{h,m,s,n};
-      MSG(need);
+      ll minSince=secSince/60;  // mins since the last full hour
 
-      // shift back by n nanosecs
-      ABC2=ABC;
-      MSG(ABC2);
-      ABC2[0]-=n;     // hour hand
-      ABC2[1]-=12LL*n;  // min hand
-      ABC2[2]-=720LL*n; // sec hand
-      MSG(ABC2);
-      for (auto & a: ABC2) { a=modulo(a, TICKS_IN_FULL_CIRCLE); }
-      MSG(ABC2);
+      if (
+          angH==
+          ) {
+        LINESEP1;
+        MSG(H); MSG(M); MSG(S); MSG(n);
 
-      for (auto & canon: getCanon(ABC2)) {
-        if (CONTAINS(angle2time, MP(canon[0], canon[1]))) {
-          hms=angle2time[MP(canon[0], canon[1])];
-          hms.PB(n);
-          if (hms==need) {
-            cout << need << endl;
-            return;
-          }
-        }
+        n=ns%NANO_IN_SEC;
+        break;
+      } else {
+        n=UNDEF;
       }
     } while (next_permutation(ALL(ABC)));
+  }
+  assert(n!=UNDEF);
+  MSG(n);
+
+  // shift back by n nanosecs
+  MSG(ABC);
+  ABC[0]-=n;     // hour hand
+  ABC[1]-=12*n;  // min hand
+  ABC[2]-=720*n; // sec hand
+  MSG(ABC);
+
+  for (auto & a: ABC) { a=modulo(a, TICKS_IN_FULL_CIRCLE); }
+  MSG(ABC);
+
+  for (auto & canon: getCanon(ABC)) {
+    if (CONTAINS(angle2time, MP(canon[0], canon[1]))) {
+      hms=angle2time[MP(canon[0], canon[1])];
+      cout << hms << n << endl;
+      return;
+    }
   }
 
   assert(false);
