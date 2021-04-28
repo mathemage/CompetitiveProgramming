@@ -1,0 +1,51 @@
+<html><body bgcolor="#000000" text="#ffffff"><table><tr><td colspan="2"><h3>Problem Statement</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><p>
+You have a stove and <b>P</b> pancake pans.
+The stove has enough heaters to use all pans at the same time.
+</p>
+<p>
+You want to make <b>N</b> pancakes.
+Each pancake must be cooked for exactly two minutes: one minute from one side and then one minute from the other side.
+</p>
+<br></br>
+<p>
+We will measure the time in minutes since you start cooking.
+During each minute, each pan must either be unused or it must contain one of the pancakes.
+If a pan contains a pancake, the bottom side of the pancake is being cooked.
+</p>
+<p>
+We will assume that at the beginning/end of each minute you can instantly perform all the necessary actions: getting some pancakes into pans, taking some pancakes out of pans, and flipping some pancakes over (either in the same pan or into a different pan).
+</p>
+<br></br>
+<p>
+Produce one possible schedule to cook all <b>N</b> pancakes in as few minutes as possible.
+Return the schedule as a vector &lt;string&gt;.
+Each element should describe one minute.
+Each element should have <b>P</b> characters: one for each pan.
+Use the character '-' to denote an empty pan.
+Use the first <b>N</b> English letters to describe the pancakes: the uppercase letter is one side being cooked and the corresponding lowercase letter the other side of the same pancake.
+(See the examples.)
+</p>
+<p>
+Any valid cooking schedule that minimizes the number of minutes needed will be accepted.
+</p></td></tr><tr><td colspan="2"><h3>Definition</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Class:</td><td>Pancakes</td></tr><tr><td>Method:</td><td>makePancakes</td></tr><tr><td>Parameters:</td><td>int, int</td></tr><tr><td>Returns:</td><td>vector &lt;string&gt;</td></tr><tr><td>Method signature:</td><td>vector &lt;string&gt; makePancakes(int N, int P)</td></tr><tr><td colspan="2">(be sure your method is public)</td></tr></table></td></tr><tr><td colspan="2"><h3>Limits</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Time limit (s):</td><td>2.000</td></tr><tr><td>Memory limit (MB):</td><td>256</td></tr></table></td></tr><tr><td colspan="2"><h3>Constraints</h3></td></tr><tr><td align="center" valign="top">-</td><td><b>N</b> will be between 1 and 26, inclusive.</td></tr><tr><td align="center" valign="top">-</td><td><b>P</b> will be between 1 and 26, inclusive.</td></tr><tr><td colspan="2"><h3>Examples</h3></td></tr><tr><td align="center" nowrap="true">0)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>1</pre></td></tr><tr><td><pre>3</pre></td></tr></table></td></tr><tr><td><pre>Returns: {&quot;A--&quot;, &quot;-a-&quot; }</pre></td></tr><tr><td><table><tr><td colspan="2"><p>
+<b>N</b> = 1 means we want a single pancake.
+<b>P</b> = 3 means we have three pans.
+</p>
+<p>
+The preparation will take two minutes, because it's not possible to cook the pancake from both sides at the same time.
+Having more than one pan does not help us. 
+Two of the three pans will remain unused each minute.
+</p>
+<br></br>
+<p>
+In the example output we used a different pan during the second minute. 
+This is allowed but not necessary. 
+E.g., {"--a", "--A"} is another valid output for this test case, and in that output we use the same pan for both sides of the pancake.
+</p></td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">1)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>3</pre></td></tr><tr><td><pre>1</pre></td></tr></table></td></tr><tr><td><pre>Returns: {&quot;A&quot;, &quot;c&quot;, &quot;B&quot;, &quot;C&quot;, &quot;a&quot;, &quot;b&quot; }</pre></td></tr><tr><td><table><tr><td colspan="2"><p>We want three pancakes and we only have a single pan. This time the cooking will clearly take us six minutes.</p>
+<br></br>
+<p>Note that the order in which we cook does not matter. In particular, it is not necessary to cook both sides of a pancake <i>immediately</i> one after another. A pancake can sit and wait with just one side cooked for arbitrarily many minutes.</p></td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">2)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>5</pre></td></tr><tr><td><pre>4</pre></td></tr></table></td></tr><tr><td><pre>Returns: {&quot;bA-e&quot;, &quot;ECad&quot;, &quot;-BcD&quot; }</pre></td></tr><tr><td><table><tr><td colspan="2"><p>
+Given four pans, a naive solution needs four minutes to prepare five pancakes: cook four of them from one side, then cook them from the other side, and in the next two minutes do the same with the fifth pancake.
+</p>
+<p>
+However, if we are smart and schedule everything properly, it is possible to prepare five pancakes in only three minutes.
+</p></td></tr></table></td></tr></table></td></tr></table><p>This problem statement is the exclusive and proprietary property of TopCoder, Inc.  Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited.  (c)2003, TopCoder, Inc.  All rights reserved.  </p></body></html>
