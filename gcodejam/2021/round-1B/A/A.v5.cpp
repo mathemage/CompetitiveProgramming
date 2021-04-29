@@ -6,7 +6,7 @@
 
    * File Name : A.cpp
    * Creation Date : 26-04-2021
-   * Last Modified : Thu 29 Apr 2021 08:36:37 PM CEST
+   * Last Modified : Thu 29 Apr 2021 07:35:01 PM CEST
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://codingcompetitions.withgoogle.com/codejam/round/0000000000435baf/00000000007ae694
    * Points/Time :
@@ -24,13 +24,11 @@
    * + 9m = 2h 3m [editorial]
    * +~4m [testcase in6]
    * +1h15m = 3h22m :-( :-( :-(
-   * +  58m (= 4h20m :-( :-( :-( :-( :-( :-() <- not debugged yet :-/
    *
    * Total/ETA :
    *   25m
    *   48m
    * 1h30m
-   * 4h00m
    *
    * Status :
    * S AC AC WA :-)
@@ -199,31 +197,24 @@ vector<long long> hms;
 const ll TICKS_IN_FULL_CIRCLE = 360 * 12 * 1e10;
 const ll NANO_IN_SEC = 1e9;
 
-inline ll modulo(ll x, ll mod=NANO_IN_SEC) {
-  return (x%mod + mod) % mod;
+vector<vector<long long>> getCanon(vector<long long> angles) {
+  vector<vector<long long>> result;
+  REP(iOffset,3) {
+    result.PB({});
+    REP(iAng,3) {
+      if (iOffset!=iAng) {
+        result.back().PB(
+            (angles[iAng]-angles[iOffset]+TICKS_IN_FULL_CIRCLE) % TICKS_IN_FULL_CIRCLE
+            );
+      }
+      sort(ALL(result.back()));
+    }
+  }
+  return result;
 }
 
-// vector<vector<long long>> getCanon(vector<long long> angles) {
-//   vector<vector<long long>> result;
-//   REP(iOffset,3) {
-//     result.PB({});
-//     REP(iAng,3) {
-//       if (iOffset!=iAng) {
-//         result.back().PB(
-//             (angles[iAng]-angles[iOffset]+TICKS_IN_FULL_CIRCLE) % TICKS_IN_FULL_CIRCLE // TODO use modulo()
-//             );
-//       }
-//     }
-//     sort(ALL(result.back()));  // TODO should sort??
-//   }
-//   return result;
-// }
-// 
-inline llll getCanon(vector<long long> angles) { // angles[0] = hour hand, angles[1] = min hand, angles[0] = sec hand
-  llll result{angles[1]-angles[0], angles[2]-angles[0]};
-  result.F=modulo(result.F, TICKS_IN_FULL_CIRCLE);
-  result.S=modulo(result.S, TICKS_IN_FULL_CIRCLE);
-  return result;
+inline ll modulo(ll x, ll mod=NANO_IN_SEC) {
+  return (x%mod + mod) % mod;
 }
 
 void solve() {
@@ -233,14 +224,12 @@ void solve() {
   ll n=UNDEF;
   ll nsSince=UNDEF;  // nanosecs since the last full hour
 
-  LINESEP1;
   ll angH,angM;
   ll m,s;            // whole mins, secs
   REP(h,12) {        // whole hours
+    LINESEP1;
     MSG(h);
     do {
-      LINESEP1;
-      MSG(ABC);
       angH=ABC[0], angM=ABC[1];
 
       // angM-angH == 12*ns - (3600*h*1e9 + ns)
@@ -248,9 +237,11 @@ void solve() {
       // angM-angH+3600*h*1e9 == 11*ns 
       if ((angM-angH+3600LL*h*NANO_IN_SEC) % 11LL != 0LL) continue;
       nsSince=(angM-angH+3600LL*h*NANO_IN_SEC)/11LL;
+      MSG(ABC);
       MSG(nsSince); MSG(nsSince/NANO_IN_SEC);
 
-      if (!(0<=nsSince && nsSince<3600*NANO_IN_SEC)) continue;
+      if (! (0<=nsSince && nsSince<3600*NANO_IN_SEC)) continue;
+//       if (!bounded(nsSince, 3600LL*NANO_IN_SEC)) continue;
 
       n=nsSince%NANO_IN_SEC;
       s=(nsSince/NANO_IN_SEC)%60LL;
@@ -261,30 +252,26 @@ void solve() {
       // shift back by n nanosecs
       ABC2=ABC;
       MSG(ABC2);
-      ABC2[0]-=n;       // hour hand
+      ABC2[0]-=n;     // hour hand
       ABC2[1]-=12LL*n;  // min hand
       ABC2[2]-=720LL*n; // sec hand
       MSG(ABC2);
       for (auto & a: ABC2) { a=modulo(a, TICKS_IN_FULL_CIRCLE); }
       MSG(ABC2);
 
-      llll canon=getCanon(ABC2);
-      MSG(canon.F); MSG(canon.S);
-      if (CONTAINS(angle2time, canon)) {
-        hms=angle2time[canon];
-        MSG(hms);
-
-        hms.PB(n);
-        if (hms==need) {
-          cout << need << endl;
-          return;
+      for (auto & canon: getCanon(ABC2)) {
+        if (CONTAINS(angle2time, MP(canon[0], canon[1]))) {
+          hms=angle2time[MP(canon[0], canon[1])];
+          hms.PB(n);
+          if (hms==need) {
+            cout << need << endl;
+            return;
+          }
         }
       }
     } while (next_permutation(ALL(ABC)));
-    LINESEP1;
   }
 
-  cout.flush(); cerr.flush();
   assert(false);
 }
 
@@ -302,11 +289,13 @@ int main() {
       REP(s,60) {
         totalSec=60*60*h + 60*m + s;
 
-        ang[0]=totalSec * NANO_IN_SEC;          // hour hand
-        ang[1]=12 * (60*m + s) * NANO_IN_SEC;   // min hand
-        ang[2]=720 * s * NANO_IN_SEC;           // sec hand
+        ang[0]=totalSec * 1e9;          // hour hand
+        ang[1]=12 * (60*m + s) * 1e9;   // min hand
+        ang[2]=720 * s * 1e9;           // sec hand
 
-        angle2time[getCanon(ang)]={h,m,s};
+        for (auto & canon: getCanon(ang)) {
+          angle2time[MP(canon[0], canon[1])]={h,m,s};
+        };
       }
     }
   }
