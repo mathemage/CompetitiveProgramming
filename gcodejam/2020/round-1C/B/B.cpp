@@ -6,14 +6,17 @@
 
    * File Name : B.cpp
    * Creation Date : 27-04-2021
-   * Last Modified : Tue 27 Apr 2021 03:19:15 PM CEST
+   * Last Modified : Thu 29 Apr 2021 03:51:41 PM CEST
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://codingcompetitions.withgoogle.com/codejam/round/000000000019fef4/00000000003179a1
    * Points/Time :
-   * +12m
+   * + 12m
+   * +~10m
+   * +1h2m
    *
    * Total/ETA :
    * Status :
+   *
    *
    ==========================================*/
 
@@ -159,11 +162,86 @@ void setIO(string filename) {    // the argument is the filename without the ext
 }
 #endif
 
+const int N_QUERIES=1e4;
+
+ll U, Qi;
+string Ri;
+
+vector<long long> Q(N_QUERIES);
+vector<string> Qstr(N_QUERIES);
+vector<string> R(N_QUERIES);
+
+bool isImplemented=false;
+
 void solve() {
-  ll result = 0LL;
-  cout << result << endl;
-//   bool result = false;
-//   cout << (result?"Yes":"No") << endl;
+  cin >> U;
+
+  set<char> not0;
+  map<char,char> uBound;
+//   unordered_set<char> letters; // TODO try
+  set<char> letters;
+
+  REP(i,N_QUERIES) {
+    cin >> Qi >> Ri;
+    Q[i]=Qi; R[i]=Ri;
+    Qstr[i]=to_string(Q[i]);
+
+    for (auto & ch: Ri) {
+      letters.insert(ch);
+    }
+
+    char first=Ri[0];
+    not0.insert(first);
+
+    if (Qi!=-1 && SZ(Qstr[i])==SZ(R[i])) {
+      if (!CONTAINS(uBound, first)) {
+        uBound[first]='9';
+      }
+      MINUPDATE(uBound[first], Qstr[i][0]);
+    }
+  }
+  MSG(letters); MSG(not0); MSG(uBound); LINESEP1;
+
+  set<char> canB0;
+  for (auto & ch: letters) {
+    if (!CONTAINS(not0, ch)) {
+      canB0.insert(ch);
+    }
+  }
+  MSG(canB0);
+
+  vector<pair<char, char>> letBounds;
+  for (auto & cu: uBound) {
+    letBounds.PB(cu);
+  }
+  sort(ALL(letBounds), [](auto & a, auto & b) { return a.S < b.S; } );
+  MSG_VEC_PAIRS(letBounds); LINESEP1;
+
+  assert(isImplemented);
+
+  string D(10,'_');
+  cout << D << endl;
+
+  for (auto & ch: D) {
+    MSG(ch);
+    assert('A'<=ch); assert(ch<='Z');
+  }
+
+#ifdef MATHEMAGE_LOCAL
+  ll Mi;
+  REP(i,N_QUERIES) {
+    if (Q[i]!=-1) {
+      Mi=0;
+      for (auto & ch: R[i]) {
+        Mi*=10;
+        Mi+=D.find(ch);
+      }
+
+      MSG(Ri); MSG(Mi); MSG(Qi);
+      assert(1<=Mi); assert(Mi<=Qi);
+    }
+  }
+#endif
 }
 
 int main() {
@@ -177,7 +255,7 @@ int main() {
   int cases = 1;
   cin >> cases;
   FOR(tt,1,cases) {
-//     cout << "Case #" << tt << ": ";
+    cout << "Case #" << tt << ": ";
     solve();
     LINESEP2;
   }
