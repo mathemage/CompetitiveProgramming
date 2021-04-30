@@ -6,7 +6,7 @@
 
    * File Name : B.cpp
    * Creation Date : 27-04-2021
-   * Last Modified : Fri 30 Apr 2021 02:13:32 PM CEST
+   * Last Modified : Fri 30 Apr 2021 02:07:48 PM CEST
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://codingcompetitions.withgoogle.com/codejam/round/000000000019fef4/00000000003179a1
    * Points/Time :
@@ -15,13 +15,11 @@
    * +1h 2m
    * +  40m ~ 2h 4m
    * +~  3m ~ 2h 7m
-   * +
    *
    * Total/ETA : 2h15m
    * Status :
    * S AC AC RE !!!!! :-o
    * S AC AC WA ??!
-   *
    *
    ==========================================*/
 
@@ -237,7 +235,6 @@ void solve() {
   }
 
 #ifdef MATHEMAGE_LOCAL
-  MSG(solutions);
   assert(SZ(solutions)==1);
 
   for (auto & ch: D) {

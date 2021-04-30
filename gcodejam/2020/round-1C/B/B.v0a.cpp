@@ -6,26 +6,20 @@
 
    * File Name : B.cpp
    * Creation Date : 27-04-2021
-   * Last Modified : Fri 30 Apr 2021 02:13:32 PM CEST
+   * Last Modified : Thu 29 Apr 2021 03:51:41 PM CEST
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://codingcompetitions.withgoogle.com/codejam/round/000000000019fef4/00000000003179a1
    * Points/Time :
-   * +  12m
-   * +~ 10m
-   * +1h 2m
-   * +  40m ~ 2h 4m
-   * +~  3m ~ 2h 7m
-   * +
+   * + 12m
+   * +~10m
+   * +1h2m
    *
-   * Total/ETA : 2h15m
+   * Total/ETA :
    * Status :
-   * S AC AC RE !!!!! :-o
-   * S AC AC WA ??!
    *
    *
    ==========================================*/
 
-#include <functional>
 #define PROBLEMNAME "B"
 
 #include <bits/stdc++.h>
@@ -170,81 +164,70 @@ void setIO(string filename) {    // the argument is the filename without the ext
 
 const int N_QUERIES=1e4;
 
-ll U;
+ll U, Qi;
+string Ri;
 
 vector<long long> Q(N_QUERIES);
 vector<string> Qstr(N_QUERIES);
 vector<string> R(N_QUERIES);
 
+bool isImplemented=false;
+
 void solve() {
   cin >> U;
 
-  map<char,char> lBound;
+  set<char> not0;
   map<char,char> uBound;
+//   unordered_set<char> letters; // TODO try
   set<char> letters;
 
   REP(i,N_QUERIES) {
-    cin >> Q[i] >> R[i];
-    char first=R[i][0];
-
+    cin >> Qi >> Ri;
+    Q[i]=Qi; R[i]=Ri;
     Qstr[i]=to_string(Q[i]);
-    for (auto & ch: R[i]) {
+
+    for (auto & ch: Ri) {
       letters.insert(ch);
-      if (!CONTAINS(lBound, ch)) { lBound[ch]='0'; }
-      if (!CONTAINS(uBound, ch)) { uBound[ch]='9'; }
     }
 
-    MAXUPDATE(lBound[first], '1');
-    if (Q[i]!=-1 && SZ(Qstr[i])==SZ(R[i])) {
+    char first=Ri[0];
+    not0.insert(first);
+
+    if (Qi!=-1 && SZ(Qstr[i])==SZ(R[i])) {
+      if (!CONTAINS(uBound, first)) {
+        uBound[first]='9';
+      }
       MINUPDATE(uBound[first], Qstr[i][0]);
     }
   }
-  MSG(letters); MSG(lBound); MSG(uBound); LINESEP1;
+  MSG(letters); MSG(not0); MSG(uBound); LINESEP1;
 
-  vector<pair<char, int>> spans;
+  set<char> canB0;
   for (auto & ch: letters) {
-    spans.PB({ch, uBound[ch]-lBound[ch]+1 });
+    if (!CONTAINS(not0, ch)) {
+      canB0.insert(ch);
+    }
   }
-  sort(ALL(spans), [](auto & a, auto & b) { return a.S < b.S; } );
-  MSG_VEC_PAIRS(spans); LINESEP1;
-  assert(SZ(spans)==10);
+  MSG(canB0);
 
-  vector<string> solutions;
+  vector<pair<char, char>> letBounds;
+  for (auto & cu: uBound) {
+    letBounds.PB(cu);
+  }
+  sort(ALL(letBounds), [](auto & a, auto & b) { return a.S < b.S; } );
+  MSG_VEC_PAIRS(letBounds); LINESEP1;
+
+  assert(isImplemented);
+
   string D(10,'_');
-  const std::function<bool(int)> search = [&D, &solutions, spans, &lBound, &uBound, &search](int iSpans) {
-    if (iSpans==SZ(spans)) {
-      solutions.PB(D);
-      return true;
-    }
-
-    char ch=spans[iSpans].F;
-    bool found=false;
-    FOR(d, lBound[ch], uBound[ch]) {
-      int pos=d-'0';
-      if (D[pos]=='_') {
-        D[pos]=ch;
-        found |= search(iSpans+1);        // TODO to optimize => break when found
-        D[pos]='_';
-      }
-    }
-
-    return found;
-  };
-
-  if (search(0)) {
-    D=solutions.front();
-    cout << D << endl;
-  }
-
-#ifdef MATHEMAGE_LOCAL
-  MSG(solutions);
-  assert(SZ(solutions)==1);
+  cout << D << endl;
 
   for (auto & ch: D) {
     MSG(ch);
     assert('A'<=ch); assert(ch<='Z');
   }
 
+#ifdef MATHEMAGE_LOCAL
   ll Mi;
   REP(i,N_QUERIES) {
     if (Q[i]!=-1) {
@@ -254,8 +237,8 @@ void solve() {
         Mi+=D.find(ch);
       }
 
-      MSG(R[i]); MSG(Mi); MSG(Q[i]);
-      assert(1<=Mi); assert(Mi<=Q[i]);
+      MSG(Ri); MSG(Mi); MSG(Qi);
+      assert(1<=Mi); assert(Mi<=Qi);
     }
   }
 #endif
