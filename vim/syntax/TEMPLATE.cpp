@@ -7,7 +7,7 @@
 
    * File Name :
    * Creation Date :
-   * Last Modified : Tue 27 Apr 2021 02:11:19 PM CEST
+   * Last Modified : Fri 30 Apr 2021 01:07:11 PM CEST
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL :
    * Points/Time :
@@ -50,34 +50,22 @@ using ulul = pair<ul, ul>;
 #ifdef MATHEMAGE_DEBUG
   #define MSG(a) cerr << "> " << (#a) << ": " << (a) << endl;
   #define MSG_VEC_VEC(v) cerr << "> " << (#v) << ":\n" << (v) << endl;
-  #define MSG_VEC_PAIRS(v) print_vector_pairs((v), (#v));
   #define LINESEP1 cerr << "-----------------------------------------------                  " << endl;
   #define LINESEP2 cerr << "_________________________________________________________________" << endl;
 #else
   #define MSG(a)
   #define MSG_VEC_VEC(v)
-  #define MSG_VEC_PAIRS(v)
   #define LINESEP1
   #define LINESEP2
 #endif
 
-ostream& operator<<(ostream& os, const vector<string> & vec) {
-  os << endl;
-  for (const auto & s: vec) os << s << endl;
-  return os;
-}
+ostream& operator<<(ostream& os, const vector<string> & vec) { os << endl; for (const auto & s: vec) os << s << endl; return os; }
 
 template<typename T> 
-ostream& operator<<(ostream& os, const vector<T> & vec) { 
-  for (const auto & x: vec) os << x << " ";
-  return os; 
-} 
+ostream& operator<<(ostream& os, const vector<T> & vec) { for (const auto & x: vec) os << x << " "; return os; } 
 
 template<typename T> 
-ostream& operator<<(ostream& os, const vector<vector<T>> & vec) { 
-  for (const auto & v: vec) os << v << endl;
-  return os; 
-} 
+ostream& operator<<(ostream& os, const vector<vector<T>> & vec) { for (const auto & v: vec) os << v << endl; return os; } 
 
 template<typename T>
 inline ostream& operator<<(ostream& os, const vector<vector<vector<T>>> & vec) {
@@ -91,37 +79,19 @@ inline ostream& operator<<(ostream& os, const vector<vector<vector<T>>> & vec) {
 }
 
 template<typename T, class Compare>
-ostream& operator<<(ostream& os, const set<T, Compare>& vec) {
-  for (const auto & x: vec) os << x << " ";
-  os << endl;
-  return os;
-} 
+ostream& operator<<(ostream& os, const set<T, Compare>& vec) { for (const auto & x: vec) os << x << " "; os << endl; return os; } 
 
 template<typename T, class Compare>
-ostream& operator<<(ostream& os, const multiset<T, Compare>& vec) {
-  for (const auto & x: vec) os << x << " ";
-  os << endl;
-  return os;
-}
+ostream& operator<<(ostream& os, const multiset<T, Compare>& vec) { for (const auto & x: vec) os << x << " "; os << endl; return os; }
 
 template<typename T1, typename T2> 
-ostream& operator<<(ostream& os, const map<T1, T2>& vec) {
-  for (const auto & x: vec) os << x.F << ":" << x.S << " | ";
-  return os;
-}
+ostream& operator<<(ostream& os, const map<T1, T2>& vec) { for (const auto & x: vec) os << x.F << ":" << x.S << " | "; return os; }
 
-template<typename T1, typename T2>
-void print_vector_pairs(const vector<pair<T1, T2>> & vec, const string & name) {
-  cerr << "> " << name << ": ";
-  for (const auto & x: vec) cerr << "(" << x.F << ", " << x.S << ")\t";
-  cerr << endl;
-}
+template<typename T1, typename T2> 
+ostream& operator<<(ostream& os, const pair<T1, T2>& p) { return os << "(" << p.F << ", " << p.S << ")"; }
 
 template<typename T>
-istream& operator>>(istream& is, vector<T> & vec) {
-  for (auto & x: vec) is >> x;
-  return is;
-}
+istream& operator>>(istream& is, vector<T> & vec) { for (auto & x: vec) is >> x; return is; }
 
 template<typename T>
 inline bool bounded(const T & x, const T & u, const T & l=0) { return min(l,u)<=x && x<max(l,u); }
