@@ -6,14 +6,13 @@
 
    * File Name : B.cpp
    * Creation Date : 01-05-2021
-   * Last Modified : Mon 03 May 2021 08:27:08 PM CEST
+   * Last Modified : Mon 03 May 2021 08:26:49 PM CEST
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://codingcompetitions.withgoogle.com/codejam/round/00000000004362d7/00000000007c0f01
    * Points/Time :
    *     = 27m :-/
    * +5m [testdata] 
    * +4m = 36m
-   * +
    *
    * Total/ETA : 15+20 pts
    * [upsolve v1] 20m
@@ -25,7 +24,6 @@
    * S WA - :-/ :-(
    * [testdata]
    * S AC WA :-/
-   *
    *
    ==========================================*/
 

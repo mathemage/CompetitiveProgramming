@@ -6,14 +6,11 @@
 
    * File Name : B.cpp
    * Creation Date : 01-05-2021
-   * Last Modified : Mon 03 May 2021 08:27:08 PM CEST
+   * Last Modified : Mon 03 May 2021 08:14:24 PM CEST
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://codingcompetitions.withgoogle.com/codejam/round/00000000004362d7/00000000007c0f01
    * Points/Time :
-   *     = 27m :-/
-   * +5m [testdata] 
-   * +4m = 36m
-   * +
+   * = 27m :-/
    *
    * Total/ETA : 15+20 pts
    * [upsolve v1] 20m
@@ -23,9 +20,6 @@
    * S AC TLE (as expected :-/)
    * [upsolve v1] 20m
    * S WA - :-/ :-(
-   * [testdata]
-   * S AC WA :-/
-   *
    *
    ==========================================*/
 
@@ -156,11 +150,9 @@ inline bool operator>(string A, string B) {
 void solve() {
   string result(100,'9');
   cin >> Y;
-  MSG(Y);
 
   string Ystr=to_string(Y);
   int Ylen=SZ(Ystr);
-  MSG(Ylen);
 
   vector<ll> seeds(22);
   string roarStr;
@@ -176,14 +168,14 @@ void solve() {
     for (auto & seed: seeds) {
       roarStr=to_string(seed);
       roarStr+=to_string(++seed);
-      while (SZ(roarStr) < Ylen+5) {
-        if (roarStr>Ystr && result>roarStr) {
-          MSG(result); MSG(roarStr);
-          result=roarStr;
-          MSG(result); LINESEP1;
-        }
-
+      while (SZ(roarStr) < Ylen) {
         roarStr+=to_string(++seed);
+      }
+
+      if (roarStr>Ystr && result>roarStr) {
+        MSG(result); MSG(roarStr);
+        result=roarStr;
+        MSG(result); LINESEP1;
       }
     }
   }

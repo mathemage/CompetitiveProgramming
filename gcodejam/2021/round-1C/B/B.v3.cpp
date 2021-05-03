@@ -6,26 +6,15 @@
 
    * File Name : B.cpp
    * Creation Date : 01-05-2021
-   * Last Modified : Mon 03 May 2021 08:27:08 PM CEST
+   * Last Modified : Sat 01 May 2021 01:34:52 PM CEST
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://codingcompetitions.withgoogle.com/codejam/round/00000000004362d7/00000000007c0f01
    * Points/Time :
-   *     = 27m :-/
-   * +5m [testdata] 
-   * +4m = 36m
-   * +
    *
    * Total/ETA : 15+20 pts
-   * [upsolve v1] 20m
-   *
    * Status :
    * S AC ?
    * S AC TLE (as expected :-/)
-   * [upsolve v1] 20m
-   * S WA - :-/ :-(
-   * [testdata]
-   * S AC WA :-/
-   *
    *
    ==========================================*/
 
@@ -149,41 +138,32 @@ inline bool bigger(string A, string B) {
   return SZ(A)>SZ(B) || (SZ(A)==SZ(B) && A>B);
 }
 
-inline bool operator>(string A, string B) {
-  return bigger(A,B);
-}
-
 void solve() {
   string result(100,'9');
   cin >> Y;
-  MSG(Y);
 
   string Ystr=to_string(Y);
   int Ylen=SZ(Ystr);
-  MSG(Ylen);
 
-  vector<ll> seeds(22);
   string roarStr;
+  FOR(k,1,Y) {
+    MSG(k);
+    if (SZ(to_string(k))+SZ(to_string(k+1))>Ylen+1) { break; }
 
-  FOR(seedLen, 1, (Ylen+1)/2) {
-    seeds[0]=stoll("1" + string(max(0,seedLen-1),'0'));
-    seeds[1]=stoll(Ystr.substr(0,seedLen));
-    REP(i,20) {
-      seeds[2+i]=seeds[1]+i;
+    roarStr="";
+    ll kk=k;
+    while (SZ(roarStr) < Ylen) {
+      roarStr+=to_string(kk);
+      kk++;
     }
-    MSG(seeds);
 
-    for (auto & seed: seeds) {
-      roarStr=to_string(seed);
-      roarStr+=to_string(++seed);
-      while (SZ(roarStr) < Ylen+5) {
-        if (roarStr>Ystr && result>roarStr) {
-          MSG(result); MSG(roarStr);
-          result=roarStr;
-          MSG(result); LINESEP1;
-        }
+    if (bigger(roarStr,Ystr) && bigger(result, roarStr)) {
+      result=roarStr;
+    } else {                  // one after
+      roarStr+=to_string(kk);
 
-        roarStr+=to_string(++seed);
+      if (bigger(roarStr,Ystr) && bigger(result, roarStr)) {
+        result=roarStr;
       }
     }
   }
