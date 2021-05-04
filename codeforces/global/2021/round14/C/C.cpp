@@ -6,14 +6,22 @@
 
    * File Name : C.cpp
    * Creation Date : 02-05-2021
-   * Last Modified : Sun 02 May 2021 06:23:11 PM CEST
+   * Last Modified : Tue 04 May 2021 09:03:53 PM CEST
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://codeforces.com/contest/1515/problem/C
    * Points/Time :
+   * = 7m
+   *
    * Total/ETA : 1500
-   * Status : unsubmitted
+   * [upsolve] - 10m
+   *
+   * Status :
+   * unsubmitted
+   * AC !!
+   *
    ==========================================*/
 
+#include <algorithm>
 #define PROBLEMNAME "C"
 
 #include <bits/stdc++.h>
@@ -138,24 +146,24 @@ void solve() {
     indexedH[i]={h[i],i};
   }
   sort(ALL(indexedH));
-  MSG(indexedH);
+  MSG(indexedH); LINESEP1;
 
-  vector<int> y;
-  vector<int> towHeights(m);
-  int iTow=0;
-  for (auto & hi: indexedH) {
-    towHeights[iTow]+=hi.F;
-//     y[hi.S]=iTow+1;
+  vector<int> y(n);
+  vector<int> towers(m);
+  REP(i,n) {
+    MSG(i); MSG(i%m); MSG(indexedH[i]); LINESEP1;
 
-    iTow=(iTow+1)%m;
+    towers[i%m]+=indexedH[i].F;
+    y[indexedH[i].S]=i%m+1;
   }
-  MSG(towHeights); MSG(y);
+  MSG(towers); MSG(y);
 
-//   if (*min_el) {
-// 
-//   }
-//   cout << (result?"Yes":"No") << endl;
-  cout << y << endl;
+  if (*max_element(ALL(towers)) - *min_element(ALL(towers)) <= x) {
+    cout << "YES" << endl;
+    cout << y << endl;
+  } else {
+    cout << "NO" << endl;
+  }
 }
 
 int main() {
