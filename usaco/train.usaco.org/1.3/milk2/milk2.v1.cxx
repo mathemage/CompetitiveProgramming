@@ -6,17 +6,15 @@
 
    * File Name : milk2.cxx
    * Creation Date : 04-05-2021
-   * Last Modified : Tue 04 May 2021 09:01:20 PM CEST
+   * Last Modified : Tue 04 May 2021 08:47:48 PM CEST
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://train.usaco.org/usacoprob2?a=HyHgGoKGb82&S=milk2
    * Points/Time :
-   *     = 37m :-/
-   * +5m = 42m
+   * 37m :-/
    *
    * Total/ETA :
    * Status :
-   * WA #3 :-(
-   * WA #7 :-( :-(
+   * WA #3
    *
    ==========================================*/
 
@@ -140,18 +138,19 @@ void solve() {
   int s1,e1,s2,e2;
   REP(_,N) {
     cin >> s1 >> e1;
-//     MSG(s1); MSG(e1);
+    MSG(s1); MSG(e1);
 
     bool merged=false;
     for (auto & it: intervals) {
       s2=it.F, e2=it.S;
-//       MSG(s2); MSG(e2)
-//       LINESEP1;
+      MSG(s2); MSG(e2)
+      LINESEP1;
 
       if ( (s1<=s2 && s2<=e1) || (s2<=s1 && s1<=e2) ) {
         MINUPDATE(it.F, s1);
         MAXUPDATE(it.S, e1);
         merged=true;
+        break;
       }
     }
 
@@ -159,10 +158,10 @@ void solve() {
       intervals.PB({s1,e1});
     }
 
-//     MSG(intervals); LINESEP1;
+    MSG(intervals); LINESEP1;
   }
 
-  sort(ALL(intervals)); // TODO first save and then sort intervals?
+  sort(ALL(intervals));
   MSG(intervals); LINESEP1;
 
   int continuous = 0, idle = 0;
