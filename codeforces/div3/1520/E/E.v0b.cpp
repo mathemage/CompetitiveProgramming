@@ -6,19 +6,14 @@
 
    * File Name : E.cpp
    * Creation Date : 05-05-2021
-   * Last Modified : Wed 05 May 2021 09:41:37 PM CEST
+   * Last Modified : Thu 06 May 2021 12:17:02 AM CEST
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://codeforces.com/contest/1520/problem/E
    * Points/Time :
-   * [upsolve]
-   * = 8m
-   *
    * Total/ETA :
-   * [upsolve] - 12m
    * Status :
    * unsubmitted :-(
-   * [upsolve]
-   * AC ! :-/ :-/ :-/
+   * AC :-/
    *
    ==========================================*/
 
@@ -151,35 +146,33 @@ void solve() {
     cout << 0 << endl;
     return;
   }
+  ll iMedian=nPos/2;
+
   ll result = INF_LL;
   MSG(result); LINESEP1;
 
   ll target;
-//   for (auto & offMedian: {-4, -3, -2, -1, 0, 1, 2, 3, 4}) {
-  for (auto & offMedian: {0}) {
-    int iMed=nPos/2+offMedian;
-    if (!bounded(iMed, SZ(pos))) { continue; }
-    ll med=pos[iMed];
-    MSG(iMed); MSG(med); LINESEP1;
+  for (auto & offMedian: {-4, -3, -2, -1, 0, 1, 2, 3, 4}) {
+    ll med=iMedian+offMedian;
+    if (!bounded(med, n)) { continue; }
+    MSG(med);
 
     ll cost=0;
 
-    target=med;
-    FOR(i,iMed+1,nPos-1) {
+    target=pos[med];
+    FOR(i,med+1,nPos-1) {
       target++;
       cost+=abs(pos[i]-target);
-      MSG(i);
-      MSG(target) MSG(cost); LINESEP1;
+      MSG(i); MSG(target) MSG(cost); LINESEP1;
     }
     MSG(cost);
 
-    target=med;
-    FORD(i,iMed-1,0) {
+    target=pos[med];
+    FORD(i,med-1,0) {
       MSG(i);
       target--;
       cost+=abs(pos[i]-target);
-      MSG(i);
-      MSG(target) MSG(cost); LINESEP1;
+      MSG(i); MSG(target) MSG(cost); LINESEP1;
     }
     MSG(cost);
 
