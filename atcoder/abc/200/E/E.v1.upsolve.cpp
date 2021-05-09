@@ -7,12 +7,11 @@
 
    * File Name : E.cpp
    * Creation Date : 08-05-2021
-   * Last Modified : Ne 9. května 2021, 13:39:10
+   * Last Modified : Ne 9. května 2021, 13:38:55
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://atcoder.jp/contests/abc200/tasks/abc200_e
    * Points/Time :
    * +36m :-(
-   *
    *
    * Total/ETA : 500
    * [upsolve] ~9m
@@ -20,7 +19,6 @@
    * Status :
    * unsubmitted
    * [upsolve]
-   *
    *
    ==========================================*/
 

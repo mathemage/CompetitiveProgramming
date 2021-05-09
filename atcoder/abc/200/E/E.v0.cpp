@@ -7,21 +7,12 @@
 
    * File Name : E.cpp
    * Creation Date : 08-05-2021
-   * Last Modified : Ne 9. května 2021, 13:39:10
+   * Last Modified : So 8. května 2021, 15:40:50
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://atcoder.jp/contests/abc200/tasks/abc200_e
    * Points/Time :
-   * +36m :-(
-   *
-   *
    * Total/ETA : 500
-   * [upsolve] ~9m
-   *
-   * Status :
-   * unsubmitted
-   * [upsolve]
-   *
-   *
+   * Status : unsubmitted
    ==========================================*/
 
 #define PROBLEMNAME "E"
@@ -138,15 +129,12 @@ void setIO(string filename) {    // the argument is the filename without the ext
 
 void solve() {
   ll N,K; cin >> N >> K;
-  MSG(N); MSG(K); LINESEP1;
 
   ll cnt;
 
   ll S=UNDEF;
   FOR(s,3,3*N) {
     cnt=(s-1LL)*(s-2LL)/2LL;
-//     MSG(s); MSG(cnt); MSG(K); LINESEP1;
-
     if (cnt<K) {
       K-=cnt;
     } else {
@@ -154,33 +142,34 @@ void solve() {
       break;
     }
   }
-  MSG(S); MSG(K); LINESEP1;
   assert(S!=UNDEF);
 
-  ll B=UNDEF; ll T=UNDEF; ll P=UNDEF;
-  MSG(S-2); MSG(min(N,S-2)); LINESEP1;
-  FOR(b,1,min(N,S-2)) {
-    ll remaining=S-b;
-    ll lower = max(1LL, remaining-N);
-    ll upper = min(N, remaining-1LL);
-    cnt=upper-lower+1LL;
-    MSG(b); MSG(cnt); LINESEP1;
-
+  ll B=UNDEF;
+  FOR(b,1,N) {
+    cnt=(S-b)-1LL;
     if (cnt<K) {
       K-=cnt;
     } else {
       B=b;
-      T=lower+K-1;
       break;
     }
   }
-  P=S-B-T;
+  assert(B!=UNDEF);
 
-  cout << B << " " << T << " " << P << endl;
-  cout.flush();
+  ll T=UNDEF;
+  FOR(t,1,N) { // TODO continue implementing here
+    cnt=(S-B-t)-1LL;
+    if (cnt<K) {
+      K-=cnt;
+    } else {
+      B=b;
+      break;
+    }
+  }
 
-  assert(1<=B); assert(1<=T); assert(1<=P);
-  assert(B<=N); assert(T<=N); assert(P<=N);
+
+//   ll result = 0LL;
+//   cout << result << endl;
 }
 
 int main() {
