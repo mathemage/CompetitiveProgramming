@@ -7,12 +7,12 @@
 
    * File Name : E.cpp
    * Creation Date : 08-05-2021
-   * Last Modified : Mon 10 May 2021 09:12:18 PM CEST
+   * Last Modified : Mon 10 May 2021 08:59:55 PM CEST
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://atcoder.jp/contests/abc200/tasks/abc200_e
    * Points/Time :
    * +36m :-(
-   * +45m = 1h21m :-/ :-(
+   * +
    *
    * Total/ETA : 500
    * [upsolve] ~9m
@@ -21,7 +21,7 @@
    * Status :
    * unsubmitted
    * [upsolve]
-   * AC !!!!!!!!!!!!!!!!!! YEAH !
+   *
    *
    ==========================================*/
 
@@ -204,19 +204,23 @@ void solve() {
   MSG(S); MSG(K); LINESEP1;
   assert(S!=UNDEF);
 
+  // TODO re-implement below
+  assert(false);
+
   ll B=UNDEF; ll T=UNDEF; ll P=UNDEF;
-//   MSG(S-2); MSG(min(N,S-2)); LINESEP1;
+  MSG(S-2); MSG(min(N,S-2)); LINESEP1;
   FOR(b,1,min(N,S-2)) {
     ll remaining=S-b;
-    cnt=TP(remaining);
-//     MSG(b); MSG(cnt); LINESEP1;
+    ll lower = max(1LL, remaining-N);
+    ll upper = min(N, remaining-1LL);
+    cnt=upper-lower+1LL;
+    MSG(b); MSG(cnt); LINESEP1;
 
     if (cnt<K) {
       K-=cnt;
     } else {
       B=b;
-      T=max(1LL,remaining-N) + K - 1LL;
-      MSG(B); MSG(cnt); MSG(K); LINESEP1;
+      T=lower+K-1;
       break;
     }
   }
