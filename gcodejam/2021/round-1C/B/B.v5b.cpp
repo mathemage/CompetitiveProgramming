@@ -6,19 +6,15 @@
 
    * File Name : B.cpp
    * Creation Date : 01-05-2021
-   * Last Modified : Tue 11 May 2021 08:32:34 PM CEST
+   * Last Modified : Tue 11 May 2021 07:58:06 PM CEST
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://codingcompetitions.withgoogle.com/codejam/round/00000000004362d7/00000000007c0f01
    * Points/Time :
    *      = 27m :-/
    * + 5m [testdata] 
-   * + 4m =   36m
-   * +10m =   46m
-   * + 1m =   47m
-   * +10m
-   * +10m
-   * + 6m = 1h13m
-   * + 1m = 1h14m
+   * + 4m = 36m
+   * +10m = 46m
+   * + 1m = 47m
    *
    * Total/ETA : 15+20 pts
    * [upsolve v1]   20m
@@ -33,9 +29,6 @@
    * S AC WA :-/
    * S AC WA :-/
    * S AC WA :-/
-   * [testdata]
-   * S AC TLE :-O :-/
-   * S AC AC !!!!!!!!!!!!!!!!!!! -> passed :-O
    *
    ==========================================*/
 
@@ -172,33 +165,29 @@ void solve() {
   int Ylen=SZ(Ystr);
   MSG(Ylen);
 
-//   const ll nSeeds=20;
-//   const ll nSeeds=1e6;
-//   const ll nSeeds=1e5;
-  const ll nSeeds=3e4;
-  vector<ll> seeds(2+nSeeds);
+  vector<ll> seeds(22);
   string roarStr;
 
   FOR(seedLen, 1, (Ylen+1)/2) {
     seeds[0]=stoll("1" + string(max(0,seedLen-1),'0'));
     seeds[1]=stoll(Ystr.substr(0,seedLen));
-    REP(i,nSeeds) {
+    REP(i,20) {
       seeds[2+i]=seeds[1]+i;
     }
     MSG(seeds);
 
+//     for (auto & seed: seeds) {
     for (ll seed: seeds) {
       roarStr=to_string(seed);
       roarStr+=to_string(++seed);
-      while (!(roarStr>Ystr)) {
-        roarStr+=to_string(++seed);
-      }
+      while (SZ(roarStr) < Ylen+5) { // TODO replace with just a while 
+        if (roarStr>Ystr && result>roarStr) {
+          MSG(result); MSG(roarStr);
+          result=roarStr;
+          MSG(result); LINESEP1;
+        }
 
-      MSG(result);
-      if (result>roarStr) {
-        result=roarStr;
-        MSG(result); MSG(roarStr);
-        LINESEP1;
+        roarStr+=to_string(++seed);
       }
     }
   }

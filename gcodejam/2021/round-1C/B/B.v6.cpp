@@ -6,19 +6,18 @@
 
    * File Name : B.cpp
    * Creation Date : 01-05-2021
-   * Last Modified : Tue 11 May 2021 08:32:34 PM CEST
+   * Last Modified : Tue 11 May 2021 08:29:52 PM CEST
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://codingcompetitions.withgoogle.com/codejam/round/00000000004362d7/00000000007c0f01
    * Points/Time :
    *      = 27m :-/
    * + 5m [testdata] 
-   * + 4m =   36m
-   * +10m =   46m
-   * + 1m =   47m
+   * + 4m = 36m
+   * +10m = 46m
+   * + 1m = 47m
    * +10m
    * +10m
-   * + 6m = 1h13m
-   * + 1m = 1h14m
+   * + 6m = 73m
    *
    * Total/ETA : 15+20 pts
    * [upsolve v1]   20m
@@ -35,7 +34,6 @@
    * S AC WA :-/
    * [testdata]
    * S AC TLE :-O :-/
-   * S AC AC !!!!!!!!!!!!!!!!!!! -> passed :-O
    *
    ==========================================*/
 
@@ -174,8 +172,7 @@ void solve() {
 
 //   const ll nSeeds=20;
 //   const ll nSeeds=1e6;
-//   const ll nSeeds=1e5;
-  const ll nSeeds=3e4;
+  const ll nSeeds=1e5;
   vector<ll> seeds(2+nSeeds);
   string roarStr;
 
