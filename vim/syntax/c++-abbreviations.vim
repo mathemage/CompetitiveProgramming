@@ -1,6 +1,6 @@
 " abbreviations
 iab fo for (auto & it:.) {<CR><ESC>-f.s
-iab fis for (int i = 0; i <.size(); i += 1) {<CR><ESC>-f.i
+iab fis for (int i = 0; i < SZ(.); i += 1) {<CR><ESC>-f.c
 
 iab if if (.) {<CR><ESC>-f.c
 iab ifel if (.) {<CR>} else {<ESC>-f.c
