@@ -7,7 +7,7 @@
 
    * File Name :
    * Creation Date :
-   * Last Modified : Fri 30 Apr 2021 01:07:11 PM CEST
+   * Last Modified : Wed 12 May 2021 03:37:58 PM CEST
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL :
    * Points/Time :
@@ -22,9 +22,12 @@
 using namespace std;
 
 #define endl "\n"
-#define REP(i,n) for(int i=0;i<(n);i++)
-#define FOR(i,a,b) for(int i=(a);i<=(b);i++)
-#define FORD(i,a,b) for(int i=(a);i>=(b);i--)
+#define REP(i,n) for(ll i=0;i<(n);i++)
+#define FOR(i,a,b) for(ll i=(a);i<=(b);i++)
+#define FORD(i,a,b) for(ll i=(a);i>=(b);i--)
+#define REPi(i,n) for(int i=0;i<(n);i++)
+#define FORi(i,a,b) for(int i=(a);i<=(b);i++)
+#define FORDi(i,a,b) for(int i=(a);i>=(b);i--)
 #define ALL(A)     (A).begin(), (A).end()
 #define REVALL(A)     (A).rbegin(), (A).rend()
 #define F first
