@@ -10,5 +10,6 @@ build*/
 /.idea/
 venv/
 solution_of_others/
+solutions_of_others/
 hacks/
 *.zip
