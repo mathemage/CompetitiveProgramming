@@ -6,15 +6,15 @@
 
    * File Name : D.cpp
    * Creation Date : 13-05-2021
-   * Last Modified : Thu 13 May 2021 03:59:58 PM CEST
+   * Last Modified : Pá 14. května 2021, 18:39:50
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://atcoder.jp/contests/zone2021/tasks/zone2021_d
    * Points/Time :
    * +2m
-   * +
+   * +6m = 8m
    *
-   * Total/ETA :
-   * Status :
+   * Total/ETA : 300 pts
+   * Status : AC !!
    ==========================================*/
 
 #define PROBLEMNAME "D"
@@ -133,10 +133,35 @@ void setIO(string filename) {    // the argument is the filename without the ext
 #endif
 
 void solve() {
-  ll result = 0LL;
+  string S; cin >> S;
+  
+  deque<char> dq;
+  int R=0;
+  for (auto & c: S) {
+    if (c=='R') {
+      R^=1;
+    } else {
+      if (R) {
+        dq.push_front(c);
+      } else {
+        dq.push_back(c);
+      }
+    }
+  }
+
+  if (R) {
+    reverse(ALL(dq));
+  }
+
+  string result;
+  for (auto & c: dq) {
+    if (c!=result.back()) {
+      result.PB(c);
+    } else {
+      result.pop_back();
+    }
+  }
   cout << result << endl;
-//   bool result = false;
-//   cout << (result?"Yes":"No") << endl;
 }
 
 int main() {
@@ -148,7 +173,6 @@ int main() {
 #endif
 
   int cases = 1;
-  cin >> cases;
   FOR(tt,1,cases) {
 //     cout << "Case #" << tt << ": ";
     solve();
