@@ -1,21 +1,20 @@
 /* ========================================
 
    ID: mathema6
-   TASK: beads
+   TASK: beads.v3.biDP
    LANG: C++14
 
    * File Name : beads.v3.biDP.cxx
    * Creation Date : 23-04-2021
-   * Last Modified : Sun 16 May 2021 07:49:17 PM CEST
+   * Last Modified : Fri 23 Apr 2021 04:41:37 PM CEST
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://train.usaco.org/usacoprob2?a=Z6xDUkVl4Mc&S=beads
    * Points/Time :
    *  33m :-/
-   * +20m = 53m :-/
+   * +
    *
    * Total/ETA : 30m
    * Status :
-   * AC !!!!!!!!!!!!!! Yes! (so much work!)
    *
    ==========================================*/
 
@@ -155,7 +154,7 @@ void setIO(string filename) {    // the argument is the filename without the ext
 }
 #endif
 
-int N;
+ll N;
 string s;
 
 const int FWD=0, BWD=1;
@@ -168,7 +167,7 @@ void solve() {
 
   cin >> s;
   string ss = s+s;
-  MSG(s); MSG(ss);
+  MSG(s);
 
   map<char, vector<vector<int>>> len;
   len['b'] = vector<vector<int>>(2, vector<int>(NN));
@@ -176,71 +175,36 @@ void solve() {
 //   MSG_VEC_VEC(len['b']); MSG_VEC_VEC(len['r']);
   LINESEP1;
 
-
-  int dir=FWD;
-  MSG(dir);
-
-  switch (ss.front()) {
+  switch (ss[0]) { // TODO redo for BWD also
     case 'w': 
       len['b'][FWD][0] = 1;
       len['r'][FWD][0] = 1;
       break;
     case 'b': 
     case 'r': 
-      len[ss.front()][FWD][0] = 1;
+      len[ss[0]][FWD][0] = 1;
   }
 
-  FOR(i,1,SZ(ss)-1) {
-    for (auto & color: colors) {
-      if (ss[i]==color || ss[i]=='w') {
-        len[color][dir][i] = len[color][dir][i-1] + 1;
-      } else {
-        len[color][dir][i] = 0;
+  for (auto & dir: {FWD, BWD}) {
+    MSG(dir);
+    MSG(ss);
+
+    FOR(i,1,SZ(ss)-1) {
+      for (auto & color: colors) {
+        if (ss[i]==color || ss[i]=='w') {
+          len[color][dir][i] = len[color][dir][i-1] + 1;
+        } else {
+          len[color][dir][i] = 0;
+        }
       }
     }
-  }
-  MSG_VEC_VEC(len['b']); MSG_VEC_VEC(len['r']);
-  LINESEP1;
+    MSG_VEC_VEC(len['b']); MSG_VEC_VEC(len['r']);  // TODO check results for BWD
 
-
-  dir=BWD;
-  MSG(dir);
-
-  int last=SZ(ss)-1;
-  switch (ss.back()) { // TODO redo for BWD also
-    case 'w': 
-      len['b'][BWD][last] = 1;
-      len['r'][BWD][last] = 1;
-      break;
-    case 'b': 
-    case 'r': 
-      len[ss.back()][BWD][last] = 1;
+    reverse(ALL(ss));
+    LINESEP1;
   }
 
-  FORD(i,SZ(ss)-2,0) {
-    for (auto & color: colors) {
-      if (ss[i]==color || ss[i]=='w') {
-        len[color][dir][i] = len[color][dir][i+1] + 1;
-      } else {
-        len[color][dir][i] = 0;
-      }
-    }
-  }
-  MSG_VEC_VEC(len['b']); MSG_VEC_VEC(len['r']);     // TODO check results for BWD
-  LINESEP1;
-
-  int result = 0;
-  REP(offset,N) {
-    int fwdIndex=N+offset;
-    int bwdIndex=offset;
-
-    for (auto & colorPairs: {"br", "rb"}) {
-//       MAXUPDATE(result, len[colorPairs[0]][FWD][fwdIndex] + len[colorPairs[1]][BWD][bwdIndex]);
-      MAXUPDATE(result, len[colorPairs[0]][FWD][fwdIndex] + len[colorPairs[1]][BWD][bwdIndex+1]);
-    }
-  }
-
-  MINUPDATE(result, N);
+  ll result = 0LL;
   cout << result << endl;
 }
 
