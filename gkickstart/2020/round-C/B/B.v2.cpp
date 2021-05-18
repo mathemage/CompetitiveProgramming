@@ -6,20 +6,17 @@
 
    * File Name : B.cpp
    * Creation Date : 18-05-2021
-   * Last Modified : Tue 18 May 2021 09:31:41 PM CEST
+   * Last Modified : Tue 18 May 2021 09:15:57 PM CEST
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://codingcompetitions.withgoogle.com/kickstart/round/000000000019ff43/00000000003379bb
    * Points/Time :
    *      = 43m
    * + 7m = 50m
-   * + 1m = 51m
    *
    * Total/ETA : 8+13pts
    * Status :
    * S WA - :-/
    * S AC AC !!!!!!! :-/
-   * [editorial] -> upsolve
-   * S AC AC !
    *
    ==========================================*/
 
@@ -153,10 +150,12 @@ void solve() {
   map<char, set<char>> prereq;
   REP(c,C) {
     FORD(rBot,R-1,1) {
-      char chBot=wall[rBot][c];
-      char chTop=wall[rBot-1][c];
+      FORD(rTop,rBot-1,0) {
+        char chTop=wall[rTop][c];
+        char chBot=wall[rBot][c];
 
-      if (chTop!=chBot) { prereq[chTop].insert(chBot); }
+        if (chTop!=chBot) { prereq[chTop].insert(chBot); }
+      }
     }
   }
 //   for (auto & chPrereqs: prereq) { MSG(chPrereqs.F); MSG(chPrereqs.S); }
