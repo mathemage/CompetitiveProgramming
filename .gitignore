@@ -11,5 +11,6 @@ build*/
 venv/
 solution_of_others/
 solutions_of_others/
+others/
 hacks/
 *.zip
