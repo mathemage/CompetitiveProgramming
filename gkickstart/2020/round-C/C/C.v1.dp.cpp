@@ -6,23 +6,30 @@
 
    * File Name : C.cpp
    * Creation Date : 17-05-2021
-   * Last Modified : Mon 17 May 2021 09:00:24 PM CEST
+   * Last Modified : Wed 19 May 2021 08:35:17 PM CEST
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://codingcompetitions.withgoogle.com/kickstart/round/000000000019ff43/00000000003381cb
    * Points/Time :
-   * = 8m30s [brute force]
+   * 8m30s [brute force]
+   * [editorial]
    * +13m
+   * [upsolve]
+   * + 5m
+   * =
    *
    * Total/ETA : 10+19 pts
-   * 1h20m [TS2]
+   * 1h20m [upsolve for TS2]
    *
    * Status :
    * S AC TLE (as expected)
+   * [editorial]
    *
    *
    ==========================================*/
 
 #include <cmath>
+#include <iterator>
+#include <numeric>
 #define PROBLEMNAME "C"
 
 #include <bits/stdc++.h>
@@ -138,11 +145,18 @@ void setIO(string filename) {    // the argument is the filename without the ext
 }
 #endif
 
+const ll N_SQUARES=3200;
+vector<long long> squares(N_SQUARES);
+
 void solve() {
   ll N; cin >> N;
-  vector<long long> A(N); cin >> A;
+  vector<long long> A(N);
 
   ll result = 0LL;
+  REP(_,N) { // TODO
+
+  }
+
   REP(i,N) {
     ll sum=0;
     FOR(j,i,N-1) {
@@ -162,6 +176,14 @@ int main() {
 #ifndef MATHEMAGE_LOCAL
 //   setIO(PROBLEMNAME);
 #endif
+
+  iota(ALL(squares),1);
+  for (auto & sq: squares) {
+    sq*=sq;
+  }
+  MSG(SZ(squares));
+//   MSG(squares);
+  LINESEP1;
 
   int cases = 1;
   cin >> cases;

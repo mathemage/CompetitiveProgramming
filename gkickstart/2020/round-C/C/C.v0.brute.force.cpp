@@ -6,15 +6,18 @@
 
    * File Name : C.cpp
    * Creation Date : 17-05-2021
-   * Last Modified : Mon 17 May 2021 08:46:02 PM CEST
+   * Last Modified : Wed 19 May 2021 08:35:17 PM CEST
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://codingcompetitions.withgoogle.com/kickstart/round/000000000019ff43/00000000003381cb
    * Points/Time :
-   * 8m30s [brute force]
+   * = 8m30s [brute force]
    *
    * Total/ETA : 10+19 pts
+   * 1h20m [TS2]
+   *
    * Status :
    * S AC TLE (as expected)
+   *
    *
    ==========================================*/
 
