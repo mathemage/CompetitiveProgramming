@@ -6,7 +6,7 @@
 
    * File Name : C.cpp
    * Creation Date : 17-05-2021
-   * Last Modified : Thu 20 May 2021 11:56:52 PM CEST
+   * Last Modified : Fri 21 May 2021 12:00:24 AM CEST
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://codingcompetitions.withgoogle.com/kickstart/round/000000000019ff43/00000000003381cb
    * Points/Time :
@@ -15,6 +15,7 @@
    * +13m
    * [upsolve]
    * +25m = 38m
+   * +13m = 51m
    *
    * Total/ETA : 10+19 pts
    * 1h20m [upsolve for TS2]
@@ -23,6 +24,7 @@
    * S AC TLE (as expected)
    * [editorial]
    * S AC TLE :-O
+   * S WA -   :-/
    *
    ==========================================*/
 
@@ -167,6 +169,10 @@ void solve() {
 
     for (auto & sq: squares) {
       ll need=prefSum-sq;
+      if (need<0) {
+        break;
+      }
+
       if (CONTAINS(cntOfPrefSums, need)) {
         result+=cntOfPrefSums[need];
 
