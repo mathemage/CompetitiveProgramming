@@ -53,6 +53,9 @@ iab accum accumulate(ALL(.), 0, [](auto & a, auto & b) { return a+b; } )<ESC>F.c
 iab sor sort(ALL(.));<ESC>F.c
 iab sort sort(ALL(?), [](auto & a, auto & b) { return a.S < b.S; } );<ESC>F?c
 iab rsor sort(REVALL(.));<ESC>F.c
+iab rev reverse(ALL(.));<ESC>F.c
+iab iot iota(ALL(.), 0);<ESC>F.c
+iab iot1 iota(ALL(.), 1);<ESC>F.c
 
 iab coun count(ALL(.), .)<ESC>2F.c
 " iab cif count_if(ALL(.), ., [](int i) {.})<ESC>3F.c  " TODO
