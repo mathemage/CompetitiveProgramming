@@ -7,7 +7,7 @@
 
    * File Name :
    * Creation Date :
-   * Last Modified : Wed 12 May 2021 03:37:58 PM CEST
+   * Last Modified : Fri 21 May 2021 11:29:43 PM CEST
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL :
    * Points/Time :
@@ -40,6 +40,9 @@ using namespace std;
 #define SGN(X) ((X) ? ( (X)>0?1:-1 ) : 0)
 #define CONTAINS(S,E) ((S).find(E) != (S).end())
 #define SZ(x) ((int) (x).size())
+#define YES cout << "YES" << endl;
+#define NO cout << "NO" << endl;
+#define YN(b) cout << ((b)?"YES":"NO") << endl;
 
 using ll = long long;
 using ul = unsigned long long;
