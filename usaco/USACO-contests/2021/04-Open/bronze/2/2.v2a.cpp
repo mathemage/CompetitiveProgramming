@@ -6,17 +6,15 @@
 
    * File Name : 2.cpp
    * Creation Date : 24-05-2021
-   * Last Modified : Mon 24 May 2021 09:05:26 PM CEST
+   * Last Modified : Mon 24 May 2021 09:01:42 PM CEST
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : http://usaco.org/index.php?page=viewproblem2&cpid=1132
    * Points/Time :
-   *     = 25m (w/o Floyd-Warshall)
-   * +2m = 27m
+   * = 25m (w/o Floyd-Warshall)
    *
    * Total/ETA : [upsolve] ~1h
    * Status :
-   * Incorrect answer on sample input case -- details below <- extra initial newline
-   * 10/10 AC => passed :-O :-O WTF??!
+   * Incorrect answer on sample input case -- details below
    *
    ==========================================*/
 
@@ -184,9 +182,7 @@ void solve() {
 //     }
 //   }
 
-  for (auto & line: result) {
-    cout << line << endl;
-  }
+  cout << result << endl;
 }
 
 int main() {
