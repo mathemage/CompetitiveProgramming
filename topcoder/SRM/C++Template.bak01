@@ -36,7 +36,6 @@ using ulul = pair<ul, ul>;
 
 #ifdef MATHEMAGE_DEBUG
   #define MSG(a) cerr << "> " << (#a) << ": " << (a) << endl;
-  #define _D(a) cerr << "> " << (#a) << ": " <<= (a) << endl;
   #define MSG_VEC_VEC(v) cerr << "> " << (#v) << ":\n"; (print_vector_vector(cerr, (v))) << endl;
   #define MSG_VEC_PAIRS(v) print_vector_pairs((v), (#v));
   #define LINESEP1 cerr << "-----------------------------------------------                  " << endl;
@@ -56,13 +55,17 @@ using ulul = pair<ul, ul>;
   #define MSG_VEC_STR(v)
 #endif
 
-inline ostream& operator<<=(ostream& os, const vector<string> & vec) { os << endl; for (const auto & s: vec) cerr << s << endl; return os; }
-inline ostream& print_vector_string(ostream& os, const vector<string> & vec) { os << endl; for (const auto & s: vec) cerr << s << endl; return os; }
+inline ostream& print_vector_string(ostream& os, const vector<string> & vec) {
+  os << endl;
+  for (const auto & s: vec) cerr << s << endl;
+  return os;
+}
 
-template<typename T>
-inline ostream& operator<<=(ostream& os, const vector<T> & vec) { for (const auto & x: vec) os << x << " "; return os; }
 template<typename T> 
-inline ostream& print_vector(ostream& os, const vector<T> & vec) { for (const auto & x: vec) os << x << " "; return os; } 
+inline ostream& print_vector(ostream& os, const vector<T> & vec) {
+  for (const auto & x: vec) os << x << " ";
+  return os; 
+} 
 
 template<typename T>
 inline ostream& print_vector_vector(ostream& os, const vector<vector<T>> & vec) {
@@ -137,6 +140,7 @@ public:
 
 /*
 Remember:
+
 1) (RE-)COMPILE LAST VERSION BEFORE SUBMITTING!!!!!
 2) CHECK ADDITIONALLY IN THE ROOM SUMMARY (whether CORRECT source code was submitted)!!!!
   - Or `vimdiff solutionName*` should produce no diffs!
