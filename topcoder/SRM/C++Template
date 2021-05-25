@@ -39,7 +39,7 @@ using ulul = pair<ul, ul>;
 
 #ifdef MATHEMAGE_DEBUG
   #define MSG(a) cerr << "> " << (#a) << ": " << (a) << endl;
-  #define _D(a) cerr << "> " << (#a) << ": " <<= (a) << endl;
+  #define _D(a) cerr << "> " << (#a) << ": "; cerr <<= (a); cerr << endl;
   #define MSG_VEC_VEC(v) cerr << "> " << (#v) << ":\n"; (print_vector_vector(cerr, (v))) << endl;
   #define MSG_VEC_PAIRS(v) print_vector_pairs((v), (#v));
   #define LINESEP1 cerr << "-----------------------------------------------                  " << endl;
@@ -78,33 +78,20 @@ inline ostream& print_vector_vector(ostream& os, const vector<vector<T>> & vec) 
   return os;
 }
 
-// template<typename T> 
-// ostream& operator<<(ostream& os, const set<T>& vec) { 
-//   os << "{ | ";
-//   for (const auto & x: vec) os << x << "| ";
-//   os << "}";
-//   return os; 
-// } 
-// 
-// template<typename T>
-// ostream& operator<<(ostream& os, const multiset<T>& vec) {
-//   os << "{ | ";
-//   for (const auto & x: vec) os << x << "| ";
-//   os << "}";
-//   return os;
-// }
-//
-// template<typename T1, typename T2>
-// void print_vector_pairs(const vector<pair<T1, T2>> & vec, const string & name) {
-//   cerr << "> " << name << ": ";
-//   for (const auto & x: vec) cerr << "(" << x.F << ", " << x.S << ")\t";
-//   cerr << endl;
-// }
+template<typename T, class Compare>
+inline ostream& operator<<=(ostream& os, const set<T, Compare>& vec) { for (const auto & x: vec) os << x << " "; os << endl; return os; }
+
+template<typename T, class Compare>
+inline ostream& operator<<=(ostream& os, const multiset<T, Compare>& vec) { for (const auto & x: vec) os << x << " "; os << endl; return os; }
+
+template<typename T1, typename T2>
+inline ostream& operator<<=(ostream& os, const map<T1, T2>& vec) { for (const auto & x: vec) os << x.F << ":" << x.S << " | "; return os; }
+
+template<typename T1, typename T2>
+inline ostream& operator<<=(ostream& os, const pair<T1, T2>& p) { return os << "(" << p.F << ", " << p.S << ")"; }
 
 template<typename T>
-inline bool bounded(const T & x, const T & u, const T & l=0) {
-  return min(l,u)<=x && x<max(l,u);
-}
+inline bool bounded(const T & x, const T & u, const T & l=0) { return min(l,u)<=x && x<max(l,u); }
 
 const int CLEAN = -1;
 const int UNDEF = -42;
