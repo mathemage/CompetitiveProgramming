@@ -36,7 +36,7 @@ using ulul = pair<ul, ul>;
 
 #ifdef MATHEMAGE_DEBUG
   #define MSG(a) cerr << "> " << (#a) << ": " << (a) << endl;
-  #define _D(a) cerr << "> " << (#a) << ": "; cerr <<= (a); cerr << endl;
+  #define _D(a) cerr << "> " << (#a) << ": " <<= (a) << endl;
   #define MSG_VEC_VEC(v) cerr << "> " << (#v) << ":\n"; (print_vector_vector(cerr, (v))) << endl;
   #define MSG_VEC_PAIRS(v) print_vector_pairs((v), (#v));
   #define LINESEP1 cerr << "-----------------------------------------------                  " << endl;
@@ -127,12 +127,10 @@ class GalleryIllumination {
 public:
   int countDarkCells(int R, int C, vector <string> floorPlan) {
     LINESEP2;
-    _D(floorPlan); LINESEP1;
 
     REP(r,R) {
       REP(c,C) {
         if (floorPlan[r][c]=='O') {
-          MSG(r); MSG(c); LINESEP1;
           for (auto & dxy: DXY4) {
             int rr=r, cc=c;
             while (bounded(rr,R) && bounded(cc,C) && floorPlan[rr][cc]!='#') {
@@ -145,7 +143,6 @@ public:
         }
       }
     }
-    _D(floorPlan); LINESEP1;
 
     int result=0;
     REP(r,R) {

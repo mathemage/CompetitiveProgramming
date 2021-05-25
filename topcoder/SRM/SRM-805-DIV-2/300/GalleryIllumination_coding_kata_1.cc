@@ -1,6 +1,6 @@
 /* ========================================
    * Created By : mathemage
-   * Points/Time : 295.76
+   * Points/Time : 276.99
    * Total/ETA : 300
    * Status : AC
    ==========================================*/
@@ -36,7 +36,6 @@ using ulul = pair<ul, ul>;
 
 #ifdef MATHEMAGE_DEBUG
   #define MSG(a) cerr << "> " << (#a) << ": " << (a) << endl;
-  #define _D(a) cerr << "> " << (#a) << ": "; cerr <<= (a); cerr << endl;
   #define MSG_VEC_VEC(v) cerr << "> " << (#v) << ":\n"; (print_vector_vector(cerr, (v))) << endl;
   #define MSG_VEC_PAIRS(v) print_vector_pairs((v), (#v));
   #define LINESEP1 cerr << "-----------------------------------------------                  " << endl;
@@ -46,7 +45,6 @@ using ulul = pair<ul, ul>;
   #define MSG_VEC_STR(v) cerr << "> " << (#v) << ": "; (print_vector_string(cerr, (v))) << endl;
 #else
   #define MSG(a)
-  #define _D(a)
   #define MSG_VEC_VEC(v)
   #define MSG_VEC_PAIRS(v)
   #define LINESEP1
@@ -56,13 +54,17 @@ using ulul = pair<ul, ul>;
   #define MSG_VEC_STR(v)
 #endif
 
-inline ostream& operator<<=(ostream& os, const vector<string> & vec) { os << endl; for (const auto & s: vec) cerr << s << endl; return os; }
-inline ostream& print_vector_string(ostream& os, const vector<string> & vec) { os << endl; for (const auto & s: vec) cerr << s << endl; return os; }
+inline ostream& print_vector_string(ostream& os, const vector<string> & vec) {
+  os << endl;
+  for (const auto & s: vec) cerr << s << endl;
+  return os;
+}
 
-template<typename T>
-inline ostream& operator<<=(ostream& os, const vector<T> & vec) { for (const auto & x: vec) os << x << " "; return os; }
 template<typename T> 
-inline ostream& print_vector(ostream& os, const vector<T> & vec) { for (const auto & x: vec) os << x << " "; return os; } 
+inline ostream& print_vector(ostream& os, const vector<T> & vec) {
+  for (const auto & x: vec) os << x << " ";
+  return os; 
+} 
 
 template<typename T>
 inline ostream& print_vector_vector(ostream& os, const vector<vector<T>> & vec) {
@@ -127,16 +129,15 @@ class GalleryIllumination {
 public:
   int countDarkCells(int R, int C, vector <string> floorPlan) {
     LINESEP2;
-    _D(floorPlan); LINESEP1;
+    MSG_VEC_STR(floorPlan); LINESEP1;
 
     REP(r,R) {
       REP(c,C) {
         if (floorPlan[r][c]=='O') {
-          MSG(r); MSG(c); LINESEP1;
           for (auto & dxy: DXY4) {
             int rr=r, cc=c;
             while (bounded(rr,R) && bounded(cc,C) && floorPlan[rr][cc]!='#') {
-              if (floorPlan[rr][cc]=='.') {
+              if (floorPlan[rr][cc]!='O') {
                 floorPlan[rr][cc]='*';
               }
               rr+=dxy.F, cc+=dxy.S;
@@ -145,12 +146,13 @@ public:
         }
       }
     }
-    _D(floorPlan); LINESEP1;
+    MSG_VEC_STR(floorPlan); LINESEP1;
 
     int result=0;
+    MSG(result);
     REP(r,R) {
       REP(c,C) {
-        result+=floorPlan[r][c]=='.';
+        result+=(floorPlan[r][c]=='.');
       }
     }
     return result;
@@ -159,6 +161,7 @@ public:
 
 /*
 Remember:
+
 1) (RE-)COMPILE LAST VERSION BEFORE SUBMITTING!!!!!
 2) CHECK ADDITIONALLY IN THE ROOM SUMMARY (whether CORRECT source code was submitted)!!!!
   - Or `vimdiff solutionName*` should produce no diffs!
