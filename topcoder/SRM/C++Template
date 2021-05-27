@@ -59,6 +59,9 @@ using ulul = pair<ul, ul>;
   #define MSG_VEC_STR(v)
 #endif
 
+template<typename T>
+inline ostream& operator<<=(ostream& os, const T & x) { os << x; return os; }
+
 inline ostream& operator<<=(ostream& os, const vector<string> & vec) { os << endl; for (const auto & s: vec) cerr << s << endl; return os; }
 inline ostream& print_vector_string(ostream& os, const vector<string> & vec) { os << endl; for (const auto & s: vec) cerr << s << endl; return os; }
 
