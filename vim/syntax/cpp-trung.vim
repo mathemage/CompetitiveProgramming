@@ -27,8 +27,10 @@ colorscheme desert
 " g++ for CodeChef beginning
 " map <F5> <Esc>:wa<cr>:!g++ % -o `basename % .cpp`<cr>
 " map! <F5> <Esc>:wa<cr>:!g++ % -o `basename % .cpp`<cr>
-map <F5> <Esc>:wa<cr>:!./drive_all.sh<cr>
-map! <F5> <Esc>:wa<cr>:!./drive_all.sh<cr>
+" map <F5> <Esc>:wa<cr>:!./drive_all.sh<cr>
+" map! <F5> <Esc>:wa<cr>:!./drive_all.sh<cr>
+map <F4> <Esc>:wa<cr>:!./drive_all.sh<cr>
+map! <F4> <Esc>:wa<cr>:!./drive_all.sh<cr>
 map <F6> <Esc>:wa<cr>:!g++ % -pthread -o `basename % .cpp`<cr>
 map! <F6> <Esc>:wa<cr>:!g++ % -pthread -o `basename % .cpp`<cr>
 
@@ -46,6 +48,9 @@ map <F2> <Esc>:w<cr>:wa<cr>:!g++ -static -DONLINE_JUDGE -DMATHEMAGE_LOCAL -Wall 
 map! <F2> <Esc>:w<cr>:wa<cr>:!g++ -static -DONLINE_JUDGE -DMATHEMAGE_LOCAL -Wall -Wextra -pedantic -O2 -std=c++17 % -o driver && (ulimit -s 65536 -t 4; time ./driver <in) <cr>
 map <F3> <Esc>:w<cr>:wa<cr>:!g++ -static -DMATHEMAGE_DEBUG -DMATHEMAGE_LOCAL -Wall -Wextra -pedantic -O2 -std=c++17 % -o driver && (ulimit -s 65536 -t 7; time ./driver <in) <cr>
 map! <F3> <Esc>:w<cr>:wa<cr>:!g++ -static -DMATHEMAGE_DEBUG -DMATHEMAGE_LOCAL -Wall -Wextra -pedantic -O2 -std=c++17 % -o driver && (ulimit -s 65536 -t 7; time ./driver <in) <cr>
+
+map <F5> <Esc>:wa<cr>:%y+<cr>
+map! <F5> <Esc>:wa<cr>:%y+<cr>
 
 " abbreviations
 so ~/.vim/syntax/c++-abbreviations.vim
