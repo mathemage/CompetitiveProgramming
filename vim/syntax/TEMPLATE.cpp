@@ -7,7 +7,7 @@
 
    * File Name :
    * Creation Date :
-   * Last Modified : Fri 21 May 2021 11:29:43 PM CEST
+   * Last Modified : Mon 31 May 2021 12:03:07 AM CEST
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL :
    * Points/Time :
@@ -35,8 +35,8 @@ using namespace std;
 #define PB push_back
 #define MP make_pair
 #define MTP make_tuple
-#define MINUPDATE(A,B) A = min((A), (B));
-#define MAXUPDATE(A,B) A = max((A), (B));
+// #define MINUPDATE(A,B) A = min((A), (B));
+// #define MAXUPDATE(A,B) A = max((A), (B));
 #define SGN(X) ((X) ? ( (X)>0?1:-1 ) : 0)
 #define CONTAINS(S,E) ((S).find(E) != (S).end())
 #define SZ(x) ((int) (x).size())
@@ -101,6 +101,9 @@ istream& operator>>(istream& is, vector<T> & vec) { for (auto & x: vec) is >> x;
 
 template<typename T>
 inline bool bounded(const T & x, const T & u, const T & l=0) { return min(l,u)<=x && x<max(l,u); }
+
+template<class T> bool umin(T& a, const T& b) { return b < a ? a = b, 1 : 0; }
+template<class T> bool umax(T& a, const T& b) { return a < b ? a = b, 1 : 0; }
 
 const int CLEAN = -1;
 const int UNDEF = -42;
