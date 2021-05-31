@@ -7,7 +7,7 @@
 
    * File Name :
    * Creation Date :
-   * Last Modified : Mon 31 May 2021 12:03:07 AM CEST
+   * Last Modified : Mon 31 May 2021 05:59:34 PM CEST
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL :
    * Points/Time :
@@ -104,6 +104,8 @@ inline bool bounded(const T & x, const T & u, const T & l=0) { return min(l,u)<=
 
 template<class T> bool umin(T& a, const T& b) { return b < a ? a = b, 1 : 0; }
 template<class T> bool umax(T& a, const T& b) { return a < b ? a = b, 1 : 0; }
+
+inline bool eqDouble(double a, double b) { return fabs(a-b) < 1e-9; }
 
 const int CLEAN = -1;
 const int UNDEF = -42;
