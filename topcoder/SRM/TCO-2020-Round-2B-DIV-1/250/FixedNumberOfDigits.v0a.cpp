@@ -1,7 +1,10 @@
 /* ========================================
    * Created By : mathemage
    * Points/Time :
-   * Total/ETA :
+   * +6m
+   * +
+   *
+   * Total/ETA : 250
    * Status :
    ==========================================*/
 
@@ -123,25 +126,45 @@ const vector<pair<int,int>> DXY8 = {
   { 1,-1}, { 1,0}, { 1,1}
 };
 
-class $CLASSNAME$ {
+class FixedNumberOfDigits {
 public:
-  $RETURNTYPE$ $METHODNAME$($METHODPARAMS$) {
+  long long sum(int start, int step, long long numberOfDigits) {
     LINESEP2;
 
-    $RETURNTYPE$ result;
-    return result;
-//   bool result = false;
-//   return (result?"Possible":"Impossible");
+    ll upper=9;
+    ll nDigits=1;
+    while (upper<start) {
+      upper*=10; upper+=9;
+      nDigits++;
+    }
+
+    while (numberOfDigits>0) {
+      ll nSteps=1+(upper-start)/step;
+      ll nWritten=nSteps*nDigits;
+
+      if (nWritten<numberOfDigits) {
+        numberOfDigits-=nWritten;
+        start+=nSteps*step;
+      } else {
+        nSteps=numberOfDigits/nDigits;
+        start+=nSteps*step;
+        string head=to_string(start).substr(0,1+numberOfDigits%nDigits);
+        return stoll(head);
+      }
+
+      upper*=10; upper+=9;
+      nDigits++;
+    }
+
+    assert(false);
   }
 };
 
 /*
-* (RE-)COMPILE LAST VERSION BEFORE SUBMITTING!!!!!
-  - or CHECK ADDITIONALLY IN THE ROOM SUMMARY (whether CORRECT source code was submitted)!!!!
-
-* NEVER SUBMIT BRUTE-FORCE/INFERIOR SOLUTION WHEN IT MIGHT BE TOO SLOW!!
+Remember:
+1) (RE-)COMPILE LAST VERSION BEFORE SUBMITTING!!!!!
+2) CHECK ADDITIONALLY IN THE ROOM SUMMARY (whether CORRECT source code was submitted)!!!!
+  - Or `vimdiff solutionName*` should produce no diffs!
+3) Never submit brute-force/inferior solution when it might be too slow!!
   - Or always re-compile again!
-
-* Be careful of INT OVERFLOW WHEN INPUT PARAMETERS ARE IN INTS!
-  - re-cast to ll vars
 */

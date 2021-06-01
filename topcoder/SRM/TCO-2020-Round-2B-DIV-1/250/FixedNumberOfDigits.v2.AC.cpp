@@ -1,8 +1,15 @@
 /* ========================================
    * Created By : mathemage
    * Points/Time :
-   * Total/ETA :
+   * + 6m
+   * +23m = 29m [162.45 pts]
+   * + 2m = 31m [122.66 pts]
+   *
+   * Total/ETA : 250
    * Status :
+   * WA #5, #13 :-/ :-(
+   * AC!! :-O <- int overflow (input parameters are in ints! <- it's a trap!!)
+   *
    ==========================================*/
 
 #include <bits/stdc++.h>
@@ -123,25 +130,62 @@ const vector<pair<int,int>> DXY8 = {
   { 1,-1}, { 1,0}, { 1,1}
 };
 
-class $CLASSNAME$ {
+class FixedNumberOfDigits {
 public:
-  $RETURNTYPE$ $METHODNAME$($METHODPARAMS$) {
+  long long sum(int start2, int step2, long long numberOfDigits) {
     LINESEP2;
 
-    $RETURNTYPE$ result;
-    return result;
-//   bool result = false;
-//   return (result?"Possible":"Impossible");
+    ll start=start2;
+    ll step=step2;
+
+    ll upper=9;
+    ll nDigits=1;
+    while (upper<start) {
+      upper*=10; upper+=9;
+      nDigits++;
+    }
+//     MSG(upper); MSG(nDigits); LINESEP1;
+
+    while (numberOfDigits>0) {
+      LINESEP1;
+      MSG(upper); MSG(nDigits);
+
+      ll nSteps=1+(upper-start)/step;
+      ll nWritten=nSteps*nDigits;
+
+      MSG(nWritten); MSG(numberOfDigits);
+      LINESEP1;
+      if (nWritten<numberOfDigits) {
+        numberOfDigits-=nWritten;
+        start+=nSteps*step;
+      } else {
+        MSG(start); 
+        nSteps=numberOfDigits/nDigits;
+        start+=nSteps*step;
+        string head;
+        if (numberOfDigits%nDigits) {
+          head=to_string(start).substr(0,numberOfDigits%nDigits);
+        } else {
+          head=to_string(start-step);
+        }
+        MSG(nSteps); MSG(start); MSG(head);
+
+        return stoll(head);
+      }
+
+      upper*=10; upper+=9;
+      nDigits++;
+    }
+
+    assert(false);
   }
 };
 
 /*
-* (RE-)COMPILE LAST VERSION BEFORE SUBMITTING!!!!!
-  - or CHECK ADDITIONALLY IN THE ROOM SUMMARY (whether CORRECT source code was submitted)!!!!
-
-* NEVER SUBMIT BRUTE-FORCE/INFERIOR SOLUTION WHEN IT MIGHT BE TOO SLOW!!
+Remember:
+1) (RE-)COMPILE LAST VERSION BEFORE SUBMITTING!!!!!
+2) CHECK ADDITIONALLY IN THE ROOM SUMMARY (whether CORRECT source code was submitted)!!!!
+  - Or `vimdiff solutionName*` should produce no diffs!
+3) Never submit brute-force/inferior solution when it might be too slow!!
   - Or always re-compile again!
-
-* Be careful of INT OVERFLOW WHEN INPUT PARAMETERS ARE IN INTS!
-  - re-cast to ll vars
 */
