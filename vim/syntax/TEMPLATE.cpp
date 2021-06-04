@@ -7,7 +7,7 @@
 
    * File Name :
    * Creation Date :
-   * Last Modified : Mon 31 May 2021 05:59:34 PM CEST
+   * Last Modified : Pá 4. června 2021, 22:25:47
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL :
    * Points/Time :
@@ -148,6 +148,7 @@ void solve() {
 int main() {
   ios_base::sync_with_stdio(0);
   cin.tie(0);
+  cout << std::setprecision(10) << std::fixed;
 
 #ifndef MATHEMAGE_LOCAL
 //   setIO(PROBLEMNAME);
