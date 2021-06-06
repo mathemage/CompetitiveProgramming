@@ -7,7 +7,7 @@
 
    * File Name :
    * Creation Date :
-   * Last Modified : Pá 4. června 2021, 22:25:47
+   * Last Modified : Po 7. června 2021, 00:01:48
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL :
    * Points/Time :
@@ -142,7 +142,7 @@ void solve() {
   ll result = 0LL;
   cout << result << endl;
 //   bool result = false;
-//   cout << (result?"Yes":"No") << endl;
+//   YN(result);
 }
 
 int main() {

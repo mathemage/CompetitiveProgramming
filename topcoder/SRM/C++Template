@@ -27,6 +27,9 @@ using namespace std;
 #define SGN(X) ((X) ? ( (X)>0?1:-1 ) : 0)
 #define CONTAINS(S,E) ((S).find(E) != (S).end())
 #define SZ(x) ((int) (x).size())
+#define YES return "Possible";
+#define NO return "Impossible";
+#define YN(b) return ((b)?"Possible":"Impossible");
 
 using ll = long long;
 using ul = unsigned long long;
@@ -130,8 +133,8 @@ public:
 
     $RETURNTYPE$ result;
     return result;
-//   bool result = false;
-//   return (result?"Possible":"Impossible");
+//   bool ans = false;
+//   YN(ans);
   }
 };
 
