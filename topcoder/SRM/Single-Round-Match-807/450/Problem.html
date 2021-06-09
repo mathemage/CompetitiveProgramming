@@ -1,0 +1,50 @@
+<html><body bgcolor="#000000" text="#ffffff"><table><tr><td colspan="2"><h3>Problem Statement</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><p>
+In this problem we are interested in sequences <i>of integers</i> that contain their own average.
+</p>
+<br></br>
+<p>
+For example, the sequence {1, 2, 3, 4, 5} is such a sequence: its average is (1+2+3+4+5) / 5 = 3, and 3 is indeed an element of the sequence.
+</p>
+<p>
+The sequence {0, 0, 0, 0} does also contain its own average. (In this case, all four elements are equal to the average of the sequence.)
+</p>
+<p>
+The sequence {1, 2, 3, 4, 5, 0, -15} is also such a sequence: its average is 0 and that is one of the elements of the sequence.
+</p>
+<br></br>
+<p>
+The sequence {1, 1, 2, 3, 5, 4} does <i>not</i> contain its own average: its average is 8/3 = 2.6666666 and that is not an element of this sequence (and not an integer).
+</p>
+<p>
+The sequence {10, 20, 30, 40} has an integer average (25) but 25 is not an element of this sequence, so we are not interested in this sequence either.
+</p>
+<br></br>
+<p>
+Ela has shown you N-1 elements of her N-element sequence.
+The values she has shown you are in the vector &lt;int&gt; <b>seq</b>.
+</p>
+<p>
+Ela claims that the missing element is also an integer and that her sequence contains its own average.
+</p>
+<br></br>
+<p>
+Given that information, you now want to find the last element X of Ela's sequence.
+</p>
+<p>
+If there are at most 100 different possible values of X, return a vector &lt;int&gt; with all possible values of X, <i>sorted in ascending order</i>.
+Otherwise, return an empty vector &lt;int&gt;.
+</p></td></tr><tr><td colspan="2"><h3>Definition</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Class:</td><td>ContainsItsAverage</td></tr><tr><td>Method:</td><td>missing</td></tr><tr><td>Parameters:</td><td>vector &lt;int&gt;</td></tr><tr><td>Returns:</td><td>vector &lt;int&gt;</td></tr><tr><td>Method signature:</td><td>vector &lt;int&gt; missing(vector &lt;int&gt; seq)</td></tr><tr><td colspan="2">(be sure your method is public)</td></tr></table></td></tr><tr><td colspan="2"><h3>Limits</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Time limit (s):</td><td>2.000</td></tr><tr><td>Memory limit (MB):</td><td>256</td></tr></table></td></tr><tr><td colspan="2"><h3>Notes</h3></td></tr><tr><td align="center" valign="top">-</td><td>Only the elements in the input must be between 0 and 20,000,000, inclusive. The missing element may lie outside this range. (See Example #1.)</td></tr><tr><td align="center" valign="top">-</td><td>It is guaranteed that for each input that matches the constraints each valid X fits into a 32-bit signed integer variable.</td></tr><tr><td colspan="2"><h3>Constraints</h3></td></tr><tr><td align="center" valign="top">-</td><td><b>seq</b> will contain between 1 and 50 elements, inclusive.</td></tr><tr><td align="center" valign="top">-</td><td>Each element of <b>seq</b> will be between 0 and 20,000,000, inclusive.</td></tr><tr><td colspan="2"><h3>Examples</h3></td></tr><tr><td align="center" nowrap="true">0)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{0, 0, 0}</pre></td></tr></table></td></tr><tr><td><pre>Returns: {0 }</pre></td></tr><tr><td><table><tr><td colspan="2"><p>
+The only option is that the missing element is also 0. As we already know, the sequence {0, 0, 0, 0} does contain its average.
+</p>
+<p>
+For any other X, the sequence will be {0, 0, 0, X}, its average will be X/4, and that's clearly not an element of the sequence.
+</p></td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">1)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{1, 10, 1000, 100}</pre></td></tr></table></td></tr><tr><td><pre>Returns: {-1106, -1061, -611, 3889 }</pre></td></tr><tr><td><table><tr><td colspan="2"><p>
+The sequence {1, 10, 1000, 100, -1106} has the average (1 + 10 + 1000 + 100 + (-1106)) / 5 = 5/5 = 1. And as 1 is one of the five elements of {1, 10, 1000, 100, -1106}, this sequence does contain its own average.
+</p>
+<p>
+We can easily verify that each of the other three options for X also produces a sequence that contains its own average.
+</p>
+<br></br>
+<p>
+Please remember that the returned array must be sorted.
+</p></td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">2)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{500000, 400000, 200000, 100000}</pre></td></tr></table></td></tr><tr><td><pre>Returns: {-700000, -200000, 300000, 800000, 1300000 }</pre></td></tr><tr><td><table><tr><td colspan="2"></td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">3)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{47}</pre></td></tr></table></td></tr><tr><td><pre>Returns: {47 }</pre></td></tr><tr><td><table><tr><td colspan="2"></td></tr></table></td></tr></table></td></tr></table><p>This problem statement is the exclusive and proprietary property of TopCoder, Inc.  Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited.  (c)2003, TopCoder, Inc.  All rights reserved.  </p></body></html>
