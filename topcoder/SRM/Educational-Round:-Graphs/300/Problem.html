@@ -1,0 +1,47 @@
+<html><body bgcolor="#000000" text="#ffffff"><table><tr><td colspan="2"><h3>Problem Statement</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td>There is a rectangular board that is divided into n rows by m columns of cells.
+Each cell is either empty or it contains an obstacle.
+You are given the description of the board in the vector &lt;string&gt; <b>board</b>.
+Each character in <b>board</b> represents one cell.
+More precisely, the character <b>board</b>[i][j] represents the cell at coordinates (row i, column j).
+The character '#' represents an obstacle, the character '.' is an empty cell.
+<br></br>
+<br></br>
+You would like to travel from the top left corner to the bottom right corner of the board in exactly <b>k</b> steps.
+More precisely, you want to perform the following sequence of actions:
+<br></br>
+<br></br>
+<ol>
+<li>Enter the board by stepping onto the cell at coordinates (0, 0): the top left corner.</li>
+<li>Make exactly <b>k</b> steps. In each step, you'll move from your current cell to one of the cells that share a side with your current cell. In other words, in each step you'll go one cell up, down, left, or right.</li>
+<li>After the <b>k</b>-th step, you must be in the bottom right corner: at coordinates (n-1, m-1).</li>
+</ol>
+
+Note that you can only step onto empty cells.
+You have to move in each step, it is not allowed to stay in the same cell.
+You are allowed to visit each empty cell arbitrarily many times.
+You are not allowed to leave the board while making the <b>k</b> steps.
+<br></br>
+<br></br>
+You are given the vector &lt;string&gt; <b>board</b> and the int <b>k</b>.
+Determine whether it is possible to reach the bottom right corner in the way described above.
+If there is no solution, return an empty string.
+If there are some solutions, choose any one of them and return a string containing its description.
+<br></br>
+<br></br>
+If a solution exists, the returned string should consist of <b>k</b> characters, each describing one step.
+Each character should be one of 'U' (up), 'D' (down), 'L' (left), and 'R' (right).</td></tr><tr><td colspan="2"><h3>Definition</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Class:</td><td>StepsConstruct</td></tr><tr><td>Method:</td><td>construct</td></tr><tr><td>Parameters:</td><td>vector &lt;string&gt;, int</td></tr><tr><td>Returns:</td><td>string</td></tr><tr><td>Method signature:</td><td>string construct(vector &lt;string&gt; board, int k)</td></tr><tr><td colspan="2">(be sure your method is public)</td></tr></table></td></tr><tr><td colspan="2"><h3>Limits</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Time limit (s):</td><td>2.000</td></tr><tr><td>Memory limit (MB):</td><td>256</td></tr><tr><td>Stack limit (MB):</td><td>256</td></tr></table></td></tr><tr><td colspan="2"><h3>Notes</h3></td></tr><tr><td align="center" valign="top">-</td><td>The character 'U' represents a step that decreases your row number. The character 'L' represents a step that decreases your column number.</td></tr><tr><td colspan="2"><h3>Constraints</h3></td></tr><tr><td align="center" valign="top">-</td><td>n, m will be between 2 and 50, inclusive.</td></tr><tr><td align="center" valign="top">-</td><td><b>board</b> will contain exactly n elements.</td></tr><tr><td align="center" valign="top">-</td><td>Each element in <b>board</b> will contain exactly m characters.</td></tr><tr><td align="center" valign="top">-</td><td>Each character in <b>board</b> will be either '#' or '.'.</td></tr><tr><td align="center" valign="top">-</td><td><b>k</b> will be between 1 and 3,000, inclusive.</td></tr><tr><td colspan="2"><h3>Examples</h3></td></tr><tr><td align="center" nowrap="true">0)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{&quot;...&quot;,
+ &quot;.#.&quot;,
+ &quot;...&quot;}</pre></td></tr><tr><td><pre>4</pre></td></tr></table></td></tr><tr><td><pre>Returns: &quot;DDRR&quot;</pre></td></tr><tr><td><table><tr><td colspan="2">You need to get from (0,0) to (2,2) in exactly 4 steps.</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">1)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{&quot;...&quot;,
+ &quot;.#.&quot;,
+ &quot;...&quot;}</pre></td></tr><tr><td><pre>12</pre></td></tr></table></td></tr><tr><td><pre>Returns: &quot;DDRRUULLDDRR&quot;</pre></td></tr><tr><td><table><tr><td colspan="2">This time we want to get there in exactly 12 steps, one possible solution is to go around that obstacle once.</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">2)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{&quot;...#.&quot;,
+ &quot;..#..&quot;,
+ &quot;.#...&quot;}</pre></td></tr><tr><td><pre>100</pre></td></tr></table></td></tr><tr><td><pre>Returns: &quot;&quot;</pre></td></tr><tr><td><table><tr><td colspan="2">There is no way to get to (n-1, m-1) from (0,0).</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">3)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{&quot;..#&quot;,
+ &quot;#.#&quot;,
+ &quot;..#&quot;,
+ &quot;.#.&quot;,
+ &quot;...&quot;}</pre></td></tr><tr><td><pre>6</pre></td></tr></table></td></tr><tr><td><pre>Returns: &quot;&quot;</pre></td></tr><tr><td><table><tr><td colspan="2"></td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">4)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{&quot;.#...&quot;,
+ &quot;.#.#.&quot;,
+ &quot;.#.#.&quot;,
+ &quot;.#.#.&quot;,
+ &quot;...#.&quot;}</pre></td></tr><tr><td><pre>16</pre></td></tr></table></td></tr><tr><td><pre>Returns: &quot;DDDDRRUUUURRDDDD&quot;</pre></td></tr><tr><td><table><tr><td colspan="2"></td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">5)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{&quot;#.&quot;, 
+ &quot;..&quot;}</pre></td></tr><tr><td><pre>2</pre></td></tr></table></td></tr><tr><td><pre>Returns: &quot;&quot;</pre></td></tr><tr><td><table><tr><td colspan="2">There is no solution because you are not even able to enter the top left cell.</td></tr></table></td></tr></table></td></tr></table><p>This problem statement is the exclusive and proprietary property of TopCoder, Inc.  Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited.  (c)2003, TopCoder, Inc.  All rights reserved.  </p></body></html>
