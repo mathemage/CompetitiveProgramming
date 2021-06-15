@@ -6,7 +6,8 @@ iab if if (.) {<CR><ESC>-f.c
 iab ifel if (.) {<CR>} else {<ESC>-f.c
 iab whi while (.) {<CR><ESC>-f.c
 iab while while (.) {<CR><ESC>-f.c
-" iab dow do {<CR><ESC>awhile (.);<ESC>-f.s TODO
+iab dow do {<CR>}<ESC>a while (?);<ESC>jdd-f?c
+" TODO add break; to switch
 iab switch switch (.) {<CR>case '': <ESC>-f.c
 
 iab ato atoi(.c_str())<ESC>F.i
@@ -36,15 +37,18 @@ iab seti set<int>
 iab setd set<double>
 iab setc set<char>
 iab setl set<long long>
+iab setll set<long long>
 iab useti unordered_set<int>
 iab usetd unordered_set<double>
 iab usetc unordered_set<char>
 iab usetl unordered_set<long long>
+iab usetll unordered_set<long long>
 
-iab minu MINUPDATE(., .);<ESC>2F.c
-iab maxu MAXUPDATE(., .);<ESC>2F.c
-iab min( min(., .)<ESC>2F.c
-iab max( max(., .)<ESC>2F.c
+" TODO delete
+" iab minu MINUPDATE(., .);<ESC>2F.c
+" iab maxu MAXUPDATE(., .);<ESC>2F.c
+" iab min( min(., .)<ESC>2F.c
+" iab max( max(., .)<ESC>2F.c
 
 iab acc accumulate(ALL(.), 0LL)<ESC>F.c
 iab accd accumulate(ALL(.), 0.0)<ESC>2F.c

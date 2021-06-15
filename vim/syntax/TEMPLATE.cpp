@@ -7,7 +7,7 @@
 
    * File Name :
    * Creation Date :
-   * Last Modified : Po 7. června 2021, 00:01:48
+   * Last Modified : Út 15. června 2021, 15:26:37
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL :
    * Points/Time :
@@ -35,8 +35,6 @@ using namespace std;
 #define PB push_back
 #define MP make_pair
 #define MTP make_tuple
-// #define MINUPDATE(A,B) A = min((A), (B));
-// #define MAXUPDATE(A,B) A = max((A), (B));
 #define SGN(X) ((X) ? ( (X)>0?1:-1 ) : 0)
 #define CONTAINS(S,E) ((S).find(E) != (S).end())
 #define SZ(x) ((int) (x).size())
