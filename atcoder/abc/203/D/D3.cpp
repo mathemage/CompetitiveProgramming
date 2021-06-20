@@ -6,19 +6,20 @@
 
    * File Name : D2.cpp
    * Creation Date : 13-06-2021
-   * Last Modified : Sun 20 Jun 2021 09:15:51 PM CEST
+   * Last Modified : Sun 20 Jun 2021 09:27:55 PM CEST
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://atcoder.jp/contests/abc203/tasks/abc203_d
    * Points/Time :
-   *     = 27m :-/
-   * +2m = 29m
+   *      = 27m :-/
+   * + 2m = 29m
+   * [upsolve - 2D DP] + ~15m
+   * +17m = 46m
    *
    * Total/ETA :
-   * [upsolve - brute] ~15m
+   * [upsolve - 2D DP] + ~15m
    *
    * Status :
-   * AC x11, WA x1 :-O, TLE x15
-   * AC x12,       :-), TLE x15
+   * AC !!! yess!!!!!!!!!!!!!!!!!
    *
    ==========================================*/
 
@@ -152,7 +153,7 @@ void solve() {
   
   ll medianRank=(K*K)/2+1;
   ll nLessOrEqual=K*K-medianRank+1;
-  MSG(medianRank); MSG(nLowerValues); LINESEP1;
+  MSG(medianRank); MSG(nLessOrEqual); LINESEP1;
 
   ll low=INF;
   ll high=-INF;
@@ -168,21 +169,34 @@ void solve() {
     return;
   }
 
-  auto findLowerMedian = [=, &A](ll query) {
-    for (int sr = 0; sr+K-1 < N; sr += 1) {
-      for (int sc = 0; sc+K-1 < N; sc += 1) {
-        int cnt=0;
+  auto findLowerMedian = [&](ll query) {
+    LINESEP1; MSG(query);
 
-        REP(dr,K) {
-          REP(dc,K) {
-            cnt+=A[sr+dr][sc+dc]<=query;
-            if (cnt>=nLessOrEqual) {   // then query is at least the local median
-              LINESEP1;
-              MSG(sr); MSG(sc); MSG(dr); MSG(dc); MSG(cnt);
+    vector<vector<long long>> dp(N+5, vector<long long>(N+5));
+    FOR(r,1,N) {
+      FOR(c,1,N) {
+        dp[r][c]=dp[r][c-1]+(A[r-1][c-1]<=query);
+      }
+    }
 
-              return true;
-            }
-          }
+    FOR(r,1,N) {
+      FOR(c,1,N) {
+        dp[r][c]+=dp[r-1][c];
+      }
+    }
+
+    for (int sr = 1; sr+K-1 <= N; sr += 1) {
+      for (int sc = 1; sc+K-1 <= N; sc += 1) {
+        ll cnt=dp[sr+K-1][sc+K-1];
+        cnt -= dp[sr-1][sc+K-1];
+        cnt -= dp[sr+K-1][sc-1];
+        cnt += dp[sr-1][sc-1]; // subtracted twice
+
+        if (cnt>=nLessOrEqual) {   // then query is at least the local median
+          LINESEP1;
+          MSG(sr); MSG(sc); MSG(sr+K-1); MSG(sc+K-1); MSG(cnt);
+
+          return true;
         }
       }
     }
@@ -199,8 +213,6 @@ void solve() {
     } else {
       low=mid;
     }
-//     MSG(findLowerMedian(mid));
-
     LINESEP1;
   }
 

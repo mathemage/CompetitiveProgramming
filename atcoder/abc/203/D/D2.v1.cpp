@@ -6,19 +6,17 @@
 
    * File Name : D2.cpp
    * Creation Date : 13-06-2021
-   * Last Modified : Sun 20 Jun 2021 09:15:51 PM CEST
+   * Last Modified : Sun 20 Jun 2021 09:05:33 PM CEST
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://atcoder.jp/contests/abc203/tasks/abc203_d
    * Points/Time :
-   *     = 27m :-/
-   * +2m = 29m
+   * = 27m :-/
    *
    * Total/ETA :
    * [upsolve - brute] ~15m
    *
    * Status :
    * AC x11, WA x1 :-O, TLE x15
-   * AC x12,       :-), TLE x15
    *
    ==========================================*/
 
@@ -161,11 +159,6 @@ void solve() {
       umin(low, Ai);
       umax(high, Ai);
     }
-  }
-
-  if (K==1) {
-    cout << low << endl;
-    return;
   }
 
   auto findLowerMedian = [=, &A](ll query) {
