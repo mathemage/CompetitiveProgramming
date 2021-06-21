@@ -1,0 +1,48 @@
+<html><body bgcolor="#000000" text="#ffffff"><table><tr><td colspan="2"><h3>Problem Statement</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><p>
+There is a <b>R</b> times <b>C</b> grid.
+Rows are numbered from 0 to <b>R</b>-1 (going north to south) and columns 0 to <b>C</b>-1 (going west to east).
+Cell in row r, column c is denoted (r, c).
+You start in the cell (0, 0).
+</p>
+<p>
+There are a few obstacles (at most three of them).
+For each valid i, there is an obstacle in the cell (<b>obsr</b>[i], <b>obsc</b>[i]).
+</p>
+<p>
+None of the obstacles are in cells that lie on the border of the grid.
+</p>
+<p>
+You can travel along the grid by making steps in the four cardinal directions: 'N' (row -= 1), 'S' (row += 1), 'E' (column += 1) and 'W' (column -= 1).
+</p>
+<p>
+Your task is to visit at least half of all cells in the grid - that is, at least <b>R</b>*<b>C</b>/2 cells, rounded up. You cannot visit the same cell twice, and you cannot visit a cell with an obstacle.
+</p>
+<p>
+Return your sequence of movements.
+</p></td></tr><tr><td colspan="2"><h3>Definition</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Class:</td><td>VisitALot</td></tr><tr><td>Method:</td><td>travel</td></tr><tr><td>Parameters:</td><td>int, int, vector &lt;int&gt;, vector &lt;int&gt;</td></tr><tr><td>Returns:</td><td>string</td></tr><tr><td>Method signature:</td><td>string travel(int R, int C, vector &lt;int&gt; obsr, vector &lt;int&gt; obsc)</td></tr><tr><td colspan="2">(be sure your method is public)</td></tr></table></td></tr><tr><td colspan="2"><h3>Limits</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Time limit (s):</td><td>2.000</td></tr><tr><td>Memory limit (MB):</td><td>256</td></tr></table></td></tr><tr><td colspan="2"><h3>Notes</h3></td></tr><tr><td align="center" valign="top">-</td><td>For the given constraints a solution always exists. Any valid solution will be accepted.</td></tr><tr><td align="center" valign="top">-</td><td>The cell (0, 0) counts as visited at the beginning of your travel. Note that this means that you cannot return into this cell.</td></tr><tr><td colspan="2"><h3>Constraints</h3></td></tr><tr><td align="center" valign="top">-</td><td><b>R</b> will be between 2 and 50, inclusive.</td></tr><tr><td align="center" valign="top">-</td><td><b>C</b> will be between 2 and 50, inclusive.</td></tr><tr><td align="center" valign="top">-</td><td><b>obsr</b> will contain between 0 and 3 elements, inclusive.</td></tr><tr><td align="center" valign="top">-</td><td><b>obsc</b> will contain the same number of elements as <b>obsr</b>.</td></tr><tr><td align="center" valign="top">-</td><td>Each element of <b>obsr</b> will be between 1 and <b>R</b>-2, inclusive.</td></tr><tr><td align="center" valign="top">-</td><td>Each element of <b>obsc</b> will be between 1 and <b>C</b>-2, inclusive.</td></tr><tr><td align="center" valign="top">-</td><td>Cells with obstacles will be distinct.</td></tr><tr><td colspan="2"><h3>Examples</h3></td></tr><tr><td align="center" nowrap="true">0)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>2</pre></td></tr><tr><td><pre>3</pre></td></tr><tr><td><pre>{}</pre></td></tr><tr><td><pre>{}</pre></td></tr></table></td></tr><tr><td><pre>Returns: &quot;SENE&quot;</pre></td></tr><tr><td><table><tr><td colspan="2"><p>
+For a grid this small there cannot be any obstacles.
+</p>
+<p>
+The sample solution is longer than needed: it visits five of the six cells. "SE" and "EE" are two of the shortest valid solutions - each of them visits three of the six cells.
+</p></td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">1)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>6</pre></td></tr><tr><td><pre>5</pre></td></tr><tr><td><pre>{1, 1, 4}</pre></td></tr><tr><td><pre>{1, 3, 1}</pre></td></tr></table></td></tr><tr><td><pre>Returns: &quot;SSEESWWSSEENEE&quot;</pre></td></tr><tr><td><table><tr><td colspan="2"><p>
+The grid is shown below: 0 represents your starting spot, X are obstacles.
+</p>
+<pre>
+0....
+.X.X.
+.....
+.....
+.X...
+.....
+</pre>
+<p>
+The path described by the example output is shown below as 0123456789ABCDE. It visits exactly half of the cells in this grid.
+</p>
+<pre>
+0....
+1X.X.
+234..
+765..
+8XCDE
+9AB..
+</pre></td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">2)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>7</pre></td></tr><tr><td><pre>8</pre></td></tr><tr><td><pre>{}</pre></td></tr><tr><td><pre>{}</pre></td></tr></table></td></tr><tr><td><pre>Returns: &quot;EEEEEEESWWWWWWWSEEEEEEESWWWWWWWSEEEEEEESWWWWWWWSEEEEEEE&quot;</pre></td></tr><tr><td><table><tr><td colspan="2">The example return value shown above describes a path that visits the entire grid.</td></tr></table></td></tr></table></td></tr></table><p>This problem statement is the exclusive and proprietary property of TopCoder, Inc.  Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited.  (c)2003, TopCoder, Inc.  All rights reserved.  </p></body></html>
