@@ -7,7 +7,7 @@
 
    * File Name :
    * Creation Date :
-   * Last Modified : Út 15. června 2021, 15:26:37
+   * Last Modified : Wed 23 Jun 2021 12:24:56 AM CEST
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL :
    * Points/Time :
@@ -41,6 +41,9 @@ using namespace std;
 #define YES cout << "YES" << endl;
 #define NO cout << "NO" << endl;
 #define YN(b) cout << ((b)?"YES":"NO") << endl;
+#define Yes cout << "Yes" << endl;
+#define No cout << "No" << endl;
+#define Yn(b) cout << ((b)?"Yes":"No") << endl;
 
 using ll = long long;
 using ul = unsigned long long;
@@ -139,7 +142,9 @@ void setIO(string filename) {    // the argument is the filename without the ext
 void solve() {
   ll result = 0LL;
   cout << result << endl;
+
 //   bool result = false;
+//   cout << ((result)?"Yes":"No") << endl;
 //   YN(result);
 }
 
