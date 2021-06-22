@@ -2,10 +2,14 @@
    * Created By : mathemage
    * Points/Time :
    * +10m
+   * +28m = 38m [178.15]
+   * + 4m = 42m [125.70]
    *
    * Total/ETA : 300
    * Status :
    * not solved (yet)
+   * WA #11, #12 :-(
+   * AC !! :-/
    *
    ==========================================*/
 
@@ -115,9 +119,9 @@ const int INF = INT_MAX;
 const long long INF_LL = LLONG_MAX;
 const long long INF_ULL = ULLONG_MAX;
 
-const vector<int> DX4 = {0, 1,  0, -1};
-const vector<int> DY4 = {1, 0, -1,  0};
-const vector<pair<int,int>> DXY4 = { {0,1}, {1,0}, {0,-1}, {-1,0} };
+// const vector<int> DX4 = {0, 1,  0, -1};
+// const vector<int> DY4 = {-1, 0, 1,  0};
+const vector<pair<int,int>> DXY4 = { {-1,0}, {0,1}, {1,0}, {0,-1} };
 const string dues="NESW";
 
 const vector<int> DX8 = {-1, -1, -1,   0, 0,   1,  1,  1};
@@ -133,10 +137,56 @@ public:
   string travel(int R, int C, vector <int> obsr, vector <int> obsc) {
     LINESEP2;
 
-    string result;
-    return result;
-//   bool ans = false;
-//   YN(ans);
+    vector<string> ans;
+    vector<int> di{2,1};    // S, E
+    vector<int> sign{-1,1};  // E, S
+
+    REP(i,2) {
+      int r=0,c=0;
+
+      MSG(i);
+      ans.PB("");
+
+      pair<int, int> drc=DXY4[di[i]];
+      _D(drc);
+      while (bounded(r+drc.F,R) && bounded(c+drc.S,C)) {
+        MSG(r); MSG(c); LINESEP1;
+
+        if (count(ALL(obsr), r)==0 && count(ALL(obsc), c)==0) {
+          int iSide=(di[i]+sign[i]+4) % 4;
+          pair<int, int> dside=DXY4[iSide];
+
+          while (bounded(r+dside.F,R) && bounded(c+dside.S,C)) {
+            MSG(r); MSG(c); LINESEP1;
+            ans.back()+=dues[iSide];
+            r+=dside.F; c+=dside.S;
+          }
+
+          sign[i]*=-1;
+        }
+
+        ans.back()+=dues[di[i]];
+        r+=drc.F; c+=drc.S;
+      }
+
+      if (count(ALL(obsr), r)==0 && count(ALL(obsc), c)==0) {
+        int iSide=(di[i]+sign[i]+4) % 4;
+        pair<int, int> dside=DXY4[iSide];
+
+        while (bounded(r+dside.F,R) && bounded(c+dside.S,C)) {
+          MSG(r); MSG(c); LINESEP1;
+          ans.back()+=dues[iSide];
+          r+=dside.F; c+=dside.S;
+        }
+
+        sign[i]*=-1;
+      }
+
+      MSG_VEC_STR(ans); LINESEP1;
+    }
+
+    sort(ALL(ans), [](string a, string b) { return SZ(a) >= SZ(b); } );
+    return ans[0];
   }
 };
 

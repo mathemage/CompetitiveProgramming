@@ -2,10 +2,12 @@
    * Created By : mathemage
    * Points/Time :
    * +10m
+   * +28m = 38m [178.15]
    *
    * Total/ETA : 300
    * Status :
    * not solved (yet)
+   * WA #11, #12 :-(
    *
    ==========================================*/
 
