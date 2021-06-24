@@ -6,15 +6,17 @@
 
    * File Name : billboard.cxx
    * Creation Date : 21-06-2021
-   * Last Modified : Mon 21 Jun 2021 12:27:06 AM CEST
+   * Last Modified : Čt 24. června 2021, 23:27:20
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : http://www.usaco.org/index.php?page=viewproblem2&cpid=783
    * Points/Time :
-   * +7m
-   * +
+   * + 7m
+   * +11m = 18m
    *
-   * Total/ETA :
-   * Status : unsolved yet
+   * Total/ETA : 25m
+   * Status :
+   * 10/10 ACs -> passed (flash)!!!
+   *
    ==========================================*/
 
 #define PROBLEMNAME "billboard"
@@ -139,10 +141,33 @@ void setIO(string filename) {    // the argument is the filename without the ext
 #endif
 
 void solve() {
-  ll result = 0LL;
+//   map<string, ll> lawn; cin >> lawn["l"] >> lawn["d"] >> lawn["r"] >> lawn["u"];
+//   map<string, ll> feed; cin >> feed["l"] >> feed["d"] >> feed["r"] >> feed["u"];
+  vector<long long> lawn(4); cin >> lawn;
+  vector<long long> feed(4); cin >> feed;
+  MSG(lawn); MSG(feed); LINESEP1;
+
+  auto area = [](vector<long long> rect) {
+    assert(SZ(rect)==4);
+    return (rect[2]-rect[0])*(rect[3]-rect[1]);
+  };
+
+  ll result = area(lawn);
+
+  vector<long long> intersect(4);
+  int nAligned=0;
+  REP(i,4) {
+    intersect[i]=(i<2 ? max(lawn[i], feed[i]) : min(lawn[i], feed[i])); 
+    nAligned+=intersect[i]==lawn[i];
+  }
+  MSG(intersect); LINESEP1;
+  MSG(nAligned); LINESEP1;
+
+  if (nAligned>=3) {
+    result-=area(intersect);
+  }
+
   cout << result << endl;
-//   bool result = false;
-//   YN(result);
 }
 
 int main() {
@@ -155,7 +180,6 @@ int main() {
 #endif
 
   int cases = 1;
-  cin >> cases;
   FOR(tt,1,cases) {
 //     cout << "Case #" << tt << ": ";
     solve();
