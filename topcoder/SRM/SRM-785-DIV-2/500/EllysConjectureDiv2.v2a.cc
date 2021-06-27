@@ -1,8 +1,16 @@
 /* ========================================
    * Created By : mathemage
-   * Points/Time : 498.70
+   * Points/Time :
+   * +23m
+   * + 5m = 28m [150.01]
+   * +
+   *
    * Total/ETA : 500
-   * Status : AC!
+   * Status :
+   * not finished (yet)
+   * WA #5
+   *
+   *
    ==========================================*/
 
 #include <bits/stdc++.h>
@@ -124,20 +132,66 @@ const vector<pair<int,int>> DXY8 = {
   { 1,-1}, { 1,0}, { 1,1}
 };
 
+// #define BRUTE
 class EllysConjectureDiv2 {
 public:
-  long long getSum(int L, int R) {
-    long long result=0;
-    FOR(x,L,min(R,4)) {
-      result+=x;
-      L++;
+#ifdef BRUTE
+
+  long long getSum(int L, int R) { // brute
+    LINESEP2;
+    MSG(L); MSG(R); LINESEP1;
+
+    long long result=0LL;
+
+    vector<long long> head{0,1,1,3};
+    FOR(x,L,R) {
+      MSG(x);
+
+      if (0<=x && x<=3) {
+        result+=head[x];
+      } else {
+        result+=x%3?4:6;
+      }
     }
-    result+=4*(R-L+1LL);
-    R-=R%3;
-    L+=(3-L%3)%3;
-    result+=2*((R-L)/3+1LL);
+
     return result;
   }
+
+#else
+
+  long long getSum(int L, int R) {
+    LINESEP2;
+    MSG(L); MSG(R); LINESEP1;
+
+    long long result=0LL;
+
+    vector<long long> head{0,1,1,3};
+    FOR(x,L,min(3,R)) {
+      MSG(x);
+      result+=head[x];
+    }
+    umax(L,4);
+    MSG(L); MSG(R); LINESEP1;
+
+    if (L<=R) {
+      result+=4LL*(R-L+1);
+      MSG(result);
+
+      LINESEP1;
+      MSG(L); MSG(R);
+      R-=R%3;
+      L+=(3-L%3)%3;
+      MSG(L); MSG(R);
+      LINESEP1;
+
+      result+=2LL*((R-L)/3+1);
+      MSG(result);
+    }
+
+    return result;
+  }
+
+#endif
 };
 
 /*

@@ -1,6 +1,6 @@
 /* ========================================
    * Created By : mathemage
-   * Points/Time : 498.70
+   * Points/Time : 484.19
    * Total/ETA : 500
    * Status : AC!
    ==========================================*/
@@ -127,15 +127,24 @@ const vector<pair<int,int>> DXY8 = {
 class EllysConjectureDiv2 {
 public:
   long long getSum(int L, int R) {
-    long long result=0;
+    LINESEP2;
+    MSG(L); MSG(R); LINESEP1;
+
+    long long result=0LL;
     FOR(x,L,min(R,4)) {
       result+=x;
       L++;
     }
-    result+=4*(R-L+1LL);
-    R-=R%3;
-    L+=(3-L%3)%3;
-    result+=2*((R-L)/3+1LL);
+    MSG(L); MSG(R); LINESEP1;
+
+    if (L<=R) {
+      result+=4LL*(R-L+1LL);
+
+      R-=R%3;
+      L+=(3-L%3)%3;
+      result+=2LL*((R-L)/3+1LL);
+      MSG(L); MSG(R); LINESEP1;
+    }
     return result;
   }
 };

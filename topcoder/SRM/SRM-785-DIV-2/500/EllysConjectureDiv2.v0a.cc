@@ -1,8 +1,13 @@
 /* ========================================
    * Created By : mathemage
-   * Points/Time : 498.70
+   * Points/Time :
+   * +23m
+   * +
+   *
    * Total/ETA : 500
-   * Status : AC!
+   * Status :
+   * not finished (yet)
+   *
    ==========================================*/
 
 #include <bits/stdc++.h>
@@ -127,15 +132,17 @@ const vector<pair<int,int>> DXY8 = {
 class EllysConjectureDiv2 {
 public:
   long long getSum(int L, int R) {
-    long long result=0;
-    FOR(x,L,min(R,4)) {
-      result+=x;
-      L++;
+    LINESEP2;
+
+    long long result=0LL;
+    vector<long long> head{UNDEF,1,1,3};
+    FOR(x,L,min(4,R)) {
+      result+=head[x];
     }
-    result+=4*(R-L+1LL);
-    R-=R%3;
-    L+=(3-L%3)%3;
-    result+=2*((R-L)/3+1LL);
+
+    result+=4LL*(R-L+1);
+    result+=2LL*((R-L+1)/3);
+
     return result;
   }
 };

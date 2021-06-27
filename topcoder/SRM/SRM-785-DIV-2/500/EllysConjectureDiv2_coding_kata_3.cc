@@ -127,15 +127,20 @@ const vector<pair<int,int>> DXY8 = {
 class EllysConjectureDiv2 {
 public:
   long long getSum(int L, int R) {
+    LINESEP2;
+
     long long result=0;
     FOR(x,L,min(R,4)) {
       result+=x;
       L++;
     }
-    result+=4*(R-L+1LL);
-    R-=R%3;
-    L+=(3-L%3)%3;
-    result+=2*((R-L)/3+1LL);
+    if (L<=R) {
+      result+=4*(R-L+1LL);
+
+      R-=R%3;
+      L+=(3-L%3)%3;
+      result+=2*((R-L)/3+1LL);
+    }
     return result;
   }
 };
