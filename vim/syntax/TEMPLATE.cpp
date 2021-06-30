@@ -7,7 +7,7 @@
 
    * File Name :
    * Creation Date :
-   * Last Modified : Wed 23 Jun 2021 12:24:56 AM CEST
+   * Last Modified : Thu 01 Jul 2021 12:00:09 AM CEST
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL :
    * Points/Time :
@@ -49,6 +49,7 @@ using ll = long long;
 using ul = unsigned long long;
 using llll = pair<ll, ll>;
 using ulul = pair<ul, ul>;
+using ld = long double;
 
 #ifdef ONLINE_JUDGE
   #undef MATHEMAGE_DEBUG
