@@ -93,6 +93,9 @@ template<typename T1, typename T2>
 inline ostream& operator<<=(ostream& os, const map<T1, T2>& vec) { for (const auto & x: vec) os << x.F << ":" << x.S << " | "; return os; }
 
 template<typename T1, typename T2>
+inline ostream& operator<<=(ostream& os, const unordered_map<T1, T2>& vec) { for (const auto & x: vec) os << x.F << ":" << x.S << " | "; return os; }
+
+template<typename T1, typename T2>
 inline ostream& operator<<=(ostream& os, const pair<T1, T2>& p) { return os << "(" << p.F << ", " << p.S << ")"; }
 
 template<typename T>

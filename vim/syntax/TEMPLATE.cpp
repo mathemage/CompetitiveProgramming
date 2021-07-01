@@ -7,7 +7,7 @@
 
    * File Name :
    * Creation Date :
-   * Last Modified : Thu 01 Jul 2021 12:00:09 AM CEST
+   * Last Modified : Fri 02 Jul 2021 12:05:35 AM CEST
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL :
    * Points/Time :
@@ -94,6 +94,9 @@ ostream& operator<<(ostream& os, const multiset<T, Compare>& vec) { for (const a
 
 template<typename T1, typename T2> 
 ostream& operator<<(ostream& os, const map<T1, T2>& vec) { for (const auto & x: vec) os << x.F << ":" << x.S << " | "; return os; }
+
+template<typename T1, typename T2>
+ostream& operator<<(ostream& os, const unordered_map<T1, T2>& vec) { for (const auto & x: vec) os << x.F << ":" << x.S << " | "; return os; }
 
 template<typename T1, typename T2> 
 ostream& operator<<(ostream& os, const pair<T1, T2>& p) { return os << "(" << p.F << ", " << p.S << ")"; }
