@@ -7,18 +7,16 @@
 
    * File Name : B.cpp
    * Creation Date : 06-07-2021
-   * Last Modified : Wed 07 Jul 2021 11:23:14 PM CEST
+   * Last Modified : Wed 07 Jul 2021 11:16:00 PM CEST
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://codingcompetitions.withgoogle.com/kickstart/round/000000000019ff08/0000000000387174
    * Points/Time :
    * +6m
    * +5m = 11m
-   * +5m = 16m
    *
    * Total/ETA :
    * Status :
    * S WA - :-/
-   * S AC AC !!!! -> yes!!!
    *
    ==========================================*/
 
@@ -154,13 +152,12 @@ void setIO(string filename) {    // the argument is the filename without the ext
 void solve() {
   ll K; cin >> K;
   vector<long long> A(K); cin >> A;
-  MSG(A); LINESEP1;
 
-  vector<vector<long long>> dp(K, vector<long long>(4,INF));
+  vector<vector<long long>> dp(1+K, vector<long long>(4,INF));
   fill(ALL(dp[0]),0);
   MSG_VEC_VEC(dp); LINESEP1;
 
-  FOR(i,1,K-1) {
+  FOR(i,1,K) {
     REP(nxt,4) {
       REP(prv,4) {
         ll cost = SGN(nxt-prv)!=SGN(A[i]-A[i-1]);
@@ -168,9 +165,8 @@ void solve() {
       }
     }
   }
-  MSG_VEC_VEC(dp); LINESEP1;
 
-  ll result = *min_element(ALL(dp.back()));
+  ll result = *min_element(ALL(dp[K]));
   cout << result << endl;
 }
 
