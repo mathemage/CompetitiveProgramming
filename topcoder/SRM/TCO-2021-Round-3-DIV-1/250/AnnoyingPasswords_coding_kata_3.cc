@@ -1,8 +1,8 @@
 /* ========================================
    * Created By : mathemage
-   * Points/Time : 95.06
+   * Points/Time : 225.11
    * Total/ETA : 250
-   * Status :
+   * Status : AC!
    ==========================================*/
 
 #include <bits/stdc++.h>
@@ -130,66 +130,39 @@ const vector<pair<int,int>> DXY8 = {
 
 class AnnoyingPasswords {
 public:
-  int count(int Ui, int Li, int Di) {
+  int count(int U, int L, int D) {
     LINESEP2;
 
-    ll U=Ui, L=Li, D=Di;
-    if (max({U,L,D})==0LL) {
-      return 1LL;
-    }
+    if (U+L+D==0) { return 1; }
 
-    vector<vector<vector<vector<ll>>>> dp(U+5,
-      vector<vector<vector<ll>>>(L+5,
-        vector<vector<ll>>(D+5,
-          vector<ll>(3))));
+    vector<vector<vector<ll>>> dpU(U+5, vector<vector<ll>>(L+5, vector<ll>(D+5)));
+    vector<vector<vector<ll>>> dpL(U+5, vector<vector<ll>>(L+5, vector<ll>(D+5)));
+    vector<vector<vector<ll>>> dpD(U+5, vector<vector<ll>>(L+5, vector<ll>(D+5)));
 
-    dp[1][0][0][0] = 26LL;
-    dp[0][1][0][1] = 26LL;
-    dp[0][0][1][2] = 10LL;
-//     REP(last,3) {
-//       dp[0][0][0][last] = 1LL;
-//     }
+    dpU[1][0][0]=26LL;
+    dpL[0][1][0]=26LL;
+    dpD[0][0][1]=10LL;
 
-    map<char, ll> ULD;
-    ULD['U']=0;
-    ULD['L']=1;
-    ULD['D']=2;
+    REP(u,U+1) {
+      REP(l,L+1) {
+        REP(d,D+1) {
+          dpU[u+1][l][d] += (dpL[u][l][d] + dpD[u][l][d]) * (26LL-u);
+          dpU[u+1][l][d] %= MOD;
 
-    FOR(u,0,U) {
-      FOR(l,0,L) {
-        FOR(d,0,D) {
-          if (max({U,L,D})==0LL) {
-            continue;
-          }
-          
-          if (u-1>=0) {
-            ll ways=26-(u-1);
-            dp[u][l][d][ULD['U']] += ((dp[u-1][l][d][ULD['L']] + dp[u-1][l][d][ULD['D']]) % MOD) * ways;
-            dp[u][l][d][ULD['U']] %= MOD;
-          }
+          dpL[u][l+1][d] += (dpU[u][l][d] + dpD[u][l][d]) * (26LL-l);
+          dpL[u][l+1][d] %= MOD;
 
-          if (l-1>=0) {
-            ll ways=26-(l-1);
-            dp[u][l][d][ULD['L']] += ((dp[u][l-1][d][ULD['U']] + dp[u][l-1][d][ULD['D']]) % MOD) * ways;
-            dp[u][l][d][ULD['L']] %= MOD;
-          }
-
-          if (d-1>=0) {
-            ll ways=10-(d-1);
-            dp[u][l][d][ULD['D']] += ((dp[u][l][d-1][ULD['U']] + dp[u][l][d-1][ULD['L']]) % MOD) * ways;
-            dp[u][l][d][ULD['D']] %= MOD;
-          }
+          dpD[u][l][d+1] += (dpL[u][l][d] + dpU[u][l][d]) * (10LL-d);
+          dpD[u][l][d+1] %= MOD;
         }
       }
     }
 
-    ll result=accumulate(ALL(dp[U][L][D]), 0LL);
-    MSG(result);
-    MSG((int)result);
-    _D(dp[U][L][D]); LINESEP1;
-//     return (int)result%MOD;
-//     return result%MOD;
-    return int(result%MOD);
+    MSG(dpU[U][L][D]);
+    MSG(dpL[U][L][D]);
+    MSG(dpD[U][L][D]);
+
+    return (dpU[U][L][D] + dpL[U][L][D] + dpD[U][L][D]) % MOD;
   }
 };
 
