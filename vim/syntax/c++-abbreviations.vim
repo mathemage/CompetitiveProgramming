@@ -44,12 +44,6 @@ iab usetc unordered_set<char>
 iab usetl unordered_set<long long>
 iab usetll unordered_set<long long>
 
-" TODO delete
-" iab minu MINUPDATE(., .);<ESC>2F.c
-" iab maxu MAXUPDATE(., .);<ESC>2F.c
-" iab min( min(., .)<ESC>2F.c
-" iab max( max(., .)<ESC>2F.c
-
 iab acc accumulate(ALL(.), 0LL)<ESC>F.c
 iab accd accumulate(ALL(.), 0.0)<ESC>2F.c
 iab accu accumulate(..begin(), .end(), 0)<ESC>3F.c
@@ -63,3 +57,7 @@ iab iot1 iota(ALL(.), 1);<ESC>F.c
 
 iab coun count(ALL(.), .)<ESC>2F.c
 " iab cif count_if(ALL(.), ., [](int i) {.})<ESC>3F.c  " TODO
+
+iab 3d ?[][][]{}<ESC>F?c
+iab 4d ?[][][][]{}<ESC>F?c
+iab 5d ?[][][][][]{}<ESC>F?c
