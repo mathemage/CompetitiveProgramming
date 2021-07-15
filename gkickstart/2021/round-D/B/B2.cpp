@@ -6,15 +6,17 @@
 
    * File Name : B2.cpp
    * Creation Date : 15-07-2021
-   * Last Modified : Thu 15 Jul 2021 12:45:26 AM CEST
+   * Last Modified : Thu 15 Jul 2021 05:51:01 PM CEST
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://codingcompetitions.withgoogle.com/kickstart/round/00000000004361e3/000000000082b933
    * Points/Time :
    * +16m
-   * +
+   * +10m ~ 26m
    *
    * Total/ETA : 17m
    * Status :
+   * [redesign algo]
+   * S AC AC !!! yes!
    *
    ==========================================*/
 
@@ -149,41 +151,46 @@ void setIO(string filename) {    // the argument is the filename without the ext
 }
 #endif
 
+#define OP first
+#define CL second
+
 void solve() {
   ll N,C; cin >> N >> C;
   MSG(N); MSG(C); LINESEP1;
 
   ll Li,Ri;
-  map<ll, ll> balance;
-  map<ll, ll> boundary2count;
+  map<ll, llll> balance;
+  set<long long> pts;
   REP(_,N) {
     cin >> Li >> Ri;
-    balance[Li]++;
-    balance[Ri]--;
+    balance[Li].OP++;
+    balance[Ri].CL++;
 
-    boundary2count[Li]++;
-    boundary2count[Ri]++;
+    pts.insert(Li);
+    pts.insert(Ri);
   }
-  MSG(balance); MSG(boundary2count); LINESEP1;
+  MSG(balance); MSG(pts); LINESEP1;
 
   map<ll, ll, greater<ll>> thick2count;
-  ll prvPt=balance.begin()->F;
+  ll prvPt=UNDEF;
   ll curThickness=0;
-  for (auto & ptBal: balance) {
+  for (auto & pt: pts) {
     MSG(prvPt); MSG(curThickness);
 
-    ll span=ptBal.F-prvPt-2;
+    // interior
+    ll span=pt-prvPt-1;
     if (span>0 && curThickness>0) {
       thick2count[curThickness]+=span;
     }
 
-    ll boundaryThickness = curThickness - boundary2count[ptBal.F];
-    if (boundaryThickness>0) {
-      thick2count[boundaryThickness]++;
+    // boundary
+    curThickness-=balance[pt].CL;
+    if (curThickness>0) {
+      thick2count[curThickness]++;
     }
 
-    prvPt=ptBal.F;
-    curThickness+=ptBal.S;
+    prvPt=pt;
+    curThickness+=balance[pt].OP;
     MSG(prvPt); MSG(curThickness);
     LINESEP1;
   }
@@ -192,6 +199,17 @@ void solve() {
   LINESEP1;
 
   ll result = N;
+  for (auto & thickCnt: thick2count) {
+    ll delta=min(C, thickCnt.S);
+
+    result+=delta*thickCnt.F;
+
+    C-=delta;
+    if (C<=0) {
+      break;
+    }
+  }
+
   cout << result << endl;
 }
 
