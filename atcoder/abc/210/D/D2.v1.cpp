@@ -1,26 +1,28 @@
- 
 /* ========================================
 
    ID: mathema6
-   TASK: D
+   TASK: D2
    LANG: C++14
 
-   * File Name : D.cpp
-   * Creation Date : 17-07-2021
-   * Last Modified : Thu 22 Jul 2021 12:15:58 AM CEST
+   * File Name : D2.cpp
+   * Creation Date : 22-07-2021
+   * Last Modified : Thu 22 Jul 2021 12:32:16 AM CEST
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://atcoder.jp/contests/abc210/tasks/abc210_d
    * Points/Time :
-   * = ~11m
+   * = 15m
+   * +
    *
-   * Total/ETA : 400
+   * Total/ETA :
+   * [upsolve 2] - ETA 25m
+   *
    * Status :
-   * unfinished :-/ :-(
-   * [upsolve 1] - WA :-/ :-(
+   * [upsolve 2] - AC x15, WA x21 :-O :-( :-(
+   *
    *
    ==========================================*/
 
-#define PROBLEMNAME "D"
+#define PROBLEMNAME "D2"
 
 #include <bits/stdc++.h>
 
@@ -122,7 +124,8 @@ const int UNDEF = -42;
 const long long MOD = 1000000007;
 const double EPS = 1e-8;
 
-const int INF = INT_MAX;
+// const int INF = INT_MAX;
+const long long INF_LL = LLONG_MAX;
 const long long INF_ULL = ULLONG_MAX;
 
 const vector<int> DX4 = {0, 1,  0, -1};
@@ -147,43 +150,39 @@ void setIO(string filename) {    // the argument is the filename without the ext
 }
 #endif
 
-const long long INF_LL = 5e17;
+const ll INF = 5e16;
 
 void solve() {
   ll H,W,C; cin >> H >> W >> C;
-  MSG(C);
-
+  MSG(H); MSG(W); MSG(C);
   vector<vector<long long>> A(H, vector<long long>(W));
   cin >> A;
-  MSG_VEC_VEC(A); LINESEP1;
+  MSG_VEC_VEC(A);
+  LINESEP1;
 
-  ll result = INF_LL;
+  vector<vector<long long>> dpL(H, vector<long long>(W, INF));
+  vector<vector<long long>> dpR(H, vector<long long>(W, INF));
 
-  vector<vector<long long>> dp(H, vector<long long>(W, INF_LL));
+  ll result = INF;
   REP(r,H) {
-    REP(c,W) {
-      MSG(r); MSG(c); 
+    FOR(c,0,W-1) {
+      ll minOthers=INF;
+      if (r) { umin(minOthers, dpL[r-1][c]); }
+      if (c) { umin(minOthers, dpL[r][c-1]); }
+      dpL[r][c]=min(minOthers, A[r][c]-C*(r-c));
 
-      ll minDist=INF_LL;
-      if (r-1>=0) { umin(minDist, dp[r-1][c]); }
-      if (c-1>=0) { umin(minDist, dp[r][c-1]); }
+      umin(result, A[r][c]+C*(r+c) + minOthers);
+    }
 
-//       ll Ls=r+c+2;
-      ll Ls=r+c;
-      dp[r][c]=A[r][c] - C*Ls;
-      umin(dp[r][c], minDist);
-      MSG(minDist); MSG(dp[r][c]);
+    FORD(c,W-1,0) {
+      ll minOthers=INF;
+      if (r+1<H) { umin(minOthers, dpL[r+1][c]); }
+      if (c+1<W) { umin(minOthers, dpL[r][c+1]); }
+      dpL[r][c]=min(minOthers, A[r][c]-C*(r-c));
 
-      if (minDist<INF_LL) {
-//         umin(result, C*Ls+A[r][c] + dp[r][c]); <- bug here!!!!
-        umin(result, C*Ls+A[r][c] + minDist);
-      }
-
-      MSG(C*Ls+A[r][c]); MSG(C*Ls+A[r][c] + dp[r][c]);
-      LINESEP1;
+      umin(result, A[r][c]+C*(r-c) + minOthers);
     }
   }
-  MSG_VEC_VEC(dp);
 
   cout << result << endl;
 }
