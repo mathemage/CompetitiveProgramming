@@ -7,7 +7,7 @@
 
    * File Name :
    * Creation Date :
-   * Last Modified : Fri 02 Jul 2021 12:05:35 AM CEST
+   * Last Modified : Fri 23 Jul 2021 12:03:01 AM CEST
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL :
    * Points/Time :
@@ -32,12 +32,15 @@ using namespace std;
 #define REVALL(A)     (A).rbegin(), (A).rend()
 #define F first
 #define S second
+#define OP first
+#define CL second
 #define PB push_back
 #define MP make_pair
 #define MTP make_tuple
 #define SGN(X) ((X) ? ( (X)>0?1:-1 ) : 0)
 #define CONTAINS(S,E) ((S).find(E) != (S).end())
-#define SZ(x) ((int) (x).size())
+#define SZ(x) ((ll) (x).size())
+#define SZi(x) ((int) (x).size())
 #define YES cout << "YES" << endl;
 #define NO cout << "NO" << endl;
 #define YN(b) cout << ((b)?"YES":"NO") << endl;
@@ -47,7 +50,7 @@ using namespace std;
 
 using ll = long long;
 using ul = unsigned long long;
-using llll = pair<ll, ll>;
+// using llll = pair<ll, ll>;
 using ulul = pair<ul, ul>;
 using ld = long double;
 
@@ -112,19 +115,13 @@ template<class T> bool umax(T& a, const T& b) { return a < b ? a = b, 1 : 0; }
 
 inline bool eqDouble(double a, double b) { return fabs(a-b) < 1e-9; }
 
-const int CLEAN = -1;
-const int UNDEF = -42;
-const long long MOD = 1000000007;
-const double EPS = 1e-8;
-
-const int INF = INT_MAX;
-const long long INF_LL = LLONG_MAX;
-const long long INF_ULL = ULLONG_MAX;
-
-const vector<int> DX4 = {0, 1,  0, -1};
-const vector<int> DY4 = {1, 0, -1,  0};
-const vector<pair<int,int>> DXY4 = { {0,1}, {1,0}, {0,-1}, {-1,0} };
-const string dues="NESW";
+#ifndef MATHEMAGE_LOCAL
+void setIO(string filename) {    // the argument is the filename without the extension
+	freopen((filename+".in").c_str(), "r", stdin);
+	freopen((filename+".out").c_str(), "w", stdout);
+  MSG(filename);
+}
+#endif
 
 const vector<int> DX8 = {-1, -1, -1,   0, 0,   1,  1,  1};
 const vector<int> DY8 = {-1,  0,  1,  -1, 1,  -1,  0,  1};
@@ -134,14 +131,20 @@ const vector<pair<int,int>> DXY8 = {
   { 1,-1}, { 1,0}, { 1,1}
 };
 
+const vector<int> DX4 = {0, 1,  0, -1};
+const vector<int> DY4 = {1, 0, -1,  0};
+const vector<pair<int,int>> DXY4 = { {0,1}, {1,0}, {0,-1}, {-1,0} };
+const string dues="NESW";
 
-#ifndef MATHEMAGE_LOCAL
-void setIO(string filename) {    // the argument is the filename without the extension
-	freopen((filename+".in").c_str(), "r", stdin);
-	freopen((filename+".out").c_str(), "w", stdout);
-  MSG(filename);
-}
-#endif
+const int CLEAN = -1;
+const int UNDEF = -42;
+const long long MOD = 1000000007;
+const double EPS = 1e-8;
+
+const int INF = INT_MAX;
+const long long INF_LL = LLONG_MAX;
+const long long INF_ULL = ULLONG_MAX;
+
 
 void solve() {
   ll result = 0LL;
@@ -149,7 +152,6 @@ void solve() {
 
 //   bool result = false;
 //   cout << ((result)?"Yes":"No") << endl;
-//   YN(result);
 }
 
 int main() {

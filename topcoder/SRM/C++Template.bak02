@@ -19,22 +19,19 @@ using namespace std;
 #define REVALL(A)     (A).rbegin(), (A).rend()
 #define F first
 #define S second
-#define OP first
-#define CL second
 #define PB push_back
 #define MP make_pair
 #define MTP make_tuple
 #define SGN(X) ((X) ? ( (X)>0?1:-1 ) : 0)
 #define CONTAINS(S,E) ((S).find(E) != (S).end())
-#define SZ(x) ((ll) (x).size())
-#define SZi(x) ((int) (x).size())
+#define SZ(x) ((int) (x).size())
 #define YES return "Possible";
 #define NO return "Impossible";
 #define YN(b) return ((b)?"Possible":"Impossible");
 
 using ll = long long;
 using ul = unsigned long long;
-// using llll = pair<ll, ll>;
+using llll = pair<ll, ll>;
 using ulul = pair<ul, ul>;
 using ld = long double;
 
@@ -109,19 +106,6 @@ template<class T> bool umax(T& a, const T& b) { return a < b ? a = b, 1 : 0; }
 
 inline bool eqDouble(double a, double b) { return fabs(a-b) < 1e-9; }
 
-const vector<int> DX8 = {-1, -1, -1,   0, 0,   1,  1,  1};
-const vector<int> DY8 = {-1,  0,  1,  -1, 1,  -1,  0,  1};
-const vector<pair<int,int>> DXY8 = {
-  {-1,-1}, {-1,0}, {-1,1},
-  { 0,-1},         { 0,1},
-  { 1,-1}, { 1,0}, { 1,1}
-};
-
-const vector<int> DX4 = {0, 1,  0, -1};
-const vector<int> DY4 = {1, 0, -1,  0};
-const vector<pair<int,int>> DXY4 = { {0,1}, {1,0}, {0,-1}, {-1,0} };
-const string dues="NESW";
-
 const int CLEAN = -1;
 const int UNDEF = -42;
 const long long MOD = 1000000007;
@@ -131,6 +115,19 @@ const int INF = INT_MAX;
 const long long INF_LL = LLONG_MAX;
 const long long INF_ULL = ULLONG_MAX;
 
+const vector<int> DX4 = {0, 1,  0, -1};
+const vector<int> DY4 = {1, 0, -1,  0};
+const vector<pair<int,int>> DXY4 = { {0,1}, {1,0}, {0,-1}, {-1,0} };
+const string dues="NESW";
+
+const vector<int> DX8 = {-1, -1, -1,   0, 0,   1,  1,  1};
+const vector<int> DY8 = {-1,  0,  1,  -1, 1,  -1,  0,  1};
+const vector<pair<int,int>> DXY8 = {
+  {-1,-1}, {-1,0}, {-1,1},
+  { 0,-1},         { 0,1},
+  { 1,-1}, { 1,0}, { 1,1}
+};
+
 class $CLASSNAME$ {
 public:
   $RETURNTYPE$ $METHODNAME$($METHODPARAMS$) {
@@ -138,7 +135,6 @@ public:
 
     $RETURNTYPE$ result;
     return result;
-
 //   bool ans = false;
 //   YN(ans);
   }
@@ -147,6 +143,9 @@ public:
 /*
 * (RE-)COMPILE LAST VERSION BEFORE SUBMITTING!!!!!
   - or CHECK ADDITIONALLY IN THE ROOM SUMMARY (whether CORRECT source code was submitted)!!!!
+
+* NEVER SUBMIT BRUTE-FORCE/INFERIOR SOLUTION WHEN IT MIGHT BE TOO SLOW!!
+  - Or always re-compile again!
 
 * Be careful of INT OVERFLOW WHEN INPUT PARAMETERS ARE IN INTS!
   - re-cast to ll vars
