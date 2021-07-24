@@ -1,0 +1,12 @@
+{"hello", "abcde", "wwwww", "coins", "coder", "digit", "clash", "qwert", "puppy", "kitty" }
+5
+"qwertyuiopasdfghjklzxcvbnm"
+10
+{"ABC", "D2E", "DDD", "AAA", "EEE", "024", "042", "204", "240", "402", "420", "4AB", "4EE", "E4E", "ED4", "868", "844" }
+3
+"ABCDE02468"
+17
+{"topcoder", "Topcoder", "docopTer", "receptor" }
+8
+"cdeopPrRtT"
+4
