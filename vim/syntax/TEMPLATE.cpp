@@ -7,7 +7,7 @@
 
    * File Name :
    * Creation Date :
-   * Last Modified : Fri 23 Jul 2021 12:03:01 AM CEST
+   * Last Modified : Wed 28 Jul 2021 12:09:59 AM CEST
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL :
    * Points/Time :
@@ -53,6 +53,9 @@ using ul = unsigned long long;
 // using llll = pair<ll, ll>;
 using ulul = pair<ul, ul>;
 using ld = long double;
+using graph_umap = unordered_map<ll, vector<ll>>;
+using graph_map  = unordered_map<ll, vector<ll>>;
+using graph_t    = graph_umap;
 
 #ifdef ONLINE_JUDGE
   #undef MATHEMAGE_DEBUG
