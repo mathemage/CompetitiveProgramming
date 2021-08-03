@@ -6,15 +6,15 @@
 
    * File Name : blist.cxx
    * Creation Date : 03-08-2021
-   * Last Modified : Tue 03 Aug 2021 03:07:09 PM CEST
+   * Last Modified : Tue 03 Aug 2021 12:33:45 AM CEST
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : http://www.usaco.org/index.php?page=viewproblem2&cpid=856
    * Points/Time :
-   * = 2m
+   * = 27m :-/
    *
    * Total/ETA :
    * Status :
-   * 10/10 ACs -> passed!
+   * 10/10 ACs -> passed
    *
    ==========================================*/
 
@@ -155,20 +155,51 @@ const long long INF_ULL = ULLONG_MAX;
 void solve() {
   ll N; cin >> N;
 
-  map<ll, ll> sweep2bal;
-  ll si,ti,bi;
-  REP(_,N) {
-    cin >> si >> ti >> bi;
-    sweep2bal[si]+=bi;
-    sweep2bal[ti]-=bi;
+  vector<ll> s(1+N);
+  vector<ll> t(1+N);
+  vector<ll> b(1+N);
+  map<ll, ll> event2id;
+  FOR(i,1,N) {
+    cin >> s[i] >> t[i] >> b[i];
+    event2id[s[i]]=-i;
+    event2id[t[i]]=i;
   }
 
+  ll MX_BUCKETS=N*10+5;
+  vector<bool> used(MX_BUCKETS);
+  map<ll, vector<ll>> assignments;
+
   ll result = 0LL;
-  ll bal=0LL;
-  for (auto & ptBal: sweep2bal) {
-    bal+=ptBal.S;
-    umax(result, bal);
+  for (auto & evId: event2id) {
+    ll id=abs(evId.S);
+    MSG(evId);
+//     MSG(id);
+
+    if (evId.S<0) { // s[i]
+      REP(bi,MX_BUCKETS) {
+        MSG(assignments[id]); MSG(b[id]);
+        if (SZ(assignments[id])>=b[id]) {
+          break;
+        }
+
+        if (!used[bi]) {
+          used[bi]=1;
+          assignments[id].PB(bi);
+          umax(result,bi+1);
+        }
+      }
+
+    } else {        // t[i]
+      for (auto & bi: assignments[id]) {
+        used[bi]=0;
+      }
+    }
+
+    MSG(assignments);
+    MSG(used);
+    LINESEP1;
   }
+
   cout << result << endl;
 }
 
