@@ -48,18 +48,18 @@ iab usetl unordered_set<long long>
 " TODO add <>F.c
 iab umap unordered_map
 
-iab acc accumulate(ALL(.), 0LL)<ESC>F.c
-iab accd accumulate(ALL(.), 0.0)<ESC>2F.c
-iab accu accumulate(..begin(), .end(), 0LL)<ESC>3F.c
-iab accum accumulate(ALL(.), 0LL, [](auto & a, auto & b) { return a+b; } )<ESC>F.c
-iab sor sort(ALL(.));<ESC>F.c
-iab sort sort(ALL(?), [](auto & a, auto & b) { return a.S < b.S; } );<ESC>F?c
-iab rsor sort(REVALL(.));<ESC>F.c
-iab rev reverse(ALL(.));<ESC>F.c
-iab iot iota(ALL(.), 0);<ESC>F.c
-iab iot1 iota(ALL(.), 1);<ESC>F.c
+iab acc std::accumulate(ALL(.), 0LL)<ESC>F.c
+iab accd std::accumulate(ALL(.), 0.0)<ESC>2F.c
+iab accu std::accumulate(..begin(), .end(), 0LL)<ESC>3F.c
+iab accum std::accumulate(ALL(.), 0LL, [](auto & a, auto & b) { return a+b; } )<ESC>F.c
+iab sor std::sort(ALL(.));<ESC>F.c
+iab sort std::stable_sort(ALL(?), [](auto & a, auto & b) { return a.S < b.S; } );<ESC>F?c
+iab rsor std::sort(REVALL(.));<ESC>F.c
+iab rev std::reverse(ALL(.));<ESC>F.c
+iab iot std::iota(ALL(.), 0);<ESC>F.c
+iab iot1 std::iota(ALL(.), 1);<ESC>F.c
 
-iab coun count(ALL(.), .)<ESC>2F.c
+iab coun std::count(ALL(.), .)<ESC>2F.c
 " iab cif count_if(ALL(.), ., [](int i) {.})<ESC>3F.c  " TODO
 
 iab 3d ?[][][]{}<ESC>F?c
