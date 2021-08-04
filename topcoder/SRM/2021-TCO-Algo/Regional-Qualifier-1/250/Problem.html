@@ -1,0 +1,68 @@
+<html><body bgcolor="#000000" text="#ffffff"><table><tr><td colspan="2"><h3>Problem Statement</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><p>
+Olympic shooting competitions are done in rounds of 25 shots. 
+Obviously, whoever hits more targets wins.
+Ties are broken in an interesting way: using the Countback Rule.
+Below we quote this rule from the official rulebook.
+</p>
+<br></br>
+<p>
+9.15.1.2 Countback Rule
+</p>
+<p>
+Any ties to be broken by this method must be decided as follows:
+</p>
+<ol>
+<li>
+The scores of the last round of 25 targets must be compared.
+The winner is the athlete with the highest score in that round.
+</li>
+<li>
+In a case where the tie is still not broken, the round before last must be compared and if still not broken, the round before that and so on; and
+</li>
+<li>
+If the results of all the rounds are still equal, ties must be decided by counting backward,  target  by  target,  from  the  last  target  of  the  last  round  (and  if  necessary, the next to the last round etc.) until a tie-breaking zero (0) is found.  If  the  tied  athletes  have  zeroes  (0)  on  the  same  target,  the  countback  shall  continue until the tie is broken.
+</li>
+</ol>
+<br></br>
+<p>
+If two shooters have exactly the same shooting record, the above rule will conclude that they are still tied.
+If the tie still needs to be broken (e.g., to decide who gets a medal), the shooters who are still tied after the Countback Rule is applied have a shoot-off.
+</p>
+<p>
+In this problem we will assume that all ties left after the Countback Rule is applied must be resolved via a shoot-off.
+We will also assume that whenever a shoot-off takes place, the shooter with the smaller number performs better.
+</p>
+<br></br>
+<p>
+You are given the shooting records of N shooters in the vector &lt;string&gt; <b>results</b>.
+For each i, <b>results</b>[i] is the shooting record of shooter number i.
+Each '1' represents a hit, each '0' is a miss.
+</p>
+<p>
+Determine the final standings of this shooting competition and return it as a vector &lt;int&gt; with the competitor numbers ordered from best to worst.
+All ties need to be broken: first by using the Countback Rule, and the ones that remain by a shoot-off.
+</p></td></tr><tr><td colspan="2"><h3>Definition</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Class:</td><td>OlympicShooting</td></tr><tr><td>Method:</td><td>sort</td></tr><tr><td>Parameters:</td><td>vector &lt;string&gt;</td></tr><tr><td>Returns:</td><td>vector &lt;int&gt;</td></tr><tr><td>Method signature:</td><td>vector &lt;int&gt; sort(vector &lt;string&gt; results)</td></tr><tr><td colspan="2">(be sure your method is public)</td></tr></table></td></tr><tr><td colspan="2"><h3>Limits</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Time limit (s):</td><td>2.000</td></tr><tr><td>Memory limit (MB):</td><td>256</td></tr></table></td></tr><tr><td colspan="2"><h3>Constraints</h3></td></tr><tr><td align="center" valign="top">-</td><td><b>results</b> will have between 1 and 30 elements, inclusive.</td></tr><tr><td align="center" valign="top">-</td><td>Each element of <b>results</b> will have the same length.</td></tr><tr><td align="center" valign="top">-</td><td>That length will be 25, 50, 75, 100, or 125.</td></tr><tr><td align="center" valign="top">-</td><td>Each character in <b>results</b> will be '1' or '0'.</td></tr><tr><td colspan="2"><h3>Examples</h3></td></tr><tr><td align="center" nowrap="true">0)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{&quot;1111111111101111111111111&quot;,
+ &quot;1111111111111111111111100&quot;,
+ &quot;1111111111111111111110111&quot;,
+ &quot;1111111111111111111111111&quot;,
+ &quot;1111111111111111111110111&quot;}</pre></td></tr></table></td></tr><tr><td><pre>Returns: {3, 0, 2, 4, 1 }</pre></td></tr><tr><td><table><tr><td colspan="2"><p>Five participants, one round of 25 shots.</p>
+<p>Participant 3 hit all 25 targets and won. Participants 0, 2, and 4 hit 24 targets each. The Countback Rule tells us that participant 0 should be second (as they are the only one among the three who hit target #22). A shoot-off decides that participant 2 is before participant 4 in the final standings. Participant 1 is last with just 23 hit targets.</p></td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">1)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{&quot;11111111111011111111111110000000000000000000010000&quot;,
+ &quot;11111111111111111111111000000000000000000000001000&quot;,
+ &quot;11111111111111111111101110000000000000000000000100&quot;,
+ &quot;11111111111111111111111110000000000000000000000010&quot;,
+ &quot;11111111111111111111101110000000000000000000000001&quot;}</pre></td></tr></table></td></tr><tr><td><pre>Returns: {3, 4, 2, 0, 1 }</pre></td></tr><tr><td><table><tr><td colspan="2"><p>
+Here we also have a second round of shooting. In the second round each shooter only hit one target. These hits change the order produced by the Countback Rule.
+</p>
+<p>
+E.g., when comparing shooters 2 and 4, we see that they both have score 1 for the last round, they both have score 24 for the first round, and then we see that on the very last shot of the competition shooter 4 succeeded while shooter 2 failed.
+</p></td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">2)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{&quot;11111111111011111111111110000000000000000000000100&quot;,
+ &quot;11111111111111111111111000000000000000000000011000&quot;,
+ &quot;11111111111111111111101110000000000000000000000100&quot;,
+ &quot;11111111111111111111111110000000000000000000000010&quot;,
+ &quot;11111111111111111111101110000000000000000000000001&quot;}</pre></td></tr></table></td></tr><tr><td><pre>Returns: {3, 1, 4, 0, 2 }</pre></td></tr><tr><td><table><tr><td colspan="2">A similar but different situation. Note that participant 1 now has a total of 25 hits, just like almost everyone else in this example. The Countback Rule places them in second place, as their last round is better (two hits) than the others (one hit each).</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">3)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{&quot;00000000000000000000000000000000000000000000000000&quot;,
+ &quot;00000000000000000000000000000000000000000000000000&quot;,
+ &quot;00000000000000000000000000000000000000000000000000&quot;,
+ &quot;00000000000000000000000000000000000000000000000000&quot;,
+ &quot;00000000000000000000000000000000000000000000000000&quot;,
+ &quot;00000000000000000000000000000000000000000000000000&quot;}</pre></td></tr></table></td></tr><tr><td><pre>Returns: {0, 1, 2, 3, 4, 5 }</pre></td></tr><tr><td><table><tr><td colspan="2">A larger tie that is only decided by a shoot-off involving all six people.</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">4)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{&quot;10000000000000000000000000000000000000000000000000&quot;,
+ &quot;01000000000000000000000000000000000000000000000000&quot;}</pre></td></tr></table></td></tr><tr><td><pre>Returns: {1, 0 }</pre></td></tr><tr><td><table><tr><td colspan="2">Both shooters have the same grand totals and also the same round totals. As we are going back through their shooting history shot by shot, we see 48 shots where the results match and then finally we get to the second shot of the competition. There the tie is finally broken.</td></tr></table></td></tr></table></td></tr></table><p>This problem statement is the exclusive and proprietary property of TopCoder, Inc.  Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited.  (c)2003, TopCoder, Inc.  All rights reserved.  </p></body></html>
