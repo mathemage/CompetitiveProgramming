@@ -51,9 +51,9 @@ iab umap unordered_map
 iab acc std::accumulate(ALL(.), 0LL)<ESC>F.c
 iab accd std::accumulate(ALL(.), 0.0)<ESC>2F.c
 iab accu std::accumulate(..begin(), .end(), 0LL)<ESC>3F.c
-iab accum std::accumulate(ALL(.), 0LL, [](auto & a, auto & b) { return a+b; } )<ESC>F.c
+iab accum std::accumulate(ALL(.), 0LL, [&](const auto & a, const auto & b) { return a+b; } )<ESC>F.c
 iab sor std::sort(ALL(.));<ESC>F.c
-iab sort std::stable_sort(ALL(?), [](auto & a, auto & b) { return a.S < b.S; } );<ESC>F?c
+iab sort std::stable_sort(ALL(?), [&](const auto & a, const auto & b) { return a.S < b.S; } );<ESC>F?c
 iab rsor std::sort(REVALL(.));<ESC>F.c
 iab rev std::reverse(ALL(.));<ESC>F.c
 iab iot std::iota(ALL(.), 0);<ESC>F.c
