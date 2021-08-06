@@ -1,5 +1,4 @@
 #include <bits/stdc++.h>
-#define MATHEMAGE_DEBUG
 
 using namespace std;
 
@@ -14,20 +13,34 @@ using namespace std;
 #define REVALL(A)     (A).rbegin(), (A).rend()
 #define F first
 #define S second
+#define OP first
+#define CL second
 #define PB push_back
 #define MP make_pair
 #define MTP make_tuple
 #define SGN(X) ((X) ? ( (X)>0?1:-1 ) : 0)
 #define CONTAINS(S,E) ((S).find(E) != (S).end())
-#define SZ(x) ((int) (x).size())
+#define SZ(x) ((ll) (x).size())
+#define SZi(x) ((int) (x).size())
 #define YES cout << "YES" << endl;
 #define NO cout << "NO" << endl;
 #define YN(b) cout << ((b)?"YES":"NO") << endl;
+#define Yes cout << "Yes" << endl;
+#define No cout << "No" << endl;
+#define Yn(b) cout << ((b)?"Yes":"No") << endl;
 
 using ll = long long;
 using ul = unsigned long long;
-using llll = pair<ll, ll>;
+// using llll = pair<ll, ll>;
 using ulul = pair<ul, ul>;
+using ld = long double;
+using graph_umap = unordered_map<ll, vector<ll>>;
+using graph_map  = unordered_map<ll, vector<ll>>;
+using graph_t    = graph_umap;
+
+#ifdef ONLINE_JUDGE
+  #undef MATHEMAGE_DEBUG
+#endif
 
 #ifdef MATHEMAGE_DEBUG
   #define MSG(a) cerr << "> " << (#a) << ": " << (a) << endl;
@@ -69,6 +82,9 @@ ostream& operator<<(ostream& os, const multiset<T, Compare>& vec) { for (const a
 template<typename T1, typename T2> 
 ostream& operator<<(ostream& os, const map<T1, T2>& vec) { for (const auto & x: vec) os << x.F << ":" << x.S << " | "; return os; }
 
+template<typename T1, typename T2>
+ostream& operator<<(ostream& os, const unordered_map<T1, T2>& vec) { for (const auto & x: vec) os << x.F << ":" << x.S << " | "; return os; }
+
 template<typename T1, typename T2> 
 ostream& operator<<(ostream& os, const pair<T1, T2>& p) { return os << "(" << p.F << ", " << p.S << ")"; }
 
@@ -83,6 +99,19 @@ template<class T> bool umax(T& a, const T& b) { return a < b ? a = b, 1 : 0; }
 
 inline bool eqDouble(double a, double b) { return fabs(a-b) < 1e-9; }
 
+const vector<int> DX8 = {-1, -1, -1,   0, 0,   1,  1,  1};
+const vector<int> DY8 = {-1,  0,  1,  -1, 1,  -1,  0,  1};
+const vector<pair<int,int>> DXY8 = {
+  {-1,-1}, {-1,0}, {-1,1},
+  { 0,-1},         { 0,1},
+  { 1,-1}, { 1,0}, { 1,1}
+};
+
+const vector<int> DX4 = {0, 1,  0, -1};
+const vector<int> DY4 = {1, 0, -1,  0};
+const vector<pair<int,int>> DXY4 = { {0,1}, {1,0}, {0,-1}, {-1,0} };
+const string dues="NESW";
+
 const int CLEAN = -1;
 const int UNDEF = -42;
 const long long MOD = 1000000007;
@@ -92,15 +121,3 @@ const int INF = INT_MAX;
 const long long INF_LL = LLONG_MAX;
 const long long INF_ULL = ULLONG_MAX;
 
-const vector<int> DX4 = {0, 1,  0, -1};
-const vector<int> DY4 = {1, 0, -1,  0};
-const vector<pair<int,int>> DXY4 = { {0,1}, {1,0}, {0,-1}, {-1,0} };
-const string dues="NESW";
-
-const vector<int> DX8 = {-1, -1, -1,   0, 0,   1,  1,  1};
-const vector<int> DY8 = {-1,  0,  1,  -1, 1,  -1,  0,  1};
-const vector<pair<int,int>> DXY8 = {
-  {-1,-1}, {-1,0}, {-1,1},
-  { 0,-1},         { 0,1},
-  { 1,-1}, { 1,0}, { 1,1}
-};
