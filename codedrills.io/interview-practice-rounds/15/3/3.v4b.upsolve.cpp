@@ -1,5 +1,3 @@
-// RE :-/
-
 #include <bits/stdc++.h>
 #include <functional>
 
@@ -41,12 +39,11 @@ using graph_umap = unordered_map<ll, vector<ll>>;
 using graph_map  = unordered_map<ll, vector<ll>>;
 using graph_t    = graph_umap;
 
-// #ifdef ONLINE_JUDGE
-//   #undef MATHEMAGE_DEBUG
-// #endif
+#ifdef ONLINE_JUDGE
+  #undef MATHEMAGE_DEBUG
+#endif
 
-// #ifdef MATHEMAGE_DEBUG
-#if 1
+#ifdef MATHEMAGE_DEBUG
   #define MSG(a) cerr << "> " << (#a) << ": " << (a) << endl;
   #define MSG_VEC_VEC(v) cerr << "> " << (#v) << ":\n" << (v) << endl;
   #define LINESEP1 cerr << "-----------------------------------------------                  " << endl;
@@ -135,7 +132,6 @@ public:
     vector<int> ordPos(m*n);
     std::iota(ALL(ordPos), 0);
     std::stable_sort(ALL(ordPos), [&](const auto & a, const auto & b) { return matrix[a/n][a%n] > matrix[b/n][b%n]; } );
-    MSG("here");
 
     vector<vector<int>> dp(m, vector<int>(n,1));
     int ans=0;

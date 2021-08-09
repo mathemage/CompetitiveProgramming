@@ -1,5 +1,3 @@
-// RE :-/
-
 #include <bits/stdc++.h>
 #include <functional>
 
@@ -41,12 +39,11 @@ using graph_umap = unordered_map<ll, vector<ll>>;
 using graph_map  = unordered_map<ll, vector<ll>>;
 using graph_t    = graph_umap;
 
-// #ifdef ONLINE_JUDGE
-//   #undef MATHEMAGE_DEBUG
-// #endif
+#ifdef ONLINE_JUDGE
+  #undef MATHEMAGE_DEBUG
+#endif
 
-// #ifdef MATHEMAGE_DEBUG
-#if 1
+#ifdef MATHEMAGE_DEBUG
   #define MSG(a) cerr << "> " << (#a) << ": " << (a) << endl;
   #define MSG_VEC_VEC(v) cerr << "> " << (#v) << ":\n" << (v) << endl;
   #define LINESEP1 cerr << "-----------------------------------------------                  " << endl;
@@ -129,30 +126,34 @@ const long long INF_ULL = ULLONG_MAX;
 class IncreasingMatrixPath {
 public:
 	int getMaxLength(std::vector<std::vector<int>> matrix) {
+    map<int, vector<pair<int, int>>, std::greater<int>> vals;
     int m=SZ(matrix);
     int n=SZ(matrix[0]);
 
-    vector<int> ordPos(m*n);
-    std::iota(ALL(ordPos), 0);
-    std::stable_sort(ALL(ordPos), [&](const auto & a, const auto & b) { return matrix[a/n][a%n] > matrix[b/n][b%n]; } );
-    MSG("here");
+    REP(r,m) {
+      REP(c,n) {
+        vals[matrix[r][c]].PB(MP(r,c));
+      }
+    }
 
     vector<vector<int>> dp(m, vector<int>(n,1));
     int ans=0;
-    for (auto & pos: ordPos) {
-      int r=pos/n;
-      int c=pos%n;
+    for (auto & q: vals) {
+      for (auto & pos: q.S) {
+        int r=pos.F;
+        int c=pos.S;
 
-      for (auto & dxy: DXY4) {
-        int rr=r+dxy.F;
-        int cc=c+dxy.S;
+        for (auto & dxy: DXY4) {
+          int rr=r+dxy.F;
+          int cc=c+dxy.S;
 
-        if (bounded(rr,m) && bounded(cc,n) && matrix[r][c]<matrix[rr][cc]) {
-          umax(dp[r][c], 1+dp[rr][cc]);
+          if (bounded(rr,m) && bounded(cc,n) && matrix[r][c]<matrix[rr][cc]) {
+            umax(dp[r][c], 1+dp[rr][cc]);
+          }
         }
-      }
 
-      umax(ans, dp[r][c]);
+        umax(ans, dp[r][c]);
+      }
     }
     return ans;
 	}
