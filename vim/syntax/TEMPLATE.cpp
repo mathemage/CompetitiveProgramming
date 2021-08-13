@@ -7,7 +7,7 @@
 
    * File Name :
    * Creation Date :
-   * Last Modified : Fri 13 Aug 2021 12:28:42 PM CEST
+   * Last Modified : Pá 13. srpna 2021, 22:16:52
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL :
    * Points/Time :
@@ -143,6 +143,7 @@ const int CLEAN = -1;
 const int UNDEF = -42;
 const long long MOD = 1000000007;
 const double EPS = 1e-8;
+const ld PI = acos((ld)-1);
 
 const int INF = INT_MAX;
 const long long INF_LL = LLONG_MAX;
