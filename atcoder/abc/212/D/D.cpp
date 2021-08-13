@@ -6,15 +6,16 @@
 
    * File Name : D.cpp
    * Creation Date : 13-08-2021
-   * Last Modified : Fri 13 Aug 2021 12:21:54 AM CEST
+   * Last Modified : Fri 13 Aug 2021 12:48:51 PM CEST
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://atcoder.jp/contests/abc212/tasks/abc212_d
    * Points/Time :
-   * +5m [reading]
-   * =
+   * + 5m [reading]
+   * + 3m = 8m
    *
    * Total/ETA : 400
    * Status :
+   * AC!!! yes!
    *
    ==========================================*/
 
@@ -153,11 +154,30 @@ const long long INF_ULL = ULLONG_MAX;
 
 
 void solve() {
-  ll result = 0LL;
-  cout << result << endl;
+  ll Q; cin >> Q;
 
-//   bool result = false;
-//   cout << ((result)?"Yes":"No") << endl;
+  multiset<ll> st;
+  ll shift=0;
+
+  ll pi,xi;
+  REP(_,Q) {
+    cin >> pi;
+    switch (pi) {
+      case 1:
+        cin >> xi;
+        st.insert(xi-shift);
+        break;
+      case 2:
+        cin >> xi;
+        shift+=xi;
+        break;
+      case 3:
+        auto it=st.begin();
+        cout << *it+shift << endl;
+        st.erase(it);
+        break;
+    }
+  }
 }
 
 int main() {
@@ -170,7 +190,6 @@ int main() {
 #endif
 
   int cases = 1;
-  cin >> cases;
   FOR(tt,1,cases) {
 //     cout << "Case #" << tt << ": ";
     solve();
