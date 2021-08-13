@@ -37,6 +37,9 @@ using ul = unsigned long long;
 // using llll = pair<ll, ll>;
 using ulul = pair<ul, ul>;
 using ld = long double;
+using graph_unord = unordered_map<ll, vector<ll>>;
+using graph_ord  = map<ll, set<ll>>;
+using graph_t    = graph_unord;
 
 #ifdef ONLINE_JUDGE
   #undef MATHEMAGE_DEBUG
