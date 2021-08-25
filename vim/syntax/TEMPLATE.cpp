@@ -7,7 +7,7 @@
 
    * File Name :
    * Creation Date :
-   * Last Modified : Pá 13. srpna 2021, 22:16:52
+   * Last Modified : Wed 25 Aug 2021 07:14:47 PM CEST
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL :
    * Points/Time :
@@ -40,18 +40,19 @@ using namespace std;
 #define SGN(X) ((X) ? ( (X)>0?1:-1 ) : 0)
 #define CONTAINS(S,E) ((S).find(E) != (S).end())
 #define SZ(x) ((ll) (x).size())
-#define SZi(x) ((int) (x).size())
+// #define SZi(x) ((int) (x).size())
 #define YES cout << "YES" << endl;
 #define NO cout << "NO" << endl;
 #define YN(b) cout << ((b)?"YES":"NO") << endl;
 #define Yes cout << "Yes" << endl;
 #define No cout << "No" << endl;
 #define Yn(b) cout << ((b)?"Yes":"No") << endl;
+#define Imp cout << "Impossible" << endl;
+#define IMP cout << "IMPOSSIBLE" << endl;
 
 using ll = long long;
 using ul = unsigned long long;
-// using llll = pair<ll, ll>;
-using ulul = pair<ul, ul>;
+// using ulul = pair<ul, ul>;
 using ld = long double;
 using graph_unord = unordered_map<ll, vector<ll>>;
 using graph_ord  = map<ll, set<ll>>;
@@ -98,13 +99,13 @@ ostream& operator<<(ostream& os, const set<T, Compare>& vec) { for (const auto &
 template<typename T, class Compare>
 ostream& operator<<(ostream& os, const multiset<T, Compare>& vec) { for (const auto & x: vec) os << x << " "; os << endl; return os; }
 
-template<typename T1, typename T2> 
+template<typename T1, typename T2>
 ostream& operator<<(ostream& os, const map<T1, T2>& vec) { for (const auto & x: vec) os << x.F << ":" << x.S << " | "; return os; }
 
 template<typename T1, typename T2>
 ostream& operator<<(ostream& os, const unordered_map<T1, T2>& vec) { for (const auto & x: vec) os << x.F << ":" << x.S << " | "; return os; }
 
-template<typename T1, typename T2> 
+template<typename T1, typename T2>
 ostream& operator<<(ostream& os, const pair<T1, T2>& p) { return os << "(" << p.F << ", " << p.S << ")"; }
 
 template<typename T>

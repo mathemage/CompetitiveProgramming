@@ -27,15 +27,14 @@ using namespace std;
 #define SGN(X) ((X) ? ( (X)>0?1:-1 ) : 0)
 #define CONTAINS(S,E) ((S).find(E) != (S).end())
 #define SZ(x) ((ll) (x).size())
-#define SZi(x) ((int) (x).size())
+// #define SZi(x) ((int) (x).size())
 #define YES return "Possible";
 #define NO return "Impossible";
 #define YN(b) return ((b)?"Possible":"Impossible");
 
 using ll = long long;
 using ul = unsigned long long;
-// using llll = pair<ll, ll>;
-using ulul = pair<ul, ul>;
+// using ulul = pair<ul, ul>;
 using ld = long double;
 using graph_unord = unordered_map<ll, vector<ll>>;
 using graph_ord  = map<ll, set<ll>>;
