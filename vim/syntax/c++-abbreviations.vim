@@ -5,9 +5,7 @@ iab fis for (ll i = 0; i < SZ(.); i += 1) {<CR><ESC>-f.c
 iab if if (.) {<CR><ESC>-f.c
 iab ifel if (.) {<CR>} else {<ESC>-f.c
 iab whi while (.) {<CR><ESC>-f.c
-" iab while while (.) {<CR><ESC>-f.c
 iab dow do {<CR>}<ESC>a while (?);<ESC>jdd-f?c
-" iab switch switch (.) {<CR>case '': <ESC>-f.c     " TODO delete
 iab swi switch (.) {<CR>case '':<CR>break;<ESC>2-f.c
 
 iab ato atoi(.c_str())<ESC>F.i
@@ -16,7 +14,6 @@ iab ato atoi(.c_str())<ESC>F.i
 
 iab vs vector<string>
 iab vi vector<int>
-" iab vll vector<long long>
 iab vll vector<ll>
 iab vb vector<bool>
 iab vd vector<double>
@@ -37,16 +34,15 @@ iab vvb vector<vector<bool>>
 iab seti set<int>
 iab setd set<double>
 iab setc set<char>
-iab setl set<long long>
-" iab setll set<long long>
+" iab setl set<long long>
+iab setll set<long long>
 iab useti unordered_set<int>
 iab usetd unordered_set<double>
 iab usetc unordered_set<char>
-iab usetl unordered_set<long long>
-" iab usetll unordered_set<long long>
+" iab usetl unordered_set<long long>
+iab usetll unordered_set<long long>
 
-" TODO add <>F.c
-iab umap unordered_map
+iab umap unordered_map<?, ?><ESC>2F?c
 
 iab acc std::accumulate(ALL(.), 0LL)<ESC>F.c
 iab accd std::accumulate(ALL(.), 0.0)<ESC>2F.c
