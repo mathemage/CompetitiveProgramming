@@ -1,20 +1,24 @@
 /* ========================================
 
    ID: mathema6
-   TASK: C2
+   TASK: C3
    LANG: C++14
 
-   * File Name : C2.cpp
-   * Creation Date : 25-08-2021
-   * Last Modified : Wed 25 Aug 2021 11:16:09 PM CEST
+   * File Name : C3.cpp
+   * Creation Date : 26-08-2021
+   * Last Modified : Thu 26 Aug 2021 11:27:30 PM CEST
    * Created By : Karel Ha <mathemage@gmail.com>
-   * URL :
+   * URL : https://www.facebook.com/codingcompetitions/hacker-cup/2020/qualification-round/problems/C
    * Points/Time :
-   * Total/ETA :
+   * = 7m
+   *
+   * Total/ETA : 21 pts
    * Status :
+   * AC !
+   *
    ==========================================*/
 
-#define PROBLEMNAME "C2"
+#define PROBLEMNAME "C3"
 
 #include <bits/stdc++.h>
 
@@ -150,57 +154,24 @@ const long long INF_LL = LLONG_MAX;
 const long long INF_ULL = ULLONG_MAX;
 
 
-unordered_map<ll, ll> lEnd;
-unordered_map<ll, ll> rEnd;
-
-inline void init(unordered_map<ll, ll> & m, ll k) {
-  if (!CONTAINS(m, k)) {
-    m[k]=k;
-  }
-}
-
 void solve() {
   ll N; cin >> N;
+  vector<pair<ll, ll>> PH(N);
+  REP(i,N) {
+    cin >> PH[i].F >> PH[i].S;
+  }
+  MSG(PH); LINESEP1;
+
+  std::sort(ALL(PH));
 
   ll result = 0LL;
+  unordered_map<ll, ll> dp;
+  for (auto & [p, h]: PH) {
+    umax(dp[p+h], dp[p]+h); // push
+    umax(dp[p], dp[p-h]+h); // pull
 
-  ll Pi, Hi;
-  REP(i,N) {
-    cin >> Pi >> Hi;
-
-    init(lEnd, Pi);
-    init(rEnd, Pi);
-
-    /*************/
-    /* fall left */
-    init(lEnd, Pi-Hi);
-    init(rEnd, Pi-Hi);
-
-    umin(lEnd[rEnd[Pi]], lEnd[Pi-Hi]);
-
-    umax(rEnd[Pi-Hi], rEnd[Pi]);
-    umax(rEnd[lEnd[Pi]], rEnd[Pi]);
-
-    umax(result, rEnd[Pi]-lEnd[Pi-Hi]); // TODO?
-    /*************/
-    
-    /*************/
-    /* fall right */
-    init(lEnd, Pi+Hi);
-    init(rEnd, Pi+Hi);
-
-    umax(rEnd[lEnd[Pi]], rEnd[Pi+Hi]);
-
-    umin(lEnd[Pi+Hi], lEnd[Pi]);
-    umin(lEnd[rEnd[Pi]], lEnd[Pi]);
-
-    umax(result, rEnd[Pi+Hi]-lEnd[Pi]); // TODO?
-    /*************/
-
-    umin(lEnd[Pi], lEnd[Pi-Hi]);  // TODO?
-    umax(rEnd[Pi], rEnd[Pi+Hi]);  // TODO?
-
-//     umax(result, rEnd[Pi]-lEnd[Pi]); // TODO?
+    umax(result, dp[p+h]);
+    umax(result, dp[p]);
   }
 
   cout << result << endl;
