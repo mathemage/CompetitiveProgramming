@@ -1,0 +1,70 @@
+Case #1: 2 2
+Case #2: 1 1
+Case #3: 3 1
+Case #4: Impossible
+Case #5: 3 4
+Case #6: 50 100
+Case #7: 14 9
+Case #8: 10 2
+Case #9: 42 20
+Case #10: 1 2
+Case #11: 1 1
+Case #12: 1 1
+Case #13: 5 2
+Case #14: 4 1
+Case #15: Impossible
+Case #16: Impossible
+Case #17: Impossible
+Case #18: Impossible
+Case #19: Impossible
+Case #20: 1 2
+Case #21: 4 6
+Case #22: 1 2
+Case #23: 1 1
+Case #24: 1 1
+Case #25: 1 1
+Case #26: 1 3
+Case #27: 4 1
+Case #28: 1 2
+Case #29: 2 1
+Case #30: 1 2
+Case #31: 3 6
+Case #32: 1 2
+Case #33: 1 2
+Case #34: 14 1
+Case #35: 49 2
+Case #36: 1 1
+Case #37: 1 4
+Case #38: Impossible
+Case #39: 1 1
+Case #40: 1 1
+Case #41: 6 3
+Case #42: 9 1
+Case #43: 1 1
+Case #44: 1 4
+Case #45: 1 1
+Case #46: 13 1
+Case #47: 1 2
+Case #48: 1 1
+Case #49: 1 24
+Case #50: 47 4
+Case #51: 1 1
+Case #52: 1 1
+Case #53: 1 1
+Case #54: 1 2
+Case #55: 2 1
+Case #56: 2 1
+Case #57: 9 5
+Case #58: Impossible
+Case #59: 1 2
+Case #60: 2 2
+Case #61: Impossible
+Case #62: 1 1
+Case #63: 3 1
+Case #64: 1 1
+Case #65: 1 2
+Case #66: Impossible
+Case #67: 2 3
+Case #68: Impossible
+Case #69: 1 1
+Case #70: 1 3
