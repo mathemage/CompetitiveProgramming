@@ -10,6 +10,8 @@ iab swi switch (.) {<CR>case '':<CR>break;<ESC>2-f.c
 
 iab ato atoi(.c_str())<ESC>F.i
 
+iab [& auto search = [&]() {<CR>?<CR>};<ESC>jdd2kf?c
+
 " iab ll long long
 
 iab vs vector<string>
