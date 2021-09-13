@@ -1,0 +1,71 @@
+<html><body bgcolor="#000000" text="#ffffff"><table><tr><td colspan="2"><h3>Problem Statement</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><p>
+Elon is planning to colonize Mars.
+</p>
+<p>
+According to Elon's plans, there should be N habitats on Mars.
+They are going to be numbered from 0 to N-1, inclusive.
+Habitat 0 will be the communications center.
+</p>
+<br></br>
+<p>
+Habitats will be connected by (bidirectional) corridors.
+For technical reasons, <b>each habitat must have exactly three outgoing corridors</b>.
+</p>
+<p>
+Sometimes, both ends of a corridor may connect to the same habitat.
+Such a corridor counts as two corridors leaving that habitat.
+</p>
+<br></br>
+<p>
+Each corridor must have a non-negative integer length.
+</p>
+<p>
+Note that the length of any corridor may be zero.
+(Self-looping corridors that start and end at the same habitat also may, but do not have to, have length zero.)
+</p>
+<br></br>
+<p>
+Once you build the N habitats and all corridors between them, we can measure distances:
+the distance between any two habitats is the smallest total length of corridors one has to cross in order to get from one habitat to the other.
+</p>
+<br></br>
+<p>
+Elon has a clear vision how far from the communications center each habitat should be.
+More precisely, for each habitat i Elon has determined the shortest distance <b>distances</b>[i] from habitat 0 along some corridors to habitat i.
+</p>
+<p>
+Note that all the distances in <b>distances</b> are finite non-negative values, which implies that Elon wants to have a connected network of habitats.
+</p>
+<br></br>
+<p>
+Determine whether it is possible to design the corridors according to the technical requirements and Elon's wishes: each habitat must have three corridors, and all the distances must be as given in the input.
+</p>
+<p>
+If it's not possible, return an empty vector &lt;int&gt;.
+</p>
+<p>
+If it's possible, return a vector &lt;int&gt; with exactly 6*N values.
+</p>
+<p>
+For each habitat i, look at the three corridors that leave this habitat. For each of them, write down first the number of the habitat at its other end, and then the length of the corridor.
+The description of habitat i are the six values {number1, length1, number2, length2, number3, length3}.
+</p>
+<p>
+Return the concatenation of the descriptions of all habitats in your solution.
+Your solution will be accepted if it produces the correct distances.
+Additionally, we require that the length of each corridor must be at most 1,000,000.
+For each habitat, the three outgoing corridors can be listed in any order.
+</p></td></tr><tr><td colspan="2"><h3>Definition</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Class:</td><td>MarsHabitats</td></tr><tr><td>Method:</td><td>design</td></tr><tr><td>Parameters:</td><td>vector &lt;int&gt;</td></tr><tr><td>Returns:</td><td>vector &lt;int&gt;</td></tr><tr><td>Method signature:</td><td>vector &lt;int&gt; design(vector &lt;int&gt; distances)</td></tr><tr><td colspan="2">(be sure your method is public)</td></tr></table></td></tr><tr><td colspan="2"><h3>Limits</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Time limit (s):</td><td>2.000</td></tr><tr><td>Memory limit (MB):</td><td>256</td></tr></table></td></tr><tr><td colspan="2"><h3>Notes</h3></td></tr><tr><td align="center" valign="top">-</td><td>The value N is not given explicitly. You can determine it as the number of elements in <b>distances</b>.</td></tr><tr><td colspan="2"><h3>Constraints</h3></td></tr><tr><td align="center" valign="top">-</td><td><b>distances</b> will have between 1 and 200 elements, inclusive.</td></tr><tr><td align="center" valign="top">-</td><td>Each element of <b>distances</b> will be between 0 and 1,000,000, inclusive.</td></tr><tr><td align="center" valign="top">-</td><td><b>distances</b>[0] will be 0.</td></tr><tr><td colspan="2"><h3>Examples</h3></td></tr><tr><td align="center" nowrap="true">0)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{0}</pre></td></tr></table></td></tr><tr><td><pre>Returns: { }</pre></td></tr><tr><td><table><tr><td colspan="2">There is just a single habitat. There is no way to have exactly three corridors leaving this habitat, so we cannot satisfy the technical requirements.</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">1)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{0, 10}</pre></td></tr></table></td></tr><tr><td><pre>Returns: {1, 10, 1, 42, 1, 47, 0, 10, 0, 47, 0, 42 }</pre></td></tr><tr><td><table><tr><td colspan="2">In the example output, the two habitats are connected by three separate corridors: one has length 10, one has length 42, and one has length 47. The distance from habitat 0 to habitat 1 is the length of the shortest of those three corridors.</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">2)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{0, 47}</pre></td></tr></table></td></tr><tr><td><pre>Returns: {0, 10, 0, 10, 1, 47, 1, 10, 0, 47, 1, 10 }</pre></td></tr><tr><td><table><tr><td colspan="2">In the example output, the two habitats are connected by a single corridor of length 47. Additionally, each habitat has its own self-looping corridor of length 10.</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">3)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>{0, 47, 42, 25, 10, 22}</pre></td></tr></table></td></tr><tr><td><pre>Returns: 
+{1, 47, 2, 42, 4, 10, 0, 47, 3, 33, 3, 34, 0, 42, 2, 1234, 2, 1234, 1,
+ 34, 1, 33, 4, 15, 0, 10, 3, 15, 5, 12, 5, 0, 4, 12, 5, 0 }</pre></td></tr><tr><td><table><tr><td colspan="2">The sample return value corresponds to the following configuration of habitats:
+<pre>
+
+ 5 --(12)-- 4 --(10)-- 0 --(42)-- 2
+            |          |
+           (15)       (47)
+            |          |
+            3 --(33)-- 1
+             \__(34)__/
+ 
+</pre>
+<p>The number in parentheses is the length of the corridor. Numbers outside parentheses represent habitats. There are two self-looping corridors that are not shown in the figure.</p></td></tr></table></td></tr></table></td></tr></table><p>This problem statement is the exclusive and proprietary property of TopCoder, Inc.  Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited.  (c)2003, TopCoder, Inc.  All rights reserved.  </p></body></html>
