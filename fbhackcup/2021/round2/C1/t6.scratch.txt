@@ -1,0 +1,45 @@
+7 8 4
+33332433
+..XX.X.X
+X..X.X..
+XX....XX
+.XXX.XX. <-
+X...XX.X
+..X.....
+.X..X.X.
+
+7 8 4
+33332433
+X.XX.X.X
+XX.X.XXX
+.XXX.XX. ^
+X...XX.X <-
+..X.....
+.X..X.X.
+........
+
+7 8 4
+XXXX.XXX
+XXXX.XXX
+X..XXX.X
+..X..X.. <-
+.X..X.X.
+........
+........
+
+7 8 4
+XXXX.XXX
+XXXX.XXX
+X..XXX.X
+.....X..
+.X..X.X.
+........
+........
+7 8 4
+XXXX.XXX
+XXXX.XXX
+X..XXX.X
+........
+.X..X.X.
+........
+........
