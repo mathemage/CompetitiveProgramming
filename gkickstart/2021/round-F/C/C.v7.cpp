@@ -6,7 +6,7 @@
 
    * File Name : C.cpp
    * Creation Date : 18-09-2021
-   * Last Modified : Fri 01 Oct 2021 12:32:17 AM CEST
+   * Last Modified : Fri 01 Oct 2021 12:27:26 AM CEST
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://codingcompetitions.withgoogle.com/kickstart/round/0000000000435bae/0000000000888d45
    * Points/Time :
@@ -14,7 +14,7 @@
    * + 5m = 20m [refactor only]
    * [testdata]
    * +17m = 37m
-   * +~2m
+   * +
    *
    * Total/ETA : 11+12+12pts
    * Status :
@@ -227,8 +227,8 @@ void solve() {
         if (isInside(X[i], Y[i], X[j], Y[j], X[k], Y[k], Xs, Ys)) {
           if (!onBorder(X[i], Y[i], X[j], Y[j], X[k], Y[k], Xs, Ys)) {
             if (umin(result, dist(X[i], Y[i], X[j], Y[j]) + 
-                             dist(X[j], Y[j], X[k], Y[k]) + 
-                             dist(X[k], Y[k], X[i], Y[i])) ) {
+                         dist(X[j], Y[j], X[k], Y[k]) + 
+                         dist(X[k], Y[k], X[i], Y[i])) ) {
               MSG(i); MSG(j); MSG(k);
               MSG(result); LINESEP1;
               found=1;
@@ -265,7 +265,6 @@ void solve() {
     cout << "IMPOSSIBLE" << endl;
   } else {
     cout << result << endl;
-//     cout << found << endl;
   }
 }
 

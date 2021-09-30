@@ -6,15 +6,11 @@
 
    * File Name : C.cpp
    * Creation Date : 18-09-2021
-   * Last Modified : Fri 01 Oct 2021 12:32:17 AM CEST
+   * Last Modified : Fri 01 Oct 2021 12:03:17 AM CEST
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://codingcompetitions.withgoogle.com/kickstart/round/0000000000435bae/0000000000888d45
    * Points/Time :
-   *      = 15m
-   * + 5m = 20m [refactor only]
-   * [testdata]
-   * +17m = 37m
-   * +~2m
+   * = 15m
    *
    * Total/ETA : 11+12+12pts
    * Status :
@@ -25,10 +21,6 @@
    * S WA - - :-( :-( :-(
    * [upsolve]
    * S WA - - :-( :-( :-( :-(
-   * S WA - - :-( :-( :-( :-( [refactor only]
-   * [testdata]
-   * S WA - - :-( :-( :-( :-( :-/
-   *
    *
    ==========================================*/
 
@@ -218,39 +210,32 @@ void solve() {
   cin >> Xs >> Ys;
 
   ld result = INF;
-  MSG(result); LINESEP1;
-
   bool found=false;
   REP(i,N) {
     FOR(j,i+1,N-1) {
       FOR(k,j+1,N-1) {
         if (isInside(X[i], Y[i], X[j], Y[j], X[k], Y[k], Xs, Ys)) {
           if (!onBorder(X[i], Y[i], X[j], Y[j], X[k], Y[k], Xs, Ys)) {
-            if (umin(result, dist(X[i], Y[i], X[j], Y[j]) + 
-                             dist(X[j], Y[j], X[k], Y[k]) + 
-                             dist(X[k], Y[k], X[i], Y[i])) ) {
-              MSG(i); MSG(j); MSG(k);
-              MSG(result); LINESEP1;
-              found=1;
-            }
+            umin(result, dist(X[i], Y[i], X[j], Y[j]) + 
+                         dist(X[j], Y[j], X[k], Y[k]) + 
+                         dist(X[k], Y[k], X[i], Y[i]));
+            found=1;
           } else {
-            REP(d,N) {
-              if (d!=i && d!=j && d!=k) {
-                vector<ll> ijk = {i, j, k};
+            REP(l,N) {
+              if (l!=i && l!=j && l!=k) {
+                vector<ll> ijk(3);
+                std::iota(ALL(ijk), 0);
 
                 do {
                   ll a=ijk[0];
                   ll b=ijk[1];
                   ll c=ijk[2];
-                  if (onLine(Xs,Ys, X[a],Y[a], X[c],Y[c])) {
-                    if ( umin(result, dist(X[a], Y[a], X[b], Y[b]) + 
-                                      dist(X[b], Y[b], X[c], Y[c]) + 
-                                      dist(X[a], Y[a], X[d], Y[d]) + 
-                                      dist(X[c], Y[c], X[d], Y[d])) ) {
-                      MSG(a); MSG(b); MSG(c); MSG(d);
-                      MSG(result); LINESEP1;
-                      found=1;
-                    }
+                  if (onLine(Xs,Ys, X[a],Y[a], X[b],Y[b])) {
+                    umin(result, dist(X[a], Y[a], X[c], Y[c]) + 
+                                 dist(X[b], Y[b], X[c], Y[c]) + 
+                                 dist(X[a], Y[a], X[l], Y[l]) + 
+                                 dist(X[b], Y[b], X[l], Y[l]));
+                    found=1;
                   }
                 } while (next_permutation(ALL(ijk)));
               }
@@ -265,16 +250,13 @@ void solve() {
     cout << "IMPOSSIBLE" << endl;
   } else {
     cout << result << endl;
-//     cout << found << endl;
   }
 }
 
 int main() {
   ios_base::sync_with_stdio(0);
   cin.tie(0);
-//   cout << std::setprecision(10) << std::fixed;
-  cout << std::setprecision(9) << std::fixed;
-  cerr << std::setprecision(9) << std::fixed;
+  cout << std::setprecision(10) << std::fixed;
 
 #ifndef MATHEMAGE_LOCAL
 //   setIO(PROBLEMNAME);
