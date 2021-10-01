@@ -6,18 +6,16 @@
 
    * File Name : C.cpp
    * Creation Date : 18-09-2021
-   * Last Modified : Fri 01 Oct 2021 10:39:29 PM CEST
+   * Last Modified : Fri 01 Oct 2021 10:24:46 PM CEST
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://codingcompetitions.withgoogle.com/kickstart/round/0000000000435bae/0000000000888d45
    * Points/Time :
-   *      =    15m
-   * + 5m =    20m [refactor only]
+   *      = 15m
+   * + 5m = 20m [refactor only]
    * [testdata]
-   * +17m =    37m
+   * +17m = 37m
    * +~2m
-   * +12m ~    51m
-   * [testdata]
-   * +13m = 1h 4m
+   * +12m ~ 51m
    *
    * Total/ETA : 11+12+12pts
    * Status :
@@ -32,8 +30,6 @@
    * [testdata]
    * S WA - - :-( :-( :-( :-( :-/
    * S WA - - :-( :-( :-( :-( :-/ :-(
-   * [testdata]
-   * S WA - - :-( :-( :-( :-( :-/ :-( :-( f*ck already!
    *
    ==========================================*/
 
@@ -201,12 +197,13 @@ inline bool onLine(ld x, ld y, ld x1, ld y1, ld x2, ld y2) {
 }
 
 bool onBorder(ld x1, ld y1, ld x2, ld y2, ld x3, ld y3, ld x, ld y) {
-  ld A1 = area(x, y, x2, y2, x3, y3);
-  ld A2 = area(x1, y1, x, y, x3, y3);
-  ld A3 = area(x1, y1, x2, y2, x, y);
+  bool b1 = eqDouble(dist(x1,y1,x,y) + dist(x2,y2,x,y), dist(x1,y1,x2,y2));
+  bool b2 = eqDouble(dist(x3,y3,x,y) + dist(x2,y2,x,y), dist(x3,y3,x2,y2));
+  bool b3 = eqDouble(dist(x3,y3,x,y) + dist(x1,y1,x,y), dist(x3,y3,x1,y1));
 
+//   return eqDouble(min({A1, A2, A3}), 0.0);
 //   return A1==0 || A2==0 || A3==0;
-  return eqDouble(min({A1, A2, A3}), 0.0);
+  return b1 || b2 || b3;
 }
 
 const ld INF = 1e15;
@@ -220,13 +217,9 @@ void solve() {
   }
   ld Xs,Ys;
   cin >> Xs >> Ys;
-  MSG(N);
-  MSG(X); MSG(Y);
-  MSG(Xs); MSG(Ys);
-  LINESEP1;
 
   ld result = INF;
-//   MSG(result); LINESEP1;
+  MSG(result); LINESEP1;
 
   bool found=false;
   REP(i,N) {
@@ -243,6 +236,7 @@ void solve() {
             }
           } else {
             REP(d,N) {
+//               if (d!=i && d!=j && d!=k) { // <- bug here?
               bool isQuadrilateral=true;
               vector<ll> ijkd = {i,j,k,d};
               do {
