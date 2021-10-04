@@ -6,7 +6,7 @@
 
    * File Name : C.cpp
    * Creation Date : 18-09-2021
-   * Last Modified : Sat 02 Oct 2021 11:00:07 PM CEST
+   * Last Modified : Fri 01 Oct 2021 10:39:29 PM CEST
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://codingcompetitions.withgoogle.com/kickstart/round/0000000000435bae/0000000000888d45
    * Points/Time :
@@ -18,7 +18,6 @@
    * +12m ~    51m
    * [testdata]
    * +13m = 1h 4m
-   * +12m = 1h16m
    *
    * Total/ETA : 11+12+12pts
    * Status :
@@ -35,7 +34,6 @@
    * S WA - - :-( :-( :-( :-( :-/ :-(
    * [testdata]
    * S WA - - :-( :-( :-( :-( :-/ :-( :-( f*ck already!
-   * S AC WA - :-O :-/ ^_^
    *
    ==========================================*/
 
@@ -244,29 +242,32 @@ void solve() {
               found=1;
             }
           } else {
-            FOR(l,k+1,N-1) {
-              vector<ll> ijkl = {i,j,k,l};
+            REP(d,N) {
+              bool isQuadrilateral=true;
+              vector<ll> ijkd = {i,j,k,d};
               do {
-                ll a=ijkl[0];
-                ll b=ijkl[1];
-                ll c=ijkl[2];
-                ll d=ijkl[3];
-                // check ijkl is a non-degenerate quadrilateral!
-                if (onLine(Xs,Ys, X[a],Y[a], X[c],Y[c])
-                 && onLine(Xs,Ys, X[b],Y[b], X[d],Y[d]) 
-                 && !eqDouble(area(X[a],Y[a], X[c],Y[c], X[b],Y[b]), 0.0) 
-                 && !eqDouble(area(X[a],Y[a], X[c],Y[c], X[d],Y[d]), 0.0) 
-                 ) {
-                  if ( umin(result, dist(X[a], Y[a], X[b], Y[b]) + 
-                                    dist(X[b], Y[b], X[c], Y[c]) + 
-                                    dist(X[c], Y[c], X[d], Y[d]) + 
-                                    dist(X[a], Y[a], X[d], Y[d])) ) {
-                    MSG(a); MSG(b); MSG(c); MSG(d);
-                    MSG(result); LINESEP1;
-                    found=1;
+                isQuadrilateral &= !isInside(X[ijkd[0]], Y[ijkd[0]], X[ijkd[1]], Y[ijkd[1]], X[ijkd[2]], Y[ijkd[2]], X[ijkd[3]], Y[ijkd[3]]);
+              } while (next_permutation(ALL(ijkd)));
+
+              if (isQuadrilateral) {
+                vector<ll> ijk = {i, j, k};
+
+                do {
+                  ll a=ijk[0];
+                  ll b=ijk[1];
+                  ll c=ijk[2];
+                  if (onLine(Xs,Ys, X[a],Y[a], X[c],Y[c])) {
+                    if ( umin(result, dist(X[a], Y[a], X[b], Y[b]) + 
+                                      dist(X[b], Y[b], X[c], Y[c]) + 
+                                      dist(X[a], Y[a], X[d], Y[d]) + 
+                                      dist(X[c], Y[c], X[d], Y[d])) ) {
+                      MSG(a); MSG(b); MSG(c); MSG(d);
+                      MSG(result); LINESEP1;
+                      found=1;
+                    }
                   }
-                }
-              } while (next_permutation(ALL(ijkl)));
+                } while (next_permutation(ALL(ijk)));
+              }
             }
           }
         }
