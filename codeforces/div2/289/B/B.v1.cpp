@@ -6,22 +6,17 @@
 
    * File Name : B.cpp
    * Creation Date : 12-10-2021
-   * Last Modified : Tue 12 Oct 2021 12:37:12 AM CEST
+   * Last Modified : Tue 12 Oct 2021 12:30:31 AM CEST
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://codeforces.com/problemset/problem/289/B
    * Points/Time :
    * + 5m [reading]
    * + 3m [thinking]
    * + 6m ~ 14m
-   * + 2m = 16m
-   * + 3m = 19m
    *
    * Total/ETA :
    * Status :
    * WA #4 :-/
-   * WA #4 :-/ :-/
-   * [test details]
-   * AC!! yes!! uff :-/
    *
    ==========================================*/
 
@@ -176,14 +171,11 @@ void solve() {
   }
 
   std::sort(ALL(vals));
-//   ll median = (vals[(n*m+1)/2] + vals[n*m/2]) / 2;
   ll median = vals[n*m/2];
-  MSG(vals); MSG(median); LINESEP1;
 
   ll result = 0LL;
-  ll residue=vals[0]%d;
   for (auto & val: vals) {
-    if (val%d==residue) {
+    if (val%d==0) {
       result+=abs((median-val)/d);
     } else {
       result=-1;
