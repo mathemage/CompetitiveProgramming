@@ -6,7 +6,7 @@
 
    * File Name : C.cpp
    * Creation Date : 18-09-2021
-   * Last Modified : Sat 02 Oct 2021 11:00:07 PM CEST
+   * Last Modified : Wed 13 Oct 2021 12:28:38 AM CEST
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://codingcompetitions.withgoogle.com/kickstart/round/0000000000435bae/0000000000888d45
    * Points/Time :
@@ -19,6 +19,7 @@
    * [testdata]
    * +13m = 1h 4m
    * +12m = 1h16m
+   * +35m = 1h51m
    *
    * Total/ETA : 11+12+12pts
    * Status :
@@ -36,6 +37,8 @@
    * [testdata]
    * S WA - - :-( :-( :-( :-( :-/ :-( :-( f*ck already!
    * S AC WA - :-O :-/ ^_^
+   * [testdata]
+   * S AC AC AC!!! WHAT????? ALL 3 TESTCASES???? :-O
    *
    ==========================================*/
 
@@ -199,7 +202,12 @@ inline ld dist(ld x1, ld y1, ld x2, ld y2) {
 }
 
 inline bool onLine(ld x, ld y, ld x1, ld y1, ld x2, ld y2) {
-  return eqDouble(dist(x, y, x1, y1) + dist(x, y, x2, y2), dist(x1, y1, x2, y2));
+  // (x-x1)/(y-y1) == (x-x2)/(y-y2)
+  // (x-x1)*(y-y2) == (x-x2)*(y-y1)
+  bool isCollinear = eqDouble((x-x1)*(y-y2), (x-x2)*(y-y1));
+  bool isBetween = min(x1,x2)<=x && x<=max(x1,x2)
+                && min(y1,y2)<=y && y<=max(y1,y2);
+  return isCollinear && isBetween;
 }
 
 bool onBorder(ld x1, ld y1, ld x2, ld y2, ld x3, ld y3, ld x, ld y) {
@@ -246,6 +254,7 @@ void solve() {
           } else {
             FOR(l,k+1,N-1) {
               vector<ll> ijkl = {i,j,k,l};
+//               std::sort(ALL(ijkl));
               do {
                 ll a=ijkl[0];
                 ll b=ijkl[1];
@@ -261,7 +270,15 @@ void solve() {
                                     dist(X[b], Y[b], X[c], Y[c]) + 
                                     dist(X[c], Y[c], X[d], Y[d]) + 
                                     dist(X[a], Y[a], X[d], Y[d])) ) {
-                    MSG(a); MSG(b); MSG(c); MSG(d);
+//                     MSG(a); MSG(b); MSG(c); MSG(d);
+                    MSG(a);
+                    MSG(X[a]); MSG(Y[a]);
+                    MSG(b);
+                    MSG(X[b]); MSG(Y[b]);
+                    MSG(c);
+                    MSG(X[c]); MSG(Y[c]);
+                    MSG(d);
+                    MSG(X[d]); MSG(Y[d]);
                     MSG(result); LINESEP1;
                     found=1;
                   }
@@ -286,7 +303,8 @@ int main() {
   cin.tie(0);
 //   cout << std::setprecision(10) << std::fixed;
   cout << std::setprecision(9) << std::fixed;
-  cerr << std::setprecision(9) << std::fixed;
+//   cerr << std::setprecision(9) << std::fixed;
+  cerr << std::setprecision(1) << std::fixed;
 
 #ifndef MATHEMAGE_LOCAL
 //   setIO(PROBLEMNAME);
