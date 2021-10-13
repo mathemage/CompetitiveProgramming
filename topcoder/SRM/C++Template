@@ -112,6 +112,19 @@ template<class T> bool umax(T& a, const T& b) { return a < b ? a = b, 1 : 0; }
 
 // inline bool eqDouble(double a, double b) { return fabs(a-b) < 1e-9; }
 inline bool eqDouble(ld a, ld b) { return fabs(a-b) < 1e-9; }
+inline bool isCollinear(ld x, ld y, ld x1, ld y1, ld x2, ld y2) {
+  // (x-x1)/(y-y1) == (x-x2)/(y-y2)
+  // (x-x1)*(y-y2) == (x-x2)*(y-y1)
+  return eqDouble((x-x1)*(y-y2), (x-x2)*(y-y1));
+}
+inline bool isBetween(ld x, ld y, ld x1, ld y1, ld x2, ld y2) {
+  return min(x1,x2)<=x && x<=max(x1,x2)
+      && min(y1,y2)<=y && y<=max(y1,y2);
+}
+inline bool onLine(ld x, ld y, ld x1, ld y1, ld x2, ld y2) {
+  return isCollinear(x, y, x1, y1, x2, y2) && isBetween(x, y, x1, y1, x2, y2);
+}
+
 
 const vector<int> DX8 = {-1, -1, -1,   0, 0,   1,  1,  1};
 const vector<int> DY8 = {-1,  0,  1,  -1, 1,  -1,  0,  1};

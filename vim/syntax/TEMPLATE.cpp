@@ -7,7 +7,7 @@
 
    * File Name :
    * Creation Date :
-   * Last Modified : Mon 04 Oct 2021 11:10:43 PM CEST
+   * Last Modified : Thu 14 Oct 2021 12:01:10 AM CEST
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL :
    * Points/Time :
@@ -119,6 +119,19 @@ template<class T> bool umax(T& a, const T& b) { return a < b ? a = b, 1 : 0; }
 
 // inline bool eqDouble(double a, double b) { return fabs(a-b) < 1e-9; }
 inline bool eqDouble(ld a, ld b) { return fabs(a-b) < 1e-9; }
+inline bool isCollinear(ld x, ld y, ld x1, ld y1, ld x2, ld y2) {
+  // (x-x1)/(y-y1) == (x-x2)/(y-y2)
+  // (x-x1)*(y-y2) == (x-x2)*(y-y1)
+  return eqDouble((x-x1)*(y-y2), (x-x2)*(y-y1));
+}
+inline bool isBetween(ld x, ld y, ld x1, ld y1, ld x2, ld y2) {
+  return min(x1,x2)<=x && x<=max(x1,x2)
+      && min(y1,y2)<=y && y<=max(y1,y2);
+}
+inline bool onLine(ld x, ld y, ld x1, ld y1, ld x2, ld y2) {
+  return isCollinear(x, y, x1, y1, x2, y2) && isBetween(x, y, x1, y1, x2, y2);
+}
+
 
 #ifndef MATHEMAGE_LOCAL
 void setIO(string filename) {    // the argument is the filename without the extension
