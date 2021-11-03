@@ -1,29 +1,30 @@
 /* ========================================
 
    ID: mathema6
-   TASK: N
+   TASK: N2
    LANG: C++14
 
-   * File Name : N.cpp
-   * Creation Date : 27-10-2021
-   * Last Modified : Thu 04 Nov 2021 12:14:54 AM CET
+   * File Name : N2.cpp
+   * Creation Date : 04-11-2021
+   * Last Modified : Thu 04 Nov 2021 12:39:25 AM CET
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://atcoder.jp/contests/dp/tasks/dp_n
    * Points/Time :
-   * + 5m [thinking]
-   * + 3m =  8m
-   * +11m = 19m
+   * [editorial]
+   * +~10-20m [thinking]
+   * +     7m ~ 22m
+   * [testdata]
+   * +     9m ~ 31m
    *
    * Total/ETA :
    * Status :
-   * WA x8, AC x8 :-/ :-/
-   * [testdata] :-/
-   * WA x8, AC x8 :-/ :-(
+   * WA x11, AC x5 :-( :-(
+   * [testdata]
+   * AC!! yes!!! :-/
    *
    ==========================================*/
 
-#include <queue>
-#define PROBLEMNAME "N"
+#define PROBLEMNAME "N2"
 
 #include <bits/stdc++.h>
 
@@ -168,30 +169,38 @@ const long long MOD = 1000000007;
 const double EPS = 1e-8;
 const ld PI = acos((ld)-1);
 
-const int INF = INT_MAX;
+// const int INF = INT_MAX;
 const long long INF_LL = LLONG_MAX;
 const long long INF_ULL = ULLONG_MAX;
 
 
+const ll INF = 1e13;
+
 void solve() {
   ll N; cin >> N;
-  vector<ll> a(N); cin >> a;
 
-  priority_queue<ll> q;
-  for (auto & ai: a) {
-//     q.push(-ai);
-    q.push(ai*(-1LL));
+  vector<vector<ll>> dp(N, vector<ll>(N, INF));
+
+  vector<ll> prefSum(N); cin >> prefSum;
+  FOR(i,1,N-1) {
+    prefSum[i]+=prefSum[i-1];
+  }
+  MSG(prefSum); LINESEP1;
+
+  FOR(len,1,N) {
+    for (ll l=0, r=len-1; r < N; l++, r++) {
+      if (len==1) {
+        dp[l][l]=0;
+      } else {
+        FOR(m,l,r-1) {
+          umin(dp[l][r], dp[l][m]+dp[m+1][r]);
+        }
+        dp[l][r] += prefSum[r]-(l-1>=0 ? prefSum[l-1] : 0);
+      }
+    }
   }
 
-  ll result = 0LL;
-  while (SZ(q)>1) {
-    ll x=q.top(); q.pop();
-    ll y=q.top(); q.pop();
-    result-=x+y;
-
-    q.push(x+y);
-  }
-
+  ll result = dp[0][N-1];
   cout << result << endl;
 }
 
