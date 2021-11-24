@@ -1,24 +1,25 @@
 /* ========================================
 
    ID: mathema6
-   TASK: D
+   TASK: D2
    LANG: C++14
 
-   * File Name : D.cpp
-   * Creation Date : 13-11-2021
-   * Last Modified : Wed 24 Nov 2021 03:31:08 PM CET
+   * File Name : D2.cpp
+   * Creation Date : 24-11-2021
+   * Last Modified : Wed 24 Nov 2021 03:32:56 PM CET
    * Created By : Karel Ha <mathemage@gmail.com>
-   * URL : https://atcoder.jp/contests/abc227/tasks/abc227_d
+   * URL : https://atcoder.jp/contests/abc227/submissions/me
    * Points/Time :
+   * = 3m45s
+   *
    * Total/ETA : 400 pts
    * Status :
-   * ACx3, TLEx26 :-/
-   * ACx11, WAx15, TLEx3 :-O :-/
-   * ACx7, TLEx22 :-/ :-/
+   * [editorial]
+   * AC x9, WAx23 :-/ :-O :-(
    *
    ==========================================*/
 
-#define PROBLEMNAME "D"
+#define PROBLEMNAME "D2"
 
 #include <bits/stdc++.h>
 
@@ -171,55 +172,22 @@ const long long INF_ULL = ULLONG_MAX;
 void solve() {
   ll N,K; cin >> N >> K;
   vector<ll> A(N); cin >> A;
-  MSG(A); LINESEP1;
 
-  priority_queue<ll> curAvail;
-  for (auto & Ai: A) {
-    curAvail.push(Ai);
+  ll lo=0;
+  ll hi=std::accumulate(ALL(A), 0LL);
+
+  while (hi-lo>1) {
+    ll P = lo + (hi-lo) / 2;
+    bool good = P * K <= std::accumulate(ALL(A), 0LL, [&](const auto & s, const auto & x) { return s+min(x,P); } );
+
+    if (good) {
+      lo=P;
+    } else {
+      hi=P;
+    }
   }
 
-  ll result = 0LL;
-  while (SZ(curAvail)>=K) {
-// #ifdef MATHEMAGE_DEBUG
-//     cerr << "curAvail: ";
-//     for (auto & it: curAvail) {
-//       cerr << it << " ";
-//     }
-//     cerr << endl;
-// #endif
-    MSG(SZ(curAvail));
-
-    vector<ll> q;
-    ll delta=INF_LL;
-    REP(_,K) {
-      umin(delta, curAvail.top());
-      q.PB(curAvail.top());
-      curAvail.pop();
-    }
-    MSG(SZ(curAvail));
-    MSG(SZ(q));
-    MSG(q);
-    MSG(delta);
-
-    if (!curAvail.empty()) {
-      delta -= curAvail.top();
-    }
-    MSG(delta);
-
-    umax(delta, 1LL);
-    MSG(delta);
-
-    for (auto & qi: q) {
-      if (qi-delta>0) {
-        curAvail.push(qi-delta);
-      }
-    }
-    MSG(SZ(curAvail));
-
-    result+=delta;
-    LINESEP1;
-  }
-
+  ll result = lo;
   cout << result << endl;
 }
 
