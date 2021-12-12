@@ -37,12 +37,12 @@ iab seti set<int>
 iab setd set<double>
 iab setc set<char>
 " iab setl set<long long>
-iab setll set<long long>
+iab setll set<ll>
 iab useti unordered_set<int>
 iab usetd unordered_set<double>
 iab usetc unordered_set<char>
 " iab usetl unordered_set<long long>
-iab usetll unordered_set<long long>
+iab usetll unordered_set<ll>
 
 iab umap unordered_map<?, ?><ESC>2F?c
 
