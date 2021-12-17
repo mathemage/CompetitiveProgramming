@@ -6,26 +6,22 @@
 
    * File Name : 1.cpp
    * Creation Date : 12-12-2021
-   * Last Modified : Fri 17 Dec 2021 09:22:32 PM CET
+   * Last Modified : Fri 17 Dec 2021 08:48:35 PM CET
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : http://usaco.org/index.php?page=viewproblem2&cpid=1061
    * Points/Time :
    * +11m
    * + 7m
-   * + 7m =   25m
-   * + 5m =   30m
+   * + 7m = 25m
+   * + 5m = 30m
    * + 5m
-   * + 6m =   41m
-   * [upsolve]
-   * +33m = 1h11m
+   * + 6m = 41m
    *
    * Total/ETA :
    * Status :
    * 1x AC + 9x RE/MLE
    * 3x AC + 7x WA :-/ :-/
    * 3x AC + 7x WA :-/ :-(
-   * [testdata]
-   * :-( :-/
    *
    ==========================================*/
 
@@ -201,7 +197,6 @@ void solve() {
     ll minTime = INF_LL;
     ll bestI = UNDEF;
 
-    MSG(north); MSG(east);
     for (auto & iN: north) {
       for (auto & iE: east) {
         ll dx = pos[iN].F-pos[iE].F;
@@ -213,14 +208,10 @@ void solve() {
 
         if (dx<dy) {
           if (umin(minTime, dy)) {
-            MSG(iN); MSG(iE);
-            MSG(dx); MSG(dy);
             bestI = iN;
           }
         } else if (dx>dy) {
           if (umin(minTime, dx)) {
-            MSG(iN); MSG(iE);
-            MSG(dx); MSG(dy);
             bestI = iE;
           }
         }
@@ -231,14 +222,6 @@ void solve() {
       break;
     }
 
-    // update positions after minTime
-    for (auto & iN: north) {
-      pos[iN].S += minTime-1;
-    }
-    for (auto & iE: east) {
-      pos[iE].F += minTime-1;
-    }
-
     umin(result[bestI], minTime);
     if (faces[bestI]=='N') {
       north.erase(bestI);
@@ -246,6 +229,13 @@ void solve() {
       east.erase(bestI);
     }
 
+    // update positions after minTime
+    for (auto & iN: north) {
+      pos[iN].S += minTime;
+    }
+    for (auto & iE: east) {
+      pos[iE].S += minTime;
+    }
     MSG(bestI);
     MSG(pos); LINESEP1;
   }
