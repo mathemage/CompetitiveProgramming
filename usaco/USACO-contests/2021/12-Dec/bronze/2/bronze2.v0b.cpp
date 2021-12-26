@@ -6,19 +6,13 @@
 
    * File Name : bronze2.cpp
    * Creation Date : 18-12-2021
-   * Last Modified : Mon 20 Dec 2021 06:48:22 PM CET
+   * Last Modified : Sat 18 Dec 2021 06:32:07 PM CET
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : http://usaco.org/index.php?page=viewproblem&cpid=1144
    * Points/Time :
    * Total/ETA :
-   * [upsolve]
-   * +7m
-   * [upsolve - sparseTables]
-   *
    * Status :
    * not submitted :-(
-   * [upsolve]
-   * [upsolve - sparseTables]
    *
    ==========================================*/
 
@@ -180,46 +174,27 @@ void solve() {
   MSG(p); MSG(t); LINESEP1;
 
   vector<ll> deltas(N);
-  vector<ll> signs(N);
   unordered_map<ll, vector<ll>> val2pos;
   REP(i,N) {
-    deltas[i] = abs(p[i]-t[i]);
-    signs[i] = SGN(p[i]-t[i]);
+    deltas[i] = p[i]-t[i];
   }
   deltas.PB(0);   // dummy
-  signs.PB(0);   // dummy
-  MSG(deltas); MSG(signs); LINESEP1;
+  MSG(deltas); LINESEP1;
 
   for (ll i = 0; i < SZ(deltas); i += 1) {
     val2pos[deltas[i]].PB(i);
   }
   MSG(val2pos); LINESEP1;
 
-  /* compute sparse tables for min queries */
-  vector<vector<ll>> sparseMin{deltas};
-  for (ll e = 1; 1<<e <= N; e += 1) {
-    sparseMin.PB({});
-
-    for (ll i = 0; i+(1<<e)-1 < N; i += 1) {
-      sparseMin[e].PB(min( 
-            sparseMin[e-1][i],
-            sparseMin[e-1][i+(1<<(e-1))]
-            )
-          );
+  auto queryMin = [&](ll left, ll right) {
+    ll ans=INF_LL;
+    FOR(pos,left,right) {
+      umin(ans, deltas[pos]);
     }
-  }
-  MSG_VEC_VEC(sparseMin); LINESEP1;
-
-  auto queryMin = [&](ll left, ll right) {  // TODO optimize via Sparse Tables
-    ll e=0;
-    while (1<<e <= right-left+1) {
-      e++;
-    }
-    e--;
-    return min(sparseMin[e][left], sparseMin[e][right-(1<<e)+1]);
+    return ans;
   };
 
-//   unordered_map<ll, unordered_map<ll, unordered_map<ll, ll>>> memo;
+  unordered_map<ll, unordered_map<ll, unordered_map<ll, ll>>> memo;
   function<ll(ll,ll,ll)> calculateOpt = [&](ll left, ll right, ll baseHeight) {
     LINESEP1;
     MSG(left); MSG(right); MSG(baseHeight);
@@ -227,9 +202,9 @@ void solve() {
     if (left>right) { return 0LL; }
     if (left==right) { return deltas[left]-baseHeight; }
 
-//     if (CONTAINS(memo, left) && CONTAINS(memo[left], right) && CONTAINS(memo[left][right], baseHeight)) {
-//       return memo[left][right][baseHeight];
-//     }
+    if (CONTAINS(memo, left) && CONTAINS(memo[left], right) && CONTAINS(memo[left][right], baseHeight)) {
+      return memo[left][right][baseHeight];
+    }
 
     ll mn=queryMin(left, right);
     ll ans = mn-baseHeight;
@@ -237,31 +212,29 @@ void solve() {
     MSG(val2pos[mn]);
 
     auto it = std::lower_bound(ALL(val2pos[mn]), left);
-    assert(left<=*it);
-    assert(*it<=right);
-
-    vector<ll> cutPts{left-1};
-    while (it!=val2pos[mn].end() && *it<=right) {
-      cutPts.PB(*it);
+    vector<ll> posOfInterest{left};
+    while (*it<=right) {
+      if (it!=val2pos[mn].end()) {
+        posOfInterest.PB(*it);
+      }
       it++;
     }
-    cutPts.PB(right+1);
-    MSG(cutPts);
+    posOfInterest.PB(right);
+    MSG(posOfInterest);
 
-    for (ll i = 1; i < SZ(cutPts); i += 1) {
-      ans += calculateOpt(cutPts[i-1]+1, cutPts[i]-1, mn);
+    for (ll i = 1; i < SZ(posOfInterest); i += 1) {
+      ans += calculateOpt(posOfInterest[i-1], posOfInterest[i], mn);
     }
 
-//     return memo[left][right][baseHeight] = ans;
-    return ans;
+    return memo[left][right][baseHeight] = ans;
   };
 
   ll result = 0LL;
 
   ll prev=0;
   for (ll i = 1; i < N+1; i += 1) {
-    if (signs[i] != signs[i-1]) {
-      if (signs[i-1]!=0) {
+    if (SGN(deltas[i]) != SGN(deltas[i-1])) {
+      if (SGN(deltas[i-1])!=0) {
         result += calculateOpt(prev, i-1, 0);
       }
 

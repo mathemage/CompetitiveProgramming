@@ -6,19 +6,16 @@
 
    * File Name : bronze2.cpp
    * Creation Date : 18-12-2021
-   * Last Modified : Mon 20 Dec 2021 06:48:22 PM CET
+   * Last Modified : Mon 20 Dec 2021 06:47:26 PM CET
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : http://usaco.org/index.php?page=viewproblem&cpid=1144
    * Points/Time :
    * Total/ETA :
    * [upsolve]
-   * +7m
-   * [upsolve - sparseTables]
    *
    * Status :
    * not submitted :-(
    * [upsolve]
-   * [upsolve - sparseTables]
    *
    ==========================================*/
 
@@ -195,28 +192,12 @@ void solve() {
   }
   MSG(val2pos); LINESEP1;
 
-  /* compute sparse tables for min queries */
-  vector<vector<ll>> sparseMin{deltas};
-  for (ll e = 1; 1<<e <= N; e += 1) {
-    sparseMin.PB({});
-
-    for (ll i = 0; i+(1<<e)-1 < N; i += 1) {
-      sparseMin[e].PB(min( 
-            sparseMin[e-1][i],
-            sparseMin[e-1][i+(1<<(e-1))]
-            )
-          );
-    }
-  }
-  MSG_VEC_VEC(sparseMin); LINESEP1;
-
   auto queryMin = [&](ll left, ll right) {  // TODO optimize via Sparse Tables
-    ll e=0;
-    while (1<<e <= right-left+1) {
-      e++;
+    ll ans=INF_LL;
+    FOR(pos,left,right) {
+      umin(ans, deltas[pos]);
     }
-    e--;
-    return min(sparseMin[e][left], sparseMin[e][right-(1<<e)+1]);
+    return ans;
   };
 
 //   unordered_map<ll, unordered_map<ll, unordered_map<ll, ll>>> memo;
