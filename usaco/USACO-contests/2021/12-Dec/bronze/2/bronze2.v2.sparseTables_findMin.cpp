@@ -6,7 +6,7 @@
 
    * File Name : bronze2.cpp
    * Creation Date : 18-12-2021
-   * Last Modified : Mon 20 Dec 2021 06:48:22 PM CET
+   * Last Modified : Thu 30 Dec 2021 11:08:00 PM CET
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : http://usaco.org/index.php?page=viewproblem&cpid=1144
    * Points/Time :
@@ -19,6 +19,7 @@
    * not submitted :-(
    * [upsolve]
    * [upsolve - sparseTables]
+   * 10/10 ACs (passed!!) :-O :-O :-O
    *
    ==========================================*/
 
