@@ -6,13 +6,15 @@
 
    * File Name : C.cpp
    * Creation Date : 29-12-2021
-   * Last Modified : Wed 29 Dec 2021 06:38:01 PM CET
+   * Last Modified : Thu 30 Dec 2021 11:35:34 PM CET
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://codeforces.com/contest/1616/problem/C
    * Points/Time :
    * Total/ETA : 1500
    * Status :
    * missed by 2-3 s :-(
+   * [after contest submission] https://codeforces.com/contest/1616/submission/141200964
+   * AC :-/ -> would have been awarded points in-contest :-(
    *
    ==========================================*/
 
