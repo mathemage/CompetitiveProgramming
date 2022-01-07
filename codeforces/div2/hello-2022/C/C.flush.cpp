@@ -1,28 +1,29 @@
-:insert
 /* ========================================
 
    ID: mathema6
-   TASK: 
+   TASK: C.flush
    LANG: C++14
 
-   * File Name :
-   * Creation Date :
-   * Last Modified : Tue 04 Jan 2022 11:41:50 PM CET
+   * File Name : C.flush.cpp
+   * Creation Date : 08-01-2022
+   * Last Modified : Sat 08 Jan 2022 12:17:01 AM CET
    * Created By : Karel Ha <mathemage@gmail.com>
-   * URL :
+   * URL : https://codeforces.com/contest/1621/problem/C
    * Points/Time :
-   * Total/ETA :
+   * Total/ETA : *1700
    * Status :
+   * AC!
+   *
    ==========================================*/
 
-#define PROBLEMNAME "TASK_PLACEHOLDER_FOR_VIM"
+#define PROBLEMNAME "C.flush"
 
 #include <bits/stdc++.h>
 
 using namespace std;
 
-#define endl "\n"
-// #define endl "\n" << flush  // flush for interactive problems
+// #define endl "\n"
+#define endl "\n" << flush  // flush for interactive problems
 #define REP(i,n) for(ll i=0;i<(n);i++)
 #define FOR(i,a,b) for(ll i=(a);i<=(b);i++)
 #define FORD(i,a,b) for(ll i=(a);i>=(b);i--)
@@ -167,11 +168,65 @@ const long long INF_ULL = ULLONG_MAX;
 
 
 void solve() {
-  ll result = 0LL;
-  cout << result << endl;
+  ll n; cin >> n;
+  MSG(n);
 
-//   bool result = false;
-//   cout << ((result)?"Yes":"No") << endl;
+  ll qi;
+  cout << "? 1" << endl;
+  cin >> qi; if (qi==0) { exit(-1); }
+
+  vector<ll> result(n);
+  MSG(result);
+
+  vector<ll> rng(n); std::iota(ALL(rng), 1);
+  set<ll> avail(ALL(rng)); 
+  MSG(avail);
+
+  ll k=1;
+  ll c1=1e5;
+//   while (c1-- && nSolved<n-1) {
+  while (c1-- && SZ(avail)>1) {
+    MSG(SZ(avail));
+    MSG(result);
+
+    while (result[k-1]!=0) {
+      k++;
+    }
+    MSG(k);
+
+    cout << "? " << k << endl;
+    cin >> qi; if (qi==0) { exit(-1); }
+    vector<ll> cycle{qi};
+    ll c2=1e5;
+    do {
+      cout << "? " << k << endl;
+      cin >> qi; if (qi==0) { exit(-1); }
+      if (qi==cycle[0]) {
+        break;
+      }
+      cycle.PB(qi);
+      MSG(cycle);
+    } while (c2--);
+
+    ll m=SZ(cycle);
+    for (ll i = 0; i < m; i += 1) {
+      result[cycle[i]-1] = cycle[(i+1) % m];
+      avail.erase(cycle[(i+1) % m]);
+    }
+  }
+
+  for (auto & x: result) {
+    if (x==0) {
+      x=*avail.begin();
+    }
+  }
+
+  REP(i,n) {
+    assert(1<=result[i]);
+    assert(result[i]<=n);
+  }
+
+  cout << "! " << result << endl;
 }
 
 int main() {
@@ -192,4 +247,3 @@ int main() {
   }
   return 0;
 }
-.
