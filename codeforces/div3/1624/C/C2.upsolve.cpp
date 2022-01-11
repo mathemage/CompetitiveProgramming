@@ -1,24 +1,26 @@
+ 
 /* ========================================
 
    ID: mathema6
-   TASK: C
+   TASK: C2.upsolve
    LANG: C++14
 
-   * File Name : C.cpp
-   * Creation Date : 10-01-2022
-   * Last Modified : Út 11. ledna 2022, 23:50:15
+   * File Name : C2.upsolve.cpp
+   * Creation Date : 11-01-2022
+   * Last Modified : Út 11. ledna 2022, 23:48:03
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://codeforces.com/contest/1624/problem/C
    * Points/Time :
+   * = 2m
+   *
    * Total/ETA :
    * Status :
-   * pre-AC!! :-O :-O
-   * TLE on #23 - https://codeforces.com/contest/1624/submission/142277551
-   * - max_test with unlucky values -> TLE :-/
+   * [others code] -> chain (heap structure: parent-child chain)
+   * AC! (flash upsolve)
    *
    ==========================================*/
 
-#define PROBLEMNAME "C"
+#define PROBLEMNAME "C2.upsolve"
 
 #include <bits/stdc++.h>
 
@@ -159,8 +161,7 @@ const vector<pair<int,int>> DXY4 = { {0,1}, {1,0}, {0,-1}, {-1,0} };
 const string dues="NESW";
 
 const int CLEAN = -1;
-// const int UNDEF = -42;
-const int UNDEF = 0;
+const int UNDEF = -42;
 const long long MOD = 1000000007;
 const double EPS = 1e-8;
 const ld PI = acos((ld)-1);
@@ -169,61 +170,25 @@ const int INF = INT_MAX;
 const long long INF_LL = LLONG_MAX;
 const long long INF_ULL = ULLONG_MAX;
 
-// const ll MX=55;
 
 void solve() {
   ll n; cin >> n;
-  vector<ll> a(n); cin >> a;
-  MSG(a); LINESEP1;
 
-//   unordered_map<ll, vector<ll>> pos2val;
-  map<ll, vector<ll>> pos2val;
-  map<ll, vector<ll>> val2pos;
-  REP(i,n) {
-    while (a[i]>0) {
-      if (a[i]<=n) {
-        pos2val[i].PB(a[i]);
-        val2pos[a[i]].PB(i);
+  unordered_map<ll, bool> vis;
+
+  ll ai;
+  REP(_,n) {
+    cin >> ai;
+    while (ai) {
+      if (ai<=n && !vis[ai]) {
+        vis[ai]=1;
+        break;
       }
-
-      a[i]/=2;
+      ai/=2;
     }
   }
-  MSG(pos2val);
-  MSG(val2pos);
 
-  vector<ll> ordVal(n); std::iota(ALL(ordVal), 1);
-  std::stable_sort(ALL(ordVal), [&](const auto & i, const auto & j) {
-      return SZ(val2pos[i]) < SZ(val2pos[j]);
-      } );
-  MSG(ordVal); LINESEP1;
-
-  vector<ll> perm(n); std::iota(ALL(perm), 1);
-
-  vector<ll> sol(n, UNDEF);
-  function<bool(ll)> search = [&](ll ordIndex) {
-    if (ordIndex>=n) {
-      vector<ll> sol2=sol;
-      std::sort(ALL(sol2));
-      MSG(sol2); MSG(perm); LINESEP1;
-      return sol2==perm;
-    }
-
-    ll val=ordVal[ordIndex];
-    for (auto & pos: val2pos[val]) {
-      if (sol[pos]==UNDEF) {
-        sol[pos]=val;
-        if (search(ordIndex+1)) {
-          return true;
-        }
-        sol[pos]=UNDEF;
-      }
-    }
-
-    return false;
-  };
-
-  bool result = search(0);
+  bool result = SZ(vis)==n;
   cout << ((result)?"YES":"NO") << endl;
 }
 
