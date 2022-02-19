@@ -7,7 +7,7 @@
 
    * File Name : gen_max_test.cxx
    * Creation Date : 07-01-2021
-   * Last Modified : Pá 8. ledna 2021, 00:17:44
+   * Last Modified : So 19. února 2022, 19:57:04
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL :
    * Points :
@@ -37,24 +37,19 @@ void solve() {
 
 int main() {
   // t
-  int cases = 1;
+  int cases = 100;
   cout << cases << endl;
 
-  // n, m...
-  int lim = 300000;
-  cout << lim << " " << lim << endl;
+  REP(_,cases) {
+    int N = 100000;
+    cout << N << endl;
 
-  // vector<int> v1(n);
-  REP(i,lim) {
-    cout << lim << " ";
+    int Ci = N;
+    REP(_,N) {
+      cout << Ci << " ";
+    }
+    cout << endl;
   }
-  cout << endl;
-
-  // vector<int> v2(m);
-  REP(i,lim) {
-    cout << 1000000000 << " ";
-  }
-  cout << endl;
 
   return 0;
 }
