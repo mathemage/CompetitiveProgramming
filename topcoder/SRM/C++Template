@@ -27,14 +27,12 @@ using namespace std;
 #define SGN(X) ((X) ? ( (X)>0?1:-1 ) : 0)
 #define CONTAINS(S,E) ((S).find(E) != (S).end())
 #define SZ(x) ((ll) (x).size())
-// #define SZi(x) ((int) (x).size())
 #define YES return "Possible";
 #define NO return "Impossible";
 #define YN(b) return ((b)?"Possible":"Impossible");
 
 using ll = long long;
 using ul = unsigned long long;
-// using ulul = pair<ul, ul>;
 using ld = long double;
 using graph_unord = unordered_map<ll, vector<ll>>;
 using graph_ord  = map<ll, set<ll>>;
@@ -49,7 +47,8 @@ using graph_t    = graph_unord;
   #define _D(a) cerr << "> " << (#a) << ": "; cerr <<= (a); cerr << endl;
   #define MSG_VEC_VEC(v) cerr << "> " << (#v) << ":\n"; (print_vector_vector(cerr, (v))) << endl;
   #define LINESEP1 cerr << "-----------------------------------------------                  " << endl;
-  #define LINESEP2 cerr << "_________________________________________________________________" << endl;
+  #define LINESEP2 cerr << "#################################################################" << endl;
+  #define LINESEP3 cerr << "_________________________________________________________________" << endl;
 
   #define MSG_VEC(v) cerr << "> " << (#v) << ": "; (print_vector(cerr, (v))) << endl;
   #define MSG_VEC_STR(v) cerr << "> " << (#v) << ": "; (print_vector_string(cerr, (v))) << endl;
@@ -59,6 +58,7 @@ using graph_t    = graph_unord;
   #define MSG_VEC_VEC(v)
   #define LINESEP1
   #define LINESEP2
+  #define LINESEP3
 
   #define MSG_VEC(v)
   #define MSG_VEC_STR(v)
@@ -152,7 +152,7 @@ const long long INF_ULL = ULLONG_MAX;
 class $CLASSNAME$ {
 public:
   $RETURNTYPE$ $METHODNAME$($METHODPARAMS$) {
-    LINESEP2;
+    LINESEP3;
 
     $RETURNTYPE$ result;
     return result;

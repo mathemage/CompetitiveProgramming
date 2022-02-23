@@ -7,7 +7,7 @@
 
    * File Name :
    * Creation Date :
-   * Last Modified : Tue 04 Jan 2022 11:41:50 PM CET
+   * Last Modified : St 23. února 2022, 19:14:55
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL :
    * Points/Time :
@@ -41,7 +41,6 @@ using namespace std;
 #define SGN(X) ((X) ? ( (X)>0?1:-1 ) : 0)
 #define CONTAINS(S,E) ((S).find(E) != (S).end())
 #define SZ(x) ((ll) (x).size())
-// #define SZi(x) ((int) (x).size())
 #define YES cout << "YES" << endl;
 #define NO cout << "NO" << endl;
 #define YN(b) cout << ((b)?"YES":"NO") << endl;
@@ -53,7 +52,6 @@ using namespace std;
 
 using ll = long long;
 using ul = unsigned long long;
-// using ulul = pair<ul, ul>;
 using ld = long double;
 using graph_unord = unordered_map<ll, vector<ll>>;
 using graph_ord  = map<ll, set<ll>>;
@@ -67,12 +65,14 @@ using graph_t    = graph_unord;
   #define MSG(a) cerr << "> " << (#a) << ": " << (a) << endl;
   #define MSG_VEC_VEC(v) cerr << "> " << (#v) << ":\n" << (v) << endl;
   #define LINESEP1 cerr << "-----------------------------------------------                  " << endl;
-  #define LINESEP2 cerr << "_________________________________________________________________" << endl;
+  #define LINESEP2 cerr << "#################################################################" << endl;
+  #define LINESEP3 cerr << "_________________________________________________________________" << endl;
 #else
   #define MSG(a)
   #define MSG_VEC_VEC(v)
   #define LINESEP1
   #define LINESEP2
+  #define LINESEP3
 #endif
 
 ostream& operator<<(ostream& os, const vector<string> & vec) { os << endl; for (const auto & s: vec) os << s << endl; return os; }
@@ -188,7 +188,7 @@ int main() {
   FOR(tt,1,cases) {
 //     cout << "Case #" << tt << ": ";
     solve();
-    LINESEP2;
+    LINESEP3;
   }
   return 0;
 }
