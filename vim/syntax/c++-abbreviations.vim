@@ -17,7 +17,10 @@ iab [& auto search = [&]() {<CR>?<CR>};<ESC>jdd2kf?c
 iab vs vector<string>
 iab vi vector<int>
 iab vll vector<ll>
-iab vb vector<bool>
+iab vb bitset<MX>
+iab bits bitset<MX>
+" TODO
+iab vbo vector<bool> 
 iab vd vector<double>
 
 iab ii pair<int, int>
