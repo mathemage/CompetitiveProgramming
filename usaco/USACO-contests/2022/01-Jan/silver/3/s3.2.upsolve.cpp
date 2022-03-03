@@ -6,16 +6,18 @@
 
    * File Name : s3.2.upsolve.cpp
    * Creation Date : 26-02-2022
-   * Last Modified : Út 1. března 2022, 23:55:01
+   * Last Modified : Čt 3. března 2022, 23:32:01
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : http://usaco.org/current/index.php?page=viewproblem2&cpid=1184
    * Points/Time :
    * [upsolve]
    * ? = 30m?
    * +17m = 47m?
+   * +12m = 59m
    *
    * Total/ETA :
    * Status :
+   * 14/14 ACs!! <- last minute, yess!!
    *
    ==========================================*/
 
@@ -197,7 +199,7 @@ void solve() {
 
   vector<bool> cerealVisited(M);
   function<void(ll,ll)> dfs = [&](ll cereal, ll parent) {
-    MSG(cereal); MSG(parent); LINESEP1;
+//     MSG(cereal); MSG(parent); LINESEP1;
 
     cerealVisited[cereal] = true;
 
@@ -220,15 +222,18 @@ void solve() {
 
   vector<ll> result;
   ll nHungry = 0;
-
   REP(cereal,M) {
     if (cerealVisited[cereal]) {
       continue;
     }
+    LINESEP2;
+    MSG(cereal);
 
     assert(treeEdges.empty());
     assert(nonTreeEdges.empty());
+
     dfs(cereal,-1);
+    MSG(cerealVisited);
 
     if (!nonTreeEdges.empty()) {
       ll initialCow = nonTreeEdges.front();
@@ -237,6 +242,8 @@ void solve() {
       assert(statusCow[initialCow]==NONTREE);
       result.PB(initialCow);
       dfs(f[initialCow],-1);
+    } else {
+      dfs(cereal,-1);
     }
 
     while (!treeEdges.empty()) {
@@ -248,11 +255,12 @@ void solve() {
       nonTreeEdges.pop();
       nHungry++;
     }
+
   }
 
   cout << nHungry << endl;
   for (auto & cow: result) {
-    cout << cow << endl;
+    cout << cow+1 << endl;
   }
 }
 
