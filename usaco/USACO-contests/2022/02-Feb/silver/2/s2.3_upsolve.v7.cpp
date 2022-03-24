@@ -6,7 +6,7 @@
 
    * File Name : s2.3_upsolve.cpp
    * Creation Date : 10-03-2022
-   * Last Modified : Fri 25 Mar 2022 12:29:04 AM CET
+   * Last Modified : Fri 25 Mar 2022 12:28:03 AM CET
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : http://usaco.org/index.php?page=viewproblem2&cpid=1207
    * Points/Time :
@@ -17,7 +17,6 @@
    * + 2m = 29m
    * +10m = 39m
    * + 6m = 45m
-   * +
    *
    * Total/ETA :
    * Status :
@@ -28,7 +27,6 @@
    * 5/16 ACs, 11/16 TLEs :-/ :-/ :-/
    * 5/16 ACs, 11/16 TLEs :-/ :-/ :-/ :-/
    * 6/16 ACs, 10/16 TLEs :-/ ^_^
-   *
    *
    ==========================================*/
 

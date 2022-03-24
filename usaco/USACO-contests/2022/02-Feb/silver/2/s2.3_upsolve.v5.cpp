@@ -6,18 +6,15 @@
 
    * File Name : s2.3_upsolve.cpp
    * Creation Date : 10-03-2022
-   * Last Modified : Fri 25 Mar 2022 12:29:04 AM CET
+   * Last Modified : Fri 25 Mar 2022 12:07:27 AM CET
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : http://usaco.org/index.php?page=viewproblem2&cpid=1207
    * Points/Time :
-   *      = 16m
-   * + 4m = 20m
-   * + 5m = 25m
-   * + 2m = 27m
-   * + 2m = 29m
-   * +10m = 39m
-   * + 6m = 45m
-   * +
+   *     = 16m
+   * +4m = 20m
+   * +5m = 25m
+   * +2m = 27m
+   * +2m = 29m
    *
    * Total/ETA :
    * Status :
@@ -26,9 +23,6 @@
    * 5/16 ACs, 11/16 TLEs :-/ :-/
    * 5/16 ACs, 11/16 TLEs :-/ :-/ :-(
    * 5/16 ACs, 11/16 TLEs :-/ :-/ :-/
-   * 5/16 ACs, 11/16 TLEs :-/ :-/ :-/ :-/
-   * 6/16 ACs, 10/16 TLEs :-/ ^_^
-   *
    *
    ==========================================*/
 
@@ -68,7 +62,6 @@ using namespace std;
 #define IMP cout << "IMPOSSIBLE" << endl;
 
 using ll = long long;
-using l3 = tuple<ll, ll, ll>;
 using ul = unsigned long long;
 using ld = long double;
 using graph_unord = unordered_map<ll, vector<ll>>;
@@ -200,29 +193,30 @@ void solve() {
   ll N1=N/2;
   ll N2=N-N1;
 //   unordered_map<ll, unordered_map<ll, unordered_map<ll, ll>>> xyk2w;
-//   map<ll, map<ll, map<ll, ll>>> xyk2w;
-  map<l3, ll> xyk2w;
+  map<ll, map<ll, map<ll, ll>>> xyk2w;
 
   vector<ll> result(N+5);
 
   vector<ll> Ns{N1,N2};
   REP(iN,2) {
-    REP(b,1LL<<(Ns[iN])) {
+    REP(b,1LL<<Ns[iN]) {
       ll x=0,y=0;
       REP(i,Ns[iN]) {
-        if ((b>>i) & 1) {
-          x+=xs[iN==0 ? i : (N1+i)];
-          y+=ys[iN==0 ? i : (N1+i)];
+        if (b>>i & 1) {
+          x+=xs[iN==0 ? i : N1+i];
+          y+=ys[iN==0 ? i : N1+i];
         }
       }
 
       ll k=__builtin_popcountll(b);
       if (iN==0) {
-        xyk2w[MTP(x,y,k)]++;
+        xyk2w[x][y][k]++;
       } else {
         for (ll k2 = 0; k+k2 <= N; k2 += 1) {
-          if (CONTAINS(xyk2w, MTP(xg-x, yg-y, k2))) {
-            result[k+k2] += xyk2w[MTP(xg-x, yg-y, k2)];
+          if (CONTAINS(xyk2w, xg-x)
+           && CONTAINS(xyk2w[xg-x], yg-y)
+           && CONTAINS(xyk2w[xg-x][yg-y], k2) ) {
+            result[k+k2] += xyk2w[xg-x][yg-y][k2];
           }
         }
       }
