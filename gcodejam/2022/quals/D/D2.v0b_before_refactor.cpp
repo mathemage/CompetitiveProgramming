@@ -6,18 +6,18 @@
 
    * File Name : D2.cpp
    * Creation Date : 04-04-2022
-   * Last Modified : Sat 09 Apr 2022 10:04:16 PM CEST
+   * Last Modified : Sat 09 Apr 2022 09:39:06 PM CEST
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL :
    * Points/Time :
    * +16m
    * +15m
    * + 4m
-   * +25m = 1h :-/
+   * +
    *
    * Total/ETA :
    * Status :
-   * S WA - - :-/ :-(
+   *
    *
    ==========================================*/
 
@@ -180,10 +180,6 @@ void solve() {
   vector<ll> P(N); cin >> P;
   MSG(F); MSG(P); LINESEP2;
 
-  vector<ll> fun{0};
-  fun.insert(fun.end(), ALL(F));
-  MSG(fun); LINESEP1;
-
   graph_t adj;
   FOR(at,1,N) {
     ll par=P[at-1];
@@ -191,37 +187,38 @@ void solve() {
   }
   MSG(adj); LINESEP2;
 
-  vector<ll> initLeaf2maxFun = fun;
-  vector<ll> initLeaf2sumFun = fun;
+  vector<ll> initLeaf2maxFun = F;
+  vector<ll> initLeaf2sumFun = F;
 
   function<const vector<ll> (ll)> leafsViaDFS = [&](ll at) {
     if (adj[at].empty()) {
       return vector<ll>{at};
     }
+    ll root=at-1;
 
     vector<ll> leafs;
-    ll baseFun = 0LL;
+    ll baseFun = 0;
 
     for (auto & child: adj[at]) {
       vector<ll> leafsOfChild = leafsViaDFS(child);
       leafs.insert(leafs.end(), ALL(leafsOfChild));
 
-      baseFun += std::accumulate(ALL(leafsOfChild), -INF_LL, [&](const auto & s, const auto & leaf) { return max(s, initLeaf2sumFun[leaf]); } ); // (1)
+      baseFun += std::accumulate(ALL(leafsOfChild), -INF_LL, [&](const auto & s, const auto & leaf) { return max(s, initLeaf2sumFun[leaf-1]); } );
     }
 
-//     LINESEP2;
-//     MSG(at); MSG(root);
+    LINESEP2;
+    MSG(at); MSG(root);
     for (auto & init: leafs) {
-      // TODO update only init that maximize initLeaf2sumFun[leaf] in (1) ?
-      initLeaf2sumFun[init] = baseFun + max(0LL, F[at]-initLeaf2maxFun[init]) ;
-      umax(initLeaf2maxFun[init], F[at]);
+      ll idx=init-1;  // -> 0-based
+      initLeaf2sumFun[idx] = baseFun + max(0LL, F[root]-initLeaf2maxFun[idx]) ;
+      umax(initLeaf2maxFun[idx], F[root]);
 
-//       LINESEP1;
-//       MSG(init);
-//       MSG(initLeaf2sumFun[idx]);
-//       MSG(initLeaf2maxFun[idx]);
+      LINESEP1;
+      MSG(init);
+      MSG(initLeaf2sumFun[idx]);
+      MSG(initLeaf2maxFun[idx]);
     }
-//     LINESEP2;
+    LINESEP2;
 
     return leafs;
   };
@@ -235,7 +232,7 @@ void solve() {
 //     LINESEP1;
 //   }
 
-  ll result = std::accumulate(ALL(initiators), -INF_LL, [&](const auto & s, const auto & leaf) { return max(s, initLeaf2sumFun[leaf]); } );
+  ll result = std::accumulate(ALL(initiators), -INF_LL, [&](const auto & s, const auto & leaf) { return max(s, initLeaf2sumFun[leaf-1]); } );
 
   cout << result << endl;
 }

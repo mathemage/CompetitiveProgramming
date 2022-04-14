@@ -6,18 +6,18 @@
 
    * File Name : D2.cpp
    * Creation Date : 04-04-2022
-   * Last Modified : Sat 09 Apr 2022 10:04:16 PM CEST
+   * Last Modified : Sat 09 Apr 2022 09:50:19 PM CEST
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL :
    * Points/Time :
    * +16m
    * +15m
    * + 4m
-   * +25m = 1h :-/
+   * +
    *
    * Total/ETA :
    * Status :
-   * S WA - - :-/ :-(
+   *
    *
    ==========================================*/
 
@@ -206,15 +206,15 @@ void solve() {
       vector<ll> leafsOfChild = leafsViaDFS(child);
       leafs.insert(leafs.end(), ALL(leafsOfChild));
 
-      baseFun += std::accumulate(ALL(leafsOfChild), -INF_LL, [&](const auto & s, const auto & leaf) { return max(s, initLeaf2sumFun[leaf]); } ); // (1)
+      baseFun += std::accumulate(ALL(leafsOfChild), -INF_LL, [&](const auto & s, const auto & leaf) { return max(s, initLeaf2sumFun[leaf]); } );
     }
 
 //     LINESEP2;
 //     MSG(at); MSG(root);
     for (auto & init: leafs) {
-      // TODO update only init that maximize initLeaf2sumFun[leaf] in (1) ?
-      initLeaf2sumFun[init] = baseFun + max(0LL, F[at]-initLeaf2maxFun[init]) ;
-      umax(initLeaf2maxFun[init], F[at]);
+      ll idx=init-1;  // -> 0-based
+      initLeaf2sumFun[idx] = baseFun + max(0LL, F[at]-initLeaf2maxFun[idx]) ;
+      umax(initLeaf2maxFun[idx], F[at]);
 
 //       LINESEP1;
 //       MSG(init);
