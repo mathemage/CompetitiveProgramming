@@ -1,0 +1,55 @@
+<html><body bgcolor="#000000" text="#ffffff"><table><tr><td colspan="2"><h3>Problem Statement</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><p>
+A house of cards is a pyramid-shaped construction made entirely of cards.
+</p>
+<p>
+The main unit (which we will call a block) consists of two cards leaning against each other, roughly like this:
+</p>
+<pre>
+       /\
+      /  \
+</pre>
+<p>
+The bottom floor of the pyramid consists of <b>N</b> blocks standing next to each other.
+</p>
+<p>
+As long as you have more than one block, you can build an additional floor. The new floor is built as follows:
+</p>
+<ul>
+<li>Add a ceiling: For each pair of adjacent blocks on the current top floor, place a horizontal card that will cover both their tops.</li>
+<li>Add the new floor: For each horizontal card you just placed, put a new block onto that card.</li>
+</ul>
+<p>
+Clearly, the new floor will have one fewer block than the previous one.
+</p>
+<p>
+The pyramid is complete once you build a floor that consists of a single block.
+</p>
+<br></br>
+<p>
+Given the number <b>N</b> of blocks that form the bottom floor, compute and return the total number of cards needed to build the pyramid.
+</p></td></tr><tr><td colspan="2"><h3>Definition</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Class:</td><td>HouseOfCards</td></tr><tr><td>Method:</td><td>count</td></tr><tr><td>Parameters:</td><td>int</td></tr><tr><td>Returns:</td><td>long long</td></tr><tr><td>Method signature:</td><td>long long count(int N)</td></tr><tr><td colspan="2">(be sure your method is public)</td></tr></table></td></tr><tr><td colspan="2"><h3>Limits</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Time limit (s):</td><td>2.000</td></tr><tr><td>Memory limit (MB):</td><td>256</td></tr></table></td></tr><tr><td colspan="2"><h3>Notes</h3></td></tr><tr><td align="center" valign="top">-</td><td>Watch out for integer overflow: the result may not fit into a 32-bit variable.</td></tr><tr><td colspan="2"><h3>Constraints</h3></td></tr><tr><td align="center" valign="top">-</td><td><b>N</b> will be between 1 and 100,000, inclusive.</td></tr><tr><td colspan="2"><h3>Examples</h3></td></tr><tr><td align="center" nowrap="true">0)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>1</pre></td></tr></table></td></tr><tr><td><pre>Returns: 2</pre></td></tr><tr><td><table><tr><td colspan="2">You take two cards, build a single block, and that's it.</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">1)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>2</pre></td></tr></table></td></tr><tr><td><pre>Returns: 7</pre></td></tr><tr><td><table><tr><td colspan="2"><p>
+You need four cards to build two blocks, then one card to put on their tops horizontally, and then two more cards to build one block on top of that card.
+</p>
+<p>
+The resulting house of cards looks roughly as follows:
+</p>
+<pre>
+    /\
+   /  \
+  ------
+  /\  /\
+ /  \/  \
+</pre></td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">2)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>4</pre></td></tr></table></td></tr><tr><td><pre>Returns: 26</pre></td></tr><tr><td><table><tr><td colspan="2">We start by placing four blocks next to each other to form the bottom floor. Then we place three cards horizontally on top of them and we are ready to build the next floor. And so on, until the top. An ASCII art of the full house follows. ('=' denotes places where two adjacent horizontal cards partially overlap.)
+<pre>
+        /\
+       /  \
+      ------
+      /\  /\ 
+     /  \/  \
+    ----==----
+    /\  /\  /\
+   /  \/  \/  \
+  ----==--==----
+  /\  /\  /\  /\
+ /  \/  \/  \/  \
+</pre></td></tr></table></td></tr></table></td></tr></table><p>This problem statement is the exclusive and proprietary property of TopCoder, Inc.  Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited.  (c)2003, TopCoder, Inc.  All rights reserved.  </p></body></html>
