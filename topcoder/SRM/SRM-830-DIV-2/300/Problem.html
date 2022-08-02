@@ -1,0 +1,26 @@
+<html><body bgcolor="#000000" text="#ffffff"><table><tr><td colspan="2"><h3>Problem Statement</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><p>
+You have a collection of <b>N</b> objects.
+The objects have distinct IDs: integers that range from 0 to <b>N</b>-1.
+</p>
+<p>
+The objects have one specific order, given in the vector &lt;int&gt; <b>order</b>.
+The elements of <b>order</b> are the IDs of your objects.
+</p>
+<br></br>
+<p>
+You now want to assign labels to your objects.
+Each label must be a string of between 1 and 12 lowercase English letters ('a'-'z').
+The labels must all be distinct.
+</p>
+<p>
+The labels must be such that if we sort the objects according to their label, we will get exactly the order given in <b>order</b>.
+</p>
+<p>
+Find and return any such set of labels.
+More precisely, the return value of your method should be a vector &lt;string&gt; with exactly <b>N</b> elements, where element i (0-based index) is the label that should be given to the object with ID i.
+</p></td></tr><tr><td colspan="2"><h3>Definition</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Class:</td><td>AssignLabels</td></tr><tr><td>Method:</td><td>assign</td></tr><tr><td>Parameters:</td><td>int, vector &lt;int&gt;</td></tr><tr><td>Returns:</td><td>vector &lt;string&gt;</td></tr><tr><td>Method signature:</td><td>vector &lt;string&gt; assign(int N, vector &lt;int&gt; order)</td></tr><tr><td colspan="2">(be sure your method is public)</td></tr></table></td></tr><tr><td colspan="2"><h3>Limits</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Time limit (s):</td><td>2.000</td></tr><tr><td>Memory limit (MB):</td><td>256</td></tr></table></td></tr><tr><td colspan="2"><h3>Notes</h3></td></tr><tr><td align="center" valign="top">-</td><td>A solution always exists. Any valid solution will be accepted.</td></tr><tr><td align="center" valign="top">-</td><td>When comparing labels, we use the standard lexicographic order: string X is smaller than a different string Y if either (X is a proper prefix of Y) or (the character X[i] is smaller than the character Y[i], where i is the smallest index at which X and Y differ).</td></tr><tr><td colspan="2"><h3>Constraints</h3></td></tr><tr><td align="center" valign="top">-</td><td><b>N</b> will be between 1 and 200, inclusive.</td></tr><tr><td align="center" valign="top">-</td><td><b>order</b> will have exactly <b>N</b> elements.</td></tr><tr><td align="center" valign="top">-</td><td>Elements of <b>order</b> will be a permutation of 0 to <b>N</b>-1. (I.e., they will all be from the range [0,<b>N</b>-1] and they will be distinct.)</td></tr><tr><td colspan="2"><h3>Examples</h3></td></tr><tr><td align="center" nowrap="true">0)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>5</pre></td></tr><tr><td><pre>{0, 3, 2, 1, 4}</pre></td></tr></table></td></tr><tr><td><pre>Returns: {&quot;cat&quot;, &quot;monkey&quot;, &quot;mongoose&quot;, &quot;caterpillar&quot;, &quot;zebra&quot; }</pre></td></tr><tr><td><table><tr><td colspan="2"><p>
+According to the given order, object 0 should have the smallest label, object 3 the second smallest one, object 2 should have the middle label, then goes the label of object 1, and finally object 4. Formally: label[0] &lt; label[3] &lt; label[2] &lt; label[1] &lt; label[4].
+</p>
+<p>
+Our five labels indeed do have this property: "cat" &lt; "caterpillar" &lt; "mongoose" &lt; "monkey" &lt; "zebra".
+</p></td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">1)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>5</pre></td></tr><tr><td><pre>{4, 3, 2, 1, 0}</pre></td></tr></table></td></tr><tr><td><pre>Returns: {&quot;but&quot;, &quot;bot&quot;, &quot;bit&quot;, &quot;bet&quot;, &quot;bat&quot; }</pre></td></tr><tr><td><table><tr><td colspan="2"></td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">2)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>1</pre></td></tr><tr><td><pre>{0}</pre></td></tr></table></td></tr><tr><td><pre>Returns: {&quot;topcodersrm&quot; }</pre></td></tr><tr><td><table><tr><td colspan="2"></td></tr></table></td></tr></table></td></tr></table><p>This problem statement is the exclusive and proprietary property of TopCoder, Inc.  Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited.  (c)2003, TopCoder, Inc.  All rights reserved.  </p></body></html>
