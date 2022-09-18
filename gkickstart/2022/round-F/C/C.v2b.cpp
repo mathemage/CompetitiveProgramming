@@ -6,7 +6,7 @@
 
    * File Name : C.cpp
    * Creation Date : 18-09-2022
-   * Last Modified : Sun 18 Sep 2022 10:25:20 PM CEST
+   * Last Modified : Sun 18 Sep 2022 10:18:56 PM CEST
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://codingcompetitions.withgoogle.com/kickstart/round/00000000008cb409/0000000000bef319
    * Points/Time :
@@ -14,7 +14,7 @@
    * Status :
    * S AC TLE ! ^_^
    * [practice mode]
-   * S AC AC MLE :-/ :-/
+   *
    *
    ==========================================*/
 
@@ -187,23 +187,31 @@ void solve() {
   ll result = 0LL;
   map<ll,ll> capacity;
   FOR(day,0,D-1) {
-    capacity[-day]=X;
+    capacity[day]=X;
   }
   MSG(capacity); LINESEP1;
 
   for (auto & id: idDescVAscL) {
     MSG(id); MSG(V[id]); MSG(L[id]);
 
-    ll day0=-(D-L[id]-1);
-    if (day0>0) { continue; }
+    ll day0=D-L[id]-1;
+    if (day0<0) { continue; }
     MSG(day0);
 
-    auto it = capacity.lower_bound(day0);
+    auto itFwd = capacity.lower_bound(day0);
+    MSG(itFwd->first); MSG(itFwd->second);
+    if (itFwd==capacity.begin()) { continue; }
+    if (itFwd->first!=day0) {
+      itFwd--;
+    }
+    MSG(itFwd->first); MSG(itFwd->second);
+
+    map<ll,ll>::reverse_iterator it(itFwd);
     MSG(it->first); MSG(it->second);
     LINESEP1;
 
     queue<ll> days2del;
-    while (it!=capacity.end()) {
+    while (it!=capacity.rend()) {
       MSG(it->first); MSG(it->second);
 
       ll delta=min(it->second, Q[id]);
