@@ -6,15 +6,10 @@
 
    * File Name : D1.cpp
    * Creation Date : 24-09-2022
-   * Last Modified : Wed 05 Oct 2022 12:34:35 AM CEST
+   * Last Modified : Thu 29 Sep 2022 12:24:45 AM CEST
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://www.facebook.com/codingcompetitions/hacker-cup/2022/round-2/problems/D1
    * Points/Time :
-   * +16m
-   * +18m = 34m 
-   * +15m = 49m
-   * +
-   *
    * Total/ETA : 18 pts
    * Status :
    * unsubmitted
@@ -188,87 +183,27 @@ struct FT {
   }
 };
 
-const vector<ll> dig{1,2,3};
+const ll dig[3] = {1,2,3};
 
 void solve() {
   ll N,M; cin >> N >> M;
   vector<ll> A(N); cin >> A;
-  MSG(N); MSG(A); 
+  MSG(N); 
+  LINESEP3;
 
   vector<FT> masks(4, FT(N));
-  for (auto & d: dig) {
-    MSG(d);
-    REP(pos,N) { MSG(masks[d].query(pos)-masks[d].query(pos-1)); }
-    LINESEP1;
-  }
-  LINESEP3;
-
-  REP(pos,N) {
-    masks[A[pos]].update(pos, 1);
-  }
 
   for (auto & d: dig) {
     MSG(d);
-    REP(pos,N) { MSG(masks[d].query(pos+1)-masks[d].query(pos)); }
+    MSG(masks[d].s);
     LINESEP1;
   }
-  LINESEP3;
 
   ll result = 0LL;
   ll X,Y,Z;
   REP(_,M) {
     cin >> X >> Y >> Z;
-    MSG(Z);
-    X--, Z--;
-
-    masks[A[X]].update(X, -1);
-    masks[Y].update(X, 1);
-    A[X]=Y;
-    MSG(A);
-
-    vector<ll> nL(4);
-    for (auto & d: dig) {
-      nL[d] = masks[d].query(Z+1);
-    }
-    vector<ll> nR(4);
-    for (auto & d: dig) {
-      nR[d] = masks[d].query(N) - nL[d];
-    }
-    MSG(nL); MSG(nR);
-
-    ll lSum = std::accumulate(ALL(dig), 0LL, [&](const auto & s, const auto & d) { return s+ d*nL[d]; } );
-    ll rSum = std::accumulate(ALL(dig), 0LL, [&](const auto & s, const auto & d) { return s+ d*nR[d]; } );
-    MSG(lSum); MSG(rSum);
-
-    // left <= right
-    if (lSum>rSum) {
-      swap(lSum, rSum);
-      swap(nL, nR);
-    }
-
-    ll diff = rSum-lSum;
-    MSG(diff);
-
-    if (diff%2 != 0) {
-      result += -1;
-      continue;
-    }
-
-    // TODO -4's -> -2s
-    
-    // TODO -4's -> +2s
-
-    LINESEP1;
   }
-
-#ifdef MATHEMAGE_DEBUG
-  for (auto & d: dig) {
-    MSG(d);
-    REP(pos,N) { MSG(masks[d].query(pos+1)-masks[d].query(pos)); }
-    LINESEP1;
-  }
-#endif
-  LINESEP3;
 
   cout << result << endl;
 }

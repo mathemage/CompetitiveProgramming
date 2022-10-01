@@ -6,13 +6,12 @@
 
    * File Name : D1.cpp
    * Creation Date : 24-09-2022
-   * Last Modified : Wed 05 Oct 2022 12:34:35 AM CEST
+   * Last Modified : Wed 05 Oct 2022 12:33:11 AM CEST
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://www.facebook.com/codingcompetitions/hacker-cup/2022/round-2/problems/D1
    * Points/Time :
    * +16m
    * +18m = 34m 
-   * +15m = 49m
    * +
    *
    * Total/ETA : 18 pts
