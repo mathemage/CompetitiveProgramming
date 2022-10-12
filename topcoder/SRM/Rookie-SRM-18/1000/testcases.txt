@@ -1,0 +1,12 @@
+"YES"
+{ "TOP", "CODER" }
+"TOPCODER"
+"NO"
+{ "BOTTOM", "CODER" }
+"TOPCODER"
+"YES"
+{ "ISS", "M", "IPPI" }
+"MISSISSIPPI"
+"YES"
+{ "A", "B", "C", "D", "R" }
+"ABBACADABRA"
