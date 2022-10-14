@@ -1,6 +1,7 @@
 " abbreviations
 iab fo for (auto & it:.) {<CR><ESC>-f.s
 iab fis for (ll i = 0; i < SZ(.); i += 1) {<CR><ESC>-f.c
+iab fds for (ll d = 2; d*d <= .; d += 1+d%2) {<CR><ESC>-f.c
 
 iab if if (.) {<CR><ESC>-f.c
 iab ifel if (.) {<CR>} else {<ESC>-f.c
@@ -12,15 +13,14 @@ iab ato atoi(.c_str())<ESC>F.i
 
 iab [& auto search = [&]() {<CR>?<CR>};<ESC>jdd2kf?c
 
-" iab ll long long
-
 iab vs vector<string>
 iab vi vector<int>
 iab vll vector<ll>
-iab vb bitset<MX>
-iab bits bitset<MX>
+iab bit bitset<MX>
+iab vb vector<bool> 
 " TODO
-iab vbo vector<bool> 
+" iab bits bitset<MX>
+" iab vbo vector<bool> 
 iab vd vector<double>
 
 iab ii pair<int, int>
@@ -47,6 +47,7 @@ iab usetc unordered_set<char>
 " iab usetl unordered_set<long long>
 iab usetll unordered_set<ll>
 
+iab map map<?, ?><ESC>2F?c
 iab umap unordered_map<?, ?><ESC>2F?c
 
 iab acc std::accumulate(ALL(.), 0LL)<ESC>F.c
