@@ -7,7 +7,7 @@
 
    * File Name :
    * Creation Date :
-   * Last Modified : St 23. února 2022, 19:14:55
+   * Last Modified : Sat 15 Oct 2022 12:45:46 AM CEST
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL :
    * Points/Time :
@@ -65,8 +65,8 @@ using graph_t    = graph_unord;
   #define MSG(a) cerr << "> " << (#a) << ": " << (a) << endl;
   #define MSG_VEC_VEC(v) cerr << "> " << (#v) << ":\n" << (v) << endl;
   #define LINESEP1 cerr << "-----------------------------------------------                  " << endl;
-  #define LINESEP2 cerr << "#################################################################" << endl;
-  #define LINESEP3 cerr << "_________________________________________________________________" << endl;
+  #define LINESEP2 cerr << "_________________________________________________________________" << endl;
+  #define LINESEP3 cerr << "#################################################################" << endl;
 #else
   #define MSG(a)
   #define MSG_VEC_VEC(v)
@@ -157,13 +157,13 @@ const string dues="NESW";
 
 const int CLEAN = -1;
 const int UNDEF = -42;
-const long long MOD = 1000000007;
+const ll MOD = 1000000007;
 const double EPS = 1e-8;
 const ld PI = acos((ld)-1);
 
 const int INF = INT_MAX;
-const long long INF_LL = LLONG_MAX;
-const long long INF_ULL = ULLONG_MAX;
+const ll INF_LL = LLONG_MAX;
+const ll INF_ULL = ULLONG_MAX;
 
 
 void solve() {
