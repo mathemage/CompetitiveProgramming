@@ -6,7 +6,7 @@
 
    * File Name : C.cpp
    * Creation Date : 15-10-2022
-   * Last Modified : Sat 15 Oct 2022 04:57:38 PM CEST
+   * Last Modified : Sat 15 Oct 2022 05:21:53 PM CEST
    * Created By : Karel Ha <mathemage@gmail.com>
    * URL : https://codingcompetitions.withgoogle.com/kickstart/round/00000000008cb2e1/0000000000c17491
    * Points/Time :
@@ -15,6 +15,7 @@
    * S AC TLE! ^_^
    * S WA - :-/
    * S WA - :-/
+   * [practice mode]
    *
    ==========================================*/
 
