@@ -9,7 +9,7 @@
 
 ## Coding standards
 
-1. Use latest versions of libraries and idiomatic approaches as of today
+1. Use idiomatic approaches and library versions compatible with this repository's documented toolchains and constraints (for example, C++17 for C++ code)
 2. Keep it simple - NEVER over-engineer, ALWAYS simplify, NO unnecessary defensive programming. No extra features - focus on simplicity.
 3. Be concise. Keep README minimal. IMPORTANT: no emojis ever
 
