@@ -2,10 +2,10 @@
 
 ## Strategy
 
-1. Write plan with success criteria for each phase to be checked off. Include project scaffolding, including .gitignore, and rigorous unit testing.
+1. Write plan with success criteria for each phase to be checked off. Include project scaffolding, including .gitignore, and rigorous unit testing where applicable.
 2. Execute the plan ensuring all criteria are met
-3. Carry out extensive integration testing with Playwright or similar, fixing defects
-4. Only complete when the MVP is finished and tested, with the server running and ready for the user
+3. Run thorough automated checks appropriate for this repository (for example, unit tests, problem-specific sample tests, and any available integration or end-to-end tests), fixing defects
+4. Only complete when the implementation meets the requirements and all relevant tests pass
 
 ## Coding standards
 
