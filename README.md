@@ -1,6 +1,8 @@
 CompetitiveProgramming
 ======================
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://choosealicense.com/licenses/mit/)
+
 my solutions from various online programming contests/practices
 
 List of profiles
